@@ -1,0 +1,10 @@
+<div>
+    <div class="left">
+        <p class="main-value {{ valueClass }}">{{ value }}</p>
+        <p ng-if="unit" class="{{ unitClass || 'unit' }}">{{ unit }}</p>
+    </div>
+    <div class="reference-range left">
+        <p class="reference"><span class="reference-type">inf. </span><span class="value">{{ range.low || '-' }}</span></p>
+        <p class="reference"><span class="reference-type">sup. </span><span class="value">{{ range.high || '-' }}</span></p>
+    </div>
+</div>

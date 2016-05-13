@@ -1,0 +1,14 @@
+<div>
+    <ul class="graph-scales" ng-if="observationList.length">
+        <li><div class="zone-blue"></div><p>Zona<br>Segura</p></li>
+        <li><div class="zone-red"></div><p>Zona<br>Insegura</p></li>
+        <li><div class="point-blue"></div><p>Valor<br>Saludable</p></li>
+        <li><div class="point-red"></div><p>Valor<br>No saludable</p></li>
+    </ul>
+    <div class="graph">
+        <div class="graph-bg"></div>
+    </div>
+    <div ng-if="!observationList.length">
+        <p>No hay historial para mostrar.</p>
+    </div>
+</div>

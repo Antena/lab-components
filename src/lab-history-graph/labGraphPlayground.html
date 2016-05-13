@@ -1,0 +1,246 @@
+<html>
+<head>
+    <title>Lab Graph Playground</title>
+    <link rel="stylesheet" href="../../../styles/main.css">
+</head>
+<body>
+    <h1>Lab Graph Playground</h1>
+    <ul class="graph-scales">
+        <li><div class="zone-blue"></div><p>Zona<br>Segura</p></li>
+        <li><div class="zone-red"></div><p>Zona<br>Insegura</p></li>
+        <li><div class="point-blue"></div><p>Valor<br>Saludable</p></li>
+        <li><div class="point-red"></div><p>Valor<br>No saludable</p></li>
+    </ul>
+    <div class="graph">
+        <div class="graph-bg"></div>
+    </div>
+
+    <script src="http://jashkenas.github.io/underscore/underscore-min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+        var data = [
+            {'value': 10, lowValue: 05, highValue: 30, date: '01-02-2010', unit: "mg/dl"},
+            {'value': 33.3, lowValue: 10, highValue: 40, date: '02-02-2010', unit: "mg/dl"},
+            {'value': 25.3, lowValue: 20, highValue: 30, date: '03-02-2010', unit: "mg/dl"},
+            {'value': 15.6, lowValue: 10, highValue: 30, date: '04-02-2010', unit: "mg/dl"},
+            {'value': 120, lowValue: 20, highValue: 40, date: '14-02-2010', unit: "mg/dl"}
+        ];
+
+        var margin = { top: 30, right: 10, bottom: 30, left: 30},
+            width = 530 - margin.left - margin.right,
+            height = 270 - margin.top - margin.bottom,
+            xStep = width/(data.length-1),
+            UNIT = (data[0].unit) ? data[0].unit : "";
+
+            var parseDate = d3.time.format("%d-%m-%Y").parse,
+            formatDate = d3.time.format("%d-%m-%Y");
+
+            var x = d3.time.scale()
+            .range([0, width]);
+
+            y = d3.scale.linear()
+            .range([height, 0]);
+
+            var xAxis = d3.svg.axis().scale(x)
+            .orient("bottom")
+            .ticks(5)
+            .tickFormat(d3.time.format("%b %d"));
+
+            var yAxis = d3.svg.axis()
+            .scale(y)
+            .tickSize(width + 10)
+            .tickFormat(function(d) {
+                return d === y.domain()[1] ?  d + " " + UNIT : d;
+            })
+            .ticks(5)
+            .orient("right");
+
+            var tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+            var svg = d3.select(document.getElementsByClassName("graph")[0])
+            .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+                    .attr("class", "lab-graph")
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            var labGraph = svg.append("g")
+            .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+            .attr("class", "lab-graph");
+
+            data.forEach(function(d) {
+                d.date = parseDate(d.date);
+                d.value = +d.value;
+            });
+
+            var dateExtent = d3.extent(data, function(d) { return d.date; });
+            x.domain([d3.time.day.offset(dateExtent[0], -1), d3.time.day.offset(dateExtent[1], 1)]);
+            y.domain([0, d3.max(data, function(d) {
+                return (d.value > d.highValue) ? d.value : d.highValue;
+            })]);
+
+            var calculateDottedLines = function(data) {
+                var dottedLines = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (i < data.length - 1) {
+                        var currValue = x(data[i].date);
+                        var nextValue = x(data[i+1].date);
+                        var dottedline = { x: ( (nextValue - currValue) / 2 ) + currValue };
+                        dottedLines.push(dottedline);
+                    }
+                }
+                return dottedLines;
+            };
+
+            var calculateRectangles = function(data) {
+                var rectangles = [];
+                var xRectangles = calculateDottedLines(data);
+                xRectangles.unshift({x:0});
+
+                for (var i = 0; i < data.length; i++) {
+                    if (i < data.length) {
+                        var widthRectangle;
+
+                        if (i === (data.length - 1) ) {
+                            widthRectangle = width;
+                        } else {
+                            widthRectangle = xRectangles[i + 1].x - xRectangles[i].x
+                        }
+
+                        var rectangle = {
+                            x: xRectangles[i].x,
+                            y: y(data[i].highValue),
+                            width: widthRectangle,
+                            height: - (y(data[i].highValue) - y(data[i].lowValue))
+                        };
+
+                        rectangles.push(rectangle);
+                    }
+                }
+                return rectangles;
+            };
+
+            labGraph.selectAll("healthyRange")
+            .data(calculateRectangles(data))
+            .enter().append("rect")
+            .attr("x", function(d) { return d.x })
+            .attr("y", function(d) { return d.y })
+            .attr("width", function(d) { return d.width })
+            .attr("height", function(d) { return d.height })
+            .attr("class", "healthyRange");
+
+            labGraph.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate( "+ (-margin.left) + ",0)")
+                    .call(yAxis)
+                    .call(function(g) {
+                        g.selectAll("text")
+                                .attr("x", 4)
+                                .attr("dy", -4);
+                    });
+
+
+            var lineFunction = d3.svg.line()
+                    .x(function(d) { return x(d.date) })
+                    .y(function(d) { return y(d.value) })
+                    .interpolate("lineal");
+
+
+
+            labGraph.append("path")
+                    .attr("d", lineFunction(data))
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 2)
+                    .attr("fill", "none")
+                    .attr("class", "line-graph");
+
+            labGraph.selectAll("lines")
+                    .data(data)
+                    .enter().append("line")
+                    .attr("stroke-width", "1px")
+                    .attr("stroke", "black")
+                    .attr("x1", function(d) {
+                        return x(d.date)
+                    })
+                    .attr("x2",function(d) {
+                        return x(d.date)
+                    })
+                    .attr("y1", height)
+                    .attr("y2", 0)
+                    .attr("stroke-width", "1px")
+                    .attr("stroke", "black")
+                    .attr("class", "underunder");
+
+            svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate( " + margin.left + "," + height + ")")
+                    .call(xAxis);
+
+            labGraph.selectAll("dot")
+            .data(data)
+            .enter().append("circle")
+            .attr("class", function (d) {
+                var res;
+                if (d.value > d.highValue || d.value < d.lowValue) {
+                    res = "dot out-of-range";
+                } else {
+                    res = "dot in-range";
+                }
+                return res;
+            })
+            .attr("r", 3.5)
+            .attr("cx", function(d) { return x(d.date); })
+            .attr("cy", function(d) { return y(d.value); })
+            .on("mouseover", function(d) {
+                var tooltipClass = "tooltip";
+
+                if (d.value < d.value.lowValue || d.value > d.highValue ) {
+                    tooltipClass = "tooltip out-of-range";
+                    console.log('Out of range');
+                }
+
+                tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9)
+                        .attr('class', tooltipClass);
+
+                tooltip.html("<strong>" + d.value + " " + d.unit+ "</strong><br>"  + formatDate(d.date))
+                .style("left", (x(d.date) - 12) + "px")
+                .style("top", (y(d.value) + 15) + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+            });
+
+            labGraph.selectAll("text")
+            .data(data)
+            .enter().append("text")
+            .attr("x", function(d) { return x(d.date) })
+            .attr("y", function(d) { return y(d.value) })
+            .text( function (d) { return d.value; })
+            .attr("class", "valueTooltip");
+
+            d3.selectAll('circle')
+            .transition()
+            .duration(300)
+            .ease('quad-out')
+            .attr('r', function(d) { return 5 });
+
+        });
+
+
+        </script>
+
+
+</body>
+</html>
+

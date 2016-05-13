@@ -1,0 +1,61 @@
+<div class="observation-gallery-item">
+    <div class="observation-main-content-header">
+        <h3 class="observation-main-content-header-text" ng-if="observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
+        <h3 class="observation-main-content-header-text" ng-if="!observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</h3>
+        <div ng-if="!vm.viewOnly && headerActions.length" class="observation-main-content-header-actions right">
+            <a ng-repeat="headerAction in headerActions"
+               ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"
+               class="observation-main-content-header-actions"
+               ng-class="{ 'active' : headerAction.isActive(observation), 'hovered': hovered === observation._id || headerAction.showAsHovered(observation) }"
+               ng-mouseover="hovered = observation._id"
+               ng-mouseleave="hovered = null"
+               ng-click="headerAction.click(observation); hovered = null;">
+                <span>{{ (headerAction.isActive(observation) ? (hovered === observation._id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span class="icon" ng-class="{ 'icon-more': !observation.inHGraph, 'icon-check': observation.inHGraph}"></span></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="observation-content">
+        <div class="observation-column observation-tertiary-preview observation-details" ng-init="observation.showHistory = 0">
+            <ul class="details-item">
+                <li ng-if="observation.valueQuantity">
+                    <span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
+                </li>
+                <li ng-if="observation.valueQuantity">
+                    <span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | optional }}</span>
+                </li>
+                <li ng-if="observation.comments">
+                    <span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>
+                </li>
+                <li ng-if="observation.referenceRange[0].meaning">
+                    <span class="item-name">{{ 'LAB.MEANING' | translate | semicolon }}</span><span class="item-value">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="observation-column observation-main-content observation-result">
+            <lab-observation-range-graph observation="observation"></lab-observation-range-graph>
+
+            <h2 ng-if="!observation.valueQuantity && !!observation.valueString" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+        </div>
+
+        <div class="observation-column observation-secondary-content">
+            <lab-observation-range-card observation="observation"></lab-observation-range-card>
+        </div>
+
+        <div ng-if="!vm.viewOnly" class="observation-column observation-generic-content">
+
+            <div ng-repeat="action in actions">
+                <a ng-if="!!action.href" href="{{ action.href }}" class="action" ng-class="{'ghost': !action.primary, 'global-action right': action.global }"><span ng-if="action.icon" class="{{action.icon}}"></span> {{ action.label }}</a>
+
+                <button ng-if="!!action.click && (!action.check || action.check(observation))" class="black right" ng-click="action.click(observation); action.on = !action.on">
+                    <span ng-if="action.icon" class="{{action.icon}}"></span> <span ng-if="action.isToggle">{{ action.on ? action.labelOn : action.labelOff }}</span><span ng-if="!action.isToggle">{{ action.label }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-transclude>
+        <!-- optional transcluded content goes here -->
+    </div>
+</div>

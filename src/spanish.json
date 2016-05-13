@@ -1,0 +1,17 @@
+{
+  "LAB": {
+    "MONITOR_THIS_VALUE": "Monitorear este valor",
+    "VALUE_IS_MONITORED": "Valor monitoreado",
+    "STOP_MONITORING": "Dejar de monitorear",
+
+    "METHOD": "Método",
+    "STATUS": "Estado",
+    "NOTE": "Nota",
+    "MEANING": "Interpretación",
+
+    "SHOW_HISTORY": "Ver Historia",
+    "HIDE_HISTORY": "Ocultar Historia",
+
+    "CLICK_HERE_TO_VIEW_STUDY": "Hacé click <a href=\"#\">acá</a> para visualizar tu estudio."
+  }
+}

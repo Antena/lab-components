@@ -1,0 +1,14 @@
+<div ng-if="observation">
+    <value-within-range-card ng-if="observation.valueQuantity"
+                             class="observation-values"
+                             value="observation.valueQuantity.value"
+                             unit="observation.valueQuantity.unit"
+                             range="observation.referenceRange[0] | referenceRangeToSimpleRange"
+                             inside-class="healthy"
+                             outside-class="unhealthy">
+    </value-within-range-card>
+
+    <div ng-if="!observation.valueQuantity && !!observation.valueString">
+        <h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+    </div>
+</div>
