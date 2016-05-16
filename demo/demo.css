@@ -11,3 +11,25 @@
 .demo-content {
 	padding: 20px;
 }
+
+.icon-more,
+.icon-check {
+	font-size: inherit;
+	position: relative;
+	display: inline-block;
+	line-height: 1;
+	speak: none;
+	text-decoration: none !important;
+	text-transform:none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-more:before {
+	content: "\002B";
+}
+
+.icon-check:before {
+	content: "\2714";
+}

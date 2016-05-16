@@ -10,7 +10,7 @@
                ng-mouseover="hovered = observation._id"
                ng-mouseleave="hovered = null"
                ng-click="headerAction.click(observation); hovered = null;">
-                <span>{{ (headerAction.isActive(observation) ? (hovered === observation._id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span class="icon" ng-class="{ 'icon-more': !headerAction.isActive(observation), 'icon-check': headerAction.isActive(observation)}"></span></span>
+                <span>{{ (headerAction.isActive(observation) ? (hovered === observation._id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}" ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}"></span></span>
             </a>
         </div>
     </div>

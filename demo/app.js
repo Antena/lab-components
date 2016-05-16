@@ -4,7 +4,6 @@ var angular = require('angular');
 var _ = require('underscore');
 
 var demoObservations = require('./observations.json').observations;
-var demoGroupedObservations = require('./grouped-observations.json');
 var observationHistory = require('./observation-history.json');
 
 var app = angular.module('app', [
@@ -14,13 +13,13 @@ var app = angular.module('app', [
 app.service('LabObservationService', function() {
 	return {
 		getHistory: function(displayCode, cb) {
-			cb(null, observationHistory.results);
+			cb(observationHistory.results);
 		}
 	};
 });
 
 app.controller('DemoController', ['$scope', 'LabObservationService', function($scope, LabObservationService) {
-	_.each(demoObservations, function (observation) {
+	var observations = _.map(demoObservations, function (observation) {
 		observation.actions = [
 			{
 				labelOn: "Ocultar Historia",
@@ -45,8 +44,11 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 		observation.headerActions = [
 			{
 				activeAndHoveredLabel: "Dejar de monitorear",
+				icon: "icon",
 				activeLabel: "Valor monitoreado",
+				activeIcon: "icon-check",
 				inactiveLabel: "Monitorear este valor",
+				inactiveIcon: "icon-more",
 				click: function(observation) {
 					observation.monitored = !observation.monitored;
 				},
@@ -65,9 +67,9 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 	});
 
 	$scope.demo = {
-		observations: demoObservations,
-		groupObservationByMID: function() {
-			return demoGroupedObservations;
+		observations: observations,
+		groupObservationByMID: function(observations) {
+			return _.groupBy(observations, function(obs) { return obs.metricGroupIdentifier ? obs.metricGroupIdentifier._id : "FAKE_" + obs._id; });
 		},
 		observationHistoryService: LabObservationService.getHistory
 	};
