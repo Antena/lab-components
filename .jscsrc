@@ -10,6 +10,7 @@
 	},
 	"requireSpaceBeforeBinaryOperators": ["?", "+", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "-"],
 	"requireSpaceAfterBinaryOperators": ["?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "-", ","],
+	"disallowEmptyBlocks": true,
 	"disallowSpaceAfterPrefixUnaryOperators": ["!"],
 	"disallowSpaceBeforeBinaryOperators": [","],
 	"disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
@@ -20,5 +21,10 @@
 	"disallowTrailingWhitespace": true,
 	"requireLineFeedAtFileEnd": true,
 	"requireBlocksOnNewline": true,
-	"excludeFiles": ["node_modules/**", "dist/**", "coverage/**", "vendor/**"]
+	"validateIndentation": "\t",
+
+	"excludeFiles": [
+		"node_modules/**",
+		"dist/**"
+	]
 }
