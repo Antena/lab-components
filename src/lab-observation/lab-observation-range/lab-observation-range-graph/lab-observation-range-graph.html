@@ -1,7 +1,13 @@
-<value-within-range-graph ng-if="observation && observation.valueQuantity"
-                          value="observation.valueQuantity.value"
-                          unit="observation.valueQuantity.unit"
-                          range="observation.referenceRange[0] | referenceRangeToSimpleRange"
-                          range-class="healthy"
-                          domain-class="unhealthy">
-</value-within-range-graph>
+<div ng-if="observation">
+	<value-within-range-graph ng-if="observation.valueQuantity"
+							  value="observation.valueQuantity.value"
+							  unit="observation.valueQuantity.unit"
+							  range="observation.referenceRange[0] | referenceRangeToSimpleRange"
+							  range-class="healthy"
+							  domain-class="unhealthy">
+	</value-within-range-graph>
+
+	<div ng-if="!observation.valueQuantity && !!observation.valueString">
+		<h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+	</div>
+</div>
