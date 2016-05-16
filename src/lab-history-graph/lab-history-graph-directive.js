@@ -34,7 +34,7 @@ module.exports = function() {
 
 				/** Axis **/
 
-				var genericValueRange = [0, d3.max(data, function (d) {
+				var genericValueRange = [0, d3.max(data, function(d) {
 					return (d.value > d.highValue) ? d.value : d.highValue;
 				})];
 
@@ -50,11 +50,10 @@ module.exports = function() {
 					.scale(y)
 					.tickSize(width + margin.right)
 					.ticks(5)
-					.tickFormat(function (d) {
+					.tickFormat(function(d) {
 						return d === y.domain()[1] ? d + " " + UNIT : d;
 					})
 					.orient("right");
-
 
 				$scope.dimensions = {
 					margin: margin,
@@ -73,10 +72,10 @@ module.exports = function() {
 				// 	.style("opacity", 0);
 
 				var line = d3.svg.line()
-					.x(function (d) {
+					.x(function(d) {
 						return x(d.date);
 					})
-					.y(function (d) {
+					.y(function(d) {
 						return y(d.value);
 					})
 					.interpolate("lineal");
@@ -95,12 +94,12 @@ module.exports = function() {
 					.attr("transform", "translate(" + margin.left + "," + 0 + ")")
 					.attr("class", "lab-graph");
 
-				data.forEach(function (d) {
+				data.forEach(function(d) {
 					d.date = parseDate(d.date);
 					d.value = +d.value;
 				});
 
-				var dateExtent = d3.extent(data, function (d) {
+				var dateExtent = d3.extent(data, function(d) {
 					return d.date;
 				});
 
@@ -110,16 +109,16 @@ module.exports = function() {
 				labGraph.selectAll("healthyRange")
 					.data(LabGraph.calculateRectangles(data))
 					.enter().append("rect")
-					.attr("x", function (d) {
+					.attr("x", function(d) {
 						return d.x;
 					})
-					.attr("y", function (d) {
+					.attr("y", function(d) {
 						return d.y;
 					})
-					.attr("width", function (d) {
+					.attr("width", function(d) {
 						return d.width;
 					})
-					.attr("height", function (d) {
+					.attr("height", function(d) {
 						return d.height;
 					})
 					.attr("class", "healthyRange");
@@ -128,7 +127,7 @@ module.exports = function() {
 					.attr("class", "y axis")
 					.attr("transform", "translate( " + (-margin.left) + ",0)")
 					.call(yAxis)
-					.call(function (g) {
+					.call(function(g) {
 						g.selectAll("text")
 							.attr("x", 4)
 							.attr("dy", -4);
@@ -146,10 +145,10 @@ module.exports = function() {
 					.enter().append("line")
 					.attr("stroke-width", "1px")
 					.attr("stroke", "black")
-					.attr("x1", function (d) {
+					.attr("x1", function(d) {
 						return x(d.date);
 					})
-					.attr("x2", function (d) {
+					.attr("x2", function(d) {
 						return x(d.date);
 					})
 					.attr("y1", height)
@@ -166,17 +165,17 @@ module.exports = function() {
 				labGraph.selectAll("dot")
 					.data(data)
 					.enter().append("circle")
-					.attr("class", function (d) {
+					.attr("class", function(d) {
 						return (d.value > d.highValue || d.value < d.lowValue) ? "dot out-of-range" : "dot in-range";
 					})
 					.attr("r", 3.5)
-					.attr("cx", function (d) {
+					.attr("cx", function(d) {
 						return x(d.date);
 					})
-					.attr("cy", function (d) {
+					.attr("cy", function(d) {
 						return y(d.value);
 					})
-					.on("mouseover", function (d) {
+					.on("mouseover", function(d) {
 						console.log('Value:' + d.value + ', Pos Y: ' + y(d.value));
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						var tooltipClass = (d.value < d.lowValue || d.value > d.highValue ) ? "tooltip out-of-range" : "tooltip";
@@ -188,7 +187,7 @@ module.exports = function() {
 							.css("top", (y(d.value) + 48) + "px");
 
 					})
-					.on("mouseout", function (d) {
+					.on("mouseout", function(d) {
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						tooltip.css("opacity", 0);
 					});
@@ -196,13 +195,13 @@ module.exports = function() {
 				labGraph.selectAll("text")
 					.data(data)
 					.enter().append("text")
-					.attr("x", function (d) {
+					.attr("x", function(d) {
 						return x(d.date);
 					})
-					.attr("y", function (d) {
+					.attr("y", function(d) {
 						return y(d.value);
 					})
-					.text(function (d) {
+					.text(function(d) {
 						return d.value;
 					})
 					.attr("class", "valueTooltip");
@@ -211,7 +210,7 @@ module.exports = function() {
 					.transition()
 					.duration(300)
 					.ease('quad-out')
-					.attr('r', function (d) {
+					.attr('r', function(d) {
 						return 5;
 					});
 			}

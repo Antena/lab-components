@@ -77,14 +77,14 @@ var d3 = require('d3');
 module.exports = function() {
 
 	function calculateDomainFromRange(value, range, bleedFactor) {
-		var domainLow = function (value, range) {
+		var domainLow = function(value, range) {
 			if (value < range.low) {
 				return value - value * bleedFactor;
 			} else {
 				return range.low - range.low * bleedFactor;
 			}
 		};
-		var domainHigh = function (value, range) {
+		var domainHigh = function(value, range) {
 			if (value > range.high) {
 				return value + value * bleedFactor;
 			} else {
@@ -132,17 +132,15 @@ module.exports = function() {
 					right: 20
 				};
 
-				var svg = d3.select(elem[0]).append('svg')
+			var svg = d3.select(elem[0]).append('svg')
 				.attr('width', width)
 				.attr('height', height);
-
 
 			var domain = scope.domain || calculateDomainFromRange(value, range, bleedFactor);
 
 			var scale = d3.scale.linear()
 				.domain([domain.low, domain.high])
 				.range([padding.left, width - padding.right]);
-
 
 			// Low range
 			svg.append('line')
@@ -197,7 +195,6 @@ module.exports = function() {
 				.classed(outsideClass, valueInDomain)
 				.classed(insideClass, valueWithinRange)
 				.text(valueText);
-
 
 			svg.append('circle')
 				.attr("cx", scale(value))

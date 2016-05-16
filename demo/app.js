@@ -19,17 +19,17 @@ app.service('LabObservationService', function() {
 });
 
 app.controller('DemoController', ['$scope', 'LabObservationService', function($scope, LabObservationService) {
-	var observations = _.map(demoObservations, function (observation) {
+	var observations = _.map(demoObservations, function(observation) {
 		observation.actions = [
 			{
 				labelOn: "Ocultar Historia",
 				labelOff: "Mostrar Historia",
 				isToggle: true,
-				click: function (observation) {
+				click: function(observation) {
 					if (observation.history) {
 						observation.showHistory = !observation.showHistory;
 					} else {
-						LabObservationService.getHistory(observation, function (data) {
+						LabObservationService.getHistory(observation, function(data) {
 							observation.showHistory = !observation.showHistory;
 							observation.history = data;
 						});
@@ -69,7 +69,9 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 	$scope.demo = {
 		observations: observations,
 		groupObservationByMID: function(observations) {
-			return _.groupBy(observations, function(obs) { return obs.metricGroupIdentifier ? obs.metricGroupIdentifier._id : "FAKE_" + obs._id; });
+			return _.groupBy(observations, function(obs) {
+				return obs.metricGroupIdentifier ? obs.metricGroupIdentifier._id : "FAKE_" + obs._id;
+			});
 		},
 		observationHistoryService: LabObservationService.getHistory
 	};

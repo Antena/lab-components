@@ -8,7 +8,7 @@ var ngModule = angular.module('lab-components', [
 	require('lab-diagnostic-report/index.js')
 ]);
 
-ngModule.config(function ($translateProvider) {
+ngModule.config(function($translateProvider) {
 	$translateProvider
 		.translations('es', require('./spanish.json'))
 		.preferredLanguage('es')

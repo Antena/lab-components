@@ -20,7 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
 
         var data = [
             {'value': 10, lowValue: 05, highValue: 30, date: '01-02-2010', unit: "mg/dl"},
@@ -186,7 +186,7 @@
             labGraph.selectAll("dot")
             .data(data)
             .enter().append("circle")
-            .attr("class", function (d) {
+            .attr("class", function(d) {
                 var res;
                 if (d.value > d.highValue || d.value < d.lowValue) {
                     res = "dot out-of-range";
@@ -226,7 +226,7 @@
             .enter().append("text")
             .attr("x", function(d) { return x(d.date) })
             .attr("y", function(d) { return y(d.value) })
-            .text( function (d) { return d.value; })
+            .text( function(d) { return d.value; })
             .attr("class", "valueTooltip");
 
             d3.selectAll('circle')

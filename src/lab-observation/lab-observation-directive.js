@@ -1,7 +1,7 @@
 'use strict';
 
 // @ngInject
-module.exports = function () {
+module.exports = function() {
 
 	return {
 		scope: {
