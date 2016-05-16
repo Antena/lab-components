@@ -76,7 +76,10 @@ module.exports = function($rootScope, $document) {
 
 			var onScroll = function(e) {
 
-                var targetScroll = $element.offset().top - $('.navigation')[0].offsetHeight;
+				var navigation = $('.navigation');
+				var compensation = navigation.length ? navigation[0].offsetHeight : 0;	//TODO (denise) find a more generic way
+
+				var targetScroll = $element.offset().top - compensation;
                 var currentScroll = $document.scrollTop();
 
                 if (currentScroll > targetScroll) {

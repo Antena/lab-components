@@ -1,0 +1,13 @@
+.demo-header {
+	background-color: #222;
+	padding: 0 20px;
+	color: white;
+}
+
+.demo-header .title {
+	font-size: 20px;
+}
+
+.demo-content {
+	padding: 20px;
+}

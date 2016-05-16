@@ -1,0 +1,196 @@
+{
+	"results": [
+		{
+			"_id": "571538c167ba681a728a4133",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 5.16
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2001-08-09T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		},
+		{
+			"_id": "5723bdc2f0a1a807cccc7d46",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 4.83
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2015-12-30T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		},
+		{
+			"_id": "5727cf6c2d58bee076bda42e",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 5.16
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2016-01-09T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		},
+		{
+			"_id": "573206355df055618946b374",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 5.16
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2016-01-09T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		},
+		{
+			"_id": "5723e5b8d24fb777f093529a",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 4.83
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2016-02-02T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		},
+		{
+			"_id": "570343d44ca0965c08a3fef6",
+			"code": {
+				"coding": [
+					{
+						"display": "Recuento De Globulos Rojos"
+					}
+				]
+			},
+			"valueQuantity": {
+				"unit": "10e12/L",
+				"value": 4.83
+			},
+			"resourceType": "Observation",
+			"owner": "lostie@gmail.com",
+			"creationDate": "2016-03-27T03:00:00.000Z",
+			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+			"__v": 0,
+			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+			"referenceRange": [
+				{
+					"high": {
+						"unit": "10e12/L",
+						"value": 5.66
+					},
+					"low": {
+						"unit": "10e12/L",
+						"value": 4.32
+					}
+				}
+			]
+		}
+	]
+}

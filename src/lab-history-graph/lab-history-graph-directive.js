@@ -10,7 +10,7 @@ module.exports = function() {
 			observationList: '=',
 			dateFormat: '=?'
 		},
-		templateUrl: 'components/ui/lab-components/lab-history-graph/lab-history-graph.html',
+		templateUrl: require('./lab-history-graph.html'),
 		restrict: 'E',
 		controller: 'LabHistoryGraphController',
 		link: function($scope, element, attrs, LabGraph) {

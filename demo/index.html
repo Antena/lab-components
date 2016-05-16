@@ -3,13 +3,16 @@
     <head>
         <meta charset="utf-8">
         <title>Lab Components</title>
+		<link rel="stylesheet" href="demo.css">
+		<link rel="stylesheet" href="main.css">
         <script src="dist/bundle.js"></script>
     </head>
     <body>
-        <div ng-controller="DemoController">
-            <p>Lab Components Demo</p>
+        <div ng-controller="DemoController" class="lab-study-viewer">
+            <div class="demo-header"><p class="title">Lab Components Demo</p></div>
 
             <div lab-diagnostic-report
+				 class="demo-content"
                  observations="demo.observations"
                  observation-grouping-function="demo.groupObservationByMID(observations)">
             </div>

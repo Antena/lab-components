@@ -16,7 +16,7 @@
 		"lint": "jshint . --reporter=node_modules/jshint-stylish; jscs . --reporter=node_modules/jscs-stylish",
 		"build": "rm -rf dist && mkdir dist && webpack",
 		"watch": "rm -rf dist && mkdir dist && webpack --watch",
-		"start": "nodemon server.js --watch app.js --watch server.js --watch dist"
+		"start": "npm run build && nodemon server.js --watch app.js --watch server.js --watch dist"
 	},
 	"dependencies": {
 		"angular": "~1.4.x",
