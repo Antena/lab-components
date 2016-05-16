@@ -79,5 +79,5 @@ module.exports = function () {
 			var isWithinRange = $scope.value >= $scope.range.low && $scope.value <= $scope.range.high;
 			$scope.valueClass = isWithinRange ? $scope.insideClass : $scope.outsideClass;
 		}
-	}
+	};
 };

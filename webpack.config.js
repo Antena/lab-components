@@ -4,8 +4,7 @@ var path = require('path'),
 var config = {
     context: __dirname,
     entry: {
-        // 'bundle': './src/index.js',
-        'bundle': './app.js'
+        'bundle': './demo/app.js'
     },
     output: {
         path: "dist",

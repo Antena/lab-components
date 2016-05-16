@@ -1,22 +1,8 @@
-var angular = require('angular');
+var path = require('path');
+var express = require('express');
+var app = module.exports = express();
 
-var demoObservations = require('./demo/observations.json');
-var demoGroupedObservations = require('./demo/groupedObservations.json');
+// serve demo
+app.use(express.static(path.join(__dirname, 'demo')));
 
-var app = angular.module('app', [
-	require('./src/index.js')
-]);
-
-app.controller('DemoController', ['$scope', function ($scope) {
-	$scope.demo = {
-		observations: JSON.parse(demoObservations),
-		groupObservationByMID: function() {
-			return JSON.parse(demoGroupedObservations);
-		}
-	};
-}]);
-
-angular.element(document).ready(function() {
-	angular.bootstrap(document, ['app']);
-});
-
+app.use('/dist', express.static(path.join(__dirname, 'dist')));

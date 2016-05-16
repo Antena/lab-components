@@ -1,6 +1,7 @@
 'use strict';
 
 var d3 = require('d3');
+var $ = require('jquery');
 
 // @ngInject
 module.exports = function() {
@@ -67,16 +68,16 @@ module.exports = function() {
 
 				/** Shapes **/
 
-				var tooltip = d3.select(graphElem).append("div")
-					.attr("class", "tooltip")
-					.style("opacity", 0);
+				// var tooltip = d3.select(graphElem).append("div")
+				// 	.attr("class", "tooltip")
+				// 	.style("opacity", 0);
 
 				var line = d3.svg.line()
 					.x(function (d) {
-						return x(d.date)
+						return x(d.date);
 					})
 					.y(function (d) {
-						return y(d.value)
+						return y(d.value);
 					})
 					.interpolate("lineal");
 
@@ -110,16 +111,16 @@ module.exports = function() {
 					.data(LabGraph.calculateRectangles(data))
 					.enter().append("rect")
 					.attr("x", function (d) {
-						return d.x
+						return d.x;
 					})
 					.attr("y", function (d) {
-						return d.y
+						return d.y;
 					})
 					.attr("width", function (d) {
-						return d.width
+						return d.width;
 					})
 					.attr("height", function (d) {
-						return d.height
+						return d.height;
 					})
 					.attr("class", "healthyRange");
 
@@ -146,10 +147,10 @@ module.exports = function() {
 					.attr("stroke-width", "1px")
 					.attr("stroke", "black")
 					.attr("x1", function (d) {
-						return x(d.date)
+						return x(d.date);
 					})
 					.attr("x2", function (d) {
-						return x(d.date)
+						return x(d.date);
 					})
 					.attr("y1", height)
 					.attr("y2", 0)
@@ -196,10 +197,10 @@ module.exports = function() {
 					.data(data)
 					.enter().append("text")
 					.attr("x", function (d) {
-						return x(d.date)
+						return x(d.date);
 					})
 					.attr("y", function (d) {
-						return y(d.value)
+						return y(d.value);
 					})
 					.text(function (d) {
 						return d.value;
@@ -211,10 +212,10 @@ module.exports = function() {
 					.duration(300)
 					.ease('quad-out')
 					.attr('r', function (d) {
-						return 5
+						return 5;
 					});
 			}
 
 		}
-	}
+	};
 };

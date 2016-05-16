@@ -1,13 +1,14 @@
 'use strict';
 
 var moment = require('moment');
+var _ = require('underscore');
 
 // @ngInject
-module.exports = function ($scope) {
+module.exports = function($scope) {
 
-	this.simplifyObservations = function (observations, dateFormat) {
+	this.simplifyObservations = function(observations, dateFormat) {
 
-		return _.map(observations, function (observation) {
+		return _.map(observations, function(observation) {
 			return {
 				'value': observation.valueQuantity.value,
 				'lowValue': observation.referenceRange[0].low.value,
@@ -15,15 +16,15 @@ module.exports = function ($scope) {
 				'date': moment(observation.creationDate).format(dateFormat),
 				'unit': observation.valueQuantity.unit
 			};
-		})
+		});
 	};
-	
+
 	function calculateDottedLines(data) {
 		var dottedLines = [];
 		for (var i = 0; i < data.length; i++) {
 			if (i < data.length - 1) {
 				var currValue = $scope.dimensions.x(data[i].date);
-				var nextValue = $scope.dimensions.x(data[i+1].date);
+				var nextValue = $scope.dimensions.x(data[i + 1].date);
 				var dottedline = { x: ( (nextValue - currValue) / 2 ) + currValue };
 				dottedLines.push(dottedline);
 			}
@@ -43,7 +44,7 @@ module.exports = function ($scope) {
 				if (i === (data.length - 1) ) {
 					widthRectangle = $scope.dimensions.width;
 				} else {
-					widthRectangle = xRectangles[i + 1].x - xRectangles[i].x
+					widthRectangle = xRectangles[i + 1].x - xRectangles[i].x;
 				}
 
 				var rectangle = {

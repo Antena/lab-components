@@ -4,7 +4,7 @@ var _ = require('underscore');
 var $ = require('jquery');
 
 // @ngInject
-module.exports = function ($rootScope, $document) {
+module.exports = function($rootScope, $document) {
 
     return {
         scope: {
@@ -16,14 +16,14 @@ module.exports = function ($rootScope, $document) {
         templateUrl: require('./lab-diagnostic-report.html'),
         bindToController: true,
         controllerAs: 'vm',
-        controller: function ($scope) {
+        controller: function($scope) {
 
             $scope.$watch('vm.observations', function(observations) {
                 $scope.vm.groupedObservations = $scope.vm.observationGroupingFunction({observations: observations});
             });
 
             //TODO (denise) check if still used here
-            $scope.getObservationValueDisclosure = function (observation) {
+            $scope.getObservationValueDisclosure = function(observation) {
                 var result;
                 if (observation.valueQuantity) {
                     var valueKey = observation.valueQuantity;
@@ -33,7 +33,7 @@ module.exports = function ($rootScope, $document) {
                         " (" + observation.referenceRange[0].meaning.coding[0].code + ")";
 
                     result = value + " " + unit + code;
-                } else if(observation.valueString) {
+                } else if (observation.valueString) {
                     result = observation.valueString;
                 } else {
                     result = "-";
@@ -66,7 +66,7 @@ module.exports = function ($rootScope, $document) {
             };
 
             $scope.initLabTree = function() {
-                if(!$('.parent-active').length) {
+                if (!$('.parent-active').length) {
                     $('.lab-tree-top-level').first().addClass('parent-active');
                 }
             };
@@ -97,5 +97,5 @@ module.exports = function ($rootScope, $document) {
                 unregisterDuScrollBecameInactive();
             });
         }
-    }
+    };
 };

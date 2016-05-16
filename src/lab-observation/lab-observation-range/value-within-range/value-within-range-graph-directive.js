@@ -11,7 +11,7 @@
  * on whether it's within the given range, or outside of it.
  *
  * The domain is optional, and will be defined as a percentage outside of the range if not provided.
- * The range and value must always belong to the given domain. 
+ * The range and value must always belong to the given domain.
  *
  * Additionally, a unit for the value can be provided, which will be displayed next to the value.
  *
@@ -20,9 +20,9 @@
  *
  * @param {String} unit (optional) A string representation of the value unit.
  *
- * @param {Object} range (required) An object representing the range to be displayed. 
+ * @param {Object} range (required) An object representing the range to be displayed.
  * This must contain two numeric properties: 'low' and 'high'.
- * 
+ *
  * @param {Object} domain (optional) An object representing the range to be displayed. This must contain two numeric properties: 'low' and 'high'.
  *
  * @param {String} insideClass (optional) A class name to be applied to the value element, when it falls inside the range.
@@ -118,8 +118,9 @@ module.exports = function() {
 				insideClass = scope.insideClass || scope.rangeClass,
 				outsideClass = scope.insideClass || scope.domainClass;
 
-			var parent = $(elem[0].parentNode),
-				width = 256,
+			// var parent = $(elem[0].parentNode);
+
+			var width = 256,
 				height = 50,
 				circleRadius = 5,
 				strokeWeight = 2,
