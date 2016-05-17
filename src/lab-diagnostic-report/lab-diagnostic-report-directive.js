@@ -9,7 +9,7 @@ module.exports = function($rootScope, $document) {
 	return {
 		scope: {
 			observations: '=',
-			observationGroupingFunction: '&',
+			diagnosticReport: '=',
 			viewOnly: '=?'
 		},
 		restrict: 'EA',
@@ -19,8 +19,18 @@ module.exports = function($rootScope, $document) {
 		controller: function($scope) {
 
 			$scope.$watch('vm.observations', function(observations) {
-				$scope.vm.groupedObservations = $scope.vm.observationGroupingFunction({observations: observations});
+				$scope.vm.groupedObservations = _.groupBy(observations, function(obs) {
+					return obs.extension[0].valueIdentifier.value;
+				});
 			});
+
+			$scope.getOrderItemDisplay = function(itemCode) {
+				var item = _.find($scope.vm.diagnosticReport.item, function(item) {
+					return item.code.extension[0].valueIdentifier.value === itemCode;
+				});
+
+				return item.code.coding[0].display;
+			};
 
 			//TODO (denise) check if still used here
 			$scope.getObservationValueDisclosure = function(observation) {

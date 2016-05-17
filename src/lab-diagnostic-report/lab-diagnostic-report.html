@@ -3,10 +3,10 @@
     <div class="main-content" id="observations-container">
         <div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
 
-            <h2 ng-if="!isTopLevel(group)" id="{{ observationsPerGroup[0].metricGroupIdentifier._id }}" class="observation-group-title">{{ observationsPerGroup[0].metricGroupIdentifier.label | capitalize:true }}</h2>
+            <h2 id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) }}</h2>
 
             <div class="observation-gallery">
-                <lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation._id }}"
+                <lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation.id }}"
                                  observation="observation"
                                  actions="observation.actions"
                                  header-actions="observation.headerActions">
@@ -21,13 +21,12 @@
         <div class="lab-tree">
             <ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()">
                 <li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title">
-                    <a ng-if="!isTopLevel(group)" href="#{{ observationsPerGroup[0].metricGroupIdentifier._id }}"
-                       du-smooth-scroll du-scrollspy offset="100">{{ observationsPerGroup[0].metricGroupIdentifier.label | capitalize:true }}</a>
+                    <a ng-if="!isTopLevel(group)" href="#{{ group}}"
+                       du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) }}</a>
 
                     <div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'lab-tree-top-level': isTopLevel(group) }">
-                        <a href="#{{ observation._id }}" ng-repeat="observation in observationsPerGroup" du-smooth-scroll du-scrollspy offset="100">
-                            <span ng-if="observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</span>
-                            <span ng-if="!observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</span>
+                        <a href="#{{ observation.id }}" ng-repeat="observation in observationsPerGroup" du-smooth-scroll du-scrollspy offset="100">
+                            <span >{{ observation.code | codeableConcept | capitalize:true }}</span>
                         </a>
                     </div>
                 </li>

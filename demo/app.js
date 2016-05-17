@@ -3,8 +3,10 @@
 var angular = require('angular');
 var _ = require('underscore');
 
-var demoObservations = require('./observations.json').observations;
 var observationHistory = require('./observation-history.json');
+
+var fhirBundle = require('./full-study-bundle.json');
+var fhirBundleResources = _.pluck(fhirBundle.entry, 'resource');
 
 var app = angular.module('app', [
 	require('../src/index.js')
@@ -19,7 +21,11 @@ app.service('LabObservationService', function() {
 });
 
 app.controller('DemoController', ['$scope', 'LabObservationService', function($scope, LabObservationService) {
-	var observations = _.map(demoObservations, function(observation) {
+
+	var obs = _.where(fhirBundleResources, { resourceType: "Observation"});
+	var report = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticOrder"});
+
+	var observations = _.map(obs, function(observation) {
 		observation.actions = [
 			{
 				labelOn: "Ocultar Historia",
@@ -68,11 +74,7 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 
 	$scope.demo = {
 		observations: observations,
-		groupObservationByMID: function(observations) {
-			return _.groupBy(observations, function(obs) {
-				return obs.metricGroupIdentifier ? obs.metricGroupIdentifier._id : "FAKE_" + obs._id;
-			});
-		},
+		report: report,
 		observationHistoryService: LabObservationService.getHistory
 	};
 }]);
