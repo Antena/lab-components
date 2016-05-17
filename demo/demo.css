@@ -34,6 +34,6 @@
 	content: "\2714";
 }
 
-.observation-main-content-header-actions.active.hovered .icon-check:before {
+.observation-primary-content-header-actions.active.hovered .icon-check:before {
 	content: "\2718";
 }
