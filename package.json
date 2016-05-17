@@ -14,9 +14,11 @@
   },
   "scripts": {
     "lint": "jshint . --reporter=node_modules/jshint-stylish; jscs . --reporter=node_modules/jscs-stylish",
-    "build": "rm -rf dist && mkdir dist && webpack",
-    "watch": "rm -rf dist && mkdir dist && webpack --watch",
-    "start": "npm run build && nodemon server.js --watch app.js --watch server.js --watch dist"
+    "clean": "rm -rf dist && mkdir dist",
+    "build": "npm run clean && webpack",
+    "watch": "npm run clean && webpack --watch",
+    "run-express": "nodemon server --watch server -e js,html,json",
+    "start": "parallelshell 'npm run -s run-express' 'npm run -s watch'"
   },
   "dependencies": {
     "angular": "~1.4.x",
@@ -39,7 +41,8 @@
     "jscs-stylish": "^0.3.1",
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0",
-    "nodemon": "^1.3.7"
+    "nodemon": "^1.3.7",
+    "parallelshell": "^2.0.0"
   },
   "engines": {
     "node": ">=0.10.26"

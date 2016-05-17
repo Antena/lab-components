@@ -43,8 +43,8 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 
 		observation.headerActions = [
 			{
-				activeAndHoveredLabel: "Dejar de monitorear",
 				icon: "icon",
+				activeAndHoveredLabel: "Dejar de monitorear",
 				activeLabel: "Valor monitoreado",
 				activeIcon: "icon-check",
 				inactiveLabel: "Monitorear este valor",

@@ -27,9 +27,13 @@
 }
 
 .icon-more:before {
-	content: "\002B";
+	content: "\271A";
 }
 
 .icon-check:before {
 	content: "\2714";
+}
+
+.observation-main-content-header-actions.active.hovered .icon-check:before {
+	content: "\2718";
 }

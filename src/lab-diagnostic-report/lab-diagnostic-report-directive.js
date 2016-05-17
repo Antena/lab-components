@@ -41,13 +41,7 @@ module.exports = function($rootScope, $document) {
 				return result;
 			};
 
-			//TODO (denise) check if still used here
-			$scope.isHealthy = function(observation) {
-				var value = observation.valueQuantity.value;
-				return value >= observation.referenceRange[0].low.value && value <=  observation.referenceRange[0].high.value;
-			};
-
-			//TODO (denise) check if still used here
+			//TODO (denise) de-dupe (lab-observation-range-controller.js)
 			$scope.valueStringMatchesReference = function(observation) {
 				return observation.valueString === observation.referenceRange[0].text || observation.referenceRange[0].text === '.' || _.isUndefined(observation.referenceRange[0].text);
 			};
