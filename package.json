@@ -5,7 +5,11 @@
   "main": "src/index.js",
   "author": "Antena",
   "maintainers": [
-    "Denise Fernandez <denise@antena.co>"
+    "Denise Fernandez <denise@antena.co>",
+    "Gonzalo Bellver <gonzalo@antena.co>",
+    "Belén Curcio <belen@antena.co>",
+    "Lucas Rudi <lucas@antena.co>",
+    "Guillermo Mesyngier <guillermo@antena.co>"
   ],
   "license": "UNLICENSED",
   "repository": {
