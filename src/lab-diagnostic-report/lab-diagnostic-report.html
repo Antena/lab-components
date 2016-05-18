@@ -1,6 +1,6 @@
 <div>
 	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
-		<ul class="details-item-list details-item-list-aligned">
+		<ul class="details-item-list">
 			<li ng-if="vm.patient" class="details-item">
 				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }} ({{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }})</span>
 			</li>
@@ -8,12 +8,12 @@
 				<span class="item-name">{{ 'LAB.DATE' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.reportDate | customFormatDate:vm.dateFormat }}</span>
 			</li>
 		</ul>
-		<ul class="details-item-list details-item-list-aligned">
+		<ul class="details-item-list">
 			<li ng-if="vm.organization" class="details-item">
 				<span class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.organization.name }}</span>
 			</li>
 			<li ng-if="vm.status" class="details-item">
-				<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.status }}</span>
+				<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.status | toStatusKey | translate }}&nbsp;<span class="item-value-help">({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})</span></span>
 			</li>
 		</ul>
 	</div>

@@ -22,7 +22,7 @@
                     <span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
                 </li>
                 <li ng-if="observation.valueQuantity" class="details-item">
-                    <span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | optional }}</span>
+                    <span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | toStatusKey | translate }}</span>
                 </li>
                 <li ng-if="observation.comments" class="details-item">
                     <span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>

@@ -1326,7 +1326,9 @@ table.table tbody tr td .icon-delete {
 	border: 1px solid;
 	border-color: #1d4547;
 	padding: 3px;
-	border-radius: 15px
+	border-radius: 15px;
+	text-align: center;
+	width: 19px;
 }
 
 .lab-study-viewer .observation-gallery-item, .lab-viewer .observation-gallery-item {
@@ -1469,37 +1471,47 @@ table.table tbody tr td .icon-delete {
 
 .lab-study-viewer .observation-gallery-item .observation-values .unit, .lab-viewer .observation-gallery-item .observation-values .unit {
 	margin-top: 0;
-	font-size: 12px
+	font-size: 12px;
 }
 
 .lab-study-viewer .observation-gallery-item .observation-details, .lab-viewer .observation-gallery-item .observation-details {
-	text-align: left
+	text-align: left;
 }
 
-.details-item .item-name {
+.details-item .item-value {
 	font-weight: bold;
 }
 
 .details-item .item-name,
 .details-item .item-value {
 	display: table-cell;
-	word-break: break-all;
+	word-break: normal;
 }
 
 .lab-diagnostic-report-info,
 .details-item {
 	width: 100%;
 	display: table;
+	font-style: normal;
+}
+
+.observation-details {
 	margin: 2px 0;
 	font-size: 1.2rem;
 	line-height: 1.4rem;
 	color: #bcbcbc;
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-style: normal
+}
+
+.item-value-help {
+	font-size: 12px;
+	line-height: 13px;
+	color: #bcbcbc;
+	font-weight: normal;
 }
 
 .lab-diagnostic-report-info {
-	width: 60%;
+	width: 70%;
 	margin-bottom: 30px;
 }
 
@@ -3235,9 +3247,12 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 /********/
 
-.observation-details .details-item-list .item-value,
-.observation-details .details-item-list .item-name {
-	width: 50%;
+.details-item-list .item-name {
+	width: 30%;
+}
+
+.details-item-list .item-value {
+	width: 70%;
 }
 
 
@@ -3253,15 +3268,6 @@ h1, .h1, h2, .h2, h3, .h3 {
 	.observation-tertiary-content {
 		width: 40%;
 	}
-
-	.observation-details .details-item-list .item-value {
-		width: 70%;
-	}
-
-	.observation-details .details-item-list .item-name {
-		width: 30%;
-	}
-
 
 	/* .observation-extended-content */
 	.observation-extended-content .observation-primary-content {
@@ -3280,8 +3286,11 @@ h1, .h1, h2, .h2, h3, .h3 {
 		width: 15%;
 	}
 
-	.observation-extended-content .observation-details .details-item-list .item-value,
 	.observation-extended-content .observation-details .details-item-list .item-name {
-		width: 50%;
+		width: 40%;
+	}
+
+	.observation-extended-content .observation-details .details-item-list .item-value {
+		width: 60%;
 	}
 }
