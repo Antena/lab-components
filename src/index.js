@@ -15,4 +15,8 @@ ngModule.config(function($translateProvider) {
 		.useSanitizeValueStrategy('sanitizeParameters');
 });
 
+ngModule.config(function ($compileProvider) {
+	$compileProvider.debugInfoEnabled(false);
+});
+
 module.exports = ngModule.name;
