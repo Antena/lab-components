@@ -17,17 +17,17 @@
 
     <div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length }">
         <div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
-            <ul class="details-item">
-                <li ng-if="observation.valueQuantity">
+            <ul class="details-item-list">
+                <li ng-if="observation.valueQuantity" class="details-item">
                     <span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
                 </li>
-                <li ng-if="observation.valueQuantity">
+                <li ng-if="observation.valueQuantity" class="details-item">
                     <span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | optional }}</span>
                 </li>
-                <li ng-if="observation.comments">
+                <li ng-if="observation.comments" class="details-item">
                     <span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>
                 </li>
-                <li ng-if="observation.referenceRange[0].meaning">
+                <li ng-if="observation.referenceRange[0].meaning" class="details-item">
                     <span class="item-name">{{ 'LAB.MEANING' | translate | semicolon }}</span><span class="item-value">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</span>
                 </li>
             </ul>

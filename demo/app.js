@@ -20,10 +20,18 @@ app.service('LabObservationService', function() {
 	};
 });
 
+function getReferencedId(reference) {
+	var lastSlash = _.lastIndexOf(reference, '/');
+	return lastSlash > -1 ? reference.substring(lastSlash + 1, reference.length) : null;
+}
+
 app.controller('DemoController', ['$scope', 'LabObservationService', function($scope, LabObservationService) {
 
 	var obs = _.where(fhirBundleResources, { resourceType: "Observation"});
-	var report = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticOrder"});
+	var order = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticOrder"});
+	var report = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticReport"});
+	var patient = _.findWhere(fhirBundleResources, { resourceType: "Patient", id: getReferencedId(report.subject.reference)});
+	var organization = _.findWhere(fhirBundleResources, { resourceType: "Organization", id: getReferencedId(report.performer.reference)});
 
 	var observations = _.map(obs, function(observation) {
 		observation.actions = [
@@ -74,7 +82,12 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 
 	$scope.demo = {
 		observations: observations,
-		report: report,
+		order: order,
+		status: report.status,
+		reportDate: report.issued,
+		dateFormat: "DD-MM-YYYY",
+		patient: patient,
+		organization: organization,
 		observationHistoryService: LabObservationService.getHistory
 	};
 }]);

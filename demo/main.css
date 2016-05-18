@@ -1476,16 +1476,18 @@ table.table tbody tr td .icon-delete {
 	text-align: left
 }
 
-.lab-study-viewer .observation-gallery-item .observation-details .details-item .item-name, .lab-viewer .observation-gallery-item .observation-details .details-item .item-name {
-	font-weight: bold
+.details-item .item-name {
+	font-weight: bold;
 }
 
-.lab-study-viewer .observation-gallery-item .observation-details .details-item .item-name, .lab-study-viewer .observation-gallery-item .observation-details .details-item .item-value, .lab-viewer .observation-gallery-item .observation-details .details-item .item-name, .lab-viewer .observation-gallery-item .observation-details .details-item .item-value {
+.details-item .item-name,
+.details-item .item-value {
 	display: table-cell;
-	word-break: break-all
+	word-break: break-all;
 }
 
-.lab-study-viewer .observation-gallery-item .observation-details .details-item li, .lab-viewer .observation-gallery-item .observation-details .details-item li {
+.lab-diagnostic-report-info,
+.details-item {
 	width: 100%;
 	display: table;
 	margin: 2px 0;
@@ -1493,9 +1495,25 @@ table.table tbody tr td .icon-delete {
 	line-height: 1.4rem;
 	color: #bcbcbc;
 	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight: 400;
 	font-style: normal
 }
+
+.lab-diagnostic-report-info {
+	width: 60%;
+	margin-bottom: 30px;
+}
+
+.details-item-list-aligned .details-item .item-value {
+	text-align: right;
+}
+
+.lab-diagnostic-report-info .details-item-list {
+	display: table-cell;
+	word-break: break-all;
+	width: 50%;
+	padding-right: 20px;
+}
+
 
 .lab-study-viewer .observation-gallery-item .healthy, .lab-viewer .observation-gallery-item .healthy {
 	color: #5BB403
@@ -3217,8 +3235,8 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 /********/
 
-.observation-details .details-item .item-value,
-.observation-details .details-item .item-name {
+.observation-details .details-item-list .item-value,
+.observation-details .details-item-list .item-name {
 	width: 50%;
 }
 
@@ -3236,11 +3254,11 @@ h1, .h1, h2, .h2, h3, .h3 {
 		width: 40%;
 	}
 
-	.observation-details .details-item .item-value {
+	.observation-details .details-item-list .item-value {
 		width: 70%;
 	}
 
-	.observation-details .details-item .item-name {
+	.observation-details .details-item-list .item-name {
 		width: 30%;
 	}
 
@@ -3262,8 +3280,8 @@ h1, .h1, h2, .h2, h3, .h3 {
 		width: 15%;
 	}
 
-	.observation-extended-content .observation-details .details-item .item-value,
-	.observation-extended-content .observation-details .details-item .item-name {
+	.observation-extended-content .observation-details .details-item-list .item-value,
+	.observation-extended-content .observation-details .details-item-list .item-name {
 		width: 50%;
 	}
 }

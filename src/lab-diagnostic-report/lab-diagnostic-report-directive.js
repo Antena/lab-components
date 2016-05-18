@@ -4,12 +4,18 @@ var _ = require('underscore');
 var $ = require('jquery');
 
 // @ngInject
-module.exports = function($rootScope, $document) {
+module.exports = function($rootScope, $document, $filter) {
 
 	return {
 		scope: {
 			observations: '=',
-			diagnosticReport: '=',
+			diagnosticOrder: '=',
+			status: '@',
+			patient: '=',
+			organization: '=',
+			reportDate: '=',
+			dateFormat: '@?',
+			hideHeader: '=?',
 			viewOnly: '=?'
 		},
 		restrict: 'EA',
@@ -25,7 +31,7 @@ module.exports = function($rootScope, $document) {
 			});
 
 			$scope.getOrderItemDisplay = function(itemCode) {
-				var item = _.find($scope.vm.diagnosticReport.item, function(item) {
+				var item = _.find($scope.vm.diagnosticOrder.item, function(item) {
 					return item.code.extension[0].valueIdentifier.value === itemCode;
 				});
 
@@ -57,6 +63,8 @@ module.exports = function($rootScope, $document) {
 			};
 		},
 		link: function($scope, $element) {
+
+			$scope.vm.dateFormat = $scope.vm.dateFormat || "DD-MM-YYYY";
 
 			var onChildActiveChange = function(active, $event, $element) {
 				var parents = $($element).parents('.lab-tree-top-level');

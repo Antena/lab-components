@@ -3,6 +3,13 @@
     "METHOD": "Método",
     "STATUS": "Estado",
     "NOTE": "Nota",
-    "MEANING": "Interpretación"
+    "MEANING": "Interpretación",
+    "PATIENT": "Paciente",
+    "ORGANIZATION": "Organización",
+    "DATE": "Fecha"
+  },
+  "UNITS": {
+    "YEAR": "año",
+    "YEARS": "años"
   }
 }
