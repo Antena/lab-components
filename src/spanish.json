@@ -22,6 +22,11 @@
       "CANCELLED_DESCRIPTION": "El reporte no está disponible",
       "ENTERED_IN_ERROR": "Con errores",
       "ENTERED_IN_ERROR_DESCRIPTION": "El reporte fue retirado posterior a haber estado finalizado"
+    },
+    "REFERENCE_RANGE_MEANING": {
+      "HIGH": "Alto",
+      "REGULAR": "Normal",
+      "LOW": "Bajo"
     }
   },
   "UNITS": {

@@ -14,7 +14,7 @@ module.exports = function($scope) {
 				'lowValue': observation.referenceRange[0].low.value,
 				'highValue': observation.referenceRange[0].high.value,
 				'date': moment(observation.creationDate).format(dateFormat),
-				'unit': observation.valueQuantity.unit
+				'unit': observation.valueQuantity.units
 			};
 		});
 	};

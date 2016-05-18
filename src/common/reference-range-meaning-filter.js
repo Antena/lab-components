@@ -4,15 +4,15 @@
 module.exports = function() {
 	return function(input) {
 		var output = '';
-		switch (input.coding.code) {
+		switch (input.coding[0].code) {
 			case 'H':
-				output = 'STUDY.REFERENCE_RANGE_MEANING.HIGH';
+				output = 'LAB.REFERENCE_RANGE_MEANING.HIGH';
 				break;
 			case 'N':
-				output = 'STUDY.REFERENCE_RANGE_MEANING.REGULAR';
+				output = 'LAB.REFERENCE_RANGE_MEANING.REGULAR';
 				break;
 			case 'L':
-				output = 'STUDY.REFERENCE_RANGE_MEANING.LOW';
+				output = 'LAB.REFERENCE_RANGE_MEANING.LOW';
 				break;
 			default:
 				output = input.display;
