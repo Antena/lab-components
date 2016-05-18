@@ -4,10 +4,9 @@ var angular = require('angular');
 var _ = require('underscore');
 
 var observationHistory = require('./observation-history.json');
-
 var fhirBundle = require('./full-study-bundle.json');
-var fhirBundleResources = _.pluck(fhirBundle.entry, 'resource');
 
+/* Demo App initialization */
 var app = angular.module('app', [
 	require('../src/index.js')
 ]);
@@ -20,20 +19,11 @@ app.service('LabObservationService', function() {
 	};
 });
 
-function getReferencedId(reference) {
-	var lastSlash = _.lastIndexOf(reference, '/');
-	return lastSlash > -1 ? reference.substring(lastSlash + 1, reference.length) : null;
-}
+app.controller('DemoController', ['$scope', 'LabObservationService', 'FhirBundleService', function($scope, LabObservationService, FhirBundleService) {
 
-app.controller('DemoController', ['$scope', 'LabObservationService', function($scope, LabObservationService) {
+	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
 
-	var obs = _.where(fhirBundleResources, { resourceType: "Observation"});
-	var order = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticOrder"});
-	var report = _.findWhere(fhirBundleResources, { resourceType: "DiagnosticReport"});
-	var patient = _.findWhere(fhirBundleResources, { resourceType: "Patient", id: getReferencedId(report.subject.reference)});
-	var organization = _.findWhere(fhirBundleResources, { resourceType: "Organization", id: getReferencedId(report.performer.reference)});
-
-	var observations = _.map(obs, function(observation) {
+	var observations = _.map(resolvedBundle.observations, function(observation) {
 		observation.actions = [
 			{
 				labelOn: "Ocultar Historia",
@@ -82,12 +72,12 @@ app.controller('DemoController', ['$scope', 'LabObservationService', function($s
 
 	$scope.demo = {
 		observations: observations,
-		order: order,
-		status: report.status,
-		reportDate: report.issued,
+		order: resolvedBundle.diagnosticOrder,
+		status: resolvedBundle.diagnosticReport.status,
+		reportDate: resolvedBundle.diagnosticReport.issued,
+		patient: resolvedBundle.diagnosticReport.subject,
+		organization: resolvedBundle.diagnosticReport.performer,
 		dateFormat: "DD-MM-YYYY",
-		patient: patient,
-		organization: organization,
 		observationHistoryService: LabObservationService.getHistory
 	};
 }]);

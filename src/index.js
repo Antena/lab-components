@@ -19,4 +19,6 @@ ngModule.config(function ($compileProvider) {
 	$compileProvider.debugInfoEnabled(false);
 });
 
+ngModule.service('FhirBundleService', require('./fhir-bundle-service'));
+
 module.exports = ngModule.name;
