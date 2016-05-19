@@ -1247,6 +1247,10 @@ table.table tbody tr td .icon-delete {
 	border-left-color: #333
 }
 
+.lab-tree-top-level:not(.parent-active) .lab-tree-observation-observation-title.top-level-content {
+	padding: 0;
+}
+
 .lab-study-viewer .object-viewer-container:before, .lab-study-viewer .object-viewer-container:after, .lab-viewer .object-viewer-container:before, .lab-viewer .object-viewer-container:after {
 	content: " ";
 	display: table

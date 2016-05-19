@@ -23,7 +23,7 @@
 		<div class="primary-content" id="observations-container">
 			<div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
 
-				<h2 id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) }}</h2>
+				<h2 ng-if="!isTopLevel(group, observationsPerGroup)" id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) }}</h2>
 
 				<div class="observation-gallery">
 					<lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation.id }}"
@@ -41,10 +41,9 @@
 			<div class="lab-tree">
 				<ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()">
 					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title">
-						<a ng-if="!isTopLevel(group)" href="#{{ group}}"
-						   du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) }}</a>
+						<a href="#{{ group}}" du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) | capitalize:true }}</a>
 
-						<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'lab-tree-top-level': isTopLevel(group) }">
+						<div ng-if="!isTopLevel(group, observationsPerGroup)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(group, observationsPerGroup) }">
 							<a href="#{{ observation.id }}" ng-repeat="observation in observationsPerGroup" du-smooth-scroll du-scrollspy offset="100">
 								<span >{{ observation.code | codeableConcept | capitalize:true }}</span>
 							</a>
