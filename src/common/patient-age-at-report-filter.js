@@ -7,9 +7,9 @@ var moment = require('moment');
 module.exports = function($translate) {
 	var translations;
 
-	var actualFilter = function (birthDate, referenceDate, pluralize) {
+	var actualFilter = function(birthDate, referenceDate, pluralize) {
 		var result = birthDate ? moment(referenceDate || new Date()).diff(moment(birthDate), 'years') : null;
-		if(birthDate && pluralize) {
+		if (birthDate && pluralize) {
 			result += " " + (result === 1 ? translations['UNITS.YEAR'] : translations['UNITS.YEARS']);
 		}
 		return result;
@@ -17,7 +17,7 @@ module.exports = function($translate) {
 
 	filterStub.$stateful = true;
 	function filterStub(birthDate, referenceDate, pluralize) {
-		if(!translations) {
+		if (!translations) {
 			$translate(['UNITS.YEARS', 'UNITS.YEAR']).then(function(result) {
 				translations = result;
 			});

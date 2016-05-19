@@ -23,7 +23,7 @@
 		<div class="primary-content" id="observations-container">
 			<div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
 
-				<h2 ng-if="!isTopLevel(group, observationsPerGroup)" id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) }}</h2>
+				<h2 ng-if="!isTopLevel(group, observationsPerGroup)" id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) | capitalize:true }}</h2>
 
 				<div class="observation-gallery">
 					<lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation.id }}"

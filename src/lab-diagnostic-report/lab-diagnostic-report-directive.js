@@ -37,11 +37,11 @@ module.exports = function($rootScope, $document, $filter) {
 					return item.code.extension[0].valueIdentifier.value === itemCode;
 				});
 
-				if(item) {
+				if (item) {
 					result = item.code.coding[0].display;
 				} else {
 					var observation = _.findWhere($scope.vm.observations, {id: itemCode});
-					if(observation) {
+					if (observation) {
 						result = observation.code.coding[0].display;
 					}
 				}
