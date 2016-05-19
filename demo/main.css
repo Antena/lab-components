@@ -1589,12 +1589,12 @@ table.table tbody tr td .icon-delete {
 	padding: 20px
 }
 
-.split-content .main-content {
+.split-content .primary-content {
 	width: 100%
 }
 
 @media (min-width: 768px) {
-	.split-content .main-content {
+	.split-content .primary-content {
 		float: left;
 		width: 75%
 	}

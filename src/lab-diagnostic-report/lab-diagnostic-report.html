@@ -20,7 +20,7 @@
 
 	<div ng-if="vm.observations.length" class="lab-diagnostic-report-observations split-content">
 
-		<div class="main-content" id="observations-container">
+		<div class="primary-content" id="observations-container">
 			<div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
 
 				<h2 id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) }}</h2>
