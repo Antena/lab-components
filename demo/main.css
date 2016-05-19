@@ -1703,7 +1703,7 @@ table.table tbody tr td .icon-delete {
 	pointer-events: none;
 	bottom: 100%;
 	top: auto;
-	left: 30%;
+	left: 24px;
 	margin-left: -16px;
 	border-bottom-color: #5BB403
 }

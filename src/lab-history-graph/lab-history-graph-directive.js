@@ -217,9 +217,13 @@ module.exports = function() {
 
 						tooltip.css('opacity', '0.9').addClass(tooltipClass);
 
+						var xPos = x(d.date) + 46;
+						var yPos = y(d.value) + 46;
+
 						tooltip
 							.html("<strong>" + d.value + " " + d.unit + "</strong><br>" + formatDate(d.date))
-							.css("left", (x(d.date) + 46) + "px");
+							.css("left", xPos + "px")
+							.css("top", yPos + "px");
 
 					})
 					.on("mouseout", function(d) {
