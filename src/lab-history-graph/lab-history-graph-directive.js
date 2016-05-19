@@ -215,7 +215,7 @@ module.exports = function() {
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						var tooltipClass = (d.value < d.lowValue || d.value > d.highValue ) ? "tooltip out-of-range" : "tooltip";
 
-						tooltip.css('opacity', '0.9').addClass(tooltipClass);
+						tooltip.css('opacity', '0.9').removeClass("out-of-range").addClass(tooltipClass);
 
 						var xPos = x(d.date) + 46;
 						var yPos = y(d.value) + 46;

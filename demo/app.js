@@ -13,8 +13,17 @@ var app = angular.module('app', [
 
 app.service('LabObservationService', function() {
 	return {
-		getHistory: function(displayCode, cb) {
-			cb(_.sample(observationHistory.samples));
+		getHistory: function(observationId, cb) {
+			var history;
+
+			var historyForObservation = observationHistory[observationId];
+			if(historyForObservation) {
+				history = historyForObservation;
+			} else {
+				history = _.sample(observationHistory.samples);
+			}
+
+			cb(history);
 		}
 	};
 });
@@ -33,7 +42,7 @@ app.controller('DemoController', ['$scope', 'LabObservationService', 'FhirBundle
 					if (observation.history) {
 						observation.showHistory = !observation.showHistory;
 					} else {
-						LabObservationService.getHistory(observation, function(data) {
+						LabObservationService.getHistory(observation.id, function(data) {
 							observation.showHistory = !observation.showHistory;
 							observation.history = data;
 						});

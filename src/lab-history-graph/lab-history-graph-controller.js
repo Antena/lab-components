@@ -12,7 +12,7 @@ module.exports = function($scope) {
 				'value': observation.valueQuantity.value,
 				'lowValue': observation.referenceRange[0].low.value,
 				'highValue': observation.referenceRange[0].high.value,
-				'date': (observation.creationDate),
+				'date': (observation.issued),
 				'unit': observation.valueQuantity.units
 			};
 		});
