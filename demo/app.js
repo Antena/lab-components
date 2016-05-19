@@ -14,7 +14,7 @@ var app = angular.module('app', [
 app.service('LabObservationService', function() {
 	return {
 		getHistory: function(displayCode, cb) {
-			cb(observationHistory.results);
+			cb(_.sample(observationHistory.samples));
 		}
 	};
 });

@@ -1,19 +1,18 @@
 'use strict';
 
-var moment = require('moment');
 var _ = require('underscore');
 
 // @ngInject
 module.exports = function($scope) {
 
-	this.simplifyObservations = function(observations, dateFormat) {
+	this.simplifyObservations = function(observations) {
 
 		return _.map(observations, function(observation) {
 			return {
 				'value': observation.valueQuantity.value,
 				'lowValue': observation.referenceRange[0].low.value,
 				'highValue': observation.referenceRange[0].high.value,
-				'date': moment(observation.creationDate).format(dateFormat),
+				'date': (observation.creationDate),
 				'unit': observation.valueQuantity.units
 			};
 		});
@@ -51,7 +50,7 @@ module.exports = function($scope) {
 					x: xRectangles[i].x,
 					y: $scope.dimensions.y(data[i].highValue),
 					width: widthRectangle,
-					height: - ($scope.dimensions.y(data[i].highValue) - $scope.dimensions.y(data[i].lowValue))
+					height: -($scope.dimensions.y(data[i].highValue) - $scope.dimensions.y(data[i].lowValue))
 				};
 
 				rectangles.push(rectangle);

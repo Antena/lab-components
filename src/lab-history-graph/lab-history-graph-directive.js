@@ -2,9 +2,27 @@
 
 var d3 = require('d3');
 var $ = require('jquery');
+var _ = require('underscore');
+var moment = require('moment');
+
+var SPANISH = d3.locale({
+	"decimal": ",",
+	"thousands": ".",
+	"grouping": [3],
+	"currency": ["$", ""],
+	"dateTime": "%a %b %e %X %Y",
+	"date": "%d/%m/%Y",
+	"time": "%H:%M:%S",
+	"periods": ["AM", "PM"],
+	"days": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"],
+	"shortDays": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+	"months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+	"shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+});
 
 // @ngInject
 module.exports = function() {
+
 	return {
 		scope: {
 			observationList: '=',
@@ -17,20 +35,31 @@ module.exports = function() {
 			if ($scope.observationList.length) {
 
 				/** Map observations to simpler objects, and transform dates **/
-				var dateFormat = $scope.dateFormat || 'DD-MM-YYYY';	//TODO (denise) check if this format isn't overriden later on
-				var data = LabGraph.simplifyObservations($scope.observationList, dateFormat);
+				var data = LabGraph.simplifyObservations($scope.observationList);
 
 				/** Lab Graph Init **/
-				var margin = {top: 30, right: 10, bottom: 30, left: 30};
-				var width = 530 - margin.left - margin.right;
-				var height = 270 - margin.top - margin.bottom;
-				var UNIT = (data[0].unit) ? data[0].unit : "";
-				var graphElem = element.find('.graph')[0];
+
+				//TODO (gm) this sizes are not adjusted for mobile
+				var margin = {top: 30, right: 10, bottom: 30, left: 30},
+					width = 530 - margin.left - margin.right - 20,
+					height = 270 - margin.top - margin.bottom,
+					UNIT = (data[0].unit) ? data[0].unit : "",
+					graphElem = element.find('.graph')[0];
 
 				/** Dates **/
 
-				var parseDate = d3.time.format("%d-%m-%Y").parse;
-				var formatDate = d3.time.format("%d-%m-%Y");
+				//TODO (denise) check if this format isn't overriden later on
+				var formatDate = d3.time.format($scope.dateFormat || "%d-%m-%Y");
+
+				_.each(data, function(d) {
+					d.date = new Date(d.date);
+				});
+
+				var dateExtent = d3.extent(data, function(d) {
+					return d.date;
+				});
+				var minDt = dateExtent[0];
+				var maxDt = dateExtent[1];
 
 				/** Axis **/
 
@@ -38,13 +67,31 @@ module.exports = function() {
 					return (d.value > d.highValue) ? d.value : d.highValue;
 				})];
 
-				var x = d3.time.scale().range([0, width]);
-				var y = d3.scale.linear().range([height, 0]);
+				var x = d3.time.scale()
+					.domain([minDt, maxDt])
+					.range([0, width - 60])
+					.nice(5);
 
-				var xAxis = d3.svg.axis().scale(x)
-					.orient("bottom")
-					.ticks(5)
-					.tickFormat(d3.time.format("%b %d"));
+				var xAxis = d3.svg.axis().scale(x).orient("bottom")
+					.ticks(5);
+
+				var maxDate = moment(maxDt);
+				var minDate = moment(minDt);
+				var diffInMonths = maxDate.diff(minDate, 'months');
+				if (diffInMonths <= 24) {
+					if (maxDate.year() !== minDate.year()) {
+						xAxis.tickFormat(SPANISH.timeFormat("%b %Y"));
+					} else {
+						xAxis.tickFormat(SPANISH.timeFormat("%e %b"));
+					}
+				} else {
+					xAxis.tickFormat(SPANISH.timeFormat("%Y"));
+				}
+
+				var y = d3.scale.linear()
+					.domain(genericValueRange)
+					.range([height, 0])
+					.nice(5);
 
 				var yAxis = d3.svg.axis()
 					.scale(y)
@@ -55,6 +102,7 @@ module.exports = function() {
 					})
 					.orient("right");
 
+				/** Set Up **/
 				$scope.dimensions = {
 					margin: margin,
 					width: width,
@@ -66,10 +114,10 @@ module.exports = function() {
 				};
 
 				/** Shapes **/
-
-				// var tooltip = d3.select(graphElem).append("div")
-				// 	.attr("class", "tooltip")
-				// 	.style("opacity", 0);
+				// Reusable tooltip element
+				d3.select(graphElem).append("div")
+					.attr("class", "tooltip")
+					.style("opacity", 0);
 
 				var line = d3.svg.line()
 					.x(function(d) {
@@ -93,18 +141,6 @@ module.exports = function() {
 				var labGraph = svg.append("g")
 					.attr("transform", "translate(" + margin.left + "," + 0 + ")")
 					.attr("class", "lab-graph");
-
-				data.forEach(function(d) {
-					d.date = parseDate(d.date);
-					d.value = +d.value;
-				});
-
-				var dateExtent = d3.extent(data, function(d) {
-					return d.date;
-				});
-
-				x.domain([d3.time.day.offset(dateExtent[0], -1), d3.time.day.offset(dateExtent[1], 1)]);
-				y.domain(genericValueRange);
 
 				labGraph.selectAll("healthyRange")
 					.data(LabGraph.calculateRectangles(data))
@@ -176,15 +212,14 @@ module.exports = function() {
 						return y(d.value);
 					})
 					.on("mouseover", function(d) {
-						console.log('Value:' + d.value + ', Pos Y: ' + y(d.value));
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						var tooltipClass = (d.value < d.lowValue || d.value > d.highValue ) ? "tooltip out-of-range" : "tooltip";
 
 						tooltip.css('opacity', '0.9').addClass(tooltipClass);
 
-						tooltip.html("<strong>" + d.value + " " + d.unit + "</strong><br>" + formatDate(d.date))
-							.css("left", (x(d.date) + 23) + "px")
-							.css("top", (y(d.value) + 48) + "px");
+						tooltip
+							.html("<strong>" + d.value + " " + d.unit + "</strong><br>" + formatDate(d.date))
+							.css("left", (x(d.date) + 46) + "px");
 
 					})
 					.on("mouseout", function(d) {

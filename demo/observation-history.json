@@ -1,196 +1,323 @@
 {
-	"results": [
-		{
-			"_id": "571538c167ba681a728a4133",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 5.16
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2001-08-09T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		},
-		{
-			"_id": "5723bdc2f0a1a807cccc7d46",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 4.83
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2015-12-30T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		},
-		{
-			"_id": "5727cf6c2d58bee076bda42e",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 5.16
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2016-01-09T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		},
-		{
-			"_id": "573206355df055618946b374",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 5.16
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2016-01-09T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		},
-		{
-			"_id": "5723e5b8d24fb777f093529a",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 4.83
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2016-02-02T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		},
-		{
-			"_id": "570343d44ca0965c08a3fef6",
-			"code": {
-				"coding": [
-					{
-						"display": "Recuento De Globulos Rojos"
-					}
-				]
-			},
-			"valueQuantity": {
-				"units": "10e12/L",
-				"value": 4.83
-			},
-			"resourceType": "Observation",
-			"owner": "lostie@gmail.com",
-			"creationDate": "2016-03-27T03:00:00.000Z",
-			"metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
-			"__v": 0,
-			"metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
-			"referenceRange": [
-				{
-					"high": {
-						"units": "10e12/L",
-						"value": 5.66
-					},
-					"low": {
-						"units": "10e12/L",
-						"value": 4.32
-					}
-				}
-			]
-		}
-	]
+  "samples": [
+    [
+      {
+        "_id": "573dfea91732954910873165",
+        "code": {
+          "coding": [
+            {
+              "display": "Hemoglobina"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "g/dl",
+          "value": 14.7
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+        "__v": 0,
+        "metricIdentifier": "EM_HEMOGLOBINA",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "g/dl",
+              "value": 16.7
+            },
+            "low": {
+              "units": "g/dl",
+              "value": 13.3
+            }
+          }
+        ]
+      },
+      {
+        "_id": "573dff1c1732954910873183",
+        "code": {
+          "coding": [
+            {
+              "display": "Hemoglobina"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "g/dl",
+          "value": 12.6
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+        "__v": 0,
+        "metricIdentifier": "EM_HEMOGLOBINA",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "g/dl",
+              "value": 16
+            },
+            "low": {
+              "units": "g/dl",
+              "value": 12
+            }
+          }
+        ]
+      },
+      {
+        "_id": "ddd000000000000000000003",
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-19T16:58:03.890Z",
+        "identifier": {
+          "system": "http://www.cdrossi.com/pedido_prestacion",
+          "value": "BE-291777-3"
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.cdrossi.com/tests",
+              "code": "HGB",
+              "display": "HEMOGLOBINA"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 15.7,
+          "units": "g/Dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/Dl"
+        },
+        "method": {
+          "text": "Automatizado - Sysmex"
+        },
+        "metricIdentifier": "EM_HEMOGLOBINA",
+        "__v": 0,
+        "referenceRange": [
+          {
+            "low": {
+              "value": 13.8,
+              "units": "g/Dl",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/Dl"
+            },
+            "high": {
+              "value": 16,
+              "units": "g/Dl",
+              "system": "http://unitsofmeasure.org",
+              "code": "g/Dl"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "code": "N",
+                  "display": "Normal",
+                  "userSelected": "http://hl7.org/fhir/v2/0078"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "_id": "573dfea9173295491087316a",
+        "code": {
+          "coding": [
+            {
+              "display": "Recuento De Globulos Blancos"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "10e9/L",
+          "value": 7.8
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+        "__v": 0,
+        "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_BLANCOS",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "10e9/L",
+              "value": 9.5
+            },
+            "low": {
+              "units": "10e9/L",
+              "value": 3.7
+            }
+          }
+        ]
+      },
+      {
+        "_id": "573dff1c1732954910873189",
+        "code": {
+          "coding": [
+            {
+              "display": "Recuento de Glóbulos Blancos"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "10e9/L",
+          "value": 6.4
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+        "__v": 0,
+        "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_BLANCOS",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "10e9/L",
+              "value": 11
+            },
+            "low": {
+              "units": "10e9/L",
+              "value": 4.5
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "_id": "573dfea91732954910873172",
+        "code": {
+          "coding": [
+            {
+              "display": "Monocitos"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "10e9/L",
+          "value": 0.6
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+        "__v": 0,
+        "metricIdentifier": "EM_MONOCITOS",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "10e9/L",
+              "value": 0.9
+            },
+            "low": {
+              "units": "10e9/L",
+              "value": 0.2
+            }
+          }
+        ]
+      },
+      {
+        "_id": "573dff1c173295491087318d",
+        "code": {
+          "coding": [
+            {
+              "display": "Monocitos"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "%",
+          "value": 12
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+        "__v": 0,
+        "metricIdentifier": "EM_MONOCITOS",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "%",
+              "value": 13
+            },
+            "low": {
+              "units": "%",
+              "value": 5
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "_id": "573dfea91732954910873175",
+        "code": {
+          "coding": [
+            {
+              "display": "UREMIA"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "mg/dl",
+          "value": 32
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+        "__v": 0,
+        "metricIdentifier": "EM_UREMIA",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "mg/dl",
+              "value": 44
+            },
+            "low": {
+              "units": "mg/dl",
+              "value": 19
+            }
+          }
+        ]
+      },
+      {
+        "_id": "573dff1c1732954910873194",
+        "code": {
+          "coding": [
+            {
+              "display": "UREMIA"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "units": "mg/dl",
+          "value": 28
+        },
+        "resourceType": "Observation",
+        "owner": "galvan@antena.co",
+        "creationDate": "2016-05-02T03:00:00.000Z",
+        "__v": 0,
+        "metricIdentifier": "EM_UREMIA",
+        "referenceRange": [
+          {
+            "high": {
+              "units": "mg/dl",
+              "value": 40
+            },
+            "low": {
+              "units": "mg/dl",
+              "value": 15
+            }
+          }
+        ]
+      }
+    ]
+  ]
 }
