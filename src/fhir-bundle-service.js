@@ -36,8 +36,6 @@ module.exports = function() {
 
 			var fhirBundleResources = _.pluck(fhirBundle.entry, 'resource');
 
-			var observations = _.where(fhirBundleResources, { resourceType: "Observation"});
-
 			/* Order */
 			var order = resolveOrder(fhirBundleResources);
 
@@ -49,13 +47,13 @@ module.exports = function() {
 				return resolveOrder(fhirBundleResources, getReferencedId(requestDetail.reference));
 			});
 			report.result = _.map(report.result, function(observation) {
-				return _.findWhere(fhirBundleResources, {resourceType: "Observation", id: observation.reference});
+				return _.findWhere(fhirBundleResources, {resourceType: "Observation", id: getReferencedId(observation.reference)});
 			});
 
 			return {
 				diagnosticOrder: order,
 				diagnosticReport: report,
-				observations: observations
+				observations: report.result
 			};
 		}
 	};
