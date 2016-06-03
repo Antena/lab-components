@@ -2,6 +2,7 @@
 
 var _ = require('underscore');
 
+// @ngInject
 module.exports = function() {
 
 	// Hash function for two signed numbers.
