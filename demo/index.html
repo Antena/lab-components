@@ -9,18 +9,20 @@
     </head>
     <body>
         <div ng-controller="DemoController" class="lab-study-viewer">
-            <div class="demo-header"><p class="title">Lab Components Demo</p></div>
+            <div class="demo-header"><p class="title">Lab Components Demo <a class="nav-link" target="_blank" href="http://localhost:3030/docs/">API docs</a></p></div>
 
-            <div lab-diagnostic-report
-				 class="demo-content"
-				 diagnostic-order="demo.order"
-				 observations="demo.observations"
-                 patient="demo.patient"
-				 organization="demo.organization"
-				 status="{{demo.status}}"
-				 report-date="demo.reportDate"
-				 date-format="{{demo.dateFormat}}">
-            </div>
+			<div class="split-content">
+				<div class="secondary-content">
+					<ul>
+						<li><a ui-sref="lab-diagnostic-report">Lab Diagnostic Report</a></li>
+						<li><a ui-sref="value-within-range-graph">Value Within Range Graph</a></li>
+						<li><a ui-sref="value-within-range-card">Value Within Range Card</a></li>
+					</ul>
+				</div>
+				<div class="primary-content">
+					<div ui-view></div>
+				</div>
+			</div>
         </div>
     </body>
 </html>

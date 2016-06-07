@@ -1,0 +1,13 @@
+<div>
+	<h1>Value Within Range demo</h1>
+
+	<input type="text" ng-model="valueWithinRange.value">
+	<input type="text" ng-model="valueWithinRange.unit">
+
+	<value-within-range-graph value="valueWithinRange.value"
+							  unit="valueWithinRange.unit"
+							  range="valueWithinRange.range"
+							  range-class="healthy"
+							  domain-class="unhealthy">
+	</value-within-range-graph>
+</div>

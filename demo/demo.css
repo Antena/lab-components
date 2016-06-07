@@ -37,3 +37,18 @@
 .observation-primary-content-header-actions.active.hovered .icon-check:before {
 	content: "\2718";
 }
+
+.nav-link {
+	color: #96d7fd;
+	float: right;
+	display: block;
+	margin-left: 10px;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	cursor: pointer;
+	font-size: 14px;
+}
+
+.nav-link:hover {
+	color: #47a8fd;
+}

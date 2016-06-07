@@ -1445,35 +1445,42 @@ table.table tbody tr td .icon-delete {
 	margin: 0
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values p, .lab-viewer .observation-gallery-item .observation-values p {
+.observation-values p,
+.observation-values p {
 	padding: 0;
 	line-height: 1
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .reference-range, .lab-viewer .observation-gallery-item .observation-values .reference-range {
+.observation-values .reference-range,
+.observation-values .reference-range {
 	padding: 4px 0
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .reference-range .reference, .lab-viewer .observation-gallery-item .observation-values .reference-range .reference {
+.observation-values .reference-range .reference,
+.observation-values .reference-range .reference {
 	font-size: 12px;
 	vertical-align: text-top
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .reference-range .reference-type, .lab-viewer .observation-gallery-item .observation-values .reference-range .reference-type {
+.observation-values .reference-range .reference-type,
+.observation-values .reference-range .reference-type {
 	text-align: left;
 	color: #CCC
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .reference-range .value, .lab-viewer .observation-gallery-item .observation-values .reference-range .value {
+.observation-values .reference-range .value,
+.observation-values .reference-range .value {
 	text-align: right
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .main-value, .lab-viewer .observation-gallery-item .observation-values .main-value {
+.observation-values .main-value,
+.observation-values .main-value {
 	font-size: 36px !important;
 	line-height: 36px
 }
 
-.lab-study-viewer .observation-gallery-item .observation-values .unit, .lab-viewer .observation-gallery-item .observation-values .unit {
+.observation-values .unit,
+.observation-values .unit {
 	margin-top: 0;
 	font-size: 12px;
 }
@@ -1535,7 +1542,8 @@ table.table tbody tr td .icon-delete {
 	color: #5BB403
 }
 
-.lab-study-viewer .observation-gallery-item .unhealthy, .lab-viewer .observation-gallery-item .unhealthy {
+.lab-study-viewer .observation-gallery-item .unhealthy,
+.lab-viewer .observation-gallery-item .unhealthy {
 	color: #CC0001
 }
 
@@ -1558,38 +1566,40 @@ table.table tbody tr td .icon-delete {
 	}
 }
 
-.lab-study-viewer .observation-gallery-item .lab-text, .lab-viewer .observation-gallery-item .lab-text {
+.lab-study-viewer .observation-gallery-item .lab-text,
+.lab-viewer .observation-gallery-item .lab-text {
 	margin-top: 0;
 	text-align: center
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result line.healthy, .lab-viewer .observation-gallery-item .observation-result line.healthy {
+line.healthy {
 	stroke: #5BB403
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result text.healthy, .lab-viewer .observation-gallery-item .observation-result text.healthy {
+text.healthy {
 	fill: #5BB403
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result circle.healthy, .lab-viewer .observation-gallery-item .observation-result circle.healthy {
+circle.healthy {
 	stroke: #5BB403;
 	fill: #5BB403
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result line.unhealthy, .lab-viewer .observation-gallery-item .observation-result line.unhealthy {
+line.unhealthy {
 	stroke: #CC0001
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result text.unhealthy, .lab-viewer .observation-gallery-item .observation-result text.unhealthy {
+text.unhealthy {
 	fill: #CC0001
 }
 
-.lab-study-viewer .observation-gallery-item .observation-result circle.unhealthy, .lab-viewer .observation-gallery-item .observation-result circle.unhealthy {
+circle.unhealthy {
 	stroke: #CC0001;
 	fill: #CC0001
 }
 
-.lab-study-viewer .observation-gallery-item .observation-gallery, .lab-viewer .observation-gallery-item .observation-gallery {
+.lab-study-viewer .observation-gallery-item .observation-gallery,
+.lab-viewer .observation-gallery-item .observation-gallery {
 	padding: 20px
 }
 

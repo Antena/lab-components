@@ -2,8 +2,9 @@
 
 /**
  * @ngdoc directive
- * @name valueWithinRange
+ * @name common.value-within-range.directive:valueWithinRangeGraph
  * @restrict AE
+ * @scope
  *
  * @description
  * Generic d3 graph to represent a value visually, which consists of a domain and a range. The graph will
@@ -15,61 +16,59 @@
  *
  * Additionally, a unit for the value can be provided, which will be displayed next to the value.
  *
+ * @element ANY
+ * @param {Number} value A numeric value to be displayed.
  *
- * @param {Number} value (required) A numeric value to be displayed.
+ * @param {String} [unit=""] A string representation of the value unit.
  *
- * @param {String} unit (optional) A string representation of the value unit.
- *
- * @param {Object} range (required) An object representing the range to be displayed.
+ * @param {Object} range An object representing the range to be displayed.
  * This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {Object} domain (optional) An object representing the range to be displayed. This must contain two numeric properties: 'low' and 'high'.
+ * @param {Object} [domain={ low: range.low * 0.1, high: range.high * 0.1}] An object representing the range to be displayed. This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {String} insideClass (optional) A class name to be applied to the value element, when it falls inside the range.
+ * @param {String} [insideClass=""] A class name to be applied to the value element, when it falls inside the range.
  * If not provided, 'rangeClass' will be used.
  *
- * @param {String} outsideClass (optional) A class name to be applied to the value element, when it falls outside the range.
+ * @param {String} [outsideClass=""] A class name to be applied to the value element, when it falls outside the range.
  * If not provided, 'domainClass' will be used.
  *
- * @param {String} rangeClass (required) A class name to be applied to the range element.
+ * @param {String} rangeClass A class name to be applied to the range element.
  *
- * @param {String} domainClass (required) A class name to be applied to the domain element.
+ * @param {String} domainClass A class name to be applied to the domain element.
+ *
  *
  *
  *
  * @example
- *
- *  Ad-hoc values:
- *
- * 		<value-within-range-graph value="34.4"
- * 	    						  unit="g/dL"
- * 								  range="{ low: 31.6, high: 34.9 }"
- *								  domain="{ low: 25, high: 40 }"
- *  							  inside-class="good-value"
- * 								  outside-class="bad-value"
- *								  range-class="graph range"
- * 								  domain-class="graph domain">
- *		</value-within-range-graph>
- *
- * 	or, you can provide scope variables:
- *
- * 	- Template:
- *
- * 		<value-within-range-graph value="example.value" unit="example.value" range="example.value"></value-within-range-graph>
- *
- *  - Directive/Controller:
- *
- * 		$scope.example = {
- *       	value: 28,
- *          unit: "pg",
- *      	range: {
- *      		low: 27,
- *      		high: 33
- *      	}
- * 		};
- *
- *
- */
+ <example>
+ <file name="index.html">
+
+ <div ng-controller="ExampleController">
+	 <value-within-range-graph value="example.value"
+ 				unit="example.unit"
+ 				range="example.range">
+	 </value-within-range-graph>
+ </div>
+
+ </file>
+ <file name="demo.js">
+
+	 angular.module('valueWithinRangeGraphExample', ['common.value-within-range'])
+	 	.controller('ExampleController', ['$scope', function($scope) {
+				$scope.example = {
+					value: 28,
+					unit: "pg",
+					range: {
+						low: 27,
+						high: 33
+					}
+				};
+			}]);
+
+ </file>
+ </example>
+*/
+
 
 var d3 = require('d3');
 

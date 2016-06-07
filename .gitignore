@@ -15,12 +15,19 @@ node_modules
 npm-debug.log
 
 # build and temp folders
-dist
-.tmp
+dist/
+.tmp/
+tmp/
 
 # IntelliJ files
 *.iml
 .idea
 
-# Project files
-tmp
+# ng-doc files
+docs/
+font/
+css/
+grunt-scripts/
+js/
+partials/
+

@@ -33,7 +33,8 @@ var config = {
 			d3: 'd3/d3.min.js',
 			jquery: 'jquery/dist/jquery.min.js',
 			moment: 'moment/moment.js',
-			underscore: 'underscore/underscore-min.js'
+			underscore: 'underscore/underscore-min.js',
+			uiRouter: 'angular-ui-router/release/angular-ui-router.min.js'
 		}
 	},
 	plugins: [

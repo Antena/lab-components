@@ -2,30 +2,25 @@
 
 /**
  * @ngdoc directive
- * @name valueWithinRange
+ * @name common.value-within-range.directive:valueWithinRangeCard
  * @restrict AE
+ * @scope
  *
  * @description
- * Generic d3 graph to represent a value visually, which consists of a domain and a range. The graph will
- * display the domain and range with different visual aids, and will highlight the value differently, depending
- * on whether it's within the given range, or outside of it.
  *
- * The domain is optional, and will be defined as a percentage outside of the range if not provided.
- * The range and value must always belong to the given domain.
+ * TODO...
  *
- * Additionally, a unit for the value can be provided, which will be displayed next to the value.
+ * @element ANY
+ * @param {Number} value A numeric value to be displayed.
  *
+ * @param {String} [unit=""] A string representation of the value unit.
  *
- * @param {Number} value (required) A numeric value to be displayed.
- *
- * @param {String} unit (optional) A string representation of the value unit.
- *
- * @param {Object} range (required) An object representing the range to be displayed.
+ * @param {Object} range An object representing the range to be displayed.
  * 									This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {String} insideClass (optional) A class name to be applied to the value element, when it falls inside the range.
+ * @param {String} [insideClass=""] A class name to be applied to the value element, when it falls inside the range.
  *
- * @param {String} outsideClass (optional) A class name to be applied to the value element, when it falls outside the range.
+ * @param {String} [outsideClass=""] A class name to be applied to the value element, when it falls outside the range.
  *
  *
  *
@@ -44,10 +39,16 @@
  *
  * 	- Template:
  *
- * 		<value-within-range-card value="example.value" unit="example.value" range="example.value"></value-within-range-card>
+ *      ```
+ * 		<value-within-range-graph value="example.value"
+ * 								  unit="example.value"
+ * 								  range="example.value">
+ * 		</value-within-range-graph>
+ * 		```
  *
  *  - Directive/Controller:
  *
+ *      ```
  * 		$scope.example = {
  *       	value: 28,
  *          unit: "pg",
@@ -56,7 +57,7 @@
  *      		high: 33
  *      	}
  * 		};
- *
+ *      ```
  *
  */
 
