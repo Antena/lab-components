@@ -1,5 +1,7 @@
 'use strict';
 
+// assign window.jQuery so that angular uses jquery
+var $ = window.$ = window.jQuery = window.jquery = require('jquery');
 var angular = require('angular');
 
 var ngModule = angular.module('lab-components', [

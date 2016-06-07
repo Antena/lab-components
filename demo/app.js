@@ -34,7 +34,7 @@ app.service('LabObservationService', function() {
 
 app.controller('DemoController', require('./demo-controller'));
 
-angular.element(document).ready(function() {
-	angular.bootstrap(document, ['app']);
-});
+// angular.element(document).ready(function() {
+// 	angular.bootstrap(document, ['app']);
+// });
 

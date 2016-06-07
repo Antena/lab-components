@@ -8,7 +8,14 @@ module.exports = function(grunt) {
 		ngdocs: {
 			options: {
 				dest: 'docs',
-				scripts: ['dist/bundle.js'],
+				scripts: [
+					'dist/bundle.js',
+					'node_modules/angular-animate/angular-animate.min.js'
+				],
+				styles: [
+					// 'demo/main.css',
+					'demo/demo.css'
+				],
 				html5Mode: false,
 				editExample: false
 			},

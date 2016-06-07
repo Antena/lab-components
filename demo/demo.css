@@ -52,3 +52,79 @@
 .nav-link:hover {
 	color: #47a8fd;
 }
+
+.observation-values p,
+.observation-values p {
+	padding: 0;
+	line-height: 1
+}
+
+.observation-values .reference-range,
+.observation-values .reference-range {
+	padding: 4px 0
+}
+
+.observation-values .reference-range .reference,
+.observation-values .reference-range .reference {
+	font-size: 12px;
+	vertical-align: text-top
+}
+
+.observation-values .reference-range .reference-type,
+.observation-values .reference-range .reference-type {
+	text-align: left;
+	color: #CCC
+}
+
+.observation-values .reference-range .value,
+.observation-values .reference-range .value {
+	text-align: right
+}
+
+.observation-values .main-value,
+.observation-values .main-value {
+	font-size: 36px !important;
+	line-height: 36px
+}
+
+.observation-values .unit,
+.observation-values .unit {
+	margin-top: 0;
+	font-size: 12px;
+}
+
+
+.doc-example-live form {
+	text-align: right;
+}
+
+.doc-example-live .input-sm {
+	height: 30px;
+	width: 60px;
+	padding: 0 6px;
+	font-size: 14px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+
+.doc-example-live .row {
+	margin: 0;
+	padding: 0 20px;
+}
+
+.row .col {
+	display: table-cell;
+}
+
+.row .col-half {
+	width: 50%;
+}
+
+.row .col-third {
+	width: 33%;
+}
+
+.doc-example-live .form-group {
+	margin-bottom: 8px;
+}
