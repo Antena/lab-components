@@ -13,8 +13,8 @@ module.exports = function(grunt) {
 					'node_modules/angular-animate/angular-animate.min.js'
 				],
 				styles: [
-					// 'demo/main.css',
-					'demo/demo.css'
+					'demo/demo.css',
+					'demo/api.css'
 				],
 				html5Mode: false,
 				editExample: false

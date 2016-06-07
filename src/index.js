@@ -7,6 +7,7 @@ var angular = require('angular');
 var ngModule = angular.module('lab-components', [
 	require('angular-translate'),
 	require('common/index.js'),
+	require('components/index.js'),
 	require('lab-diagnostic-report/index.js')
 ]);
 

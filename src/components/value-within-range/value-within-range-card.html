@@ -1,6 +1,6 @@
-<div>
+<div class="value-within-range-card">
     <div class="left">
-        <p class="main-value {{ valueClass }}">{{ value }}</p>
+        <p class="main-value {{ valueClass }}" ng-class="{ '{{ insideClass }}': isWithinRange(), '{{ outsideClass }}': !isWithinRange() }">{{ value }}</p>
         <p ng-if="unit" class="{{ unitClass || 'unit' }}">{{ unit }}</p>
     </div>
     <div class="reference-range left">

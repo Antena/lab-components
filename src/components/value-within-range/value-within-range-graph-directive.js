@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name common.value-within-range.directive:valueWithinRangeGraph
+ * @name lab-components.components.value-within-range.directive:valueWithinRangeGraph
  * @restrict AE
  * @scope
  *
@@ -75,12 +75,13 @@
 
 		  <hr/>
 
-		 <value-within-range-graph value="example.value"
- 					unit="example.unit"
- 					range="example.range"
- 					range-class="good"
- 					domain-class="bad">
-		 </value-within-range-graph>
+		 <div value-within-range-graph
+			  value="example.value"
+ 			  unit="example.unit"
+ 			  range="example.range"
+ 			  range-class="good"
+ 			  domain-class="bad">
+		 </div>
 	 </div>
 
 	 </file>
@@ -89,20 +90,18 @@
 		.example .value-within-range-graph .bad {
 			stroke: #C0334E;
 			fill: #C0334E;
+			color: #C0334E;
 		}
 		.example .value-within-range-graph .good {
 			stroke: #00b752;
 			fill: #00b752;
-		}
-
-		.example .value-within-range-graph {
-			background-color: rgba(255, 255, 102, 0.2);
+			color: #00b752;
 		}
 
 	 </file>
 	 <file name="demo.js">
 
-		 angular.module('value-within-range-graph-example', ['common.value-within-range'])
+		 angular.module('value-within-range-graph-example', ['lab-components.components.value-within-range'])
  			.controller('ExampleController', ['$scope', function($scope) {
 					$scope.example = {
 						value: 28,
@@ -276,7 +275,7 @@ module.exports = function() {
 					.text(range.high);
 
 				// Value
-				var valueWithinRange = value >= range.low || value <= range.high;
+				var valueWithinRange = value >= range.low && value <= range.high;
 				var valueInDomain = value < range.low || value > range.high;
 				var valueText = value + (unit ? (' ' + unit) : '');
 
@@ -286,7 +285,7 @@ module.exports = function() {
 					.attr('dy', '0.375em')
 					.attr('dy', 0)
 					.attr('text-anchor', 'middle')
-					.classed(outsideClass, valueInDomain)
+					.classed(outsideClass, valueInDomain && !valueWithinRange)
 					.classed(insideClass, valueWithinRange)
 					.classed('value-text', true)
 					.text(valueText);
@@ -295,7 +294,7 @@ module.exports = function() {
 					.attr("cx", scale(value))
 					.attr("cy", yPos)
 					.attr("r", circleRadius)
-					.classed(outsideClass, valueInDomain)
+					.classed(outsideClass, valueInDomain && !valueWithinRange)
 					.classed(insideClass, valueWithinRange)
 					.classed('value-point', true);
 			}

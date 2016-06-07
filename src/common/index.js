@@ -1,7 +1,9 @@
 'use strict';
 
 var angular = require('angular');
-var ngModule = angular.module('lab-components.common', []);
+var ngModule = angular.module('lab-components.common', [
+	require('angular-translate'),
+]);
 
 ngModule.filter('capitalize', require('./capitalize-filter'));
 ngModule.filter('codeableConcept', require('./codeable-concept-filter'));

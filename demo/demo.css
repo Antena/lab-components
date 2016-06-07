@@ -92,39 +92,3 @@
 	margin-top: 0;
 	font-size: 12px;
 }
-
-
-.doc-example-live form {
-	text-align: right;
-}
-
-.doc-example-live .input-sm {
-	height: 30px;
-	width: 60px;
-	padding: 0 6px;
-	font-size: 14px;
-	line-height: 1.5;
-	border-radius: 3px;
-}
-
-
-.doc-example-live .row {
-	margin: 0;
-	padding: 0 20px;
-}
-
-.row .col {
-	display: table-cell;
-}
-
-.row .col-half {
-	width: 50%;
-}
-
-.row .col-third {
-	width: 33%;
-}
-
-.doc-example-live .form-group {
-	margin-bottom: 8px;
-}
