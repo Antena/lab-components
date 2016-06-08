@@ -96,7 +96,7 @@
  </file>
  <file name="demo.js">
 
- 	angular.module('lab-observation-range-card-example', ['lab-components.lab-observations.lab-observation-range'])
+ 	angular.module('lab-observation-range-card-example', ['lab-components.lab-observation.lab-observation-range'])
  		.controller('ExampleController', ['$scope', function($scope) {
 			$scope.example = {
 				json: "",

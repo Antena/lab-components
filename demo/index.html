@@ -3,23 +3,24 @@
     <head>
         <meta charset="utf-8">
         <title>Lab Components</title>
-		<link rel="stylesheet" href="demo.css">
+		<link rel="stylesheet" href="docs/css/bootstrap.min.css">
 		<link rel="stylesheet" href="main.css">
+		<link rel="stylesheet" href="demo.css">
         <script src="dist/bundle.js"></script>
     </head>
     <body>
-        <div ng-controller="DemoController" class="lab-study-viewer">
+        <div ng-controller="DemoController">
             <div class="demo-header"><p class="title">Lab Components Demo <a class="nav-link" target="_blank" href="http://localhost:3030/docs/">API docs</a></p></div>
 
 			<div class="split-content">
-				<div class="secondary-content">
-					<ul>
+				<div class="secondary-content demo-navigation">
+					<ul class="nav nav-pills nav-stacked">
 						<li><a ui-sref="lab-diagnostic-report">Lab Diagnostic Report</a></li>
 						<li><a ui-sref="value-within-range-graph">Value Within Range Graph</a></li>
 						<li><a ui-sref="value-within-range-card">Value Within Range Card</a></li>
 					</ul>
 				</div>
-				<div class="primary-content">
+				<div class="primary-content demo-content">
 					<div ui-view></div>
 				</div>
 			</div>

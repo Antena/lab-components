@@ -1,11 +1,12 @@
 .demo-header {
 	background-color: #222;
-	padding: 0 20px;
+	padding: 14px 20px;
 	color: white;
 }
 
 .demo-header .title {
 	font-size: 20px;
+	margin-bottom: 0;
 }
 
 .demo-content {
@@ -53,42 +54,24 @@
 	color: #47a8fd;
 }
 
-.observation-values p,
-.observation-values p {
-	padding: 0;
-	line-height: 1
+.demo-instance-container {
+	border: 2px dashed rgba(255, 153, 0, 0.4);
+	margin-bottom: 10px;
 }
 
-.observation-values .reference-range,
-.observation-values .reference-range {
-	padding: 4px 0
+.demo-instance-container-shrinked {
+	width: 200px;
 }
 
-.observation-values .reference-range .reference,
-.observation-values .reference-range .reference {
-	font-size: 12px;
-	vertical-align: text-top
+.split-content {
+	margin-top: 20px;
 }
 
-.observation-values .reference-range .reference-type,
-.observation-values .reference-range .reference-type {
-	text-align: left;
-	color: #CCC
+.split-content .secondary-content.demo-navigation {
+	width: 15%;
 }
 
-.observation-values .reference-range .value,
-.observation-values .reference-range .value {
-	text-align: right
-}
-
-.observation-values .main-value,
-.observation-values .main-value {
-	font-size: 36px !important;
-	line-height: 36px
-}
-
-.observation-values .unit,
-.observation-values .unit {
-	margin-top: 0;
-	font-size: 12px;
+.split-content .primary-content.demo-content {
+	width: 85%;
+	padding-top: 0;
 }

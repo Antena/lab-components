@@ -27,7 +27,7 @@
  </file>
  <file name="demo.js">
 
- angular.module('reference-range-to-simple-range-example', ['lab-components.lab-observations.lab-observation-range'])
+ angular.module('reference-range-to-simple-range-example', ['lab-components.lab-observation.lab-observation-range'])
  .controller('ExampleController', ['$scope', function($scope) {
 		$scope.example = {
 			observation: {

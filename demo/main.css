@@ -1,3 +1,20 @@
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+	margin-bottom: 0;
+}
+
+li {
+	line-height: 20px;
+}
+
+ul,
+ol {
+	margin-left: 0;
+	list-style: none;
+}
+
 .content-aligned {
 	display: inline-block;
 	vertical-align: bottom;
@@ -449,25 +466,27 @@ circle.unhealthy {
 	padding: 20px
 }
 
-.split-content .primary-content {
+.split-content {
+	display: table;
+	text-align: left;
 	width: 100%
+}
+
+.split-content .primary-content,
+.split-content .secondary-content {
+	width: 100%;
+	display: table-cell;
 }
 
 @media (min-width: 768px) {
 	.split-content .primary-content {
-		float: left;
-		width: 75%
+		width: 75%;
 	}
-}
-
-.split-content .secondary-content {
-	width: 0
 }
 
 @media (min-width: 768px) {
 	.split-content .secondary-content {
-		float: left;
-		width: 25%
+		width: 25%;
 	}
 }
 

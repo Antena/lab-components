@@ -65,12 +65,65 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		observationHistoryService: LabObservationService.getHistory
 	};
 
-	$scope.valueWithinRange = {
-		value: 100,
-		unit: "ml",
-		range: {
-			low: 0,
-			high: 500
+	$scope.cards = [
+		{
+			value: 100,
+			unit: "ml",
+			range: {
+				low: 0,
+				high: 500
+			}
+		},
+		{
+			value: 4.3,
+			unit: "ml",
+			range: {
+				low: 12,
+				high: 25
+			}
 		}
-	};
+	];
+
+	$scope.graphs = [
+		{
+			value: 100,
+			unit: "ml",
+			range: {
+				low: 0,
+				high: 500
+			}
+		},
+		{
+			value: 4.3,
+			unit: "ml",
+			range: {
+				low: 12,
+				high: 25
+			}
+		},
+		{
+			value: 0.3,
+			unit: "µg/dl",
+			range: {
+				low: 12,
+				high: 25
+			}
+		},
+		{
+			value: 100,
+			unit: "µg/dl",
+			range: {
+				low: 12,
+				high: 25
+			}
+		},
+		{
+			value: 100,
+			unit: "µg/dl",
+			range: {
+				low: 12,
+				high: 25
+			}
+		}
+	];
 };

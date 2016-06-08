@@ -20,7 +20,7 @@
 
  <div ng-controller="ExampleController" class="example">
 
- 	<label>Observation Json:</label>	 
+ 	<label>Observation Json:</label>
  	<textarea class="form-control" rows="5" ng-model="example.json"></textarea>
 
 	 <lab-observation-range-graph observation="example.observation">
@@ -44,21 +44,21 @@
  </file>
  <file name="styles.css">
 
- .example .unhealthy {
+ 	.example .unhealthy {
 		color: #C0334E;
 	}
- .example .healthy {
+ 	.example .healthy {
 		color: #00b752;
 	}
 
- .example textarea {
+ 	.example textarea {
  		width: 98%;
  	}
 
  </file>
  <file name="demo.js">
 
- angular.module('lab-observation-range-graph-example', ['lab-components.lab-observations.lab-observation-range'])
+ angular.module('lab-observation-range-graph-example', ['lab-components.lab-observation.lab-observation-range'])
  	.controller('ExampleController', ['$scope', function($scope) {
 		$scope.example = {
 			json: "",
