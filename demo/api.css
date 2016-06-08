@@ -1,3 +1,12 @@
+[ng-app="docsApp"] .container {
+	width: 1024px;
+}
+[ng-app="docsApp"] .container .span3 {
+	width: 235px;
+}
+[ng-app="docsApp"] .container .span9 {
+	width: 768px;
+}
 
 .doc-example-live form {
 	text-align: right;

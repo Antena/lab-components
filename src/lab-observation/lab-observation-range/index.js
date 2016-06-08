@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular');
-var ngModule = angular.module('lab-components.lab-observations.lab-observation-range', [
+var ngModule = angular.module('lab-components.lab-observation.lab-observation-range', [
 	require('../../components/index.js')
 ]);
 

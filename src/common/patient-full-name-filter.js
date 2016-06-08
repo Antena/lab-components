@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 /**
  * @ngdoc filter
  * @name lab-components.common.filter:patientFullName

@@ -31,6 +31,17 @@
  <file name="index.html">
 
 	 <div ng-controller="ExampleController" class="example">
+
+	   <div value-within-range-card
+			 value="example.value"
+			 unit="example.unit"
+			 range="example.range"
+			 inside-class="good"
+			 outside-class="bad">
+	   </div>
+
+	   <hr/>
+
 	   <form name="exampleForm" class="form-inline" novalidate>
 	     <div class="row">
 	       <div class="col col-third">
@@ -59,16 +70,6 @@
 	       </div>
 	     </div>
 	   </form>
-
-	   <hr/>
-
-	   <div value-within-range-card
- 			value="example.value"
- 			unit="example.unit"
-	   		range="example.range"
- 			inside-class="good"
- 			outside-class="bad">
-	   </div>
 	 </div>
 
  </file>

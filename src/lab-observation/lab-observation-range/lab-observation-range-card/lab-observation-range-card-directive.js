@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name lab-components.lab-observations.lab-observation-range.directive:labObservationRangeCard
+ * @name lab-components.lab-observation.lab-observation-range.directive:labObservationRangeCard
  * @restrict AE
  * @scope
  *
@@ -11,7 +11,7 @@
  * TODO...
  *
  * @element ANY
- * @param {Object} observation A fhir observation object to display. If the value of the Observartion is numeric, it takes the info from the observation and renders a {@link lab-components.components.value-within-range.directive:valueWithinRangeCard valueWithinRangeCard}. Otherwise, it displays the Observation's valueString.
+ * @param {Object} observation A fhir observation object to display. If the value of the Observation is numeric, it takes the info from the observation and renders a {@link lab-components.components.value-within-range.directive:valueWithinRangeCard valueWithinRangeCard}. Otherwise, it displays the Observation's valueString. See https://www.hl7.org/fhir/2015MAY/observation.html
  *
  *
  * @example
@@ -20,6 +20,7 @@
 
  <div ng-controller="ExampleController" class="example">
 
+ 	<label>Observation Json:</label>
  	<textarea class="form-control" rows="5" ng-model="example.json"></textarea>
 
  	<lab-observation-range-card observation="example.observation">
