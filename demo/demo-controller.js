@@ -54,6 +54,11 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		return observation;
 	});
 
+	var historyJsonValues = _.values(require('./observation-history.json'));
+	// expand last one (samples)
+	historyJsonValues[historyJsonValues.length - 1] = _.flatten(historyJsonValues[historyJsonValues.length - 1], true);
+	$scope.histories = historyJsonValues;
+
 	$scope.demo = {
 		observations: observations,
 		order: resolvedBundle.diagnosticOrder,

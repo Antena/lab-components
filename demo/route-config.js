@@ -30,5 +30,10 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			url: '/value-within-range',
 			templateUrl: 'components/value-within-range-card.html',
 			controller: 'DemoController'
+		})
+		.state('lab-history-graph', {
+			url: '/lab-history-graph',
+			templateUrl: 'components/lab-history-graph.html',
+			controller: 'DemoController'
 		});
 };

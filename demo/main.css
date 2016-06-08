@@ -42,46 +42,45 @@ ol {
 .lab-tree {
 	padding-left: 20px;
 	position: absolute;
-	display: none
+	display: none;
 }
 
 @media (min-width: 768px) {
 	.lab-tree {
-		display: block
+		display: block;
 	}
 }
 
 .lab-tree .lab-tree-node {
-	padding: 4px 0
+	padding: 4px 0;
 }
 
 .lab-tree .lab-tree-observation-group-title {
-	font-size: 14px
+	font-size: 14px;
 }
 
 .lab-tree .lab-tree-observation-observation-title {
-	font-size: 12px
+	font-size: 12px;
 }
 
 .lab-tree .lab-tree-node.lab-tree-top-level > a {
-	display: block
+	display: block;
 }
 
 .lab-tree .lab-tree-node.lab-tree-top-level a.active,
 .lab-tree .lab-tree-node.lab-tree-top-level.parent-active a {
-	display: block
+	display: block;
 }
 
 .lab-tree .lab-tree-node .lab-tree-node:not(.lab-tree-top-level) a {
 	padding-left: 30px
 }
 
-.lab-study-viewer .lab-tree .lab-tree-node a,
-.lab-viewer .lab-tree .lab-tree-node a {
+.lab-tree .lab-tree-node a {
 	display: none;
 	padding-left: 20px;
 	color: #333;
-	border-left: 2px solid transparent
+	border-left: 2px solid transparent;
 }
 
 .lab-tree .lab-tree-node a.active,
