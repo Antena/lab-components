@@ -10,7 +10,7 @@
  *   the first word, but can be configured to transform all words.
  *
  * @param {String} input Any string.
- * @param {Boolean} [all=false] Indicates whether to transform all words in the given string.
+ * @param {Boolean=} [all=false] Indicates whether to transform all words in the given string.
  * @returns {String} The transformed string.
  *
  *

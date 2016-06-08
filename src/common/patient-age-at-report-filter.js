@@ -10,7 +10,7 @@
  *
  * @param {String} birthDate A date string.
  * @param {String} referenceDate A date string.
- * @param {Boolean} [pluralize=false] Indicates whether to add the pluralized age unit to the result string.
+ * @param {Boolean=} [pluralize=false] Indicates whether to add the pluralized age unit to the result string.
  * @returns {String} The age and unit in string format.
  *
  *

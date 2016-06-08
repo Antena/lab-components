@@ -1,10 +1,34 @@
 'use strict';
 
+/**
+ * @ngdoc controller
+ * @name lab-components.lab-history-graph.controller:LabHistoryGraphController
+ *
+ * @description
+ * `LabDiagnosticReportController` provides some utilitary functions for mapping report observations to order items, and grouping observations.
+ *
+ * Each instance of {@link lab-components.lab-diagnostic-report.directive:labDiagnosticReport labDiagnosticReport} directive creates an instance of this controller.
+ *
+ */
+
 var _ = require('underscore');
 
 // @ngInject
 module.exports = function($scope) {
 
+	/**
+	 * @ngdoc function
+	 * @name simplifyObservations
+	 * @methodOf lab-components.lab-history-graph.controller:LabHistoryGraphController
+	 * @description
+	 *
+	 * //TODO (denise) add description
+	 *
+	 * @param {Array} observations TODO
+	 *
+	 * @returns {Array} The list of simplifed observations.
+	 *
+	 */
 	this.simplifyObservations = function(observations) {
 
 		return _.map(observations, function(observation) {
@@ -31,6 +55,19 @@ module.exports = function($scope) {
 		return dottedLines;
 	}
 
+	/**
+	 * @ngdoc function
+	 * @name calculateRectangles
+	 * @methodOf lab-components.lab-history-graph.controller:LabHistoryGraphController
+	 * @description
+	 *
+	 * //TODO (denise) add description
+	 *
+	 * @param {Array} data TODO
+	 *
+	 * @returns {Array} The list of rectangles.
+	 *
+	 */
 	this.calculateRectangles = function(data) {
 		var rectangles = [];
 		var xRectangles = calculateDottedLines(data);

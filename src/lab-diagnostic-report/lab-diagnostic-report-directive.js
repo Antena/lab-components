@@ -1,5 +1,37 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name lab-components.lab-diagnostic-report.directive:labDiagnosticReport
+ * @restrict AE
+ * @scope
+ *
+ * @description
+ *
+ * //TODO (denise) add description
+ *
+ * @element ANY
+ * @param {Array} observations The list of observations which belong to this diagnostic report.
+ *
+ * @param {Object} diagnosticOrder The diagnostic report which originated this report.
+ *
+ * @param {String} status //TODO (denise) add description
+ *
+ * @param {Object} patient //TODO (denise) add description
+ *
+ * @param {Object} organization //TODO (denise) add description
+ *
+ * @param {String} reportDate //TODO (denise) add description
+ *
+ * @param {String=} dateFormat //TODO (denise) add description
+ *
+ * @param {Boolean=} hideHeader //TODO (denise) add description
+ *
+ * @param {Boolean=} viewOnly //TODO (denise) add description
+ *
+ *
+ */
+
 var _ = require('underscore');
 var $ = require('jquery');
 

@@ -8,13 +8,13 @@
  *
  * @description
  *
- * TODO...
+ * //TODO (denise) add description
  *
  * @element ANY
  * @param {Object} observation A fhir observation object to display. See https://www.hl7.org/fhir/2015MAY/observation.html
  * @param {Array} actions A list of actions
  * @param {Array} headerActions A list of toggle actions to be displayed in the header of this component.
- * @param {Boolean} [viewOnly=false] Indicates wether actions should be disabled.
+ * @param {Boolean=} [viewOnly=false] Indicates wether actions should be disabled.
  *
  *
  * @example

@@ -8,21 +8,21 @@
  *
  * @description
  *
- * TODO...
+ * //TODO (denise) add description
  *
  * @element ANY
  * @param {Number} value A numeric value to be displayed.
  *
- * @param {String} [unit=""] A string representation of the value unit.
+ * @param {String=} unit A string representation of the value unit.
  *
  * @param {Object} range An object representing the range to be displayed.
  * This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {String} [unitClass=""] A class name to be applied to the unit text element.
+ * @param {String=} unitClass A class name to be applied to the unit text element.
  *
- * @param {String} [insideClass=""] A class name to be applied to the value element, when it falls inside the range.
+ * @param {String=} insideClass A class name to be applied to the value element, when it falls inside the range.
  *
- * @param {String} [outsideClass=""] A class name to be applied to the value element, when it falls outside the range.
+ * @param {String=} outsideClass A class name to be applied to the value element, when it falls outside the range.
 
  *
  *

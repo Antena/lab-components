@@ -1,5 +1,23 @@
 'use strict';
 
+/**
+ * @ngdoc directive
+ * @name lab-components.lab-history-graph.directive:labHistoryGraph
+ * @restrict AE
+ * @scope
+ *
+ * @description
+ *
+ * //TODO (denise) add description
+ *
+ * @element ANY
+ * @param {Array} observationList A list of observations which have the same code.
+ *
+ * @param {String=} dateFormat //TODO (denise) add description
+ *
+ *
+ */
+
 var d3 = require('d3');
 var $ = require('jquery');
 var _ = require('underscore');

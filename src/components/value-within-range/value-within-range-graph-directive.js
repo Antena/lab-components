@@ -19,17 +19,17 @@
  * @element ANY
  * @param {Number} value A numeric value to be displayed.
  *
- * @param {String} [unit=""] A string representation of the value unit.
+ * @param {String=} unit A string representation of the value unit.
  *
  * @param {Object} range An object representing the range to be displayed.
  * This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {Object} [domain={ low: range.low * 0.1, high: range.high * 0.1}] An object representing the range to be displayed. This must contain two numeric properties: 'low' and 'high'.
+ * @param {Object=} [domain={ low: range.low * 0.1, high: range.high * 0.1}] An object representing the range to be displayed. This must contain two numeric properties: 'low' and 'high'.
  *
- * @param {String} [insideClass=""] A class name to be applied to the value element, when it falls inside the range.
+ * @param {String=} insideClass A class name to be applied to the value element, when it falls inside the range.
  * If not provided, 'rangeClass' will be used.
  *
- * @param {String} [outsideClass=""] A class name to be applied to the value element, when it falls outside the range.
+ * @param {String=} outsideClass A class name to be applied to the value element, when it falls outside the range.
  * If not provided, 'domainClass' will be used.
  *
  * @param {String} rangeClass A class name to be applied to the range element.

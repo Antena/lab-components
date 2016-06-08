@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @ngdoc interface
+ * @ngdoc controller
  * @name lab-components.lab-observation.lab-observation-range.controller:LabObservationRangeController
  *
  * @description
@@ -23,6 +23,11 @@ module.exports = function($scope) {
 	 * @methodOf lab-components.lab-observation.lab-observation-range.controller:LabObservationRangeController
 	 * @description Checks whether an observation's string value (`observation.valueString`) matches the string reference (`observation.referenceRange[0].text`). Considers it a match if the reference is undefined or `.`.
 	 *
+	 * @param {Object} observation A valid FHIR Observation.
+	 *
+	 * @returns {Boolean} True if it's a match.
+	 *
+	 *
 	 */
 	$scope.valueStringMatchesReference = function(observation) {
 		return observation.valueString === observation.referenceRange[0].text ||
@@ -37,6 +42,10 @@ module.exports = function($scope) {
 	 * @description Produces a string representation of the observation's value, which includes it's value, unit and
 	 * range meaning when it's a numeric value, or the valueString when it's not numeric.
 	 * If there's no value in the given observation (neither numeric nor string), then it returns `"-"`.
+	 *
+	 * @param {Object} observation A valid FHIR Observation.
+	 *
+	 * @returns {String} The composed string.
 	 *
 	 */
 	$scope.getObservationValueDisclosure = function(observation) {

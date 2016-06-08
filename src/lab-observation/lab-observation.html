@@ -5,7 +5,7 @@
         <div ng-if="!vm.viewOnly && headerActions.length" class="observation-primary-content-header-actions right">
             <a ng-repeat="headerAction in headerActions"
                ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"
-               class="observation-primary-content-header-actions"
+               class="observation-primary-content-header-action"
                ng-class="{ 'active' : headerAction.isActive(observation), 'hovered': hovered === observation._id || headerAction.showAsHovered(observation) }"
                ng-mouseover="hovered = observation._id"
                ng-mouseleave="hovered = null"
