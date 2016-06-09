@@ -2,9 +2,10 @@
 	<h2>Value Within Range Graph demos</h2>
 
 	<div ng-repeat="valueWithinRange in graphs" class="demo-instance-container" ng-class="{'demo-instance-container-shrinked': $last}">
-		<value-within-range-graph value="valueWithinRange.value"
-								  unit="valueWithinRange.unit"
-								  range="valueWithinRange.range"
+		<h4 class="demo-description">{{ valueWithinRange.description }}</h4>
+		<value-within-range-graph value="valueWithinRange.data.value"
+								  unit="valueWithinRange.data.unit"
+								  range="valueWithinRange.data.range"
 								  range-class="healthy"
 								  domain-class="unhealthy">
 		</value-within-range-graph>

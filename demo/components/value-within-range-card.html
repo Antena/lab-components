@@ -2,10 +2,11 @@
 	<h2>Value Within Range Card demos</h2>
 
 	<div ng-repeat="valueWithinRange in cards" class="demo-instance-container">
+		<h4 class="demo-description">{{ valueWithinRange.description }}</h4>
 		<value-within-range-card class="observation-values"
-								 value="valueWithinRange.value"
-								 unit="valueWithinRange.unit"
-								 range="valueWithinRange.range"
+								 value="valueWithinRange.data.value"
+								 unit="valueWithinRange.data.unit"
+								 range="valueWithinRange.data.range"
 								 inside-class="healthy"
 								 outside-class="unhealthy">
 		</value-within-range-card>

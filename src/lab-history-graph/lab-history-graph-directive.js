@@ -15,7 +15,43 @@
  *
  * @param {String=} dateFormat //TODO (denise) add description
  *
- *
+ * @example
+ <example module="lab-observation-example">
+ <file name="index.html">
+
+ <div ng-controller="ExampleController" class="example">
+ 	<lab-history-graph observation-list="example.history"></lab-history-graph>
+ </div>
+
+ </file>
+ <file name="styles.css">
+
+ .example .unhealthy {
+		color: #C0334E;
+	}
+ .example .healthy {
+		color: #00b752;
+	}
+
+ .example textarea {
+		width: 98%;
+	}
+
+ .example .inner-content {
+ 		background-color: #FFFF66;
+ 	}
+
+ </file>
+ <file name="demo.js">
+
+ angular.module('lab-observation-example', ['lab-components.lab-history-graph'])
+ 	.controller('ExampleController', ['$scope', function($scope) {
+			$scope.example = {
+				history: [{"id":"573dfea91732954910873174","code":{"coding":[{"display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-02T03:00:00.000Z","subject":{"reference":"Patient/1"},"referenceRange":[{"high":{"unit":"mg/dl","value":110},"low":{"unit":"mg/dl","value":70}}],"status":"final","identifier":{},"extension":[{"valueIdentifier":{}}],"valueQuantity":{"value":86,"units":"mg/dl","code":"mg/dl","system":"http://unitsofmeasure.org"}},{"id":"573dff1c173295491087319c","code":{"coding":[{"display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-02T03:00:00.000Z","subject":{"reference":"Patient/1"},"referenceRange":[{"high":{"unit":"mg/dl","value":99},"low":{"unit":"mg/dl","value":74}}],"status":"final","identifier":{},"valueQuantity":{"value":81,"units":"mg/dl","code":"mg/dl","system":"http://unitsofmeasure.org"}},{"id":"ddd000000000000000000001","code":{"coding":[{"system":"http://www.cdrossi.com/tests","code":"GLU","display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-19T16:58:03.890Z","subject":{"reference":"Patient/1"},"referenceRange":[{"low":{"value":70,"unit":"mg/dl","system":"http://unitsofmeasure.org","code":"mg/dL"},"high":{"value":110,"unit":"mg/dl","system":"http://unitsofmeasure.org","code":"mg/dL"},"meaning":{"coding":[{"code":"H","display":"High","userSelected":"http://hl7.org/fhir/v2/0078"}]}}],"status":"final","identifier":{},"valueQuantity":{"value":120.3,"units":"mg/dL","code":"mg/dL","system":"http://unitsofmeasure.org"}}]
+			};
+		}]);
+ </file>
+ </example>
  */
 
 var d3 = require('d3');

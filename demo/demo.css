@@ -59,6 +59,13 @@
 	margin-bottom: 10px;
 }
 
+.demo-description {
+	color: rgba(255, 153, 0, 0.7);
+	font-weight: normal;
+	padding: 8px;
+	margin: 0;
+}
+
 .demo-instance-container-shrinked {
 	width: 200px;
 }

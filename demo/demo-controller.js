@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('underscore');
 var fhirBundle = require('./full-study-bundle.json');
 
 // @ngInject
@@ -54,10 +55,45 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		return observation;
 	});
 
-	var historyJsonValues = _.values(require('./observation-history.json'));
-	// expand last one (samples)
-	historyJsonValues[historyJsonValues.length - 1] = _.flatten(historyJsonValues[historyJsonValues.length - 1], true);
-	$scope.histories = historyJsonValues;
+	var historyJson = require('./observation-history.json');
+
+	var curatedHistory = [];
+	_.each(historyJson, function(samples) {
+		if(_.isArray(samples[0])) {
+			curatedHistory = _.union(curatedHistory, samples);
+
+		} else {
+			curatedHistory.push(samples);
+		}
+	});
+
+	$scope.histories = _.map(curatedHistory, function(history) {
+		var description = "";
+		var obsType = history[0].code.coding[0].display;
+		if(obsType === "Recuento De Plaquetas") {
+			description = "Big safe zone, with values inside";
+		} else if(obsType === "Hematocrito") {
+			description = "Different safe zones for each point";
+		} if(obsType === "Recuento De Globulos Rojos") {
+			description = "Big time difference between points";
+		} if(obsType === "GLUCEMIA") {
+			description = "Mix of points inside and outisde of safe zone, with different safe zones";
+		} if(obsType === "IGA - INMUNOGLOBULINA A") {
+			description = "Big safe zone, with values outside";
+		} if(obsType === "Sodio") {
+			description = "Small safe zone";
+		} if(obsType === "UREMIA") {
+			description = "Big safe zone, with different safe zones";
+		} if(obsType === "Fosfatasa Alcalina") {
+			description = "Small container";
+		}
+
+
+		return {
+			description: description,
+			data: history
+		};
+	});
 
 	$scope.demo = {
 		observations: observations,
@@ -72,62 +108,83 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.cards = [
 		{
-			value: 100,
-			unit: "ml",
-			range: {
-				low: 0,
-				high: 500
+			description: "Value inside range",
+			data: {
+				value: 100,
+				unit: "ml",
+				range: {
+					low: 0,
+					high: 500
+				}
 			}
 		},
 		{
-			value: 4.3,
-			unit: "ml",
-			range: {
-				low: 12,
-				high: 25
+			description: "Value outside range",
+			data: {
+				value: 4.3,
+				unit: "ml",
+				range: {
+					low: 12,
+					high: 25
+				}
 			}
 		}
 	];
 
 	$scope.graphs = [
 		{
-			value: 100,
-			unit: "ml",
-			range: {
-				low: 0,
-				high: 500
+			description: "Value inside range",
+			data: {
+				value: 100,
+				unit: "ml",
+				range: {
+					low: 0,
+					high: 500
+				}
 			}
 		},
 		{
-			value: 4.3,
-			unit: "ml",
-			range: {
-				low: 12,
-				high: 25
+			description: "Value outside range",
+			data: {
+				value: 4.3,
+				unit: "ml",
+				range: {
+					low: 12,
+					high: 25
+				}
 			}
 		},
 		{
-			value: 0.3,
-			unit: "µg/dl",
-			range: {
-				low: 12,
-				high: 25
+			description: "Long string for unit, with very low value outside range (far left)",
+			data: {
+				value: 0.3,
+				unit: "µg/dl",
+				range: {
+					low: 12,
+					high: 25
+				}
 			}
 		},
 		{
-			value: 100,
-			unit: "µg/dl",
-			range: {
-				low: 12,
-				high: 25
+			description: "Long string for unit, with very high value outside range (far right)",
+			data: {
+				value: 100,
+				unit: "µg/dl",
+				range: {
+					low: 12,
+					high: 25
+				}
 			}
 		},
 		{
-			value: 100,
-			unit: "µg/dl",
-			range: {
-				low: 12,
-				high: 25
+			description: "Small container",
+			data: {
+				value: 100,
+				unit: "µg/dl",
+				range: {
+					low: 12,
+					high: 25
+				}
 			}
 		}
 	];
