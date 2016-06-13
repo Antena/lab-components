@@ -207,6 +207,7 @@ module.exports = function() {
 				strokeWeight = 2,
 				yPos = height / 2 + strokeWeight / 2,
 				yOffset = circleRadius * 2,
+				axisLabelVerticalShift = '0.375em',			// The vertical shift of the axis' labels
 				bleedFactor = 0.1,
 				padding = {
 					left: 20,
@@ -241,7 +242,7 @@ module.exports = function() {
 					.attr("stroke-width", strokeWeight);
 				svg.append('text')
 					.classed('low-range-text', true)
-					.attr('dy', '0.375em');
+					.attr('dy', axisLabelVerticalShift);
 
 				// Healthy range line
 				svg.append('line')
@@ -254,7 +255,7 @@ module.exports = function() {
 					.attr("stroke-width", strokeWeight);
 				svg.append('text')
 					.classed('high-range-text', true)
-					.attr('dy', '0.375em');
+					.attr('dy', axisLabelVerticalShift);
 
 				// Value circle + text
 				svg.append('circle')
