@@ -21,6 +21,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/lab-diagnostic-report.html',
 			controller: 'DemoController'
 		})
+		.state('lab-diagnostic-report-plain', {
+			url: '/lab-diagnostic-report-plain',
+			templateUrl: 'components/lab-diagnostic-report-plain.html',
+			controller: 'DemoController'
+		})
 		.state('value-within-range-graph', {
 			url: '/value-within-range-graph',
 			templateUrl: 'components/value-within-range-graph.html',

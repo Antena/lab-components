@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('underscore');
+var lodash = require('lodash');
 var fhirBundle = require('./full-study-bundle.json');
 
 // @ngInject
@@ -9,7 +10,9 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
 
 	var observations = _.map(resolvedBundle.observations, function(observation) {
-		observation.actions = [
+		var result = lodash.cloneDeep(observation);
+
+		result.actions = [
 			{
 				labelOn: "Ocultar Historia",
 				labelOff: "Mostrar Historia",
@@ -30,7 +33,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		];
 
-		observation.headerActions = [
+		result.headerActions = [
 			{
 				icon: "icon",
 				activeAndHoveredLabel: "Dejar de monitorear",
@@ -52,7 +55,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 				}
 			}
 		];
-		return observation;
+		return result;
 	});
 
 	var historyJson = require('./observation-history.json');
@@ -97,6 +100,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.demo = {
 		observations: observations,
+		rawObservations: resolvedBundle.observations,
 		order: resolvedBundle.diagnosticOrder,
 		status: resolvedBundle.diagnosticReport.status,
 		reportDate: resolvedBundle.diagnosticReport.issued,

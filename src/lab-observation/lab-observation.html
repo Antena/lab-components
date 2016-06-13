@@ -1,7 +1,7 @@
 <div class="observation-gallery-item">
     <div class="observation-primary-content-header">
-        <h3 class="observation-primary-content-header-text" ng-if="observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
-        <h3 class="observation-primary-content-header-text" ng-if="!observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</h3>
+		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
+        <h3 class="observation-primary-content-header-text" ng-if="!hideTitle && !observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</h3>
         <div ng-if="!vm.viewOnly && headerActions.length" class="observation-primary-content-header-actions right">
             <a ng-repeat="headerAction in headerActions"
                ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"
@@ -16,34 +16,36 @@
     </div>
 
     <div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length }">
-        <div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
-            <ul class="details-item-list">
-                <li ng-if="observation.valueQuantity" class="details-item">
-                    <span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
-                </li>
-                <li ng-if="observation.valueQuantity" class="details-item">
-                    <span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | toStatusKey | translate }}</span>
-                </li>
-                <li ng-if="observation.comments" class="details-item">
-                    <span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>
-                </li>
-                <li ng-if="observation.referenceRange[0].meaning" class="details-item">
-                    <span class="item-name">{{ 'LAB.MEANING' | translate | semicolon }}</span><span class="item-value">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</span>
-                </li>
-            </ul>
-        </div>
-
         <div class="observation-column observation-primary-content observation-result">
             <lab-observation-range-graph observation="observation"></lab-observation-range-graph>
 
             <h2 ng-if="!observation.valueQuantity && !!observation.valueString" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+
+			<h4 ng-if="observation.referenceRange[0].meaning" class="observation-result-meaning {{ observation.referenceRange[0].meaning | referenceRangeMeaningColorCode }}">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</h4>
         </div>
 
         <div class="observation-column observation-secondary-content">
 			<lab-observation-range-card observation="observation"></lab-observation-range-card>
         </div>
 
-        <div ng-if="!vm.viewOnly" class="observation-column observation-generic-content" ng-if="actions.length">
+		<div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
+			<ul class="details-item-list">
+				<li ng-if="observation.valueQuantity" class="details-item">
+					<span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
+				</li>
+				<li ng-if="observation.valueQuantity" class="details-item">
+					<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | toStatusKey | translate }}</span>
+				</li>
+				<li ng-if="observation.comments" class="details-item">
+					<span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>
+				</li>
+				<li ng-if="observation.referenceRange[0].meaning" class="details-item">
+					<span class="item-name">{{ 'LAB.MEANING' | translate | semicolon }}</span><span class="item-value">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</span>
+				</li>
+			</ul>
+		</div>
+
+        <div ng-if="!viewOnly" class="observation-column observation-generic-content" ng-if="actions.length">
 
             <div ng-repeat="action in actions">
                 <a ng-if="!!action.href" href="{{ action.href }}" class="action" ng-class="{'ghost': !action.primary, 'global-action right': action.global }"><span ng-if="action.icon" class="{{action.icon}}"></span> {{ action.label }}</a>

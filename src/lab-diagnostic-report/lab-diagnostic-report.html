@@ -23,13 +23,15 @@
 		<div class="primary-content" id="observations-container">
 			<div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
 
-				<h2 ng-if="!isTopLevel(group, observationsPerGroup)" id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) | capitalize:true }}</h2>
+				<h2 id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) | capitalize:true }}</h2>
 
 				<div class="observation-gallery">
 					<lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation.id }}"
 									 observation="observation"
 									 actions="observation.actions"
-									 header-actions="observation.headerActions">
+									 header-actions="observation.headerActions"
+									 view-only="vm.viewOnly"
+									 hide-title="vm.deDupeTopLevelObservations && isTopLevel(group, observationsPerGroup)">
 						<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
 					</lab-observation>
 				</div>

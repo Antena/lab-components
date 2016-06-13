@@ -1,18 +1,8 @@
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-	margin-bottom: 0;
-}
-
-li {
-	line-height: 20px;
-}
-
 ul,
 ol {
 	margin-left: 0;
 	list-style: none;
+	margin-bottom: 0;
 }
 
 .content-aligned {
@@ -243,7 +233,11 @@ ol {
 .observation-gallery-item .observation-content {
 	display: table;
 	width: 100%;
-	margin-top: 10px
+	/*margin-top: 10px*/
+}
+
+.observation-primary-content-header-text {
+	margin-bottom: 10px;
 }
 
 .observation-gallery-item .observation-column {
@@ -309,38 +303,34 @@ ol {
 .observation-values p,
 .observation-values p {
 	padding: 0;
-	line-height: 1
+	line-height: 1;
+	margin-bottom: 4px;
 }
 
-.observation-values .reference-range,
 .observation-values .reference-range {
-	padding: 4px 0
+	padding: 4px 0;
+	text-align: right;
 }
 
-.observation-values .reference-range .reference,
 .observation-values .reference-range .reference {
 	font-size: 12px;
 	vertical-align: text-top
 }
 
-.observation-values .reference-range .reference-type,
 .observation-values .reference-range .reference-type {
 	text-align: left;
 	color: #CCC
 }
 
-.observation-values .reference-range .value,
 .observation-values .reference-range .value {
 	text-align: right
 }
 
-.observation-values .main-value,
 .observation-values .main-value {
 	font-size: 36px !important;
 	line-height: 36px
 }
 
-.observation-values .unit,
 .observation-values .unit {
 	margin-top: 0;
 	font-size: 12px;
@@ -413,6 +403,10 @@ ol {
 
 .observation-gallery-item .observation-result {
 	font-size: 1em
+}
+
+.observation-result-meaning {
+	margin: 0;
 }
 
 .observation-gallery-item .observation-result .observation-result-meaning {
@@ -1356,4 +1350,8 @@ a.button.ghost:hover {
 	.observation-extended-content .observation-details .details-item-list .item-value {
 		width: 60%;
 	}
+}
+
+.compact-observations .observation-gallery-item {
+	padding: 8px;
 }

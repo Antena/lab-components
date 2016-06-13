@@ -25,9 +25,11 @@
  *
  * @param {String=} dateFormat //TODO (denise) add description
  *
- * @param {Boolean=} hideHeader //TODO (denise) add description
+ * @param {Boolean=} [hideHeader=false] Indicates whether to hide the header that contains report information.
  *
- * @param {Boolean=} viewOnly //TODO (denise) add description
+ * @param {Boolean=} [viewOnly=false] Indicates whether to disable all actions.
+ *
+ * @param {Boolean=} [deDupeTopLevelObservations=false] Indicates whether to hide observation titles if ab order items contain a subgke observation.
  *
  *
  */
@@ -36,7 +38,7 @@ var _ = require('underscore');
 var $ = require('jquery');
 
 // @ngInject
-module.exports = function($rootScope, $document, $filter) {
+module.exports = function($rootScope, $document) {
 
 	return {
 		scope: {
@@ -48,7 +50,8 @@ module.exports = function($rootScope, $document, $filter) {
 			reportDate: '=',
 			dateFormat: '@?',
 			hideHeader: '=?',
-			viewOnly: '=?'
+			viewOnly: '=?',
+			deDupeTopLevelObservations: '=?'
 		},
 		restrict: 'EA',
 		templateUrl: require('./lab-diagnostic-report.html'),
