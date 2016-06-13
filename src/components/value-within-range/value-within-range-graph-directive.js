@@ -323,9 +323,11 @@ module.exports = function() {
 				// Update: value
 				var valueWithinRange = value >= range.low && value <= range.high,
 					valueInDomain = value < range.low || value > range.high,
-					textAnchor = value < range.low ? 'start' : ( value > range.high ? 'end': 'middle');
+					textAnchor = value < range.low ? 'start' : ( value > range.high ? 'end': 'middle'),
+					textAnchorHorizontalShift = value < range.low ? -circleRadius : ( value > range.high ? circleRadius : 0);
 				svg.select('text.value-text')
 					.attr('x', scale(value))
+					.attr('dx', textAnchorHorizontalShift)
 					.attr('text-anchor', textAnchor)
 					.classed(outsideClass, valueInDomain && !valueWithinRange)
 					.classed(insideClass, valueWithinRange)
