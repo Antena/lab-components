@@ -148,6 +148,60 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		},
 		{
+			description: "Value inside (smaller) range",
+			data: {
+				value: 10,
+				unit: "ml",
+				range: {
+					low: 7,
+					high: 26
+				}
+			}
+		},
+		{
+			description: "Value inside range - domain [0,?]",
+			data: {
+				value: 100,
+				unit: "ml",
+				range: {
+					low: 0,
+					high: 500
+				},
+				domain: {
+					low: 0
+				}
+			}
+		},
+		{
+			description: "Value inside range  - domain [?,1000]",
+			data: {
+				value: 100,
+				unit: "ml",
+				range: {
+					low: 0,
+					high: 500
+				},
+				domain: {
+					high: 1000
+				}
+			}
+		},
+		{
+			description: "Value inside range - domain [0,1000]",
+			data: {
+				value: 100,
+				unit: "ml",
+				range: {
+					low: 0,
+					high: 500
+				},
+				domain: {
+					low: 0,
+					high: 1000
+				}
+			}
+		},
+		{
 			description: "Value outside range",
 			data: {
 				value: 4.3,
