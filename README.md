@@ -4,7 +4,7 @@
 Run `npm install`.
 
 ### Running the demo
-Run `npm run start`, then go to [http://localhost:3030](http://localhost:3030) and pick a component from the left.
+Run `npm run start`, then go to [http://localhost:4000](http://localhost:4000) and pick a component from the left.
 
 ### Development
 
@@ -16,4 +16,4 @@ If you need to run this tasks individually, all steps are available as individua
 `npm run clean`, `npm run watch` (or `npm run build` sans watch), `npm run run-express`
 
 ### API Documentation
-Run `npm run build`, then `grunt ngdocs`, then `npm run start`. Go to [http://localhost:3030/docs](http://localhost:3030/docs).  
+Run `npm run build`, then `grunt ngdocs`, then `npm run start`. Go to [http://localhost:4000/docs](http://localhost:4000/docs).  
