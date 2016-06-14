@@ -26,6 +26,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/value-within-range-graph.html',
 			controller: 'DemoController'
 		})
+		.state('value-within-multiple-ranges-graph', {
+			url: '/value-within-multiple-ranges-graph',
+			templateUrl: 'components/value-within-multiple-ranges-graph.html',
+			controller: 'DemoController'
+		})
 		.state('value-within-range-card', {
 			url: '/value-within-range',
 			templateUrl: 'components/value-within-range-card.html',

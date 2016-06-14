@@ -1,0 +1,13 @@
+<div>
+	<h2>Value Within Multiple Range Graph Demos</h2>
+
+	<div ng-repeat="valueWithinRange in ranges" class="demo-instance-container" ng-class="{'demo-instance-container-shrinked': $last}">
+		<h4 class="demo-description">{{ valueWithinRange.description }}</h4>
+		<value-within-multiple-ranges-graph
+			value="valueWithinRange.value"
+			unit="valueWithinRange.unit"
+			ranges="valueWithinRange.ranges"
+			options="valueWithinRange.options">
+		</value-within-multiple-ranges-graph>
+	</div>
+</div>

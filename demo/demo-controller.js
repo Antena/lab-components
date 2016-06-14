@@ -242,4 +242,176 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		}
 	];
+
+	$scope.ranges = [
+		{
+			description: "Normal range",
+			"value": 5,
+			"unit": "mg/dl",
+			ranges: [
+				{
+					"high": 15,
+					"label": "Low",
+					"class": "range-danger"
+				},
+				{
+					"low": 15,
+					"high": 36,
+					"label": "Normal",
+					"class": "range-great"
+				},
+				{
+					"low": 36,
+					"label": "High",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 75,
+			"unit": "mg/dl",
+			ranges: [
+				{
+					"high": 130,
+					"label": "Óptimo",
+					"class": "range-great"
+				},
+				{
+					"low": 130,
+					"high": 190,
+					"label": "Límite",
+					"class": "range-so-so"
+				},
+				{
+					"low": 190,
+					"label": "Riesgo alto",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 85,
+			"unit": "mg/dl",
+			ranges: [
+				{
+					"high": 200,
+					"label": "Deseable",
+					"class": "range-great"
+				},
+				{
+					"low": 200,
+					"high": 239,
+					"label": "Límite",
+					"class": "range-so-so"
+				},
+				{
+					"low": 239,
+					"label": "Elevado",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 8.5,
+			ranges: [
+				{
+					"high": 0,
+					"label": "Low",
+					"class": "range-danger"
+				},
+				{
+					"low": 0,
+					"high": 4.5,
+					"label": "Normal",
+					"class": "range-great"
+				},
+				{
+					"low": 4.5,
+					"label": "High",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 0.05,
+			"unit": "mg/dl",
+			ranges: [
+				{
+					"high": 0.20,
+					"label": "Low",
+					"class": "range-danger"
+				},
+				{
+					"low": 0.21,
+					"high": 0.60,
+					"label": "Near Optimal",
+					"class": "range-good"
+				},
+				{
+					"low": 0.61,
+					"high": 0.85,
+					"label": "Optimal",
+					"class": "range-great"
+				},
+				{
+					"low": 0.85,
+					"label": "High",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 69,
+			"unit": "mg/dl",
+			options: {
+				arrowWidth: 10
+			},
+			ranges: [
+				{
+					"high": 100,
+					"label": "Óptimo",
+					"class": "range-great"
+				},
+				{
+					"low": 100,
+					"high": 129,
+					"label": "Cercano al óptimo",
+					"class": "range-good"
+				},
+				{
+					"low": 130,
+					"high": 159,
+					"label": "Límite",
+					"class": "range-so-so"
+				},
+				{
+					"low": 160,
+					"high": 190,
+					"label": "Elevado",
+					"class": "range-bad"
+				},
+				{
+					"low": 190,
+					"label": "Muy elevado",
+					"class": "range-danger"
+				}
+			]
+		},
+		{
+			"value": 72,
+			"unit": "mg/dl",
+			ranges: [
+				{
+					"high": 50,
+					"label": "Low",
+					"class": "range-danger"
+				},
+				{
+					"low": 50,
+					"label": "Normal",
+					"class": "range-great"
+				}
+			]
+		}
+	]
 };

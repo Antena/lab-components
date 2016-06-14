@@ -22,7 +22,8 @@
     "build": "npm run clean && webpack",
     "watch": "npm run clean && webpack --watch",
     "run-express": "nodemon server --watch server -e js,html,json",
-    "start": "parallelshell 'npm run -s run-express' 'npm run -s watch'"
+    "start": "parallelshell 'npm run -s run-express' 'npm run -s watch'",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "angular": "~1.4.x",
