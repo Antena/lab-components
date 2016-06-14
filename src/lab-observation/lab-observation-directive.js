@@ -16,7 +16,7 @@
  * @param {Array} headerActions A list of toggle actions to be displayed in the header of this component.
  * @param {Boolean=} [viewOnly=false] Indicates wether actions should be disabled.
  * @param {Boolean=} [hideTitle=false] Indicates wether hide the observation display (title of this card).
- * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content .
+ * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content.
  *
  *
  * @example
@@ -156,7 +156,8 @@ module.exports = function() {
 			actions: '=?',
 			headerActions: '=?',
 			viewOnly: '=?',
-			hideTitle: '=?'
+			hideTitle: '=?',
+			compactMode: '=?'
 		},
 		restrict: 'EA',
 		transclude: true,

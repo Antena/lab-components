@@ -31,6 +31,8 @@
  *
  * @param {Boolean=} [deDupeTopLevelObservations=false] Indicates whether to hide observation titles if ab order items contain a subgke observation.
  *
+ * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content.
+ *
  *
  */
 
@@ -51,6 +53,7 @@ module.exports = function($rootScope, $document) {
 			dateFormat: '@?',
 			hideHeader: '=?',
 			viewOnly: '=?',
+			compactMode: '=?',
 			deDupeTopLevelObservations: '=?'
 		},
 		restrict: 'EA',

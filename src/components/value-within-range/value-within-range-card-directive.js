@@ -161,7 +161,7 @@ module.exports = function() {
 		scope: {
 			value: '=',
 			unit: '=?',
-			range: '=',
+			range: '=?',
 			unitClass: '@?',
 			insideClass: '@?',
 			outsideClass: '@?'

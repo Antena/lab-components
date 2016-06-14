@@ -1,9 +1,11 @@
 <div ng-if="observation">
+	<div ng-if="observation.referenceRange[0].text" class="reference-range right" style="white-space: pre;"><p class="value">{{ observation.referenceRange[0].text }}</p></div>
+
 	<value-within-range-card ng-if="observation.valueQuantity"
                              class="observation-values"
                              value="observation.valueQuantity.value"
                              unit="observation.valueQuantity.units"
-                             range="observation.referenceRange[0] | referenceRangeToSimpleRange"
+                             range="observation.referenceRange[0].text ? null : (observation.referenceRange[0] | referenceRangeToSimpleRange)"
                              inside-class="healthy"
                              outside-class="unhealthy">
     </value-within-range-card>

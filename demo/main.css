@@ -1,6 +1,7 @@
 ul,
 ol {
 	margin-left: 0;
+	padding-left: 0;
 	list-style: none;
 	margin-bottom: 0;
 }
@@ -233,11 +234,7 @@ ol {
 .observation-gallery-item .observation-content {
 	display: table;
 	width: 100%;
-	/*margin-top: 10px*/
-}
-
-.observation-primary-content-header-text {
-	margin-bottom: 10px;
+	margin-top: 10px
 }
 
 .observation-gallery-item .observation-column {
@@ -317,12 +314,12 @@ ol {
 	vertical-align: text-top
 }
 
-.observation-values .reference-range .reference-type {
+.reference-range .reference-type {
 	text-align: left;
-	color: #CCC
+	color: #CCC;
 }
 
-.observation-values .reference-range .value {
+.reference-range .value {
 	text-align: right
 }
 
@@ -378,7 +375,7 @@ ol {
 
 .lab-diagnostic-report-info {
 	width: 70%;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .details-item-list-aligned .details-item .item-value {
@@ -392,21 +389,28 @@ ol {
 	padding-right: 20px;
 }
 
-
 .observation-gallery-item .healthy {
-	color: #5BB403
+	color: #5BB403;
 }
 
 .observation-gallery-item .unhealthy {
-	color: #CC0001
+	color: #CC0001;
+}
+
+.label {
+	margin-left: 4px;
+	font-size: 10px;
+}
+
+.label.label-healthy {
+	background-color: #5BB403;
+}
+.label.label-unhealthy {
+	background-color: #CC0001;
 }
 
 .observation-gallery-item .observation-result {
 	font-size: 1em
-}
-
-.observation-result-meaning {
-	margin: 0;
 }
 
 .observation-gallery-item .observation-result .observation-result-meaning {
@@ -1310,6 +1314,11 @@ a.button.ghost:hover {
 
 .details-item-list .item-value {
 	width: 70%;
+	padding-left: 4px;
+}
+
+.compact-observation.observation-gallery-item {
+	padding: 10px;
 }
 
 
@@ -1324,6 +1333,32 @@ a.button.ghost:hover {
 
 	.observation-tertiary-content {
 		width: 40%;
+	}
+
+	.compact-observation .observation-primary-content {
+		width: 45%;
+	}
+
+	.compact-observation .observation-secondary-content {
+		width: 25%;
+		padding-right: 20px;
+	}
+
+	.compact-observation .observation-tertiary-content {
+		width: 30%;
+	}
+
+	.compact-observation .observation-incomplete-content .observation-secondary-content {
+		width: 70%;
+	}
+
+	.reference-range {
+		text-align: left;
+	}
+
+	.compact-observation .observation-tertiary-content {
+		width: 30%;
+		padding-left: 10px;
 	}
 
 	/* .observation-extended-content */
@@ -1352,6 +1387,10 @@ a.button.ghost:hover {
 	}
 }
 
-.compact-observations .observation-gallery-item {
-	padding: 8px;
+.observation-group-title {
+	font-size: 22px;
+}
+
+.observation-primary-content-header-text {
+	font-size: 18px;
 }
