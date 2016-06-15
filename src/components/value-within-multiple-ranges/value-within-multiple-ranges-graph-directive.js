@@ -5,18 +5,6 @@ var angular = require('angular');
 // @ngInject
 module.exports = function() {
 
-	var rangeText = function(range) {
-		if (_.isNumber(range.low) && _.isNumber(range.high)) {
-			return range.low + " to " + range.high;
-		} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-			return "> " + range.low;
-		} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-			return "< " + range.high;
-		} else {
-			return "";
-		}
-	};
-
 	return {
 		restrict: 'EA',
 		scope: {
@@ -31,8 +19,11 @@ module.exports = function() {
 				height: 60,
 				padding: { left: 10, right: 10, top: 10 },
 				innerSpacing: 10,
-				arrowWidth: 10,
-				labelHeight: 25
+				arrowWidth: 7,
+				labelHeight: 25,
+				rangeSeparator: 'a',
+				lowerThanSymbol: '<',
+				graterThanSymbol: '>'
 			});
 
 			var svg;
@@ -41,6 +32,18 @@ module.exports = function() {
 				options.width = angular.element(elem.parent()[0]).width();
 				init();
 			}, 0);
+
+			var rangeText = function(range) {
+				if (_.isNumber(range.low) && _.isNumber(range.high)) {
+					return [range.low, options.rangeSeparator, range.high].join(" ");
+				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
+					return [options.lowerThanSymbol, range.low].join(" ");
+				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
+					return [options.graterThanSymbol, range.high].join(" ");
+				} else {
+					return "";
+				}
+			};
 
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
