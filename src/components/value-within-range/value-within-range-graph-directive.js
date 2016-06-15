@@ -218,7 +218,6 @@ module.exports = function() {
 			setTimeout(function() {
 				var container = elem.parent()[0];
 				width = angular.element(container).width();
-				console.log("width = ", width);	//TODO (denise) remove log
 				init();
 			}, 0);
 

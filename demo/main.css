@@ -409,6 +409,13 @@ ol {
 	background-color: #CC0001;
 }
 
+.meaning-indicator-healthy {
+	border-left: 8px solid rgba(91, 180, 3, 0.7);
+}
+.meaning-indicator-unhealthy {
+	border-left: 8px solid rgba(204, 0, 1, 0.7);
+}
+
 .observation-gallery-item .observation-result {
 	font-size: 1em
 }
@@ -1357,7 +1364,7 @@ a.button.ghost:hover {
 	}
 
 	.compact-observation .observation-tertiary-content {
-		width: 30%;
+		width: 28%;
 		padding-left: 10px;
 	}
 
@@ -1393,4 +1400,5 @@ a.button.ghost:hover {
 
 .observation-primary-content-header-text {
 	font-size: 18px;
+	line-height: 1;
 }
