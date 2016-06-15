@@ -16,14 +16,15 @@ module.exports = function() {
 		link: function (scope, elem) {
 			var options = _.defaults({}, scope.options, {
 				width: 0,
-				height: 60,
-				padding: { left: 10, right: 10, top: 10 },
+				height: 70,
+				padding: { left: 10, right: 10, top: 10, bottom: 10 },
 				innerSpacing: 10,
 				arrowWidth: 7,
 				labelHeight: 25,
 				rangeSeparator: 'a',
 				lowerThanSymbol: '<',
-				graterThanSymbol: '>'
+				graterThanSymbol: '>',
+				domain: {}
 			});
 
 			var svg;
@@ -33,18 +34,98 @@ module.exports = function() {
 				init();
 			}, 0);
 
+			/**
+			 * Generates the text to describe a range.
+			 *
+			 * @param range: the range.
+			 * @returns {*}
+			 */
 			var rangeText = function(range) {
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
 					return [range.low, options.rangeSeparator, range.high].join(" ");
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-					return [options.lowerThanSymbol, range.low].join(" ");
+					return [options.graterThanSymbol, range.low].join(" ");
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-					return [options.graterThanSymbol, range.high].join(" ");
+					return [options.lowerThanSymbol, range.high].join(" ");
 				} else {
 					return "";
 				}
 			};
 
+			/**
+			 * Determines if a value fits in a specified range.
+			 *
+			 * @param value: the value.
+			 * @param range: the range to test.
+			 * @returns {boolean}
+			 */
+			var valueInRange = function(value, range) {
+				if (_.isNumber(range.low) && _.isNumber(range.high)) {
+					return value >= range.low && value <= range.high;
+				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
+					return value > range.low;
+				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
+					return value < range.high;
+				}
+				return false;
+			};
+
+			/**
+			 *
+			 * @param value
+			 * @param range
+             * @param sectors
+             * @returns {number}
+             */
+			var scale = function (value, range, sectors) {
+				var rangeIndex = _.findIndex(sectors, function(sector) { return sector.x == range.x; }),
+					isFirst = rangeIndex == 0,
+					isLast = rangeIndex == sectors.length - 1;
+
+				// Build scale
+				var domain = [null, null];
+
+				if (_.isNumber(range.low) || _.isNumber(options.domain.low)) {
+					domain[0] = _.isNumber(options.domain.low) && isFirst ? options.domain.low : range.low;
+
+				}
+
+				if (_.isNumber(range.high) || _.isNumber(options.domain.high)) {
+					domain[1] = _.isNumber(options.domain.high) && isLast ? options.domain.high : range.high;
+				}
+
+
+
+				if (!_.isNumber(domain[0])) {
+					if (_.isNumber(options.domain.low))
+					var nextConcreteRange = _.find(sectors, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					if (nextConcreteRange) {
+						domain[0] = range.high - (nextConcreteRange.high - nextConcreteRange.low);
+					} else {
+						domain[0] = _.isNumber(options.domain.low) ? options.domain.low : range.high - 2 * (Math.abs(value - range.high));
+					}
+				}
+
+				if (!_.isNumber(domain[1])) {
+					var previousConcreteRange = _.find(sectors.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					if (previousConcreteRange) {
+						domain[1] = range.low + (previousConcreteRange.high - previousConcreteRange.low);
+					} else {
+						domain[1] = _.isNumber(options.domain.high) ? options.domain.high : range.low + 2*(Math.abs(value-range.low));
+					}
+				}
+
+				var scale = d3.scale.linear()
+					.clamp(true)
+					.range([0, range.width])
+					.domain(domain);
+
+				return scale(value);
+			};
+
+			/**
+			 * Draws basic elements and initializes constant properties.
+			 */
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', options.width)
@@ -55,7 +136,7 @@ module.exports = function() {
 				var sectors = _.map(scope.ranges, function (range, i) {
 					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
 					range.width = sectorWidth;
-					range.height = options.height - options.padding.top;
+					range.height = options.height - options.padding.top - options.padding.bottom;
 					range.rectHeight = range.height - options.labelHeight;
 					return range;
 				});
@@ -69,7 +150,8 @@ module.exports = function() {
 
 				// Rectangles
 				var rect = sector.append('g')
-					.attr('transform', 'translate(0, ' + options.labelHeight + ')');
+					.attr('transform', 'translate(0, ' + options.labelHeight + ')')
+					.classed('target', function(d) { return valueInRange(scope.value, d) });
 				rect.append('rect')
 					.attr('width', function(d) { return d.width })
 					.attr('height', function(d) { return d.rectHeight })
@@ -77,7 +159,8 @@ module.exports = function() {
 					.classed('range-bad', function (d) { return d.class == 'range-bad' })
 					.classed('range-so-so', function (d) { return d.class == 'range-so-so' })
 					.classed('range-good', function (d) { return d.class == 'range-good' })
-					.classed('range-great', function (d) { return d.class == 'range-great' });
+					.classed('range-great', function (d) { return d.class == 'range-great' })
+
 
 				// Range text
 				rect.append('foreignObject')
@@ -129,6 +212,26 @@ module.exports = function() {
 					.classed('range-so-so', function (d) { return d.class == 'range-so-so' })
 					.classed('range-good', function (d) { return d.class == 'range-good' })
 					.classed('range-great', function (d) { return d.class == 'range-great' });
+
+				// Value
+				var target = svg.selectAll('g.target');
+
+				target.append('path')
+					.attr('d', d3.svg.symbol().type('triangle-up'))
+					.attr('transform', function(d) {
+						var x = scale(scope.value, d, sectors);
+                        return 'translate(' + x + ',' + (d.rectHeight) + ')'
+					});
+
+				target.append('text')
+					.attr('transform', function(d) {
+						var x = scale(scope.value, d, sectors);
+						return 'translate(' + x + ',' + (d.rectHeight) + ')'
+					})
+					.attr('dy', '20px')
+					.attr('text-anchor', 'middle')
+					.text(scope.value)
+
 			}
 
 		}

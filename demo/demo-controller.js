@@ -245,8 +245,57 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.ranges = [
 		{
-			description: "Rango normal",
-			value: 5,
+			description: "Rango normal (bajo)",
+			value: 36,
+			unit: "mg/dl",
+			ranges: [
+				{
+					high: 15,
+					label: "Bajo",
+					class: "range-danger"
+				},
+				{
+					low: 15,
+					high: 36,
+					label: "Normal",
+					class: "range-great"
+				},
+				{
+					low: 36,
+					label: "Alto",
+					class: "range-danger"
+				}
+			],
+			options: {
+				domain: { low: 0 }
+			}
+		},
+		{
+			description: "Rango normal (normal)",
+			value: 20,
+			unit: "mg/dl",
+			ranges: [
+				{
+					high: 15,
+					label: "Bajo",
+					class: "range-danger"
+				},
+				{
+					low: 15,
+					high: 36,
+					label: "Normal",
+					class: "range-great"
+				},
+				{
+					low: 36,
+					label: "Alto",
+					class: "range-danger"
+				}
+			]
+		},
+		{
+			description: "Rango normal (alto)",
+			value: 52,
 			unit: "mg/dl",
 			ranges: [
 				{
@@ -314,7 +363,10 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 					label: "Elevado",
 					class: "range-danger"
 				}
-			]
+			],
+			options: {
+				domain: { low: 0 }
+			}
 		},
 		{
 			description: "3 rangos",
@@ -365,11 +417,14 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 					label: "Alto",
 					class: "range-danger"
 				}
-			]
+			],
+			options: {
+				domain: { low: 0 }
+			}
 		},
 		{
 			description: "5 rangos",
-			value: 69,
+			value: 130,
 			unit: "mg/dl",
 			options: {
 				arrowWidth: 10
@@ -407,7 +462,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		},
 		{
 			description: "2 rangos",
-			value: 72,
+			value: 48,
 			unit: "mg/dl",
 			ranges: [
 				{
@@ -420,7 +475,10 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 					label: "Normal",
 					class: "range-great"
 				}
-			]
+			],
+			options: {
+				domain: { low: 0, high: 200 }
+			}
 		}
 	]
 };
