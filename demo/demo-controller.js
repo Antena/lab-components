@@ -245,7 +245,6 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.ranges = [
 		{
-			description: "Normal range",
 			"value": 5,
 			"unit": "mg/dl",
 			ranges: [

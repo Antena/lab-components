@@ -9,9 +9,9 @@ module.exports = function() {
 		if (_.isNumber(range.low) && _.isNumber(range.high)) {
 			return range.low + " to " + range.high;
 		} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-			return ">" + range.low;
+			return "> " + range.low;
 		} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-			return "<" + range.high;
+			return "< " + range.high;
 		} else {
 			return "";
 		}
@@ -28,10 +28,10 @@ module.exports = function() {
 		link: function (scope, elem) {
 			var options = _.defaults({}, scope.options, {
 				width: 0,
-				height: 80,
+				height: 60,
 				padding: { left: 10, right: 10, top: 10 },
 				innerSpacing: 10,
-				arrowWidth: 20,
+				arrowWidth: 10,
 				labelHeight: 25
 			});
 
@@ -57,10 +57,6 @@ module.exports = function() {
 					return range;
 				});
 
-				scale = d3.scale.linear()
-					.range([options.padding.left, options.width - options.padding.right]);
-
-
 				// Sectors
 				var sector = svg.selectAll('g.sector')
 					.data(sectors)
@@ -81,18 +77,27 @@ module.exports = function() {
 					.classed('range-great', function (d) { return d.class == 'range-great' });
 
 				// Range text
-				rect.append('text')
-					.attr('x', function(d) { return d.width / 2 } )
-					.attr('y', function (d) { return d.rectHeight / 2 })
-					.attr('dy', '0.375em')
-					.attr('text-anchor', 'middle')
-					.text(function(d) { return rangeText(d) });
+				rect.append('foreignObject')
+					.attr('x', '0')
+					.attr('y', '0')
+					.attr('width', function(d) { return d.width })
+					.attr('height', function(d) { return d.rectHeight })
+					.append('xhtml:div')
+					.classed('range-text', true)
+					.append('span')
+					.html(function(d) { return rangeText(d) });
+
 
 				// Range label
-				sector.append('text')
-					.attr('text-anchor', 'start')
-					.attr('dy', '1em')
-					.text(function(d) { return d.label })
+				sector.append('foreignObject')
+					.attr('x', '0')
+					.attr('y', '0')
+					.attr('width', function(d) { return d.width })
+					.attr('height', options.labelHeight)
+					.append('xhtml:div')
+					.classed('range-label', true)
+					.append('span')
+					.html(function(d) { return d.label });
 
 				// Arrows
 				rect.append('path')
