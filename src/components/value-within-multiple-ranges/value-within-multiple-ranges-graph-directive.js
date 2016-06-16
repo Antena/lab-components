@@ -11,7 +11,7 @@ module.exports = function() {
 			value: '=',
 			unit: '=?',
 			ranges: '=',
-			options: '='
+			options: '=?'
 		},
 		link: function (scope, elem) {
 			var options = _.defaults({}, scope.options, {
