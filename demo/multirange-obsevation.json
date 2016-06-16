@@ -308,7 +308,170 @@
         }
       }
     ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "1665",
+    "meta": {
+      "versionId": "1",
+      "lastUpdated": "2016-06-14T16:43:38.000+00:00"
+    },
+    "extension": [
+      {
+        "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+        "valueIdentifier": {
+          "system": "http://www.cdrossi.com/pedido_prestacion",
+          "value": "810-2586-4"
+        }
+      }
+    ],
+    "text": {
+      "status": "empty",
+      "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>"
+    },
+    "code": {
+      "coding": [
+        {
+          "system": "http://www.cdrossi.com/tests",
+          "code": "P.876",
+          "display": "Trigliceridemia"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 613,
+      "units": "mg/dl",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "Enzimático-Colorimétrico GPO-PAP"
+    },
+    "identifier": [
+      {
+        "system": "http://www.cdrossi.com.ar/resultados",
+        "value": "810-2586-P.876-1"
+      }
+    ],
+    "subject": {
+      "reference": "Patient/1662"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "referenceRange": [
+      {
+        "modifierExtension": [
+          {
+            "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+            "valuePeriod": {
+              "start": "2013-01-01T00:00:00"
+            }
+          }
+        ],
+        "high": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
+      },
+      {
+        "modifierExtension": [
+          {
+            "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+            "valuePeriod": {
+              "start": "2013-01-01T00:00:00"
+            }
+          }
+        ],
+        "low": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 199,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.cdrossi.com/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      },
+      {
+        "modifierExtension": [
+          {
+            "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+            "valuePeriod": {
+              "start": "2013-01-01T00:00:00"
+            }
+          }
+        ],
+        "low": {
+          "value": 200,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "H"
+            }
+          ]
+        }
+      },
+      {
+        "modifierExtension": [
+          {
+            "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+            "valuePeriod": {
+              "start": "2013-01-01T00:00:00"
+            }
+          }
+        ],
+        "low": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "HU"
+            }
+          ]
+        }
+      }
+    ]
   }
 ]
-
-

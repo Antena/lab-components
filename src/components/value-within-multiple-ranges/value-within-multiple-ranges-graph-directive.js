@@ -132,7 +132,9 @@ module.exports = function() {
 				}
 
 				if (!_.isNumber(domain[1])) {
-					var previousConcreteRange = _.find(ranges.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					var rangesCopy = _.map(ranges, _.clone);
+					var previousConcreteRange = _.find(rangesCopy.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); });
+
 					if (previousConcreteRange) {
 						domain[1] = range.low + (previousConcreteRange.high - previousConcreteRange.low);
 					} else {

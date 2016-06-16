@@ -262,10 +262,12 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		}
 	];
 
-	$scope.multiRangeObservations = _.map(_.union(multirangeObs, resolvedBundle.observations), function(obs) { return {
-		description: obs.code.coding[0].display,
-		observation: obs
-	}});
+	$scope.multiRangeObservations = _.map(_.union(multirangeObs, resolvedBundle.observations), function(obs) {
+		return {
+			description: obs.code.coding[0].display,
+			observation: obs
+		};
+	});
 
 	$scope.ranges = [
 		{
