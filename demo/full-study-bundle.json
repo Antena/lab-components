@@ -651,7 +651,7 @@
 					]
 				},
 				"valueQuantity": {
-					"value": 65,
+					"value": 25,
 					"units": "UI/L",
 					"system": "http://unitsofmeasure.org",
 					"code": "mg/dL"
@@ -701,7 +701,7 @@
 							"coding": [
 								{
 									"system": "http://hl7.org/fhir/v2/0078",
-									"code": "N"
+									"code": "L"
 								}
 							]
 						}

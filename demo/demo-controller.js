@@ -1,15 +1,20 @@
 'use strict';
 
 var _ = require('underscore');
+var lodash = require('lodash');
 var fhirBundle = require('./full-study-bundle.json');
+var anotherFhirBundle = require('./another-bundle.json');
 
 // @ngInject
 module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
+	var anotherResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(anotherFhirBundle);
 
 	var observations = _.map(resolvedBundle.observations, function(observation) {
-		observation.actions = [
+		var result = lodash.cloneDeep(observation);
+
+		result.actions = [
 			{
 				labelOn: "Ocultar Historia",
 				labelOff: "Mostrar Historia",
@@ -30,7 +35,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		];
 
-		observation.headerActions = [
+		result.headerActions = [
 			{
 				icon: "icon",
 				activeAndHoveredLabel: "Dejar de monitorear",
@@ -52,7 +57,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 				}
 			}
 		];
-		return observation;
+		return result;
 	});
 
 	var historyJson = require('./observation-history.json');
@@ -97,11 +102,24 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.demo = {
 		observations: observations,
+		rawObservations: resolvedBundle.observations,
 		order: resolvedBundle.diagnosticOrder,
 		status: resolvedBundle.diagnosticReport.status,
 		reportDate: resolvedBundle.diagnosticReport.issued,
 		patient: resolvedBundle.diagnosticReport.subject,
 		organization: resolvedBundle.diagnosticReport.performer,
+		dateFormat: "DD-MM-YYYY",
+		observationHistoryService: LabObservationService.getHistory
+	};
+
+	$scope.demo2 = {
+		observations: observations,
+		rawObservations: anotherResolvedBundle.observations,
+		order: anotherResolvedBundle.diagnosticOrder,
+		status: anotherResolvedBundle.diagnosticReport.status,
+		reportDate: anotherResolvedBundle.diagnosticReport.issued,
+		patient: anotherResolvedBundle.diagnosticReport.subject,
+		organization: anotherResolvedBundle.diagnosticReport.performer,
 		dateFormat: "DD-MM-YYYY",
 		observationHistoryService: LabObservationService.getHistory
 	};

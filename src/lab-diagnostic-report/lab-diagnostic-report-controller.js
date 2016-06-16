@@ -71,7 +71,7 @@ module.exports = function($scope) {
 	 *
 	 */
 	$scope.isTopLevel = function(orderItemCode, observationsPerOrderItem) {
-		return observationsPerOrderItem.length === 1 && observationsPerOrderItem[0].id === orderItemCode;
+		return observationsPerOrderItem.length === 1;
 	};
 
 	//TODO (denise) check if still used here

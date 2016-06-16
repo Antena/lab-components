@@ -1,18 +1,9 @@
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-	margin-bottom: 0;
-}
-
-li {
-	line-height: 20px;
-}
-
 ul,
 ol {
 	margin-left: 0;
+	padding-left: 0;
 	list-style: none;
+	margin-bottom: 0;
 }
 
 .content-aligned {
@@ -309,38 +300,34 @@ ol {
 .observation-values p,
 .observation-values p {
 	padding: 0;
-	line-height: 1
+	line-height: 1;
+	margin-bottom: 4px;
 }
 
-.observation-values .reference-range,
 .observation-values .reference-range {
-	padding: 4px 0
+	padding: 4px 0;
+	text-align: right;
 }
 
-.observation-values .reference-range .reference,
 .observation-values .reference-range .reference {
 	font-size: 12px;
 	vertical-align: text-top
 }
 
-.observation-values .reference-range .reference-type,
-.observation-values .reference-range .reference-type {
+.reference-range .reference-type {
 	text-align: left;
-	color: #CCC
+	color: #CCC;
 }
 
-.observation-values .reference-range .value,
-.observation-values .reference-range .value {
+.reference-range .value {
 	text-align: right
 }
 
-.observation-values .main-value,
 .observation-values .main-value {
 	font-size: 36px !important;
 	line-height: 36px
 }
 
-.observation-values .unit,
 .observation-values .unit {
 	margin-top: 0;
 	font-size: 12px;
@@ -388,7 +375,7 @@ ol {
 
 .lab-diagnostic-report-info {
 	width: 70%;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 }
 
 .details-item-list-aligned .details-item .item-value {
@@ -402,13 +389,31 @@ ol {
 	padding-right: 20px;
 }
 
-
 .observation-gallery-item .healthy {
-	color: #5BB403
+	color: #5BB403;
 }
 
 .observation-gallery-item .unhealthy {
-	color: #CC0001
+	color: #CC0001;
+}
+
+.label {
+	margin-left: 4px;
+	font-size: 10px;
+}
+
+.label.label-healthy {
+	background-color: #5BB403;
+}
+.label.label-unhealthy {
+	background-color: #CC0001;
+}
+
+.meaning-indicator-healthy {
+	border-left: 8px solid rgba(91, 180, 3, 0.7);
+}
+.meaning-indicator-unhealthy {
+	border-left: 8px solid rgba(204, 0, 1, 0.7);
 }
 
 .observation-gallery-item .observation-result {
@@ -1316,6 +1321,11 @@ a.button.ghost:hover {
 
 .details-item-list .item-value {
 	width: 70%;
+	padding-left: 4px;
+}
+
+.compact-observation.observation-gallery-item {
+	padding: 10px;
 }
 
 
@@ -1330,6 +1340,32 @@ a.button.ghost:hover {
 
 	.observation-tertiary-content {
 		width: 40%;
+	}
+
+	.compact-observation .observation-primary-content {
+		width: 45%;
+	}
+
+	.compact-observation .observation-secondary-content {
+		width: 25%;
+		padding-right: 20px;
+	}
+
+	.compact-observation .observation-tertiary-content {
+		width: 30%;
+	}
+
+	.compact-observation .observation-incomplete-content .observation-secondary-content {
+		width: 70%;
+	}
+
+	.reference-range {
+		text-align: left;
+	}
+
+	.compact-observation .observation-tertiary-content {
+		width: 28%;
+		padding-left: 10px;
 	}
 
 	/* .observation-extended-content */
@@ -1356,4 +1392,13 @@ a.button.ghost:hover {
 	.observation-extended-content .observation-details .details-item-list .item-value {
 		width: 60%;
 	}
+}
+
+.observation-group-title {
+	font-size: 22px;
+}
+
+.observation-primary-content-header-text {
+	font-size: 18px;
+	line-height: 1;
 }

@@ -1,10 +1,11 @@
 <div class="value-within-range-card">
-    <div class="left">
-        <p class="main-value {{ valueClass }}" ng-class="{ '{{ insideClass }}': isWithinRange(), '{{ outsideClass }}': !isWithinRange() }">{{ value }}</p>
+	<div class="reference-range right" ng-if="range">
+		<p class="reference"><span class="reference-type">inf. </span><span class="value">{{ range.low | optionalNumber }}</span></p>
+		<p class="reference"><span class="reference-type">sup. </span><span class="value">{{ range.high | optionalNumber }}</span></p>
+	</div>
+
+	<div class="right">
+        <p class="main-value {{ valueClass }}" ng-class="{ '{{ insideClass }}': range && isWithinRange(), '{{ outsideClass }}': range && !isWithinRange() }">{{ value }}</p>
         <p ng-if="unit" class="{{ unitClass || 'unit' }}">{{ unit }}</p>
-    </div>
-    <div class="reference-range left">
-        <p class="reference"><span class="reference-type">inf. </span><span class="value">{{ range.low | optionalNumber }}</span></p>
-        <p class="reference"><span class="reference-type">sup. </span><span class="value">{{ range.high | optionalNumber }}</span></p>
     </div>
 </div>
