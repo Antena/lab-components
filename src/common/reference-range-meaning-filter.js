@@ -80,6 +80,18 @@ module.exports = function() {
 			case 'L':
 				output = 'LAB.REFERENCE_RANGE_MEANING.LOW';
 				break;
+			case 'NN':
+				output = 'LAB.REFERENCE_RANGE_MEANING.NEAR_NORMAL';
+				break;
+			case 'LIM':
+				output = 'LAB.REFERENCE_RANGE_MEANING.LIMIT';
+				break;
+			case 'HH':
+				output = 'LAB.REFERENCE_RANGE_MEANING.CRITICALLY_HIGH';
+				break;
+			case 'HU':
+				output = 'LAB.REFERENCE_RANGE_MEANING.VERY_HIGH';
+				break;
 			default:
 				output = code.display;
 		}

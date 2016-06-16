@@ -120,6 +120,14 @@
 	color: #C10000;
 }
 
+.range-catch-all {
+	stroke: #747474;
+	fill: #747474;
+	color: #747474;
+}
+
+
+
 .range-text {
 	display: table;
 	width: 100%;

@@ -24,9 +24,14 @@
       "ENTERED_IN_ERROR_DESCRIPTION": "El reporte fue retirado posterior a haber estado finalizado"
     },
     "REFERENCE_RANGE_MEANING": {
-      "HIGH": "Alto",
+      "HIGH": "Elevado",
       "REGULAR": "Normal",
-      "LOW": "Bajo"
+      "LOW": "Bajo",
+
+      "NEAR_NORMAL": "Cercano al óptimo",
+      "LIMIT": "Límite",
+      "CRITICALLY_HIGH": "Extremadamente elevado",
+      "VERY_HIGH": "Muy elevado"
     }
   },
   "UNITS": {

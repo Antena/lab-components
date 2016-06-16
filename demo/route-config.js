@@ -41,6 +41,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/value-within-range-card.html',
 			controller: 'DemoController'
 		})
+		.state('lab-observation-multirange-graph', {
+			url: '/lab-observation-multirange-graphe',
+			templateUrl: 'components/lab-observation-multirange-graph.html',
+			controller: 'DemoController'
+		})
 		.state('lab-history-graph', {
 			url: '/lab-history-graph',
 			templateUrl: 'components/lab-history-graph.html',

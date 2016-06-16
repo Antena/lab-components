@@ -1,3 +1,28 @@
+'use strict';
+
+/**
+ * @ngdoc directive
+ * @name lab-components.components.value-within-multiple-ranges.directive:valueWithinMultipleRangesGraph
+ * @restrict AE
+ * @scope
+ *
+ * @description
+ *
+ * //TODO (gb) add description
+ *
+ * @element ANY
+ * @param {Number} value A numeric value to be displayed.
+ *
+ * @param {String=} unit A string representation of the value unit.
+ *
+ * @param {Array} ranges An list of objects representing the ranges to be displayed.
+ * These must contain at least one of two numeric properties: 'low' and/or 'high'.
+ *
+ * @param {Object=} options An object with options to override the default configuration.
+ *
+ *
+ */
+
 var d3 = require('d3');
 var _ = require('underscore');
 var angular = require('angular');

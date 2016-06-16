@@ -4,6 +4,7 @@ var _ = require('underscore');
 var lodash = require('lodash');
 var fhirBundle = require('./full-study-bundle.json');
 var anotherFhirBundle = require('./another-bundle.json');
+var multirangeObs = require('./multirange-obsevation.json');
 
 // @ngInject
 module.exports = function($scope, LabObservationService, FhirBundleService) {
@@ -260,6 +261,11 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		}
 	];
+
+	$scope.multiRangeObservations = _.map(_.union(multirangeObs, resolvedBundle.observations), function(obs) { return {
+		description: obs.code.coding[0].display,
+		observation: obs
+	}});
 
 	$scope.ranges = [
 		{
