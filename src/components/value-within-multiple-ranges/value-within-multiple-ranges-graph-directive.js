@@ -15,7 +15,6 @@ module.exports = function() {
 		},
 		link: function (scope, elem) {
 			var options = _.defaults({}, scope.options, {
-				width: 0,
 				height: 70,
 				padding: { left: 10, right: 10, top: 10, bottom: 10 },
 				innerSpacing: 10,
@@ -27,10 +26,10 @@ module.exports = function() {
 				domain: {}
 			});
 
-			var svg;
+			var svg, width;
 
 			setTimeout(function() {
-				options.width = angular.element(elem.parent()[0]).width();
+				width = angular.element(elem.parent()[0]).width();
 				init();
 			}, 0);
 
@@ -71,16 +70,17 @@ module.exports = function() {
 			};
 
 			/**
+			 * Generates a linear scale for a range within other ranges.
 			 *
-			 * @param value
-			 * @param range
-             * @param sectors
-             * @returns {number}
+			 * @param value: the value.
+			 * @param range: the target range.
+             * @param ranges: the other ranges.
+             * @returns {number}: output of the scale applied to the value.
              */
-			var scale = function (value, range, sectors) {
-				var rangeIndex = _.findIndex(sectors, function(sector) { return sector.x == range.x; }),
+			var scale = function (value, range, ranges) {
+				var rangeIndex = _.findIndex(ranges, function(sector) { return sector.x == range.x; }),
 					isFirst = rangeIndex == 0,
-					isLast = rangeIndex == sectors.length - 1;
+					isLast = rangeIndex == ranges.length - 1;
 
 				// Build scale
 				var domain = [null, null];
@@ -98,7 +98,7 @@ module.exports = function() {
 
 				if (!_.isNumber(domain[0])) {
 					if (_.isNumber(options.domain.low))
-					var nextConcreteRange = _.find(sectors, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					var nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
 					if (nextConcreteRange) {
 						domain[0] = range.high - (nextConcreteRange.high - nextConcreteRange.low);
 					} else {
@@ -107,7 +107,7 @@ module.exports = function() {
 				}
 
 				if (!_.isNumber(domain[1])) {
-					var previousConcreteRange = _.find(sectors.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					var previousConcreteRange = _.find(ranges.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
 					if (previousConcreteRange) {
 						domain[1] = range.low + (previousConcreteRange.high - previousConcreteRange.low);
 					} else {
@@ -128,11 +128,11 @@ module.exports = function() {
 			 */
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
-					.attr('width', options.width)
+					.attr('width', width)
 					.attr('height', options.height);
 
 				// Pre-process ranges
-				var sectorWidth = (options.width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
+				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				var sectors = _.map(scope.ranges, function (range, i) {
 					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
 					range.width = sectorWidth;
@@ -194,11 +194,8 @@ module.exports = function() {
 							'L' + '0' + ' ' + d.rectHeight;
 					})
 					.style('visibility', function (d, i) { return i == 0 ? 'visible': 'hidden' } )
-					.classed('range-danger', function (d) { return d.class == 'range-danger' })
-					.classed('range-bad', function (d) { return d.class == 'range-bad' })
-					.classed('range-so-so', function (d) { return d.class == 'range-so-so' })
-					.classed('range-good', function (d) { return d.class == 'range-good' })
-					.classed('range-great', function (d) { return d.class == 'range-great' });
+					.attr('class', function(d) { return d.class });
+
 				rect.append('path')
 					.attr('d', function (d) {
 						return '' +
@@ -207,11 +204,7 @@ module.exports = function() {
 							'L' + d.width + ' ' + d.rectHeight;
 					})
 					.style('visibility', function (d, i) { return i == (sectors.length - 1) ? 'visible': 'hidden' } )
-					.classed('range-danger', function (d) { return d.class == 'range-danger' })
-					.classed('range-bad', function (d) { return d.class == 'range-bad' })
-					.classed('range-so-so', function (d) { return d.class == 'range-so-so' })
-					.classed('range-good', function (d) { return d.class == 'range-good' })
-					.classed('range-great', function (d) { return d.class == 'range-great' });
+					.attr('class', function(d) { return d.class });
 
 				// Value
 				var target = svg.selectAll('g.target');
