@@ -32,6 +32,7 @@
 									 header-actions="observation.headerActions"
 									 view-only="vm.viewOnly"
 									 compact-mode="vm.compactMode"
+									 multi-range-mode="vm.displayObservationsWithMultipleRanges"
 									 hide-title="vm.deDupeTopLevelObservations && isTopLevel(group, observationsPerGroup)">
 						<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
 					</lab-observation>

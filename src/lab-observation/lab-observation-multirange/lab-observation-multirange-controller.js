@@ -72,8 +72,6 @@ module.exports = function($scope, $filter) {
 	function fillMissingRanges(observation) {
 		var originalRange = observation.referenceRange[0];
 
-		originalRange.meaning.coding[0].code = "N";	//TODO (denise) remove onces this is fixed from KERN!!!!!
-
 		return [
 			{
 				high: originalRange.low,
@@ -86,7 +84,18 @@ module.exports = function($scope, $filter) {
 					]
 				}
 			},
-			originalRange,
+			{
+				high: originalRange.high,
+				low: originalRange.low,
+				meaning: {
+					coding: [
+						{
+							system: "http://hl7.org/fhir/v2/0078",
+							code: "N" 	//TODO (denise) remove onces this is fixed from KERN!!!!!
+						}
+					]
+				}
+			},
 			{
 				low: originalRange.high,
 				meaning: {

@@ -1359,6 +1359,10 @@ a.button.ghost:hover {
 		width: 70%;
 	}
 
+	.multi-range-mode .observation-primary-content {
+		width: 70%;
+	}
+
 	.reference-range {
 		text-align: left;
 	}

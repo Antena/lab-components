@@ -54,7 +54,8 @@ module.exports = function($rootScope, $document) {
 			hideHeader: '=?',
 			viewOnly: '=?',
 			compactMode: '=?',
-			deDupeTopLevelObservations: '=?'
+			deDupeTopLevelObservations: '=?',
+			displayObservationsWithMultipleRanges: '=?'
 		},
 		restrict: 'EA',
 		templateUrl: require('./lab-diagnostic-report.html'),

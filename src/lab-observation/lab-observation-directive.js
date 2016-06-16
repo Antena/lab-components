@@ -157,7 +157,8 @@ module.exports = function() {
 			headerActions: '=?',
 			viewOnly: '=?',
 			hideTitle: '=?',
-			compactMode: '=?'
+			compactMode: '=?',
+			multiRangeMode: '=?'
 		},
 		restrict: 'EA',
 		transclude: true,

@@ -1,4 +1,4 @@
-<div class="observation-gallery-item meaning-indicator-{{ observation.referenceRange[0].meaning | referenceRangeMeaningColorCode }}" ng-class="{'compact-observation': !!compactMode }">
+<div class="observation-gallery-item meaning-indicator-{{ observation.referenceRange[0].meaning | referenceRangeMeaningColorCode }}" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
 	<div class="observation-primary-content-header">
 		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
 		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && !observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</h3>
@@ -19,12 +19,18 @@
 	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text}">
 
 		<div ng-if="!observation.referenceRange[0].text" class="observation-column observation-primary-content observation-result">
-			<lab-observation-range-graph observation="observation"></lab-observation-range-graph>
+			<lab-observation-range-graph
+				observation="observation" ng-if="!multiRangeMode">
+			</lab-observation-range-graph>
+
+			<lab-observation-multirange-graph
+				observation="observation" ng-if="multiRangeMode">
+			</lab-observation-multirange-graph>
 
 			<h2 ng-if="!observation.valueQuantity && !!observation.valueString" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
 		</div>
 
-		<div class="observation-column observation-secondary-content">
+		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || observation.referenceRange[0].text">
 			<lab-observation-range-card observation="observation"></lab-observation-range-card>
 		</div>
 
