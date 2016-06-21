@@ -7,8 +7,8 @@
  * @scope
  *
  * @description
- *
- * //TODO (gb) add description
+ * Generic d3 graph to visually represent a value within a set of ranges.
+ * The graph can visually differentiate several ranges and where the actual value lies within the ranges.
  *
  * @element ANY
  * @param {Number} value A numeric value to be displayed.
@@ -19,8 +19,161 @@
  * These must contain at least one of two numeric properties: 'low' and/or 'high'.
  *
  * @param {Object=} options An object with options to override the default configuration.
+ * Defaults:
+ * * ```js
+ * {
+ * 	height: 70,
+ * 	padding: { left: 10, right: 10, top: 10, bottom: 10 },
+ * 	innerSpacing: 10,
+ * 	arrowWidth: 7,
+ * 	labelHeight: 25,
+ * 	rangeSeparator: 'a',
+ * 	lowerThanSymbol: '<',
+ * 	graterThanSymbol: '>',
+ * 	domain: {}
+ * }
+ * ```
  *
  *
+ * @example
+ <example module="value-within-multiple-ranges-graph-example">
+	 <file name="index.html">
+
+		 <div ng-controller="ExampleController" class="example">
+			 <form name="exampleForm" class="form-inline" novalidate>
+				 <div class="row">
+					 <div class="col col-third">
+						 <div class="form-group">
+							 <label for="exampleValue" class="control-label">Value</label>
+							 <input type="number" class="form-control input-sm" id="exampleValue" ng-model="example.value" ng-pattern="/^[0-9]{1,5}$/" required>
+						 </div>
+					 </div>
+				 </div>
+			 </form>
+
+			 <hr/>
+
+			 <div value-within-multiple-ranges-graph
+			 value="example.value"
+			 unit="example.unit"
+			 ranges="example.ranges"
+			 options="example.options"></div>
+		 </div>
+
+	 </file>
+
+	 <file name="styles.css">
+
+		 .example .range-great {
+					stroke: #70AB4E;
+					fill: #70AB4E;
+					color: #70AB4E;
+				}
+
+		 .example .range-good {
+					stroke: #DDC100;
+					fill: #DDC100;
+					color: #DDC100;
+				}
+
+		 .example .range-so-so {
+					stroke: #DD8B05;
+					fill: #DD8B05;
+					color: #DD8B05;
+				}
+
+		 .example .range-bad {
+					stroke: #C86403;
+					fill: #C86403;
+					color: #C86403;
+				}
+
+		 .example .range-danger {
+					stroke: #C10000;
+					fill: #C10000;
+					color: #C10000;
+				}
+
+		 .example .range-catch-all {
+					stroke: #747474;
+					fill: #747474;
+					color: #747474;
+				}
+
+
+
+		 .example .range-text {
+					display: table;
+					width: 100%;
+					height: 100%;
+				}
+
+		 .example .range-text span {
+					display: table-cell;
+					vertical-align: middle;
+					text-align: center;
+					color: white;
+					font-size: 12px;
+				}
+
+		 .example .range-label {
+					height: 100%;
+					width: 100%;
+					text-transform: uppercase;
+					font-size: 11px;
+					font-weight: 900;
+					line-height: 1.1em;
+					display: inline-block;
+					text-align: left;
+				}
+	 </file>
+
+	 <file name="demo.js">
+
+		 angular.module('value-within-multiple-ranges-graph-example', ['lab-components.components.value-within-multiple-ranges'])
+			 .controller('ExampleController', ['$scope', function($scope) {
+				 $scope.example = {
+					value: 131,
+					unit: "mg/dl",
+					options: {
+						domain: { low: 0, high: 220 }
+					},
+					ranges: [
+						{
+							high: 100,
+							label: "Óptimo",
+							class: "range-great"
+						},
+						{
+							low: 100,
+							high: 129,
+							label: "Cercano al óptimo",
+							class: "range-good"
+						},
+						{
+							low: 130,
+							high: 159,
+							label: "Límite",
+							class: "range-so-so"
+						},
+						{
+							low: 160,
+							high: 190,
+							label: "Elevado",
+							class: "range-bad"
+						},
+						{
+							low: 190,
+							label: "Muy elevado",
+							class: "range-danger"
+						}
+					]
+				}
+				}
+			 ]);
+
+	 </file>
+ </example>
  */
 
 var d3 = require('d3');
@@ -39,6 +192,26 @@ module.exports = function() {
 			options: '=?'
 		},
 		link: function (scope, elem) {
+
+			var modelChanged = _.debounce(function(newValue, oldValue) {
+					scope.$apply(function() {
+						refresh();
+					});
+				}, 100),
+				validModel = function() {
+					return _.isNumber(scope.value);
+				};
+
+			function watchModel(modelName) {
+				scope.$watch(modelName, function(newValue, oldValue) {
+					if (newValue !== oldValue && validModel()) {
+						modelChanged(newValue, oldValue);
+					}
+				});
+			}
+
+			watchModel('value');
+
 			var options = _.defaults({}, scope.options, {
 				height: 70,
 				padding: { left: 10, right: 10, top: 10, bottom: 10 },
@@ -51,7 +224,7 @@ module.exports = function() {
 				domain: {}
 			});
 
-			var svg, width;
+			var svg, width, sector, sectors, rect, target, meter, targetScale;
 
 			setTimeout(function() {
 				width = angular.element(elem.parent()[0]).width();
@@ -99,9 +272,9 @@ module.exports = function() {
 			 *
 			 * @param value: the value.
 			 * @param range: the target range.
-             * @param ranges: the other ranges.
-             * @returns {number}: output of the scale applied to the value.
-             */
+			 * @param ranges: the other ranges.
+			 * @returns {number}: output of the scale applied to the value.
+			 */
 			var scale = function (value, range, ranges) {
 				var rangeIndex = _.findIndex(ranges, function(sector) { return sector.x == range.x; }),
 					isFirst = rangeIndex == 0,
@@ -112,18 +285,15 @@ module.exports = function() {
 
 				if (_.isNumber(range.low) || _.isNumber(options.domain.low)) {
 					domain[0] = _.isNumber(options.domain.low) && isFirst ? options.domain.low : range.low;
-
 				}
 
 				if (_.isNumber(range.high) || _.isNumber(options.domain.high)) {
 					domain[1] = _.isNumber(options.domain.high) && isLast ? options.domain.high : range.high;
 				}
 
-
-
 				if (!_.isNumber(domain[0])) {
 					if (_.isNumber(options.domain.low))
-					var nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+						var nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
 					if (nextConcreteRange) {
 						domain[0] = range.high - (nextConcreteRange.high - nextConcreteRange.low);
 					} else {
@@ -142,12 +312,10 @@ module.exports = function() {
 					}
 				}
 
-				var scale = d3.scale.linear()
+				return d3.scale.linear()
 					.clamp(true)
 					.range([0, range.width])
 					.domain(domain);
-
-				return scale(value);
 			};
 
 			/**
@@ -160,7 +328,8 @@ module.exports = function() {
 
 				// Pre-process ranges
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
-				var sectors = _.map(scope.ranges, function (range, i) {
+				sectors = _.map(scope.ranges, function (range, i) {
+					range.index = i;
 					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
 					range.width = sectorWidth;
 					range.height = options.height - options.padding.top - options.padding.bottom;
@@ -169,14 +338,14 @@ module.exports = function() {
 				});
 
 				// Sectors
-				var sector = svg.selectAll('g.sector')
+				sector = svg.selectAll('g.sector')
 					.data(sectors)
 					.enter().append('g')
 					.classed('sector', true)
 					.attr('transform', function (d) { return 'translate(' + d.x + ')'; });
 
 				// Rectangles
-				var rect = sector.append('g')
+				rect = sector.append('g')
 					.attr('transform', 'translate(0, ' + options.labelHeight + ')')
 					.classed('target', function(d) { return valueInRange(scope.value, d) });
 				rect.append('rect')
@@ -233,26 +402,61 @@ module.exports = function() {
 					.style('visibility', function (d, i) { return i == (sectors.length - 1) ? 'visible': 'hidden' } )
 					.attr('class', function(d) { return d.class });
 
+				target = svg.selectAll('g.target');
+				targetScale = scale(scope.value, target.data()[0], sectors);
+
+				appendMeter(target);
+
+				refresh();
+
+			};
+
+			/**
+			 * Redraws the graph to display updated values.
+			 */
+			function refresh() {
+				// Target
+				var oldTarget = target;
+				rect.classed('target', function(d) { return valueInRange(scope.value, d) });
+
 				// Value
-				var target = svg.selectAll('g.target');
+				target = svg.selectAll('g.target');
 
-				target.append('path')
-					.attr('d', d3.svg.symbol().type('triangle-up'))
-					.attr('transform', function(d) {
-						var x = scale(scope.value, d, sectors);
-                        return 'translate(' + x + ',' + (d.rectHeight) + ')'
-					});
 
-				target.append('text')
+				if (target.data()[0].index != oldTarget.data()[0].index) {
+					oldTarget.selectAll('g.meter').remove();
+					targetScale = scale(scope.value, target.data()[0], sectors);
+					appendMeter(target);
+				}
+
+				meter = target.selectAll('g.meter');
+				meter
 					.attr('transform', function(d) {
-						var x = scale(scope.value, d, sectors);
+						var x = targetScale(scope.value);
 						return 'translate(' + x + ',' + (d.rectHeight) + ')'
 					})
-					.attr('dy', '20px')
-					.attr('text-anchor', 'middle')
-					.text(scope.value)
+					.selectAll('text')
+					.text(scope.value);
 
+			};
+
+			/**
+			 * Appends a 'meter' to the target range.
+			 *
+			 * @param targetSector: the target sector or range.
+             */
+			function appendMeter(targetSector) {
+				meter = targetSector.append('g')
+					.classed('meter', true);
+
+				meter.append('path')
+					.attr('d', d3.svg.symbol().type('triangle-up'));
+
+				meter.append('text')
+					.attr('dy', '20px')
+					.attr('text-anchor', 'middle');
 			}
+
 
 		}
 	}
