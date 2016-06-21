@@ -29,10 +29,14 @@ module.exports = function($scope, $filter) {
 
 	function mapScaleToClasses(codeScale) {
 
-		var result = {
-			'L': RANGE_CLASSES.DANGER,
-			'N': RANGE_CLASSES.GREAT
-		};
+		var result = { };
+
+		if(_.contains(codeScale, 'L')) {
+			result['L'] = RANGE_CLASSES.DANGER;
+		}
+		if(_.contains(codeScale, 'N')) {
+			result['N'] = RANGE_CLASSES.GREAT;
+		}
 
 		var hasHH = _.contains(codeScale, 'HH');
 		var hasHU = _.contains(codeScale, 'HU');
@@ -60,6 +64,16 @@ module.exports = function($scope, $filter) {
 			result['LIM'] = RANGE_CLASSES.SO_SO;
 		} else if(!hasLIM && hasNN) {
 			result['NN'] = RANGE_CLASSES.GOOD;
+		}
+
+		if(_.contains(codeScale, 'NR')) {
+			result['NR'] = RANGE_CLASSES.GREAT;
+		}
+		if(_.contains(codeScale, 'RR')) {
+			result['RR'] = RANGE_CLASSES.DANGER;
+		}
+		if(_.contains(codeScale, 'IND')) {
+			result['IND'] = RANGE_CLASSES.SO_SO;
 		}
 
 		return result;

@@ -31,7 +31,11 @@
       "NEAR_NORMAL": "Cercano al óptimo",
       "LIMIT": "Límite",
       "CRITICALLY_HIGH": "Extremadamente elevado",
-      "VERY_HIGH": "Muy elevado"
+      "VERY_HIGH": "Muy elevado",
+
+      "NON_REACTIVE": "No Reactivo",
+      "REACTIVE": "Reactivo",
+      "INDETERMINATE": "Indeterminado"
     }
   },
   "UNITS": {

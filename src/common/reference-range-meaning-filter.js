@@ -92,6 +92,15 @@ module.exports = function() {
 			case 'HU':
 				output = 'LAB.REFERENCE_RANGE_MEANING.VERY_HIGH';
 				break;
+			case 'NR':
+				output = 'LAB.REFERENCE_RANGE_MEANING.NON_REACTIVE';
+				break;
+			case 'RR':
+				output = 'LAB.REFERENCE_RANGE_MEANING.REACTIVE';
+				break;
+			case 'IND':
+				output = 'LAB.REFERENCE_RANGE_MEANING.INDETERMINATE';
+				break;
 			default:
 				output = code.display;
 		}
