@@ -22,14 +22,17 @@
  * Defaults:
  * * ```js
  * {
- * 	height: 70,
- * 	padding: { left: 10, right: 10, top: 10, bottom: 10 },
+ * 	height: 80,
+ * 	padding: { left: 10, right: 10, top: 10, bottom: 20 },
  * 	innerSpacing: 10,
  * 	arrowWidth: 7,
  * 	labelHeight: 25,
  * 	rangeSeparator: 'a',
  * 	lowerThanSymbol: '<',
  * 	graterThanSymbol: '>',
+ * 	meterTriangle: { base: 12, height: 10 },
+ * 	meterOffset: { x: 0, y: -4 },
+ * 	meterLabelOffset: { x: -10, y: 0 },
  * 	domain: {}
  * }
  * ```
@@ -65,73 +68,73 @@
 	 <file name="styles.css">
 
 		 .example .range-great {
-					stroke: #70AB4E;
-					fill: #70AB4E;
-					color: #70AB4E;
-				}
+							stroke: #70AB4E;
+							fill: #70AB4E;
+							color: #70AB4E;
+						}
 
 		 .example .range-good {
-					stroke: #DDC100;
-					fill: #DDC100;
-					color: #DDC100;
-				}
+							stroke: #DDC100;
+							fill: #DDC100;
+							color: #DDC100;
+						}
 
 		 .example .range-so-so {
-					stroke: #DD8B05;
-					fill: #DD8B05;
-					color: #DD8B05;
-				}
+							stroke: #DD8B05;
+							fill: #DD8B05;
+							color: #DD8B05;
+						}
 
 		 .example .range-bad {
-					stroke: #C86403;
-					fill: #C86403;
-					color: #C86403;
-				}
+							stroke: #C86403;
+							fill: #C86403;
+							color: #C86403;
+						}
 
 		 .example .range-danger {
-					stroke: #C10000;
-					fill: #C10000;
-					color: #C10000;
-				}
+							stroke: #C10000;
+							fill: #C10000;
+							color: #C10000;
+						}
 
 		 .example .range-catch-all {
-					stroke: #747474;
-					fill: #747474;
-					color: #747474;
-				}
+							stroke: #747474;
+							fill: #747474;
+							color: #747474;
+						}
 
 
 
 		 .example .range-text {
-					display: table;
-					width: 100%;
-					height: 100%;
-				}
+							display: table;
+							width: 100%;
+							height: 100%;
+						}
 
 		 .example .range-text span {
-					display: table-cell;
-					vertical-align: middle;
-					text-align: center;
-					color: white;
-					font-size: 12px;
-				}
+							display: table-cell;
+							vertical-align: middle;
+							text-align: center;
+							color: white;
+							font-size: 12px;
+						}
 
 		 .example .range-label {
-					height: 100%;
-					width: 100%;
-					text-transform: uppercase;
-					font-size: 11px;
-					font-weight: 900;
-					line-height: 1.1em;
-					display: inline-block;
-					text-align: left;
-				}
+							height: 100%;
+							width: 100%;
+							text-transform: uppercase;
+							font-size: 11px;
+							font-weight: 900;
+							line-height: 1.1em;
+							display: inline-block;
+							text-align: left;
+						}
 	 </file>
 
 	 <file name="demo.js">
 
 		 angular.module('value-within-multiple-ranges-graph-example', ['lab-components.components.value-within-multiple-ranges'])
-			 .controller('ExampleController', ['$scope', function($scope) {
+			.controller('ExampleController', ['$scope', function($scope) {
 				 $scope.example = {
 					value: 131,
 					unit: "mg/dl",
@@ -169,8 +172,7 @@
 						}
 					]
 				}
-				}
-			 ]);
+			}]);
 
 	 </file>
  </example>
@@ -213,14 +215,17 @@ module.exports = function() {
 			watchModel('value');
 
 			var options = _.defaults({}, scope.options, {
-				height: 70,
-				padding: { left: 10, right: 10, top: 10, bottom: 10 },
+				height: 80,
+				padding: { left: 10, right: 10, top: 10, bottom: 20 },
 				innerSpacing: 10,
 				arrowWidth: 7,
 				labelHeight: 25,
 				rangeSeparator: 'a',
 				lowerThanSymbol: '<',
 				graterThanSymbol: '>',
+				meterTriangle: { base: 12, height: 10 },
+				meterOffset: { x: 0, y: -4 },
+				meterLabelOffset: { x: -10, y: 0 },
 				domain: {}
 			});
 
@@ -276,19 +281,16 @@ module.exports = function() {
 			 * @returns {number}: output of the scale applied to the value.
 			 */
 			var scale = function (value, range, ranges) {
-				var rangeIndex = _.findIndex(ranges, function(sector) { return sector.x == range.x; }),
-					isFirst = rangeIndex == 0,
-					isLast = rangeIndex == ranges.length - 1;
 
 				// Build scale
 				var domain = [null, null];
 
 				if (_.isNumber(range.low) || _.isNumber(options.domain.low)) {
-					domain[0] = _.isNumber(options.domain.low) && isFirst ? options.domain.low : range.low;
+					domain[0] = _.isNumber(options.domain.low) && range.first ? options.domain.low : range.low;
 				}
 
 				if (_.isNumber(range.high) || _.isNumber(options.domain.high)) {
-					domain[1] = _.isNumber(options.domain.high) && isLast ? options.domain.high : range.high;
+					domain[1] = _.isNumber(options.domain.high) && range.last ? options.domain.high : range.high;
 				}
 
 				if (!_.isNumber(domain[0])) {
@@ -330,6 +332,8 @@ module.exports = function() {
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				sectors = _.map(scope.ranges, function (range, i) {
 					range.index = i;
+					range.fist = i == 0;
+					range.last = i == scope.ranges.length - 1;
 					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
 					range.width = sectorWidth;
 					range.height = options.height - options.padding.top - options.padding.bottom;
@@ -421,40 +425,73 @@ module.exports = function() {
 
 				// Value
 				target = svg.selectAll('g.target');
-
-
 				if (target.data()[0].index != oldTarget.data()[0].index) {
 					oldTarget.selectAll('g.meter').remove();
 					targetScale = scale(scope.value, target.data()[0], sectors);
 					appendMeter(target);
 				}
-
 				meter = target.selectAll('g.meter');
-				meter
-					.attr('transform', function(d) {
-						var x = targetScale(scope.value);
-						return 'translate(' + x + ',' + (d.rectHeight) + ')'
-					})
-					.selectAll('text')
-					.text(scope.value);
-
+				meter.attr('transform', function(d) { return 'translate(' + targetScale(scope.value) + ',' + (d.rectHeight) + ')' });
+				meter.select('span')
+					.html([scope.value, scope.unit].join(' '));
+				meter.select('foreignObject')
+					.attr('width', '100%')
+					.attr('height', '100%');
 			};
 
 			/**
 			 * Appends a 'meter' to the target range.
 			 *
 			 * @param targetSector: the target sector or range.
-             */
+			 */
 			function appendMeter(targetSector) {
 				meter = targetSector.append('g')
 					.classed('meter', true);
 
 				meter.append('path')
-					.attr('d', d3.svg.symbol().type('triangle-up'));
+					.attr('d', isoscelesTriangle(options.meterTriangle.base, options.meterTriangle.height))
+					.attr('transform', translate(options.meterOffset.x, options.meterOffset.y));
 
-				meter.append('text')
-					.attr('dy', '20px')
-					.attr('text-anchor', 'middle');
+				var fo = meter.append('foreignObject')
+					.attr('y', options.meterLabelOffset.y + options.meterTriangle.height + options.meterOffset.y)
+					.style('visibility', 'hidden');
+				var label = fo.append('xhtml:div');
+
+				label.append('xhtml:span');
+
+				setTimeout(function() {
+					var offsetX = targetSector.data()[0].x + targetScale(scope.value) + options.meterLabelOffset.x;
+					var labelWidth = label[0][0].clientWidth;
+					var foOffsetX = (offsetX + labelWidth) > width ? -labelWidth - options.meterLabelOffset.x : options.meterLabelOffset.x;
+					fo
+						.attr('x', foOffsetX)
+						.style('visibility', 'visible');
+				}, 0);
+			}
+
+			/**
+			 * Calculates the path string for an isosceles triangle.
+			 *
+			 * @param base: the base of the triangle.
+			 * @param height: the height of the triangle.
+			 * @returns {string}: the svg path string for the triangle.
+			 */
+			function isoscelesTriangle(base, height) {
+				return '' +
+					'M' + '0' + ' ' + '0' + ' ' +
+					'L' + (base/2) + ' ' + height + ' ' +
+					'L' + (-base/2) + ' ' + height
+			}
+
+			/**
+			 * Calculates the transform's translate string.
+			 *
+			 * @param x: translation in x.
+			 * @param y: translation in y.
+			 * @returns {string}: the transform string for the translation.
+			 */
+			function translate(x, y) {
+				return 'translate(' + x + ',' + y + ')';
 			}
 
 

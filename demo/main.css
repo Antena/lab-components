@@ -1469,3 +1469,18 @@ a.button.ghost:hover {
 	display: inline-block;
 	text-align: left;
 }
+
+.meter {
+	fill: black;
+}
+
+.meter div {
+	display: inline-block;
+	background-color: black;
+}
+
+.meter span {
+	font-size: 12px;
+	color: white;
+	padding: 4px;
+}
