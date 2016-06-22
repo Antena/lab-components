@@ -1,4 +1,4 @@
-<div class="observation-gallery-item meaning-indicator-{{ (observation.interpretation || observation.referenceRange[0].meaning) | referenceRangeMeaningColorCode }}" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
+<div class="observation-gallery-item meaning-indicator-{{ observation.interpretation | referenceRangeMeaningColorCode }}" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
 	<div class="observation-primary-content-header">
 		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
 		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && !observation.metricIdentifier">{{ observation.code | codeableConcept | capitalize:true }}</h3>
@@ -13,7 +13,7 @@
 				<span>{{ (headerAction.isActive(observation) ? (hovered === observation._id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}" ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}"></span></span>
 			</a>
 		</div>
-		<span class="right label label-{{ (observation.interpretation || observation.referenceRange[0].meaning) | referenceRangeMeaningColorCode }}">{{ observation.referenceRange[0].meaning | referenceRangeMeaning | translate }}</span>
+		<span ng-if="observation.interpretation" class="right label label-{{ observation.interpretation | referenceRangeMeaningColorCode }}">{{ observation.interpretation | referenceRangeMeaning | translate }}</span>
 	</div>
 
 	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text}">

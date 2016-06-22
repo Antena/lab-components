@@ -58,6 +58,14 @@
         "reference": "Organization/3"
       }
     ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
     "referenceRange": [
       {
         "modifierExtension": [
@@ -198,6 +206,14 @@
         "reference": "Organization/3"
       }
     ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
     "referenceRange": [
       {
         "modifierExtension": [
@@ -363,6 +379,14 @@
         "reference": "Organization/3"
       }
     ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
     "referenceRange": [
       {
         "modifierExtension": [
@@ -528,6 +552,14 @@
         "reference": "Organization/3"
       }
     ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
     "referenceRange": [
       {
         "modifierExtension": [

@@ -811,7 +811,15 @@
             },
             "text": "0 a 1 año: 1.20 - 2.30\n1 a 5 años: 0.9 - 2.0\n5 a 10 años: 0.92 - 1.93"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -900,7 +908,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -989,7 +1005,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -1079,7 +1103,15 @@
             },
             "text": "Valor deseable: menor a 200 \nValor límite: de 200 a 239 \nValor elevado: mayor a 240"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1169,7 +1201,15 @@
             },
             "text": "0 a 1 años: 0.89 - 1.52\n1 a 5 años: 0.89 - 1.59\n5 a 10 años: 0.87 - 1.45\n10 a 14 años: 0.78 - 1.38"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1258,7 +1298,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1347,7 +1395,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -1433,7 +1489,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1519,7 +1583,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1608,7 +1680,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1694,7 +1774,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1780,7 +1868,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -1870,7 +1966,15 @@
             },
             "text": "0 a 1 año: 0.98 - 5.63\n1 a 5 años: 0.64 - 5.76\n5 a 10 años: 0.51 - 4.82\n10 a 14 años: 0.53 - 5.27"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -1960,7 +2064,15 @@
             },
             "text": "Valor óptimo: menor de 100\nValor cercano al óptimo: 100-129\nValores límite: entre 130-159\nValor elevado: entre 160-189\nValor muy elevado: mayor a 190"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2049,7 +2161,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -2139,7 +2259,15 @@
             },
             "text": "Valor deseable: menor a 150 \nValor límite: de 150 a 199 \nVal. elevado: entre 200 y 499\nVal. muy elevado:mayor a 500"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2229,7 +2357,15 @@
             },
             "text": "Valor deseable: menor a 200 \nValor límite: de 200 a 239 \nValor elevado: mayor a 240"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2319,7 +2455,15 @@
             },
             "text": "Valor deseable: menor a 150 \nValor límite: de 150 a 199 \nVal. elevado: entre 200 y 499\nVal. muy elevado:mayor a 500"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2408,7 +2552,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -2498,7 +2650,15 @@
             },
             "text": "Óptimo: menor a 130\nRiesgo alto: mayor a 190"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2588,7 +2748,15 @@
             },
             "text": "Valor deseable: menor a 200 \nValor límite: de 200 a 239 \nValor elevado: mayor a 240"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -2677,7 +2845,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "H"
+            }
+          ]
+        }
       }
     },
     {
@@ -2766,7 +2942,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -2855,7 +3039,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -2944,7 +3136,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -3033,7 +3233,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3122,7 +3330,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3208,7 +3424,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -3297,7 +3521,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -3386,7 +3618,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -3476,7 +3716,15 @@
             },
             "text": "Valor deseable: menor a 200 \nValor límite: de 200 a 239 \nValor elevado: mayor a 240"
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -3565,7 +3813,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3654,7 +3910,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3743,7 +4007,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3832,7 +4104,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -3921,7 +4201,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -4010,7 +4298,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     },
     {
@@ -4099,7 +4395,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4188,7 +4492,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4277,7 +4589,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4366,7 +4686,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4455,7 +4783,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4544,7 +4880,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4633,7 +4977,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4722,7 +5074,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4811,7 +5171,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     },
     {
@@ -4900,7 +5268,15 @@
               ]
             }
           }
-        ]
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
       }
     }
   ]
