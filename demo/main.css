@@ -1473,6 +1473,7 @@ a.button.ghost:hover {
 
 .meter {
 	fill: black;
+	text-align: left;
 }
 
 .meter div {
