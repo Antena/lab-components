@@ -321,7 +321,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		},
 		{
 			description: "Rango normal (alto)",
-			value: 52,
+			value: 60,
 			unit: "mg/dl",
 			ranges: [
 				{
