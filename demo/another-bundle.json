@@ -69,7 +69,7 @@
             "value": "MTORRES@CDROSSI.COM"
           }
         ],
-        "gender": "male",
+        "gender": "female",
         "birthDate": "2011-03-03"
       }
     },
@@ -2138,16 +2138,14 @@
                 "valuePeriod": {
                   "start": "2013-01-01T00:00:00"
                 }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "male"
               }
             ],
-            "low": {
-              "value": 40,
-              "units": "mg/dL",
-              "system": "http://unitsofmeasure.org",
-              "code": "mg/dL"
-            },
             "high": {
-              "value": 0,
+              "value": 39,
               "units": "mg/dL",
               "system": "http://unitsofmeasure.org",
               "code": "mg/dL"
@@ -2157,6 +2155,90 @@
                 {
                   "system": "http://hl7.org/fhir/v2/0078",
                   "code": "L"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "male"
+              }
+            ],
+            "low": {
+              "value": 39,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "female"
+              }
+            ],
+            "high": {
+              "value": 49,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "L"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "female"
+              }
+            ],
+            "low": {
+              "value": 49,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
                 }
               ]
             }

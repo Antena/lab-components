@@ -175,6 +175,26 @@
                 }
               ]
             }
+          },
+          {
+            "code": {
+              "extension": [
+                {
+                  "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+                  "valueIdentifier": {
+                    "system": "http://www.cdrossi.com/pedido_prestacion",
+                    "value": "810-2559-8"
+                  }
+                }
+              ],
+              "coding": [
+                {
+                  "system": "http://www.cdrossi.com/prestaciones",
+                  "code": "P.2015",
+                  "display": "COLESTEROL LDL."
+                }
+              ]
+            }
           }
         ]
       },
@@ -423,6 +443,12 @@
           },
           {
             "reference": "Observation/29"
+          },
+          {
+            "reference": "Observation/783"
+          },
+          {
+            "reference": "Observation/784"
           }
         ],
         "presentedForm": [
@@ -2933,6 +2959,283 @@
         "status": "200",
         "location": "Observation/29/_history/1",
         "etag": "1"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "783",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2016-06-03T17:50:36.000+00:00"
+        },
+        "extension": [
+          {
+            "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+            "valueIdentifier": {
+              "system": "http://www.cdrossi.com/pedido_prestacion",
+              "value": "810-2559-8"
+            }
+          }
+        ],
+        "text": {
+          "status": "empty",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.cdrossi.com/tests",
+              "code": "P.20141",
+              "display": "HDL Colesterol"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 10,
+          "units": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "comments": "-",
+        "status": "final",
+        "method": {
+          "text": "Enzimático colorimétrico homogéneo"
+        },
+        "identifier": [
+          {
+            "system": "http://www.cdrossi.com.ar/resultados",
+            "value": "810-2559-P.20141-1"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/767"
+        },
+        "performer": [
+          {
+            "reference": "Organization/3"
+          }
+        ],
+        "referenceRange": [
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "male"
+              }
+            ],
+            "high": {
+              "value": 39,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "L"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "male"
+              }
+            ],
+            "low": {
+              "value": 39,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "female"
+              }
+            ],
+            "high": {
+              "value": 49,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "L"
+                }
+              ]
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              },
+              {
+                "url": "http://hl7.org/fhir/ValueSet/administrative-gender",
+                "valueCode": "female"
+              }
+            ],
+            "low": {
+              "value": 49,
+              "units": "mg/dL",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dL"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            }
+          }
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "L"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "784",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2016-06-03T17:50:36.000+00:00"
+        },
+        "extension": [
+          {
+            "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+            "valueIdentifier": {
+              "system": "http://www.cdrossi.com/pedido_prestacion",
+              "value": "810-2559-8"
+            }
+          }
+        ],
+        "text": {
+          "status": "empty",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.cdrossi.com/tests",
+              "code": "P.876",
+              "display": "Trigliceridemia"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 30,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "comments": "-",
+        "status": "final",
+        "method": {
+          "text": "Enzimático-Colorimétrico GPO-PAP"
+        },
+        "identifier": [
+          {
+            "system": "http://www.cdrossi.com.ar/resultados",
+            "value": "810-2559-P.876-1"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/767"
+        },
+        "performer": [
+          {
+            "reference": "Organization/3"
+          }
+        ],
+        "referenceRange": [
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              }
+            ],
+            "low": {
+              "value": 0,
+              "units": "mg/dl",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dl"
+            },
+            "high": {
+              "value": 999999.99,
+              "units": "mg/dl",
+              "system": "http://unitsofmeasure.org",
+              "code": "mg/dl"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            },
+            "text": "Valor deseable: menor a 150 \nValor límite: de 150 a 199 \nVal. elevado: entre 200 y 499\nVal. muy elevado:mayor a 500"
+          }
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
       }
     }
   ]

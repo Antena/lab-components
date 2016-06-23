@@ -162,6 +162,9 @@ module.exports = function() {
 		},
 		restrict: 'EA',
 		transclude: true,
-		templateUrl: require('./lab-observation.html')
+		templateUrl: require('./lab-observation.html'),
+		link: function($scope) {
+			$scope.canShowRangeGraph = $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high);
+		}
 	};
 };

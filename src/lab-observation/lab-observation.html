@@ -18,19 +18,15 @@
 
 	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text}">
 
-		<div ng-if="!observation.referenceRange[0].text" class="observation-column observation-primary-content observation-result">
-			<lab-observation-range-graph
-				observation="observation" ng-if="!multiRangeMode">
-			</lab-observation-range-graph>
+		<div ng-if="!observation.referenceRange[0].text && canShowRangeGraph" class="observation-column observation-primary-content observation-result">
+			<lab-observation-range-graph observation="observation" ng-if="!multiRangeMode"></lab-observation-range-graph>
 
-			<lab-observation-multirange-graph
-				observation="observation" ng-if="multiRangeMode">
-			</lab-observation-multirange-graph>
+			<lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode"></lab-observation-multirange-graph>
 
 			<h2 ng-if="!observation.valueQuantity && !!observation.valueString" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
 		</div>
 
-		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || observation.referenceRange[0].text">
+		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || !canShowRangeGraph || !!observation.referenceRange[0].text">
 			<lab-observation-range-card observation="observation"></lab-observation-range-card>
 		</div>
 
