@@ -19,19 +19,10 @@ var moment = require('moment');
 module.exports = function($scope) {
 
 	$scope.$watch('vm.observations', function(observations) {
-		if($scope.vm.patient) {
-			var patientAgeAtMomentOfReport = moment($scope.vm.reportDate || new Date()).diff(moment($scope.vm.patient.birthDate), 'years');
 
-			_.each(observations, function(obs) {
-				if(obs.referenceRange && obs.referenceRange.length) {
-					obs.referenceRange = _.filter(obs.referenceRange, function(range) {
-						var genderConditioned = _.findWhere(range.modifierExtension, {url: "http://hl7.org/fhir/ValueSet/administrative-gender"});
-						var appliesGenderWise = !genderConditioned || genderConditioned.valueCode === $scope.vm.patient.gender;
-						var appliesAgeWise = !range.age || !range.age.length || (range.age.low <= patientAgeAtMomentOfReport && patientAgeAtMomentOfReport >= range.age.high);
-						return appliesGenderWise && appliesAgeWise;
-					});
-				}
-			});
+		if ($scope.vm.patient) {
+			$scope.vm.patientAgeInYearsAtMomentOfReport = moment($scope.vm.reportDate || new Date()).diff(moment($scope.vm.patient.birthDate), 'years', true);
+			$scope.vm.patientGender = $scope.vm.patient.gender;
 		}
 
 		$scope.vm.groupedObservations = _.groupBy(observations, function(obs) {

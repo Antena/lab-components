@@ -195,6 +195,26 @@
                 }
               ]
             }
+          },
+          {
+            "code": {
+              "extension": [
+                {
+                  "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+                  "valueIdentifier": {
+                    "system": "http://www.cdrossi.com/pedido_prestacion",
+                    "value": "810-2576-11"
+                  }
+                }
+              ],
+              "coding": [
+                {
+                  "system": "http://www.cdrossi.com/prestaciones",
+                  "code": "P.370",
+                  "display": "FSH - HORMONA FOLICULO ESTIMULANTE."
+                }
+              ]
+            }
           }
         ]
       },
@@ -319,7 +339,7 @@
           }
         ],
         "gender": "male",
-        "birthDate": "1987-01-01"
+        "birthDate": "2010-01-01"
       },
       "transactionResponse": {
         "status": "200",
@@ -449,6 +469,9 @@
           },
           {
             "reference": "Observation/784"
+          },
+          {
+            "reference": "Observation/1157"
           }
         ],
         "presentedForm": [
@@ -3236,6 +3259,250 @@
             }
           ]
         }
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1157",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2016-06-06T17:37:12.000+00:00"
+        },
+        "extension": [
+          {
+            "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+            "valueIdentifier": {
+              "system": "http://www.cdrossi.com/pedido_prestacion",
+              "value": "810-2576-11"
+            }
+          }
+        ],
+        "text": {
+          "status": "empty",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://www.cdrossi.com/tests",
+              "code": "P.37001",
+              "display": "FSH-Hormona foliculo estimulante"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 2.5,
+          "units": "mUI/ml",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "comments": "-",
+        "status": "final",
+        "method": {
+          "text": "Electroquimioluminiscencia"
+        },
+        "identifier": [
+          {
+            "system": "http://www.cdrossi.com.ar/resultados",
+            "value": "810-2576-P.37001-1"
+          }
+        ],
+        "subject": {
+          "reference": "Patient/1153"
+        },
+        "performer": [
+          {
+            "reference": "Organization/3"
+          }
+        ],
+        "interpretation": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        },
+        "referenceRange": [
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              }
+            ],
+            "low": {
+              "value": 0.5,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "high": {
+              "value": 2.5,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            },
+            "age": {
+              "high": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 0.5,
+                "comparator": "<="
+              }
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              }
+            ],
+            "low": {
+              "value": 0.5,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "high": {
+              "value": 0.9,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            },
+            "age": {
+              "low": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 0.5,
+                "comparator": ">"
+              },
+              "high": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 2,
+                "comparator": "<="
+              }
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              }
+            ],
+            "low": {
+              "value": 0.5,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "high": {
+              "value": 2,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            },
+            "age": {
+              "low": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 2,
+                "comparator": ">"
+              },
+              "high": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 8,
+                "comparator": "<="
+              }
+            }
+          },
+          {
+            "modifierExtension": [
+              {
+                "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                "valuePeriod": {
+                  "start": "2013-01-01T00:00:00"
+                }
+              }
+            ],
+            "low": {
+              "value": 1,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "high": {
+              "value": 5,
+              "units": "mUI/ml",
+              "system": "http://unitsofmeasure.org",
+              "code": "mUI/ml"
+            },
+            "meaning": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/v2/0078",
+                  "code": "N"
+                }
+              ]
+            },
+            "age": {
+              "low": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 8,
+                "comparator": ">"
+              },
+              "high": {
+                "code": "a",
+                "system": "http://unitsofmeasure.org",
+                "unit": "yrs",
+                "value": 10,
+                "comparator": "<="
+              }
+            }
+          }
+        ]
       }
     }
   ]
