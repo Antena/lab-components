@@ -21,9 +21,14 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/lab-diagnostic-report.html',
 			controller: 'DemoController'
 		})
-		.state('lab-diagnostic-report-plain', {
-			url: '/lab-diagnostic-report-plain',
-			templateUrl: 'components/lab-diagnostic-report-plain.html',
+		.state('lab-diagnostic-report-compact-male', {
+			url: '/lab-diagnostic-report-compact-male',
+			templateUrl: 'components/lab-diagnostic-report-compact-male.html',
+			controller: 'DemoController'
+		})
+		.state('lab-diagnostic-report-compact-female', {
+			url: '/lab-diagnostic-report-compact-female',
+			templateUrl: 'components/lab-diagnostic-report-compact-female.html',
 			controller: 'DemoController'
 		})
 		.state('value-within-range-graph', {

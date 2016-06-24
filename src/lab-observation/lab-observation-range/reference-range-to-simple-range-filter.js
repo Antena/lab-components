@@ -73,10 +73,10 @@ module.exports = function() {
 
 	return _.memoize(function(input) {
 		return {
-			low: input.low.value,
-			high: input.high.value
+			low: input.low ? input.low.value : undefined,
+			high: input.high ? input.high.value : undefined
 		};
 	}, function(input) {
-		return elegantPairing(input.low.value, input.high.value);
+		return elegantPairing(input.low ? input.low.value : 0, input.high ? input.high.value : -1);
 	});
 };

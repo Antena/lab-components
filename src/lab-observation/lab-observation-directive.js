@@ -17,6 +17,8 @@
  * @param {Boolean=} [viewOnly=false] Indicates wether actions should be disabled.
  * @param {Boolean=} [hideTitle=false] Indicates wether hide the observation display (title of this card).
  * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content.
+ * @param {Number=} [patientAgeInYears] The patient age in years (decimal). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
+ * @param {String=} [patientGender] A string representaiton of the patient gender ({@link http://hl7.org/fhir/ValueSet/administrative-gender valid values}). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
  *
  *
  * @example
@@ -62,7 +64,7 @@
  	.controller('ExampleController', ['$scope', function($scope) {
 			$scope.example = {
 				json: "",
-				observation: { "resourceType": "Observation", "id": "5", "meta": { "versionId": "1", "lastUpdated": "2016-05-10T15:58:57.000+00:00" }, "extension": [ { "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion", "valueIdentifier": { "system": "http://www.cdrossi.com/pedido_prestacion", "value": "810-2547-4" } } ], "text": { "status": "empty", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>" }, "code": { "coding": [ { "display": "T4 - TIROXINA TOTAL" } ] }, "valueQuantity": { "value": 7.8, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "mg/dL" }, "comments": "-", "status": "final", "method": { "text": "Electroquimioluminiscencia" }, "identifier": [ { "system": "http://www.cdrossi.com.ar/resultados", "value": "810-2547-P.866-1" } ], "subject": { "reference": "Patient/1" }, "performer": [ { "reference": "Organization/3" } ], "referenceRange": [ { "modifierExtension": [ { "url": "http://www.cdrossi.com.ar/validezrangoreferencia", "valuePeriod": { "start": "2013-01-01T00:00:00" } } ], "low": { "value": 4.6, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "µg/dl" }, "high": { "value": 12, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "µg/dl" }, "meaning": { "coding": [ { "system": "http://hl7.org/fhir/v2/0078", "code": "N" } ] } } ], "showHistory": 0 },
+				observation: { "resourceType": "Observation", "id": "5", "meta": { "versionId": "1", "lastUpdated": "2016-05-10T15:58:57.000+00:00" }, "extension": [ { "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion", "valueIdentifier": { "system": "http://www.cdrossi.com/pedido_prestacion", "value": "810-2547-4" } } ], "text": { "status": "empty", "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>" }, "code": { "coding": [ { "display": "T4 - TIROXINA TOTAL" } ] }, "valueQuantity": { "value": 7.8, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "mg/dL" }, "comments": "-", "status": "final", "method": { "text": "Electroquimioluminiscencia" }, "identifier": [ { "system": "http://www.cdrossi.com.ar/resultados", "value": "810-2547-P.866-1" } ], "subject": { "reference": "Patient/1" }, "performer": [ { "reference": "Organization/3" } ], "interpretation": { "coding": [ { "system": "http://hl7.org/fhir/v2/0078", "code": "N" } ] }, "referenceRange": [ { "modifierExtension": [ { "url": "http://www.cdrossi.com.ar/validezrangoreferencia", "valuePeriod": { "start": "2013-01-01T00:00:00" } } ], "low": { "value": 4.6, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "µg/dl" }, "high": { "value": 12, "units": "µg/dl", "system": "http://unitsofmeasure.org", "code": "µg/dl" }, "meaning": { "coding": [ { "system": "http://hl7.org/fhir/v2/0078", "code": "N" } ] } } ], "showHistory": 0 },
 				actions: [
 					{
 						labelOn: "Ocultar Contenido",
@@ -158,10 +160,81 @@ module.exports = function() {
 			viewOnly: '=?',
 			hideTitle: '=?',
 			compactMode: '=?',
-			multiRangeMode: '=?'
+			multiRangeMode: '=?',
+			patientAgeInYears: '=?',
+			patientGender: '=?'
 		},
 		restrict: 'EA',
 		transclude: true,
-		templateUrl: require('./lab-observation.html')
+		templateUrl: require('./lab-observation.html'),
+		controller: function($scope) {
+
+			//TODO (denise) move this to a helper (generic) service
+			var operators = {
+				'<': function(a, b) { return a < b },
+				'<=': function(a, b) { return a <= b },
+				'>=': function(a, b) { return a >= b },
+				'>': function(a, b) { return a > b },
+				'==': function(a, b) { return a == b },
+				'===': function(a, b) { return a === b }
+			};
+
+			function valueToYears(range) {
+				var result;
+				if (range.code === 'mo') {
+					result = range.code / 12;
+				} else if (range.code === 'd') {
+					result = range.code / 365;
+				} else if (range.code === 'wk') {
+					result = range.code * 7 / 365;
+				}
+				return result;
+			}
+
+			function withinRange(range, patientAgeInYearsAtMomentOfReport) {
+
+				var lowOK = true;
+				var highOK = true;
+
+				if (range.low) {
+					var op = range.low.comparator || '===';
+					var rangeLowValueInYears = range.low.value;
+					if(range.low.code !== 'a') {
+						rangeLowValueInYears = valueToYears(range.low);
+					}
+					lowOK = operators[op](patientAgeInYearsAtMomentOfReport, rangeLowValueInYears);
+				}
+
+				if (range.high) {
+					var op = range.high.comparator || '===';
+					var rangeHighValueInYears = range.high.value;
+					if(range.high.code !== 'a') {
+						rangeHighValueInYears = valueToYears(range.high);
+					}
+					highOK = operators[op](patientAgeInYearsAtMomentOfReport, rangeHighValueInYears);
+				}
+
+				return lowOK && highOK;
+			}
+
+			$scope.$watch('observation', function(observation) {
+
+				if($scope.patientAgeInYears || $scope.patientGender) {
+					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
+						$scope.observation.referenceRange = _.filter($scope.observation.referenceRange, function (range) {
+							var genderConditioned = _.findWhere(range.modifierExtension, {url: "http://hl7.org/fhir/ValueSet/administrative-gender"});
+							var appliesGenderWise = !genderConditioned || genderConditioned.valueCode === $scope.patientGender;
+							var appliesAgeWise = !range.age || !$scope.patientAgeInYears || withinRange(range.age, $scope.patientAgeInYears);
+
+							return appliesGenderWise && appliesAgeWise;
+						});
+					}
+				}
+			});
+
+		},
+		link: function($scope) {
+			$scope.canShowRangeGraph = $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high);
+		}
 	};
 };

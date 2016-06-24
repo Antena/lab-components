@@ -1340,6 +1340,7 @@ a.button.ghost:hover {
 
 	.observation-tertiary-content {
 		width: 40%;
+		padding-left: 20px;
 	}
 
 	.compact-observation .observation-primary-content {
@@ -1348,7 +1349,7 @@ a.button.ghost:hover {
 
 	.compact-observation .observation-secondary-content {
 		width: 25%;
-		padding-right: 20px;
+		padding-right: 10px;
 	}
 
 	.compact-observation .observation-tertiary-content {
@@ -1472,6 +1473,7 @@ a.button.ghost:hover {
 
 .meter {
 	fill: black;
+	text-align: left;
 }
 
 .meter div {

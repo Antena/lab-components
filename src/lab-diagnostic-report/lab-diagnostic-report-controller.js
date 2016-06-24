@@ -13,11 +13,18 @@
 
 var _ = require('underscore');
 var $ = require('jquery');
+var moment = require('moment');
 
 // @ngInject
 module.exports = function($scope) {
 
 	$scope.$watch('vm.observations', function(observations) {
+
+		if ($scope.vm.patient) {
+			$scope.vm.patientAgeInYearsAtMomentOfReport = moment($scope.vm.reportDate || new Date()).diff(moment($scope.vm.patient.birthDate), 'years', true);
+			$scope.vm.patientGender = $scope.vm.patient.gender;
+		}
+
 		$scope.vm.groupedObservations = _.groupBy(observations, function(obs) {
 			return obs.extension && obs.extension[0].valueIdentifier ? obs.extension[0].valueIdentifier.value : obs.id;
 		});

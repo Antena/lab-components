@@ -33,7 +33,9 @@
 									 view-only="vm.viewOnly"
 									 compact-mode="vm.compactMode"
 									 multi-range-mode="vm.displayObservationsWithMultipleRanges"
-									 hide-title="vm.deDupeTopLevelObservations && isTopLevel(group, observationsPerGroup)">
+									 hide-title="vm.deDupeTopLevelObservations && isTopLevel(group, observationsPerGroup)"
+									 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
+									 patient-gender="vm.patientGender">
 						<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
 					</lab-observation>
 				</div>
@@ -45,7 +47,7 @@
 			<div class="lab-tree">
 				<ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()">
 					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title">
-						<a href="#{{ group}}" du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) | capitalize:true }}</a>
+						<a href="#{{ group }}" du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) | capitalize:true }}</a>
 
 						<div ng-if="!isTopLevel(group, observationsPerGroup)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(group, observationsPerGroup) }">
 							<a href="#{{ observation.id }}" ng-repeat="observation in observationsPerGroup" du-smooth-scroll du-scrollspy offset="100">
