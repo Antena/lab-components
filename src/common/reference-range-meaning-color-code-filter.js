@@ -69,18 +69,20 @@
 module.exports = function() {
 	return function(code) {
 		var output = '';
-		switch (code.coding[0].code) {
-			case 'H':
-				output = 'unhealthy';
-				break;
-			case 'N':
-				output = 'healthy';
-				break;
-			case 'L':
-				output = 'unhealthy';
-				break;
-			default:
-				output = '';
+		if (code && code.coding && code.coding.length) {
+			switch (code.coding[0].code) {
+				case 'H':
+					output = 'unhealthy';
+					break;
+				case 'N':
+					output = 'healthy';
+					break;
+				case 'L':
+					output = 'unhealthy';
+					break;
+				default:
+					output = '';
+			}
 		}
 		return output;
 	};

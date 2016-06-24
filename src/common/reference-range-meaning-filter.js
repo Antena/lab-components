@@ -70,39 +70,41 @@
 module.exports = function() {
 	return function(code) {
 		var output = '';
-		switch (code.coding[0].code) {
-			case 'H':
-				output = 'LAB.REFERENCE_RANGE_MEANING.HIGH';
-				break;
-			case 'N':
-				output = 'LAB.REFERENCE_RANGE_MEANING.REGULAR';
-				break;
-			case 'L':
-				output = 'LAB.REFERENCE_RANGE_MEANING.LOW';
-				break;
-			case 'NN':
-				output = 'LAB.REFERENCE_RANGE_MEANING.NEAR_NORMAL';
-				break;
-			case 'LIM':
-				output = 'LAB.REFERENCE_RANGE_MEANING.LIMIT';
-				break;
-			case 'HH':
-				output = 'LAB.REFERENCE_RANGE_MEANING.CRITICALLY_HIGH';
-				break;
-			case 'HU':
-				output = 'LAB.REFERENCE_RANGE_MEANING.VERY_HIGH';
-				break;
-			case 'NR':
-				output = 'LAB.REFERENCE_RANGE_MEANING.NON_REACTIVE';
-				break;
-			case 'RR':
-				output = 'LAB.REFERENCE_RANGE_MEANING.REACTIVE';
-				break;
-			case 'IND':
-				output = 'LAB.REFERENCE_RANGE_MEANING.INDETERMINATE';
-				break;
-			default:
-				output = code.display;
+		if (code && code.coding && code.coding.length) {
+			switch (code.coding[0].code) {
+				case 'H':
+					output = 'LAB.REFERENCE_RANGE_MEANING.HIGH';
+					break;
+				case 'N':
+					output = 'LAB.REFERENCE_RANGE_MEANING.REGULAR';
+					break;
+				case 'L':
+					output = 'LAB.REFERENCE_RANGE_MEANING.LOW';
+					break;
+				case 'NN':
+					output = 'LAB.REFERENCE_RANGE_MEANING.NEAR_NORMAL';
+					break;
+				case 'LIM':
+					output = 'LAB.REFERENCE_RANGE_MEANING.LIMIT';
+					break;
+				case 'HH':
+					output = 'LAB.REFERENCE_RANGE_MEANING.CRITICALLY_HIGH';
+					break;
+				case 'HU':
+					output = 'LAB.REFERENCE_RANGE_MEANING.VERY_HIGH';
+					break;
+				case 'NR':
+					output = 'LAB.REFERENCE_RANGE_MEANING.NON_REACTIVE';
+					break;
+				case 'RR':
+					output = 'LAB.REFERENCE_RANGE_MEANING.REACTIVE';
+					break;
+				case 'IND':
+					output = 'LAB.REFERENCE_RANGE_MEANING.INDETERMINATE';
+					break;
+				default:
+					output = code.display;
+			}
 		}
 		return output;
 	};
