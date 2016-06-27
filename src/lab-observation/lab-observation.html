@@ -16,26 +16,23 @@
 		<span ng-if="observation.interpretation" class="right label label-{{ observation.interpretation | referenceRangeMeaningColorCode }}">{{ observation.interpretation | referenceRangeMeaning | translate }}</span>
 	</div>
 
-	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text}">
+	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text || !!observation.valueString || !observation.referenceRange }">
 
-		<div ng-if="!observation.referenceRange[0].text && canShowRangeGraph" class="observation-column observation-primary-content observation-result">
+		<div ng-if="!!observation.valueQuantity && !observation.referenceRange[0].text && canShowRangeGraph" class="observation-column observation-primary-content observation-result">
 			<lab-observation-range-graph observation="observation" ng-if="!multiRangeMode"></lab-observation-range-graph>
-
 			<lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode"></lab-observation-multirange-graph>
-
-			<h2 ng-if="!observation.valueQuantity && !!observation.valueString" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
 		</div>
 
-		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || !canShowRangeGraph || !!observation.referenceRange[0].text">
+		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || !canShowRangeGraph || !!observation.referenceRange[0].text || !!observation.valueString">
 			<lab-observation-range-card observation="observation"></lab-observation-range-card>
 		</div>
 
 		<div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
 			<ul class="details-item-list">
-				<li ng-if="observation.valueQuantity && observation.method && observation.method !== '-'" class="details-item">
+				<li ng-if="observation.method && observation.method !== '-'" class="details-item">
 					<span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
 				</li>
-				<li ng-if="observation.valueQuantity" class="details-item">
+				<li ng-if="observation.status" class="details-item">
 					<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | toStatusKey | translate }}</span>
 				</li>
 				<li ng-if="observation.comments && observation.comments !== '-'" class="details-item">

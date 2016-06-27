@@ -1,16 +1,18 @@
 <div ng-if="observation">
-	<div ng-if="observation.referenceRange[0].text" class="reference-range right" style="white-space: pre;"><p class="value">{{ observation.referenceRange[0].text }}</p></div>
+	<div ng-if="observation.referenceRange[0].text" class="reference-range right" ng-class="{'big-reference-range': !!observation.valueString}" style="white-space: pre;">
+		<p class="value">{{ observation.referenceRange[0].text }}</p>
+	</div>
 
 	<value-within-range-card ng-if="observation.valueQuantity"
                              class="observation-values"
                              value="observation.valueQuantity.value"
                              unit="observation.valueQuantity.units"
-                             range="observation.referenceRange[0].text ? null : (observation.referenceRange[0] | referenceRangeToSimpleRange)"
+                             range="observation.referenceRange[0].text || !observation.referenceRange ? null : (observation.referenceRange[0] | referenceRangeToSimpleRange)"
                              inside-class="healthy"
                              outside-class="unhealthy">
     </value-within-range-card>
 
     <div ng-if="!observation.valueQuantity && !!observation.valueString">
-        <h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unhealthy': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+        <h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unknown': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
     </div>
 </div>

@@ -72,13 +72,22 @@ module.exports = function() {
 		if (code && code.coding && code.coding.length) {
 			switch (code.coding[0].code) {
 				case 'H':
+				case 'HH':
+				case 'HU':
+				case 'L':
 					output = 'unhealthy';
 					break;
 				case 'N':
 					output = 'healthy';
 					break;
-				case 'L':
-					output = 'unhealthy';
+				case 'LIM':
+				case 'NN':
+					output = 'almost-healthy';
+					break;
+				case 'RR':
+				case 'NR':
+				case 'IND':
+					output = 'unknown';
 					break;
 				default:
 					output = '';

@@ -397,6 +397,10 @@ ol {
 	color: #CC0001;
 }
 
+.observation-gallery-item .unknown {
+	color: black;
+}
+
 .label {
 	margin-left: 4px;
 	font-size: 10px;
@@ -408,6 +412,12 @@ ol {
 .label.label-unhealthy {
 	background-color: #CC0001;
 }
+.label.label-almost-healthy {
+	background-color: #DDC100;
+}
+.label.label-unknown {
+	background-color: #B3B3B3;
+}
 
 .meaning-indicator-healthy {
 	border-left: 8px solid rgba(91, 180, 3, 0.7);
@@ -415,6 +425,13 @@ ol {
 .meaning-indicator-unhealthy {
 	border-left: 8px solid rgba(204, 0, 1, 0.7);
 }
+.meaning-indicator-almost-healthy {
+	border-left: 8px solid rgba(221, 193, 0, 0.7);
+}
+.meaning-indicator-unknown {
+	border-left: 8px solid rgba(179, 179, 179, 0.7);
+}
+
 
 .observation-gallery-item .observation-result {
 	font-size: 1em

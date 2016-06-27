@@ -30,9 +30,10 @@ module.exports = function($scope) {
 	 *
 	 */
 	$scope.valueStringMatchesReference = function(observation) {
-		return observation.valueString === observation.referenceRange[0].text ||
-				observation.referenceRange[0].text === '.' ||
-				_.isUndefined(observation.referenceRange[0].text);
+		return !!observation.referenceRange && observation.referenceRange.length && (
+			observation.valueString === observation.referenceRange[0].text ||
+			observation.referenceRange[0].text === '.' ||
+			_.isUndefined(observation.referenceRange[0].text));
 	};
 
 	/**
@@ -64,5 +65,9 @@ module.exports = function($scope) {
 			result = "-";
 		}
 		return result;
+	};
+
+	$scope.isValueStringHtml = function(observation) {
+		return _.indexOf(observation.valueString, '<html>');
 	};
 };
