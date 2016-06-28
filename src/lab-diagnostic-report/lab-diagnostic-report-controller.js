@@ -12,7 +12,6 @@
  */
 
 var _ = require('underscore');
-var $ = require('jquery');
 var moment = require('moment');
 
 // @ngInject

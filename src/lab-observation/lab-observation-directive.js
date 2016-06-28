@@ -178,8 +178,7 @@ module.exports = function() {
 			});
 
 			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
-			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity
-				&& ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
+			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
 		}
 	};
 };

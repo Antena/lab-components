@@ -506,5 +506,5 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 				domain: { low: 0, high: 200 }
 			}
 		}
-	]
+	];
 };

@@ -267,8 +267,8 @@ module.exports = function() {
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				sectors = _.map(scope.ranges, function (range, i) {
 					range.index = i;
-					range.fist = i == 0;
-					range.last = i == scope.ranges.length - 1;
+					range.fist = i === 0;
+					range.last = i === scope.ranges.length - 1;
 					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
 					range.width = sectorWidth;
 					range.height = options.height - options.padding.top - options.padding.bottom;
@@ -281,38 +281,38 @@ module.exports = function() {
 					.data(sectors)
 					.enter().append('g')
 					.classed('sector', true)
-					.attr('transform', function (d) { return translate(d.x, 0) });
+					.attr('transform', function (d) { return translate(d.x, 0); });
 
 				// Append rectangles to sectors
 				rect = targetSector.append('g')
 					.attr('transform', translate(0, options.labelHeight))
-					.classed('target', function(d) { return valueInRange(scope.value, d) });
+					.classed('target', function(d) { return valueInRange(scope.value, d); });
 				rect.append('rect')
-					.attr('width', function(d) { return d.width })
-					.attr('height', function(d) { return d.rectHeight })
-					.attr('class', function (d) { return d.class });
+					.attr('width', function(d) { return d.width; })
+					.attr('height', function(d) { return d.rectHeight; })
+					.attr('class', function (d) { return d.class; });
 
 				// Create text for ranges
 				rect.append('foreignObject')
 					.attr('x', '0')
 					.attr('y', '0')
-					.attr('width', function(d) { return d.width })
-					.attr('height', function(d) { return d.rectHeight })
+					.attr('width', function(d) { return d.width; })
+					.attr('height', function(d) { return d.rectHeight; })
 					.append('xhtml:div')
 					.classed('range-text', true)
 					.append('span')
-					.html(function(d) { return rangeText(d) });
+					.html(function(d) { return rangeText(d); });
 
 				// Create labels for ranges
 				targetSector.append('foreignObject')
 					.attr('x', '0')
 					.attr('y', '0')
-					.attr('width', function(d) { return d.width })
+					.attr('width', function(d) { return d.width; })
 					.attr('height', options.labelHeight)
 					.append('xhtml:div')
 					.classed('range-label', true)
 					.append('span')
-					.html(function(d) { return d.label });
+					.html(function(d) { return d.label; });
 
 				// Create arrows
 				rect.append('path')
@@ -322,8 +322,8 @@ module.exports = function() {
 							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
 							'L' + '0' + ' ' + d.rectHeight;
 					})
-					.style('visibility', function (d, i) { return i == 0 ? 'visible': 'hidden' } )
-					.attr('class', function(d) { return d.class });
+					.style('visibility', function (d, i) { return i === 0 ? 'visible': 'hidden'; } )
+					.attr('class', function(d) { return d.class; });
 
 				rect.append('path')
 					.attr('d', function (d) {
@@ -332,8 +332,8 @@ module.exports = function() {
 							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
 							'L' + d.width + ' ' + d.rectHeight;
 					})
-					.style('visibility', function (d, i) { return i == (sectors.length - 1) ? 'visible': 'hidden' } )
-					.attr('class', function(d) { return d.class });
+					.style('visibility', function (d, i) { return i === (sectors.length - 1) ? 'visible': 'hidden'; } )
+					.attr('class', function(d) { return d.class; });
 
 				// Find the target and append a meter
 				targetRect = svg.selectAll('g.target');
@@ -342,7 +342,7 @@ module.exports = function() {
 
 				// Refresh to update values
 				refresh();
-			};
+			}
 
 			/**
 			 * Redraws the graph to display updated values.
@@ -350,17 +350,17 @@ module.exports = function() {
 			function refresh() {
 				// Find the new target (if changed)
 				var oldTarget = targetRect;
-				rect.classed('target', function(d) { return valueInRange(scope.value, d) });
+				rect.classed('target', function(d) { return valueInRange(scope.value, d); });
 
 				// Update the meter's position (build new scale if target changed)
 				targetRect = svg.selectAll('g.target');
-				if (targetRect.data()[0].index != oldTarget.data()[0].index) {
+				if (targetRect.data()[0].index !== oldTarget.data()[0].index) {
 					oldTarget.selectAll('g.meter').remove();
 					targetScale = scale(scope.value, targetRect.data()[0], sectors);
 					appendMeter(targetRect);
 				}
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function (d) { return translate(targetScale(scope.value), d.rectHeight) });
+				meter.attr('transform', function (d) { return translate(targetScale(scope.value), d.rectHeight); });
 
 				// Update the meter's label
 				meter.select('span').html([scope.value, scope.unit].join(' '));
@@ -371,7 +371,7 @@ module.exports = function() {
 					.attr('x', foOffsetX)
 					.style('visibility', 'visible');
 
-			};
+			}
 
 			/**
 			 * Appends a 'meter' to the target range.
@@ -409,7 +409,7 @@ module.exports = function() {
 				return '' +
 					'M' + '0' + ' ' + '0' + ' ' +
 					'L' + (base/2) + ' ' + height + ' ' +
-					'L' + (-base/2) + ' ' + height
+					'L' + (-base/2) + ' ' + height;
 			}
 
 			/**
@@ -481,8 +481,11 @@ module.exports = function() {
 				}
 
 				if (!_.isNumber(domain[0])) {
-					if (_.isNumber(options.domain.low))
-						var nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); })
+					var nextConcreteRange;
+					if (_.isNumber(options.domain.low)) {
+						nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); });
+					}
+
 					if (nextConcreteRange) {
 						domain[0] = range.high - (nextConcreteRange.high - nextConcreteRange.low);
 					} else {
@@ -507,5 +510,5 @@ module.exports = function() {
 					.domain(domain);
 			};
 		}
-	}
+	};
 };

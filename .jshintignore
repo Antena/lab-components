@@ -1,2 +1,8 @@
-node_modules
-dist
+node_modules/**
+dist/**
+.tmp/**
+vendor/**
+coverage/**
+tmp/**
+docs/**
+js/**

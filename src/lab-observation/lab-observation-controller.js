@@ -18,12 +18,11 @@ module.exports = function($scope) {
 
 	//TODO (denise) move this to a helper (generic) service
 	var operators = {
-		'<': function(a, b) { return a < b },
-		'<=': function(a, b) { return a <= b },
-		'>=': function(a, b) { return a >= b },
-		'>': function(a, b) { return a > b },
-		'==': function(a, b) { return a == b },
-		'===': function(a, b) { return a === b }
+		'<': function(a, b) { return a < b; },
+		'<=': function(a, b) { return a <= b; },
+		'>=': function(a, b) { return a >= b; },
+		'>': function(a, b) { return a > b; },
+		'==': function(a, b) { return a === b; }
 	};
 
 	/**
@@ -57,7 +56,7 @@ module.exports = function($scope) {
 	 * @methodOf lab-components.lab-observation.controller:LabObservationController
 	 * @description
 	 *
-	 * Checks whether or not a range is appropriate given the patient's age. Supports all standard {@link https://www.hl7.org/fhir/2015MAY/quantity-comparator.html quantity comparators} plus `equals` ('==', '===').
+	 * Checks whether or not a range is appropriate given the patient's age. Supports all standard {@link https://www.hl7.org/fhir/2015MAY/quantity-comparator.html quantity comparators} plus `equals` ('==').
 	 *
 	 * @param {Object} range A {@link https://www.hl7.org/fhir/2015MAY/datatypes.html#Range FHIR Range} to inspect.
 	 * @param {Number} patientAgeInYearsAtMomentOfReport The age of the patient at the moment the DiagnosticReport was generated, in years (decimal number).
@@ -67,11 +66,12 @@ module.exports = function($scope) {
 	 */
 	function withinRange (range, patientAgeInYearsAtMomentOfReport) {
 
-		var lowOK = true;
-		var highOK = true;
+		var lowOK = true,
+			highOK = true,
+			op;
 
 		if (range.low) {
-			var op = range.low.comparator || '===';
+			op = range.low.comparator || '==';
 			var rangeLowValueInYears = range.low.value;
 			if(range.low.code !== 'a') {
 				rangeLowValueInYears = valueToYears(range.low);
@@ -80,7 +80,7 @@ module.exports = function($scope) {
 		}
 
 		if (range.high) {
-			var op = range.high.comparator || '===';
+			op = range.high.comparator || '==';
 			var rangeHighValueInYears = range.high.value;
 			if(range.high.code !== 'a') {
 				rangeHighValueInYears = valueToYears(range.high);
@@ -113,6 +113,6 @@ module.exports = function($scope) {
 			var appliesAgeWise = !range.age || !patientAgeInYears || withinRange(range.age, patientAgeInYears);
 
 			return appliesGenderWise && appliesAgeWise;
-		})
+		});
 	};
 };
