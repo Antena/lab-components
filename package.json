@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "angular": "~1.4.x",
+    "angular-sanitize": "~1.4.x",
     "angular-translate": "~2.7.2",
     "angular-scroll": "~1.0.0",
     "d3": "~3.5.17",

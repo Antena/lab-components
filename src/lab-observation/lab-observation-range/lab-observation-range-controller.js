@@ -15,7 +15,7 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope) {
+module.exports = function($scope, $sce) {
 
 	/**
 	 * @ngdoc function
@@ -68,6 +68,6 @@ module.exports = function($scope) {
 	};
 
 	$scope.isValueStringHtml = function(observation) {
-		return _.indexOf(observation.valueString, '<html>');
+		return observation && observation.valueString && observation.valueString.toLowerCase().indexOf("<html>") !== -1;
 	};
 };

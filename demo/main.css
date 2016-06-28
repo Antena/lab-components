@@ -401,6 +401,10 @@ ol {
 	color: black;
 }
 
+.obsevation-html iframe {
+	float:left; height:100%; width:100%; min-height: 300px;
+}
+
 .label {
 	margin-left: 4px;
 	font-size: 10px;

@@ -13,6 +13,13 @@
     </value-within-range-card>
 
     <div ng-if="!observation.valueQuantity && !!observation.valueString">
-        <h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unknown': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+        <h2 ng-if="!isValueStringHtml(observation)" class="lab-text" ng-class="{'healthy': valueStringMatchesReference(observation), 'unknown': !valueStringMatchesReference(observation) } ">{{ getObservationValueDisclosure(observation) }}</h2>
+
+		<div ng-if="isValueStringHtml(observation)" class="obsevation-html">
+			<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"
+					srcdoc="{{ observation.valueString | trusted }}">
+			</iframe>
+		</div>
+
     </div>
 </div>

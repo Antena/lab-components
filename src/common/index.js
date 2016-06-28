@@ -16,5 +16,6 @@ ngModule.filter('customFormatDate', require('./custom-format-date-filter'));
 ngModule.filter('patientFullName', require('./patient-full-name-filter'));
 ngModule.filter('patientAgeAtReportDate', require('./patient-age-at-report-filter'));
 ngModule.filter('toStatusKey', require('./to-status-key-filter'));
+ngModule.filter('trusted', require('./trusted-filter'));
 
 module.exports = ngModule.name;
