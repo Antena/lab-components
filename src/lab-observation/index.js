@@ -7,6 +7,7 @@ var ngModule = angular.module('lab-components.lab-observation', [
 	require('./lab-observation-multirange/index.js')
 ]);
 
+ngModule.controller('LabObservationController', require('./lab-observation-controller'));
 ngModule.directive('labObservation', require('./lab-observation-directive'));
 
 module.exports = ngModule.name;
