@@ -13,5 +13,5 @@ app.use('/docs', express.static(path.join(__dirname, 'docs')));
 
 // serve index.html for all remaining routes, in order to leave routing up to angular
 app.all("/*", function(req, res, next) {
-	res.sendfile("index.html", { root: __dirname + "/demo" });
+	res.sendFile("index.html", { root: __dirname + "/demo" });
 });
