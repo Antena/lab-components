@@ -65,7 +65,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	var curatedHistory = [];
 	_.each(historyJson, function(samples) {
-		if(_.isArray(samples[0])) {
+		if (_.isArray(samples[0])) {
 			curatedHistory = _.union(curatedHistory, samples);
 
 		} else {
@@ -76,24 +76,23 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 	$scope.histories = _.map(curatedHistory, function(history) {
 		var description = "";
 		var obsType = history[0].code.coding[0].display;
-		if(obsType === "Recuento De Plaquetas") {
+		if (obsType === "Recuento De Plaquetas") {
 			description = "Big safe zone, with values inside";
-		} else if(obsType === "Hematocrito") {
+		} else if (obsType === "Hematocrito") {
 			description = "Different safe zones for each point";
-		} if(obsType === "Recuento De Globulos Rojos") {
+		} else if (obsType === "Recuento De Globulos Rojos") {
 			description = "Big time difference between points";
-		} if(obsType === "GLUCEMIA") {
+		} else if (obsType === "GLUCEMIA") {
 			description = "Mix of points inside and outisde of safe zone, with different safe zones";
-		} if(obsType === "IGA - INMUNOGLOBULINA A") {
+		} else if (obsType === "IGA - INMUNOGLOBULINA A") {
 			description = "Big safe zone, with values outside";
-		} if(obsType === "Sodio") {
+		} else if (obsType === "Sodio") {
 			description = "Small safe zone";
-		} if(obsType === "UREMIA") {
+		} else if (obsType === "UREMIA") {
 			description = "Big safe zone, with different safe zones";
-		} if(obsType === "Fosfatasa Alcalina") {
+		} else if (obsType === "Fosfatasa Alcalina") {
 			description = "Small container";
 		}
-
 
 		return {
 			description: description,

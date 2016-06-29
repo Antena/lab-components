@@ -197,7 +197,7 @@ module.exports = function() {
 			ranges: '=',
 			options: '=?'
 		},
-		link: function (scope, elem) {
+		link: function(scope, elem) {
 
 			/**
 			 * Helper functions to re-draw graph based on scope's updates.
@@ -265,7 +265,7 @@ module.exports = function() {
 
 				// Pre-process ranges
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
-				sectors = _.map(scope.ranges, function (range, i) {
+				sectors = _.map(scope.ranges, function(range, i) {
 					range.index = i;
 					range.fist = i === 0;
 					range.last = i === scope.ranges.length - 1;
@@ -281,7 +281,7 @@ module.exports = function() {
 					.data(sectors)
 					.enter().append('g')
 					.classed('sector', true)
-					.attr('transform', function (d) { return translate(d.x, 0); });
+					.attr('transform', function(d) { return translate(d.x, 0); });
 
 				// Append rectangles to sectors
 				rect = targetSector.append('g')
@@ -290,7 +290,7 @@ module.exports = function() {
 				rect.append('rect')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', function(d) { return d.rectHeight; })
-					.attr('class', function (d) { return d.class; });
+					.attr('class', function(d) { return d.class; });
 
 				// Create text for ranges
 				rect.append('foreignObject')
@@ -316,23 +316,23 @@ module.exports = function() {
 
 				// Create arrows
 				rect.append('path')
-					.attr('d', function (d) {
+					.attr('d', function(d) {
 						return '' +
 							'M' + '0' + ' ' + '0' + ' ' +
 							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
 							'L' + '0' + ' ' + d.rectHeight;
 					})
-					.style('visibility', function (d, i) { return i === 0 ? 'visible': 'hidden'; } )
+					.style('visibility', function(d, i) { return i === 0 ? 'visible': 'hidden'; } )
 					.attr('class', function(d) { return d.class; });
 
 				rect.append('path')
-					.attr('d', function (d) {
+					.attr('d', function(d) {
 						return '' +
 							'M' + d.width + ' ' + '0' + ' ' +
 							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
 							'L' + d.width + ' ' + d.rectHeight;
 					})
-					.style('visibility', function (d, i) { return i === (sectors.length - 1) ? 'visible': 'hidden'; } )
+					.style('visibility', function(d, i) { return i === (sectors.length - 1) ? 'visible': 'hidden'; } )
 					.attr('class', function(d) { return d.class; });
 
 				// Find the target and append a meter
@@ -360,7 +360,7 @@ module.exports = function() {
 					appendMeter(targetRect);
 				}
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function (d) { return translate(targetScale(scope.value), d.rectHeight); });
+				meter.attr('transform', function(d) { return translate(targetScale(scope.value), d.rectHeight); });
 
 				// Update the meter's label
 				meter.select('span').html([scope.value, scope.unit].join(' '));
@@ -467,7 +467,7 @@ module.exports = function() {
 			 * @param ranges: the other ranges.
 			 * @returns {number}: output of the scale applied to the value.
 			 */
-			var scale = function (value, range, ranges) {
+			var scale = function(value, range, ranges) {
 
 				// Build scale
 				var domain = [null, null];

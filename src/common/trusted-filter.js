@@ -1,9 +1,8 @@
 'use strict';
 
 // @ngInject
-module.exports = function ($sce) {
-	return function (text) {
-		console.log("text = ", text);	//TODO (denise) remove log
+module.exports = function($sce) {
+	return function(text) {
 		return $sce.trustAsHtml(text);
 	};
 };
