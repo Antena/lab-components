@@ -6,7 +6,6 @@ require('uiRouter');
 
 var observationHistory = require('./observation-history.json');
 
-
 /* Demo App initialization */
 var app = angular.module('app', [
 	'ui.router',
@@ -21,7 +20,7 @@ app.service('LabObservationService', function() {
 			var history;
 
 			var historyForObservation = observationHistory[observationId];
-			if(historyForObservation) {
+			if (historyForObservation) {
 				history = historyForObservation;
 			} else {
 				history = _.sample(observationHistory.samples);

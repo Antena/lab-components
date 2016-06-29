@@ -25,6 +25,8 @@
 
 	"excludeFiles": [
 		"node_modules/**",
-		"dist/**"
+		"dist/**",
+		"docs/**",
+		"js/**"
 	]
 }

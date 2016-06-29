@@ -167,74 +167,18 @@ module.exports = function() {
 		restrict: 'EA',
 		transclude: true,
 		templateUrl: require('./lab-observation.html'),
-		controller: function($scope) {
-
-			//TODO (denise) move this to a helper (generic) service
-			var operators = {
-				'<': function(a, b) { return a < b },
-				'<=': function(a, b) { return a <= b },
-				'>=': function(a, b) { return a >= b },
-				'>': function(a, b) { return a > b },
-				'==': function(a, b) { return a == b },
-				'===': function(a, b) { return a === b }
-			};
-
-			function valueToYears(range) {
-				var result;
-				if (range.code === 'mo') {
-					result = range.code / 12;
-				} else if (range.code === 'd') {
-					result = range.code / 365;
-				} else if (range.code === 'wk') {
-					result = range.code * 7 / 365;
-				}
-				return result;
-			}
-
-			function withinRange(range, patientAgeInYearsAtMomentOfReport) {
-
-				var lowOK = true;
-				var highOK = true;
-
-				if (range.low) {
-					var op = range.low.comparator || '===';
-					var rangeLowValueInYears = range.low.value;
-					if(range.low.code !== 'a') {
-						rangeLowValueInYears = valueToYears(range.low);
-					}
-					lowOK = operators[op](patientAgeInYearsAtMomentOfReport, rangeLowValueInYears);
-				}
-
-				if (range.high) {
-					var op = range.high.comparator || '===';
-					var rangeHighValueInYears = range.high.value;
-					if(range.high.code !== 'a') {
-						rangeHighValueInYears = valueToYears(range.high);
-					}
-					highOK = operators[op](patientAgeInYearsAtMomentOfReport, rangeHighValueInYears);
-				}
-
-				return lowOK && highOK;
-			}
-
+		controller: 'LabObservationController',
+		link: function($scope, $element, attrs, LabObservationController) {
 			$scope.$watch('observation', function(observation) {
-
 				if($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
-						$scope.observation.referenceRange = _.filter($scope.observation.referenceRange, function (range) {
-							var genderConditioned = _.findWhere(range.modifierExtension, {url: "http://hl7.org/fhir/ValueSet/administrative-gender"});
-							var appliesGenderWise = !genderConditioned || genderConditioned.valueCode === $scope.patientGender;
-							var appliesAgeWise = !range.age || !$scope.patientAgeInYears || withinRange(range.age, $scope.patientAgeInYears);
-
-							return appliesGenderWise && appliesAgeWise;
-						});
+						$scope.observation.referenceRange = LabObservationController.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
 					}
 				}
 			});
 
-		},
-		link: function($scope) {
-			$scope.canShowRangeGraph = $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high);
+			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
+			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
 		}
 	};
 };

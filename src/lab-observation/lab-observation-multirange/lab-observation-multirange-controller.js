@@ -27,6 +27,7 @@ module.exports = function($scope, $filter) {
 		DANGER: 'range-danger'
 	};
 
+	/*jshint sub:true*/
 	function mapScaleToClasses(codeScale) {
 
 		var result = { };
@@ -125,7 +126,7 @@ module.exports = function($scope, $filter) {
 	}
 
 	function transformRangesForGraphDisplay(ranges) {
-		var codeScale = _.map(ranges, function(range) { return range.meaning.coding[0].code });
+		var codeScale = _.map(ranges, function(range) { return range.meaning.coding[0].code; });
 
 		var codeToClassMap = mapScaleToClasses(codeScale);
 
@@ -135,7 +136,7 @@ module.exports = function($scope, $filter) {
 				high: r.high ? r.high.value : undefined,
 				label: $filter('translate')($filter('referenceRangeMeaning')(r.meaning)),
 				class: codeToClassMap[r.meaning.coding[0].code] || 'range-catch-all'
-			}
+			};
 		});
 	}
 
