@@ -18,7 +18,7 @@ If you need to run this tasks individually, all steps are available as individua
 `npm run clean`, `npm run watch` (or `npm run build` sans watch), `npm run run-express`
 
 ### API Documentation
-Run `npm run build`, then `grunt ngdocs`, then `npm run start`. Go to [http://localhost:4000/docs](http://localhost:4000/docs).  
+Run `npm run build`, then `npm run docs`, then `npm run start`. Go to [http://localhost:4000/docs](http://localhost:4000/docs).  
 
 ### Publishing to NPM
 :warning: *Make sure your NPM registry is set to Antena's (you can run `npm config get registry` to check).*
