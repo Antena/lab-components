@@ -21,19 +21,19 @@
 	<div ng-if="vm.observations.length" class="lab-diagnostic-report-observations split-content">
 
 		<div class="primary-content" id="observations-container">
-			<div class="observation-groups" ng-repeat="(group, observationsPerGroup) in vm.groupedObservations">
+			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations">
 
-				<h2 id="{{ group }}" class="observation-group-title">{{ getOrderItemDisplay(group) | capitalize:true }}</h2>
+				<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }} <span class="unhealthy">[{{ firstLevelObservation.code.coding[0].code }}]</span></h2>
 
 				<div class="observation-gallery">
-					<lab-observation ng-repeat="observation in observationsPerGroup" id="{{ observation.id }}"
+					<lab-observation ng-repeat="observation in getObservationList(firstLevelObservation)" id="{{ observation.id }}"
 									 observation="observation"
 									 actions="observation.actions"
 									 header-actions="observation.headerActions"
 									 view-only="vm.viewOnly"
 									 compact-mode="vm.compactMode"
 									 multi-range-mode="vm.displayObservationsWithMultipleRanges"
-									 hide-title="vm.deDupeTopLevelObservations && isTopLevel(group, observationsPerGroup)"
+									 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
 									 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
 									 patient-gender="vm.patientGender">
 						<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
@@ -45,12 +45,12 @@
 
 		<div class="secondary-content">
 			<div class="lab-tree">
-				<ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()">
-					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title">
-						<a href="#{{ group }}" du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) | capitalize:true }}</a>
+				<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
+					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
+						<a href="#{{ firstLevelObservation.id }}" du-smooth-scroll du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
-						<div ng-if="!isTopLevel(group, observationsPerGroup)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(group, observationsPerGroup) }">
-							<a href="#{{ observation.id }}" ng-repeat="observation in observationsPerGroup" du-smooth-scroll du-scrollspy offset="100">
+						<div ng-if="!isTopLevel(firstLevelObservation)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(firstLevelObservation) }">
+							<a href="#{{ observation.id }}" ng-repeat="observation in getObservationList(firstLevelObservation)" du-smooth-scroll du-scrollspy offset="100">
 								<span >{{ observation.code | codeableConcept | capitalize:true }}</span>
 							</a>
 						</div>
