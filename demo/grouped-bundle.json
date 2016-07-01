@@ -1,8 +1,8 @@
 {
   "resourceType": "Bundle",
-  "id": "53888d78-1fb3-42c7-bc97-d6d3ff3804a1",
+  "id": "49071f38-ea05-4f12-ac15-9cd4e5ab118b",
   "meta": {
-    "lastUpdated": "2016-07-01T19:00:47.931+00:00"
+    "lastUpdated": "2016-07-01T19:25:28.218+00:00"
   },
   "type": "searchset",
   "base": "http://54.186.33.58:8080/fhir-server/base",
@@ -550,9 +550,6 @@
         ],
         "diagnosticDateTime": "2016-06-30T17:15:00",
         "result": [
-          {
-            "reference": "Observation/7170"
-          },
           {
             "reference": "Observation/I4",
             "display": "HEMOGRAMA COMPLETO."
@@ -7255,25 +7252,7 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7170"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7171"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7172"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7173"
+              "reference": "Observation/7176"
             }
           },
           {
@@ -7291,25 +7270,31 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7176"
+              "reference": "Observation/7173"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7165"
+              "reference": "Observation/7171"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7166"
+              "reference": "Observation/7172"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7167"
+              "reference": "Observation/7170"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7169"
             }
           },
           {
@@ -7321,7 +7306,19 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7169"
+              "reference": "Observation/7167"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7166"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7165"
             }
           }
         ]
