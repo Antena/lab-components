@@ -5,18 +5,12 @@ var lodash = require('lodash');
 var fhirBundle = require('./grouped-bundle.json');
 var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
-// var groupedBundle = require('./grouped-bundle.json');
 
 // @ngInject
 module.exports = function($scope, LabObservationService, FhirBundleService) {
 
-
-	// var resolvedGroupBundle = FhirBundleService.resolveOrderAndReportReferences(groupedBundle);
-	// console.log("resolvedGroupBundle = ", resolvedGroupBundle);	//TODO (denise) remove log
-
 	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
 	var anotherResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(anotherFhirBundle);
-
 
 	var observations = _.map(resolvedBundle.observations, function(observation) {
 		var result = lodash.cloneDeep(observation);
