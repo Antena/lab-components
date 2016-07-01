@@ -31,38 +31,6 @@ module.exports = function($scope) {
 
 	/**
 	 * @ngdoc function
-	 * @name getOrderItemDisplay
-	 * @methodOf lab-components.lab-diagnostic-report.controller:LabDiagnosticReportController
-	 * @description
-	 *
-	 * //TODO (denise) add description
-	 *
-	 * @param {Object} orderItemCode The code (identifier) of a diagnostic order item (`item.code.extension[0].valueIdentifier.value`). See https://www.hl7.org/fhir/2015MAY/diagnosticorder.html.
-	 *
-	 * @returns {String} A string representation for an order item which matches the given code.
-	 *
-	 */
-	$scope.getOrderItemDisplay = function(orderItemCode) {
-		var result = "";
-
-		var item = _.find($scope.vm.diagnosticOrder.item, function(item) {
-			return item.code.extension[0].valueIdentifier.value === orderItemCode;
-		});
-
-		if (item) {
-			result = item.code.coding[0].display;
-		} else {
-			var observation = _.findWhere($scope.vm.observations, {id: orderItemCode});
-			if (observation) {
-				result = observation.code.coding[0].display;
-			}
-		}
-
-		return result;
-	};
-
-	/**
-	 * @ngdoc function
 	 * @name isTopLevel
 	 * @methodOf lab-components.lab-diagnostic-report.controller:LabDiagnosticReportController
 	 * @description
@@ -76,8 +44,8 @@ module.exports = function($scope) {
 	 * @returns {Boolean} `true` if the group contains only one observation.
 	 *
 	 */
-	$scope.isTopLevel = function(orderItemCode, observationsPerOrderItem) {
-		return observationsPerOrderItem.length === 1;
+	$scope.isTopLevel = function(observation) {
+		return !observation.related || observation.related.length === 1;
 	};
 
 	//TODO (denise) check if still used here
@@ -102,5 +70,27 @@ module.exports = function($scope) {
 	//TODO (denise) de-dupe (lab-observation-range-controller.js)
 	$scope.valueStringMatchesReference = function(observation) {
 		return observation.valueString === observation.referenceRange[0].text || observation.referenceRange[0].text === '.' || _.isUndefined(observation.referenceRange[0].text);
+	};
+
+	// Helper function to avoid complex ng-if in the template (uses the same code to show 1 or N Observations)
+	$scope.getObservationList = function(observation) {
+		return observation.related ? observation.related : [observation];
+	};
+
+	/**
+	 * @ngdoc function
+	 * @name getObservationDisplay
+	 * @methodOf lab-components.lab-diagnostic-report.controller:LabDiagnosticReportController
+	 * @description
+	 *
+	 * Returns an Observation display. The display property structure varies depending on if the observation has members (it's a group) or not. 
+	 *
+	 * @param {Object} observation The FHIR observation to extract the display from.
+	 *
+	 * @returns {String} The observation display.
+	 *
+	 */
+	$scope.getObservationDisplay = function(observation) {
+		return observation.display ? observation.display : observation.code.coding[0].display;
 	};
 };
