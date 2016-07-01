@@ -1,8 +1,8 @@
 {
   "resourceType": "Bundle",
-  "id": "49071f38-ea05-4f12-ac15-9cd4e5ab118b",
+  "id": "a1629516-576a-4eef-8db7-265655060c39",
   "meta": {
-    "lastUpdated": "2016-07-01T19:25:28.218+00:00"
+    "lastUpdated": "2016-07-01T21:28:11.449+00:00"
   },
   "type": "searchset",
   "base": "http://54.186.33.58:8080/fhir-server/base",
@@ -357,7 +357,7 @@
                 {
                   "system": "http://www.cdrossi.com/prestaciones",
                   "code": "P.2015",
-                  "display": "COLESTEROL LDL."
+                  "display": "COLESTEROL LDL"
                 }
               ]
             }
@@ -397,7 +397,7 @@
                 {
                   "system": "http://www.cdrossi.com/prestaciones",
                   "code": "P.192",
-                  "display": "CREATININEMIA"
+                  "display": "INDICE DE FILTRADO GLOMERULAR ESTIMADO"
                 }
               ]
             }
@@ -417,7 +417,7 @@
                 {
                   "system": "http://www.cdrossi.com/prestaciones",
                   "code": "P.2014",
-                  "display": "COLESTEROL HDL ."
+                  "display": "COLESTEROL HDL"
                 }
               ]
             }
@@ -457,7 +457,7 @@
                 {
                   "system": "http://www.cdrossi.com/prestaciones",
                   "code": "P.481",
-                  "display": "HEPATOGRAMA COMPLETO (planta)"
+                  "display": "HEPATOGRAMA COMPLETO"
                 }
               ]
             }
@@ -497,7 +497,7 @@
                 {
                   "system": "http://www.cdrossi.com/prestaciones",
                   "code": "P.475",
-                  "display": "HEMOGRAMA COMPLETO."
+                  "display": "HEMOGRAMA COMPLETO"
                 }
               ]
             }
@@ -552,7 +552,7 @@
         "result": [
           {
             "reference": "Observation/I4",
-            "display": "HEMOGRAMA COMPLETO."
+            "display": "HEMOGRAMA COMPLETO"
           },
           {
             "reference": "Observation/I14",
@@ -568,7 +568,7 @@
           },
           {
             "reference": "Observation/I1",
-            "display": "CREATININEMIA"
+            "display": "INDICE DE FILTRADO GLOMERULAR ESTIMADO"
           },
           {
             "reference": "Observation/I8",
@@ -580,11 +580,11 @@
           },
           {
             "reference": "Observation/I2",
-            "display": "COLESTEROL HDL ."
+            "display": "COLESTEROL HDL"
           },
           {
             "reference": "Observation/I7",
-            "display": "COLESTEROL LDL."
+            "display": "COLESTEROL LDL"
           },
           {
             "reference": "Observation/I11",
@@ -592,7 +592,7 @@
           },
           {
             "reference": "Observation/I3",
-            "display": "HEPATOGRAMA COMPLETO (planta)"
+            "display": "HEPATOGRAMA COMPLETO"
           },
           {
             "reference": "Observation/I6",
@@ -1242,7 +1242,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.71111",
-              "display": "Glucosuria"
+              "display": "Glucosa"
             }
           ]
         },
@@ -1382,7 +1382,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.71107",
-              "display": "Proteinuria"
+              "display": "Proteinas"
             }
           ]
         },
@@ -1655,7 +1655,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "NOHDL",
-              "display": "COLESTEROL NO HDL"
+              "display": "NO-HDL Colesterol"
             }
           ]
         },
@@ -1910,7 +1910,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.47574",
-              "display": "RDW (ADE)"
+              "display": "Dispersión de la Curva de Distrib. Erit."
             }
           ]
         },
@@ -2015,7 +2015,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.47561",
-              "display": "HCM"
+              "display": "Hemoglobina Corpuscular Media"
             }
           ]
         },
@@ -2120,7 +2120,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.47560",
-              "display": "CHCM"
+              "display": "Concentración Hemoglobina Corpuscular Media"
             }
           ]
         },
@@ -2225,7 +2225,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.47559",
-              "display": "VCM"
+              "display": "Volumen Corpuscular Medio"
             }
           ]
         },
@@ -3065,7 +3065,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.47547",
-              "display": "Recuento de leucocitos"
+              "display": "Recuento de Globulos Blancos"
             }
           ]
         },
@@ -4095,7 +4095,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.20143",
-              "display": "Indice de Castelli (Col.Total/Col.HDL)"
+              "display": "Indice De Castelli (Col. Total/Col. HDL)"
             }
           ]
         },
@@ -5463,7 +5463,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.874",
-              "display": "ALT (GPT)"
+              "display": "GTP (ALAT)"
             }
           ]
         },
@@ -5568,7 +5568,7 @@
             {
               "system": "http://www.cdrossi.com/tests",
               "code": "P.873",
-              "display": "GOT (AST)"
+              "display": "GOT (ASAT)"
             }
           ]
         },
@@ -6360,7 +6360,8 @@
               ]
             }
           }
-        ]
+        ],
+        "related": []
       }
     },
     {
@@ -6992,67 +6993,13 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7140"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
               "reference": "Observation/7141"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7128"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7133"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7138"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7125"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7135"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7124"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7136"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7130"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7129"
+              "reference": "Observation/7140"
             }
           },
           {
@@ -7064,7 +7011,55 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7126"
+              "reference": "Observation/7139"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7129"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7138"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7130"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7125"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7136"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7124"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7135"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7133"
             }
           },
           {
@@ -7076,19 +7071,25 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7131"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
               "reference": "Observation/7132"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7139"
+              "reference": "Observation/7131"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7126"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7128"
             }
           }
         ]
@@ -7103,7 +7104,7 @@
             {
               "system": "http://www.cdrossi.com/prestaciones",
               "code": "P.192",
-              "display": "CREATININEMIA"
+              "display": "INDICE DE FILTRADO GLOMERULAR ESTIMADO"
             }
           ]
         },
@@ -7111,13 +7112,13 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7148"
+              "reference": "Observation/7149"
             }
           },
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7149"
+              "reference": "Observation/7148"
             }
           }
         ]
@@ -7132,7 +7133,7 @@
             {
               "system": "http://www.cdrossi.com/prestaciones",
               "code": "P.2014",
-              "display": "COLESTEROL HDL ."
+              "display": "COLESTEROL HDL"
             }
           ]
         },
@@ -7140,7 +7141,7 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7150"
+              "reference": "Observation/7153"
             }
           },
           {
@@ -7152,7 +7153,7 @@
           {
             "type": "has-member",
             "target": {
-              "reference": "Observation/7153"
+              "reference": "Observation/7150"
             }
           },
           {
@@ -7173,47 +7174,11 @@
             {
               "system": "http://www.cdrossi.com/prestaciones",
               "code": "P.481",
-              "display": "HEPATOGRAMA COMPLETO (planta)"
+              "display": "HEPATOGRAMA COMPLETO"
             }
           ]
         },
         "related": [
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7158"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7155"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7159"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7160"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7157"
-            }
-          },
-          {
-            "type": "has-member",
-            "target": {
-              "reference": "Observation/7156"
-            }
-          },
           {
             "type": "has-member",
             "target": {
@@ -7231,6 +7196,42 @@
             "target": {
               "reference": "Observation/7161"
             }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7160"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7159"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7158"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7157"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7156"
+            }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "reference": "Observation/7155"
+            }
           }
         ]
       }
@@ -7244,7 +7245,7 @@
             {
               "system": "http://www.cdrossi.com/prestaciones",
               "code": "P.475",
-              "display": "HEMOGRAMA COMPLETO."
+              "display": "HEMOGRAMA COMPLETO"
             }
           ]
         },
@@ -7379,7 +7380,7 @@
             {
               "system": "http://www.cdrossi.com/prestaciones",
               "code": "P.2015",
-              "display": "COLESTEROL LDL."
+              "display": "COLESTEROL LDL"
             }
           ]
         },
