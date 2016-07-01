@@ -1,0 +1,17 @@
+$range-meter-background-color: #222;
+$range-meter-text-color: #EAEAEA;
+
+
+.meter {
+	fill: $range-meter-background-color;
+
+	.meter-label-container {
+		background-color: $range-meter-background-color;
+		border-radius: 2px;
+		padding: 1px 5px 3px 5px;
+	}
+
+	.meter-label {
+		color: $range-meter-text-color;
+	}
+}

@@ -1,0 +1,33 @@
+//@import "../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";	//TODO (denise) import only what we will use
+
+//// BASE
+//@import "base/normalize";
+//@import "base/fonts";
+//
+////HELPERS
+//@import "helpers/variables";
+//@import "helpers/mixins";
+//
+////COMPONENTS
+//
+////LAYOUTS
+//@import "layouts/header";
+//@import "layouts/section";
+//
+////PAGES
+//@import "pages/landing";
+
+
+// Core variables and mixins
+@import "variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+
+// Reset and dependencies
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+
+
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/navs";
+
+//TODO (denise)
+@import "temp";
+

@@ -1,5 +1,7 @@
 var path = require('path'),
-	webpack = require("webpack");
+	webpack = require("webpack"),
+	ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 var config = {
 	context: __dirname,
@@ -8,7 +10,7 @@ var config = {
 	},
 	output: {
 		path: "dist",
-		filename: "[name].js"
+		filename: "main.js"
 	},
 	module: {
 		preLoaders: [
@@ -22,6 +24,13 @@ var config = {
 			{
 				test: /\.html$/,
 				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './src/')) + '/!html'
+			},
+			{
+				test: /\.scss$/,
+				loader: ExtractTextPlugin.extract(
+					'style', // backup loader when not building .css file
+					'css!sass' // loaders to preprocess CSS
+				)
 			}
 		]
 	},
@@ -44,7 +53,8 @@ var config = {
 			jQuery: "jquery",
 			"window.jQuery": "jquery",
 			_: "underscore"
-		})
+		}),
+		new ExtractTextPlugin('main.css')
 	]
 };
 

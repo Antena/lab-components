@@ -93,6 +93,9 @@
  </example>
  */
 
+
+require("./_lab-observation-multirange.scss");
+
 // @ngInject
 module.exports = function() {
 

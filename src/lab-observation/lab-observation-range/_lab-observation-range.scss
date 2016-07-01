@@ -1,0 +1,10 @@
+@import "../../colors";
+
+
+.healthy {
+	color: map-get($interpretation-colors, danger);
+}
+
+.unhealthy {
+	color: map-get($interpretation-colors, great);
+}

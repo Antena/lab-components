@@ -149,6 +149,8 @@
  </example>
  */
 
+require("./_lab-observation.scss");
+
 // @ngInject
 module.exports = function() {
 

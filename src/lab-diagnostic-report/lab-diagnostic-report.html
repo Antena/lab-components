@@ -45,8 +45,8 @@
 
 		<div class="secondary-content">
 			<div class="lab-tree">
-				<ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()">
-					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title">
+				<ul ng-repeat="(group, observationsPerGroup) in vm.groupedObservations" ng-init="initLabTree()" class="lab-tree-group">
+					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
 						<a href="#{{ group }}" du-smooth-scroll du-scrollspy offset="100">{{ getOrderItemDisplay(group) | capitalize:true }}</a>
 
 						<div ng-if="!isTopLevel(group, observationsPerGroup)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(group, observationsPerGroup) }">

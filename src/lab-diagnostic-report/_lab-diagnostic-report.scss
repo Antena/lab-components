@@ -1,0 +1,13 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+
+@import "lab-tree";
+
+.observation-groups {
+	margin-bottom: 20px;
+	display: table;
+	width: 100%;
+
+	.observation-group-title {
+		margin: 5px 0 15px !important;
+	}
+}

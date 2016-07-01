@@ -1,0 +1,118 @@
+.content-aligned {
+	display: inline-block;
+	vertical-align: bottom;
+	width: 100%
+}
+
+@media (min-width: 992px) {
+	.content-aligned {
+		display: table-cell;
+		vertical-align: middle
+	}
+}
+.item-value-help {
+	font-size: 12px;
+	line-height: 13px;
+	color: #bcbcbc;
+	font-weight: normal;
+}
+
+.lab-diagnostic-report-info {
+	width: 70%;
+	margin-bottom: 20px;
+}
+
+.details-item-list-aligned .details-item .item-value {
+	text-align: right;
+}
+
+.lab-diagnostic-report-info .details-item-list {
+	display: table-cell;
+	word-break: break-all;
+	width: 50%;
+	padding-right: 20px;
+}
+
+.observation-gallery-item .healthy {
+	color: #5BB403;
+}
+
+.observation-gallery-item .unhealthy {
+	color: #CC0001;
+}
+
+.observation-gallery-item .unknown {
+	color: black;
+}
+
+
+.obsevation-html iframe {
+	float:left; height:100%; width:100%; min-height: 300px;
+}
+
+.meaning-indicator-healthy {
+	border-left: 8px solid rgba(91, 180, 3, 0.7);
+}
+.meaning-indicator-unhealthy {
+	border-left: 8px solid rgba(204, 0, 1, 0.7);
+}
+.meaning-indicator-almost-healthy {
+	border-left: 8px solid rgba(221, 193, 0, 0.7);
+}
+.meaning-indicator-unknown {
+	border-left: 8px solid rgba(179, 179, 179, 0.7);
+}
+
+
+
+
+.split-content {
+	display: table;
+	text-align: left;
+	width: 100%
+}
+
+.split-content .primary-content,
+.split-content .secondary-content {
+	width: 100%;
+	display: table-cell;
+}
+
+@media (min-width: 768px) {
+	.split-content .primary-content {
+		width: 75%;
+	}
+}
+
+@media (min-width: 768px) {
+	.split-content .secondary-content {
+		width: 25%;
+	}
+}
+
+
+.has-error label,
+.has-error input,
+.has-error select {
+	border-color: #e8634d !important
+}
+
+
+
+.details-item-list .item-name {
+	width: 30%;
+}
+
+.details-item-list .item-value {
+	width: 70%;
+	padding-left: 4px;
+}
+
+.compact-observation.observation-gallery-item {
+	padding: 10px;
+}
+
+
+.reference-range {
+	text-align: left;
+}

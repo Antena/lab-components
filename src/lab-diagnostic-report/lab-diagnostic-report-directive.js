@@ -39,6 +39,8 @@
 var _ = require('underscore');
 var $ = require('jquery');
 
+require("./_lab-diagnostic-report.scss");
+
 // @ngInject
 module.exports = function($rootScope, $document) {
 

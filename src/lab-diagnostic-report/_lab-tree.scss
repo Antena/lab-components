@@ -1,0 +1,88 @@
+$tree-node-selection-color: #333333;
+$nav-height: 20px;
+
+
+
+.fix-tree .lab-tree {
+	position: fixed;
+	margin-top: 10px;
+	top: $nav-height;
+}
+
+.lab-tree {
+	padding-left: 20px;
+	position: absolute;
+	display: block;
+
+	//display: none;
+	//
+	//@include susy-breakpoint($screen-tablet) {
+	//	display: block;
+	//}
+
+	.lab-tree-node {
+		padding: 4px 0;
+	}
+
+	.lab-tree-observation-group-title {
+		font-size: 14px;
+	}
+
+	.lab-tree-observation-observation-title {
+		font-size: 12px;
+	}
+
+
+	.lab-tree-top-level:not(.parent-active) {
+		.lab-tree-observation-observation-title.top-level-content {
+			padding: 0;
+		}
+	}
+
+	.lab-tree-node {
+
+		&.lab-tree-top-level {
+
+			> a {
+				display: block;
+			}
+
+			a.active,
+			&.parent-active a {
+				display: block;
+			}
+		}
+
+		.lab-tree-node:not(.lab-tree-top-level) {
+			a {
+				padding-left: 30px;
+			}
+		}
+
+		a {
+			display: none;
+			text-decoration: none;
+
+			padding-left: 20px;
+
+			color: $tree-node-selection-color;
+			border-left: 2px solid transparent;
+
+			&.active,
+			&:hover,
+			&:focus {
+				font-weight: bold;
+				background-color: transparent;
+				border-left-color: $tree-node-selection-color;
+			}
+		}
+	}
+}
+
+.lab-tree-group,
+.lab-tree-group-item {
+	margin-left: 0;
+	padding-left: 0;
+	list-style: none;
+	margin-bottom: 0;
+}
