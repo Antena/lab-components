@@ -23,7 +23,7 @@
 		<div class="primary-content" id="observations-container">
 			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations">
 
-				<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }} <span class="unhealthy">[{{ firstLevelObservation.code.coding[0].code }}]</span></h2>
+				<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }}</span></h2>
 
 				<div class="observation-gallery">
 					<lab-observation ng-repeat="observation in getObservationList(firstLevelObservation)" id="{{ observation.id }}"
