@@ -61,6 +61,26 @@ module.exports = function() {
 		return resolveFromOrder(order, fhirBundleResources);
 	}
 
+	function resolveRelatedObservations(realObs, fhirBundleResources) {
+		if (realObs.related) {
+			realObs.related = _.map(realObs.related, function (relatedObs) {
+				var resolved;
+
+				if (relatedObs.target) {
+					resolved = _.findWhere(fhirBundleResources, {
+						resourceType: "Observation",
+						id: getReferencedId(relatedObs.target.reference)
+					});
+					resolveRelatedObservations(resolved, fhirBundleResources);
+				} else {
+					resolved = relatedObs;
+				}
+
+				return resolved;
+			});
+		}
+	}
+
 	return {
 
 		/**
@@ -125,7 +145,9 @@ module.exports = function() {
 				return resolveOrder(fhirBundleResources, getReferencedId(requestDetail.reference));
 			});
 			report.result = _.map(report.result, function(observation) {
-				return _.findWhere(fhirBundleResources, {resourceType: "Observation", id: getReferencedId(observation.reference)});
+				var realObs = _.findWhere(fhirBundleResources, {resourceType: "Observation", id: getReferencedId(observation.reference)});
+				resolveRelatedObservations(realObs, fhirBundleResources);
+				return realObs;
 			});
 
 			return {
