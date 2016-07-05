@@ -1,0 +1,52 @@
+@import "variables";
+
+.split-content {
+	display: table;
+	text-align: left;
+	width: 100%
+}
+
+.split-content .primary-content,
+.split-content .secondary-content {
+	width: 100%;
+	display: table-cell;
+}
+
+@media (min-width: $screen-tablet) {
+	.split-content .primary-content {
+		width: 75%;
+	}
+}
+
+@media (min-width: $screen-tablet) {
+	.split-content .secondary-content {
+		width: 25%;
+	}
+}
+
+
+//TODO (denise) double-check this aren't used anymore
+
+//.has-error label,
+//.has-error input,
+//.has-error select {
+//	border-color: #e8634d !important
+//}
+
+//.content-aligned {
+//	display: inline-block;
+//	vertical-align: bottom;
+//	width: 100%
+//}
+//
+//@media (min-width: 992px) {
+//	.content-aligned {
+//		display: table-cell;
+//		vertical-align: middle
+//	}
+//}
+
+
+//.details-item-list-aligned .details-item .item-value {
+//	text-align: right;
+//}

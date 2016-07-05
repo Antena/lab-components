@@ -1,7 +1,6 @@
 @import "../../colors";
 @import "../../variables";
 
-
 $range-color-great: map-get($interpretation-colors, great);
 $range-color-good: map-get($interpretation-colors, good);
 $range-color-so-so: map-get($interpretation-colors, so-so);
@@ -9,12 +8,8 @@ $range-color-bad: map-get($interpretation-colors, bad);
 $range-color-danger: map-get($interpretation-colors, danger);
 $range-color-unknown: map-get($interpretation-colors, unknown);
 
-
-
 $range-meter-background-color: black;
 $range-meter-text-color: white;
-
-
 
 .value-within-range-graph {
 
@@ -71,15 +66,15 @@ $range-meter-text-color: white;
 
 
 	.low-range-line {
-		stroke: black;
+		stroke: #717171;
 	}
 
 	.inside-range-line {
-		stroke: #41c3ff;
+		stroke: #00c01e;
 	}
 
 	.high-range-line {
-		stroke: red;
+		stroke: #717171;
 	}
 }
 

@@ -35,6 +35,10 @@
 		}
 	}
 
+	.compact-observation & {
+		padding: 10px;
+	}
+
 	.observation-content {
 		display: table;
 		width: 100%;
@@ -196,6 +200,17 @@
 
 	.observation-details {
 		text-align: left;
+
+		.details-item-list {
+			.item-name {
+				width: 30%;
+			}
+
+			.item-value {
+				width: 70%;
+				padding-left: 4px;
+			}
+		}
 
 		.observation-extended-content & {
 			.details-item-list {
