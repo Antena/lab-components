@@ -76,19 +76,6 @@
 	width: 200px;
 }
 
-.split-content {
-	margin-top: 20px;
-}
-
-.split-content .secondary-content.demo-navigation {
-	width: 15%;
-}
-
-.split-content .primary-content.demo-content {
-	width: 85%;
-	padding-top: 0;
-}
-
 .indent {
 	padding-left: 20px;
 }

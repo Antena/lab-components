@@ -153,6 +153,7 @@
  </example>
  */
 
+require("./_value-within-range.scss");
 
 // @ngInject
 module.exports = function() {

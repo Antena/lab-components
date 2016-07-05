@@ -263,7 +263,8 @@ module.exports = function() {
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
-					.attr('height', options.height);
+					.attr('height', options.height)
+					.classed('value-within-multiple-ranges-graph', true);
 
 				// Pre-process ranges
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;

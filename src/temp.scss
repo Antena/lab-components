@@ -33,35 +33,9 @@
 	padding-right: 20px;
 }
 
-.observation-gallery-item .healthy {
-	color: #5BB403;
-}
-
-.observation-gallery-item .unhealthy {
-	color: #CC0001;
-}
-
-.observation-gallery-item .unknown {
-	color: black;
-}
 
 
-.obsevation-html iframe {
-	float:left; height:100%; width:100%; min-height: 300px;
-}
 
-.meaning-indicator-healthy {
-	border-left: 8px solid rgba(91, 180, 3, 0.7);
-}
-.meaning-indicator-unhealthy {
-	border-left: 8px solid rgba(204, 0, 1, 0.7);
-}
-.meaning-indicator-almost-healthy {
-	border-left: 8px solid rgba(221, 193, 0, 0.7);
-}
-.meaning-indicator-unknown {
-	border-left: 8px solid rgba(179, 179, 179, 0.7);
-}
 
 
 
@@ -110,9 +84,4 @@
 
 .compact-observation.observation-gallery-item {
 	padding: 10px;
-}
-
-
-.reference-range {
-	text-align: left;
 }

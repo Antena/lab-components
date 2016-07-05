@@ -192,34 +192,6 @@
 			padding: 0;
 			line-height: 1;
 		}
-
-		.reference-range {
-			padding: 4px 0;
-
-			.reference {
-				font-size: 12px;
-				vertical-align: text-top;
-			}
-
-			.reference-type {
-				text-align: left;
-				color: #CCC;
-			}
-
-			.value {
-				text-align: right;
-			}
-		}
-
-		.main-value {
-			font-size: 36px !important;
-			line-height: 36px;
-		}
-
-		.unit {
-			margin-top: 0;
-			font-size: 12px;
-		}
 	}
 
 	.observation-details {
@@ -291,3 +263,26 @@
 .observation-group-title {
 	font-size: 22px;
 }
+
+
+.meaning-indicator-healthy {
+	border-left: 8px solid rgba(91, 180, 3, 0.7);
+}
+.meaning-indicator-unhealthy {
+	border-left: 8px solid rgba(204, 0, 1, 0.7);
+}
+.meaning-indicator-almost-healthy {
+	border-left: 8px solid rgba(221, 193, 0, 0.7);
+}
+.meaning-indicator-unknown {
+	border-left: 8px solid rgba(179, 179, 179, 0.7);
+}
+
+
+.obsevation-html iframe {
+	float:left;
+	height:100%;
+	width:100%;
+	min-height: 300px;
+}
+

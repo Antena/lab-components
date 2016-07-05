@@ -10,10 +10,14 @@ $range-color-danger: map-get($interpretation-colors, danger);
 $range-color-unknown: map-get($interpretation-colors, unknown);
 
 
+
 $range-meter-background-color: black;
 $range-meter-text-color: white;
 
-.value-within-multiple-ranges-graph {
+
+
+.value-within-range-graph {
+
 	.range-great {
 		stroke: $range-color-great;
 		fill: $range-color-great;
@@ -64,30 +68,50 @@ $range-meter-text-color: white;
 		}
 	}
 
-	.range-label {
-		height: 100%;
-		width: 100%;
-		text-transform: uppercase;
-		font-size: 11px;
-		font-weight: 900;
-		line-height: 1.1em;
-		display: inline-block;
-		text-align: left;
+
+
+	.low-range-line {
+		stroke: black;
 	}
 
-	.meter {
-		fill: $range-meter-background-color;
+	.inside-range-line {
+		stroke: #41c3ff;
+	}
+
+	.high-range-line {
+		stroke: red;
+	}
+}
+
+
+.value-within-range-card {
+	.reference-range {
+		padding: 4px 0;
 		text-align: left;
 
-		.meter-label-container {
-			display: inline-block;
-			background-color: $range-meter-background-color;
+		.reference {
+			font-size: 12px;
+			vertical-align: text-top;
 		}
 
-		.meter-label {
-			font-size: $font-size-small;
-			color: $range-meter-text-color;
-			padding: 4px;
+		.reference-type {
+			text-align: left;
+			color: #CCC;
+		}
+
+		.value {
+			text-align: right;
 		}
 	}
+
+	.main-value {
+		font-size: 36px !important;
+		line-height: 36px;
+	}
+
+	.unit {
+		margin-top: 0;
+		font-size: 12px;
+	}
+
 }
