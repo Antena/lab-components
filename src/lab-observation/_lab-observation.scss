@@ -1,0 +1,303 @@
+@import "../colors";
+@import "../variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/labels";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
+@import "~susy/sass/susy";
+
+
+.observation-gallery-item {
+	position: relative;
+	margin-bottom: 12px;
+	padding: 20px;
+	background: map-get($read-text-color, lighter);
+	overflow: hidden;
+	@include clearfix;
+	border-radius: 4px;
+
+	h3 {
+		margin-top: 0;
+		margin-bottom: 115px;
+
+		@include susy-breakpoint($screen-tablet) {
+			margin-bottom: 25px ;
+		}
+	}
+
+	button {
+		padding: 10px;
+		margin-bottom: 0;
+		font-size: $font-size-small;
+
+		&:focus {
+			border: none;
+			padding: 10px;
+		}
+	}
+
+	.compact-observation & {
+		padding: 10px;
+	}
+
+	.observation-content {
+		display: table;
+		width: 100%;
+		margin-top: 10px;
+	}
+
+	.observation-column {
+		display: block;
+		text-align: center;
+		vertical-align: middle;
+
+		@include susy-breakpoint($screen-tablet) {
+			display: table-cell;
+		}
+	}
+
+	.observation-primary-content {
+		width: 100%;
+
+		@include susy-breakpoint($screen-tablet) {
+			width: 30%;
+
+			.compact-observation & {
+				width: 45%;
+			}
+
+			.multi-range-mode & {
+				width: 70%;
+			}
+
+			.observation-extended-content & {
+				width: 35%;
+			}
+		}
+
+		.observation-primary-content-header {
+			display: table;
+			text-align: left;
+			width: 100%;
+
+			.observation-primary-content-header-text,
+			.observation-primary-content-header-actions {
+				display: table-cell;
+			}
+
+			.observation-primary-content-header-text {
+				font-size: 18px;
+				line-height: 1;
+			}
+
+			.observation-primary-content-header-action {
+				font-size: 12px;
+				font-weight: bold;
+				color: map-get($actions, contextual);
+				cursor: pointer;
+				text-decoration: none;
+
+				.icon {
+					border: 1px solid;
+					border-color: map-get($actions, contextual);
+					padding: 3px;
+					border-radius: 15px;
+					text-align: center;
+					width: 19px;
+				}
+
+				&.hovered {
+					color: map-get($actions, contextual-hovered);
+				}
+
+				&.active {
+					color: map-get($actions, add);
+
+					.icon {
+						border-color: map-get($actions, add);
+					}
+
+					&.hovered {
+						color: map-get($actions, remove);
+
+						.icon {
+							border-color: map-get($actions, remove);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.observation-secondary-content {
+		width: 100%;
+
+		@include susy-breakpoint($screen-tablet) {
+			width: 30%;
+
+			.compact-observation & {
+				width: 25%;
+				padding-right: 10px;
+			}
+
+			.compact-observation .observation-incomplete-content & {
+				width: 70%;
+			}
+
+			.observation-extended-content & {
+				width: 20%;
+			}
+		}
+	}
+
+	.observation-tertiary-content {
+		width: 100%;
+
+		@include susy-breakpoint($screen-tablet) {
+			width: 40%;
+			padding-left: 20px;
+
+			.compact-observation & {
+				width: 28%;
+				padding-left: 10px;
+			}
+
+			.observation-extended-content & {
+				width: 30%;
+			}
+		}
+	}
+
+	.observation-generic-content {
+		width: 100%;
+
+		@include susy-breakpoint($screen-tablet) {
+			width: 14%;
+
+			.compact-observation & {
+
+			}
+
+			.observation-extended-content & {
+				width: 15%;
+			}
+		}
+	}
+
+	.observation-generic-content {
+		padding: 10px 0;
+
+		button {
+			margin: 0;
+		}
+	}
+
+	.observation-values {
+		p {
+			padding: 0;
+			line-height: 1;
+		}
+	}
+
+	.observation-details {
+		text-align: left;
+
+		.details-item-list {
+			.item-name {
+				width: 30%;
+			}
+
+			.item-value {
+				width: 70%;
+				padding-left: 4px;
+			}
+		}
+
+		.observation-extended-content & {
+			.details-item-list {
+				.item-name {
+					width: 40%;
+				}
+
+				.item-value {
+					width: 60%;
+				}
+			}
+		}
+
+		.details-item-list {
+			.item-name {
+				font-weight: bold;
+			}
+
+			.item-name,
+			.item-value {
+				width: 50%;
+				display: table-cell;
+				word-break: break-all;
+			}
+
+			.details-item {
+				width: 100%;
+				display: table;
+				margin: 2px 0;
+				font-size: $font-size-small;
+				line-height: ($font-size-small)+0.2;
+				color: #bcbcbc;
+				//@include Source-Sans-Pro-Regular;	//TODO (denise)
+			}
+		}
+	}
+
+	.observation-result {
+		font-size: 1em;
+
+		.observation-result-meaning {
+			margin-left: 20px;
+			display: none;
+
+			li {
+				margin: 8px 0;
+			}
+
+			@include susy-breakpoint($screen-tablet) {
+				display: block;
+			}
+		}
+
+		.lab-text {
+			margin-top: 0;
+			text-align: center;
+		}
+	}
+
+	.observation-gallery {
+		padding: 20px;
+	}
+}
+
+.observation-group-title {
+	font-size: 22px;
+}
+
+
+.meaning-indicator-healthy {
+	border-left: 8px solid rgba(91, 180, 3, 0.7);
+}
+.meaning-indicator-unhealthy {
+	border-left: 8px solid rgba(204, 0, 1, 0.7);
+}
+.meaning-indicator-almost-healthy {
+	border-left: 8px solid rgba(221, 193, 0, 0.7);
+}
+.meaning-indicator-unknown {
+	border-left: 8px solid rgba(179, 179, 179, 0.7);
+}
+
+
+.obsevation-html iframe {
+	float:left;
+	height:100%;
+	width:100%;
+	min-height: 300px;
+}
+

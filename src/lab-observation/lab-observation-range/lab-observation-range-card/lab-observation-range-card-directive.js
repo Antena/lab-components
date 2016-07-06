@@ -116,6 +116,8 @@
  </example>
  */
 
+require("./_lab-observation-range-card.scss");
+
 // @ngInject
 module.exports = function() {
 	return {

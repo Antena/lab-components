@@ -1,0 +1,33 @@
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "../layout";
+
+@import "lab-tree";
+
+.observation-groups {
+	margin-bottom: 20px;
+	display: table;
+	width: 100%;
+
+	.observation-group-title {
+		margin: 5px 0 15px !important;
+	}
+}
+
+.lab-diagnostic-report-info {
+	width: 70%;
+	margin-bottom: 20px;
+
+	.details-item-list {
+		display: table-cell;
+		word-break: break-all;
+		width: 50%;
+		padding-right: 20px;
+	}
+
+	.item-value-help {
+		font-size: 12px;
+		line-height: 13px;
+		color: #bcbcbc;
+		font-weight: normal;
+	}
+}

@@ -134,6 +134,8 @@ var d3 = require('d3');
 var _ = require('underscore');
 var angular = require('angular');
 
+require("./_value-within-range.scss");
+
 // @ngInject
 module.exports = function() {
 

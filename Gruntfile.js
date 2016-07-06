@@ -9,11 +9,11 @@ module.exports = function(grunt) {
 			options: {
 				dest: 'docs',
 				scripts: [
-					'dist/bundle.js',
+					'dist/main.js',
 					'node_modules/angular-animate/angular-animate.min.js'
 				],
 				styles: [
-					'demo/main.css',
+					'dist/main.css',
 					'demo/demo.css',
 					'demo/api.css'
 				],
@@ -24,8 +24,17 @@ module.exports = function(grunt) {
 				src: ['src/**/*.js'],
 				title: 'API Documentation'
 			}
+		},
+		clean: {
+			ngdocs: ['partials/', 'js/', 'font/', 'css/']
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-ngdocs');
+	grunt.loadNpmTasks('grunt-contrib-clean');
+
+	grunt.registerTask('docs', [
+		'ngdocs',
+		'clean:ngdocs'
+	]);
 };

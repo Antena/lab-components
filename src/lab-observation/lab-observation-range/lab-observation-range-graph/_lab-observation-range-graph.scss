@@ -1,0 +1,17 @@
+@import "../../../colors";
+@import "../lab-observation-range";
+
+$out-of-range: map-get($interpretation-colors, danger);
+$inside-range: map-get($interpretation-colors, great);
+
+.low-range-line,
+.inside-range-line,
+.high-range-line {
+	&.unhealthy {
+		color: $out-of-range;
+	}
+
+	&.healthy {
+		color: $inside-range;
+	}
+}

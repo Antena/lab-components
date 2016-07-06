@@ -1,0 +1,112 @@
+@import "../../colors";
+@import "../../variables";
+
+$range-color-great: map-get($interpretation-colors, great);
+$range-color-good: map-get($interpretation-colors, good);
+$range-color-so-so: map-get($interpretation-colors, so-so);
+$range-color-bad: map-get($interpretation-colors, bad);
+$range-color-danger: map-get($interpretation-colors, danger);
+$range-color-unknown: map-get($interpretation-colors, unknown);
+
+$range-meter-background-color: black;
+$range-meter-text-color: white;
+
+.value-within-range-graph {
+
+	.range-great {
+		stroke: $range-color-great;
+		fill: $range-color-great;
+		color: $range-color-great;
+	}
+
+	.range-good {
+		stroke: $range-color-good;
+		fill: $range-color-good;
+		color: $range-color-good;
+	}
+
+	.range-so-so {
+		stroke: $range-color-so-so;
+		fill: $range-color-so-so;
+		color: $range-color-so-so;
+	}
+
+	.range-bad {
+		stroke: $range-color-bad;
+		fill: $range-color-bad;
+		color: $range-color-bad;
+	}
+
+	.range-danger {
+		stroke: $range-color-danger;
+		fill: $range-color-danger;
+		color: $range-color-danger;
+	}
+
+	.range-catch-all {
+		stroke: $range-color-unknown;
+		fill: $range-color-unknown;
+		color: $range-color-unknown;
+	}
+
+	.range-text {
+		display: table;
+		width: 100%;
+		height: 100%;
+
+		.range-text-content {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			color: white;
+			font-size: 12px;
+		}
+	}
+
+
+
+	.low-range-line {
+		stroke: #717171;
+	}
+
+	.inside-range-line {
+		stroke: #00c01e;
+	}
+
+	.high-range-line {
+		stroke: #717171;
+	}
+}
+
+
+.value-within-range-card {
+	.reference-range {
+		padding: 4px 0;
+		text-align: left;
+
+		.reference {
+			font-size: 12px;
+			vertical-align: text-top;
+		}
+
+		.reference-type {
+			text-align: left;
+			color: #CCC;
+		}
+
+		.value {
+			text-align: right;
+		}
+	}
+
+	.main-value {
+		font-size: 36px !important;
+		line-height: 36px;
+	}
+
+	.unit {
+		margin-top: 0;
+		font-size: 12px;
+	}
+
+}

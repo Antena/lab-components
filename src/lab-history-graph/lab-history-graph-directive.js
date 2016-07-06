@@ -74,6 +74,8 @@ var SPANISH = d3.locale({
 	"shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 });
 
+require("./_lab-history-graph.scss");
+
 // @ngInject
 module.exports = function() {
 

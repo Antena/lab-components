@@ -186,6 +186,8 @@ var d3 = require('d3');
 var _ = require('underscore');
 var angular = require('angular');
 
+require("./_value-within-multiple-ranges.scss");
+
 // @ngInject
 module.exports = function() {
 
@@ -261,7 +263,8 @@ module.exports = function() {
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
-					.attr('height', options.height);
+					.attr('height', options.height)
+					.classed('value-within-multiple-ranges-graph', true);
 
 				// Pre-process ranges
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
@@ -301,6 +304,7 @@ module.exports = function() {
 					.append('xhtml:div')
 					.classed('range-text', true)
 					.append('span')
+					.classed('range-text-content', true)
 					.html(function(d) { return rangeText(d); });
 
 				// Create labels for ranges
@@ -395,7 +399,8 @@ module.exports = function() {
 					.attr('height', '100%')
 					.style('visibility', 'hidden');
 				meterLabel = meterWrapper.append('xhtml:div');
-				meterLabel.append('xhtml:span');
+				meterLabel.attr('class', 'meter-label-container');
+				meterLabel.append('xhtml:span').attr('class', 'meter-label');
 			}
 
 			/**

@@ -2,10 +2,10 @@
 	width: 1024px;
 }
 [ng-app="docsApp"] .container .span3 {
-	width: 235px;
+	width: 256px;
 }
 [ng-app="docsApp"] .container .span9 {
-	width: 768px;
+	width: 745px;
 }
 
 .doc-example-live form {

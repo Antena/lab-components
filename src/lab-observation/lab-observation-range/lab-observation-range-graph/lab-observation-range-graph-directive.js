@@ -78,6 +78,9 @@
  </example>
  */
 
+
+require("./_lab-observation-range-graph.scss");
+
 // @ngInject
 module.exports = function() {
 

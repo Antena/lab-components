@@ -1,0 +1,18 @@
+@import "../../../colors";
+@import "../lab-observation-range";
+@import "../../../components/value-within-range/value-within-range";
+
+.observation-gallery-item .healthy {
+	fill: map-get($interpretation-colors, great);
+	stroke: map-get($interpretation-colors, great);
+}
+
+.observation-gallery-item .unhealthy {
+	fill: map-get($interpretation-colors, danger);
+	stroke: map-get($interpretation-colors, danger);
+}
+
+.observation-gallery-item .unknown {
+	fill: map-get($interpretation-colors, black);
+	stroke: map-get($interpretation-colors, black);
+}

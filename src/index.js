@@ -4,6 +4,8 @@
 window.$ = window.jQuery = window.jquery = require('jquery');
 var angular = require('angular');
 
+require("./main.scss");
+
 var ngModule = angular.module('lab-components', [
 	require('angular-translate'),
 	require('common/index.js'),
