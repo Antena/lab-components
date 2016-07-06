@@ -15,7 +15,7 @@ $dot-border: map-get($read-text-color, dark);
 
 $graph-references-margin: 25px;
 $reference-dot-size: 12px;
-$reference-text-color: map-get($read-text-color, regular);
+$reference-text-color: map-get($read-text-color, dark);
 
 $axis-text-color: map-get($read-text-color, regular);
 $axis-tick-color: map-get($read-text-color, regular);
@@ -37,18 +37,19 @@ $axis-color: map-get($read-text-color, regular);
 			//@include Open-Sans-Semibold;
 		}
 
+		.reference-point,
+		.reference-zone {
+			width: $reference-dot-size;
+			height: $reference-dot-size;
+			display: inline-block;
+		}
+
 		.reference-label {
 			font-size: 1rem;
 			border-radius: 50%;
 			padding-left: 5px;
 			color: $reference-text-color;
 			margin-top: 0;
-		}
-
-		.reference-point,
-		.reference-zone {
-			width: $reference-dot-size;
-			height: $reference-dot-size;
 		}
 
 		.reference-point {
