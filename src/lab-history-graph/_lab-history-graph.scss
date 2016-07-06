@@ -1,0 +1,254 @@
+@import "../colors";
+@import "../variables";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
+
+
+$tooltip-padding: 8px;
+$tooltip-left-margin: 16px;
+
+$safe-zone-bg: map-get($safe-color, light);
+$safe-zone: map-get($safe-color, regular);
+$unsafe-zone: map-get($unsafe-color, regular);
+$unsafe-zone-bg: map-get($unsafe-color, light);
+
+$dot-border: map-get($read-text-color, dark);
+
+$graph-references-margin: 25px;
+$reference-dot-size: 12px;
+$reference-text-color: map-get($read-text-color, regular);
+
+$axis-text-color: map-get($read-text-color, regular);
+$axis-tick-color: map-get($read-text-color, regular);
+$axis-color: map-get($read-text-color, regular);
+
+
+.graph-references {
+	margin-top: $graph-references-margin;
+
+	.reference {
+		display: inline-block;
+		margin-right: $graph-references-margin;
+
+		.reference-dot,
+		.reference-label {
+			display: inline-block;
+			vertical-align: top;
+			padding: 0;
+			//@include Open-Sans-Semibold;
+		}
+
+		.reference-label {
+			font-size: 1rem;
+			border-radius: 50%;
+			padding-left: 5px;
+			color: $reference-text-color;
+			margin-top: 0;
+		}
+
+		.reference-point,
+		.reference-zone {
+			width: $reference-dot-size;
+			height: $reference-dot-size;
+		}
+
+		.reference-point {
+			border: 2px solid $dot-border;
+			border-radius: 50%;
+		}
+
+		.zone-safe {
+			background: $safe-zone-bg;
+		}
+
+		.zone-unsafe {
+			background: $unsafe-zone-bg;
+		}
+
+		.point-safe {
+			background: $safe-zone;
+		}
+
+		.point-unsafe {
+			background: $unsafe-zone;
+		}
+	}
+}
+
+.graph {
+	position: relative;
+	display: inline-block;
+	margin-left: -30px;
+
+	.graph-bg {
+		background: repeating-linear-gradient( -45deg, $unsafe-zone-bg, $unsafe-zone-bg 7px, transparent 7px, transparent 14px);
+		position: absolute;
+		left: 60px;
+		right: 0;
+		bottom: 33px;
+		top: 30px;
+		z-index: 9;
+	}
+
+	svg {
+		z-index: 10;
+		position: relative;
+	}
+}
+
+.empty-lab {
+
+	img {
+		width: 270px;
+	}
+
+	h2 {
+		margin-top: 10px;
+	}
+
+	p {
+		color: $axis-color;
+		padding-top: 0;
+	}
+}
+
+.tick {
+	font-size: 1rem;
+	fill: $axis-tick-color;
+	//@include Open-Sans-Semibold;
+}
+
+//.lab-graph {
+//	position: relative;
+//	font-size: $font-size-small;
+//	color: map-get($read-text-color, dark);
+//	//@include Open-Sans-Regular;
+//	@include clearfix;
+//
+//	&:before,
+//	&:after {
+//		content: " ";
+//		display: table;
+//	}
+//
+//	&:after {
+//		clear: both;
+//	}
+//}
+
+.underunder {
+	fill: none;
+	stroke: $axis-color;
+	stroke-width: 1;
+	stroke-dasharray: 2,2;
+}
+
+.axis {
+	path,
+	line {
+		fill: none;
+		stroke: $axis-color;
+		stroke-width: 1;
+		shape-rendering: crispEdges;
+	}
+
+	&.y {
+		path {
+			display: none;
+		}
+
+		line {
+			stroke: $axis-color;
+			stroke-dasharray: 2,2;
+		}
+	}
+}
+
+.dot {
+	stroke: $dot-border;
+	fill: $safe-zone;
+	stroke-width: 2px;
+	opacity: 1;
+	cursor: pointer;
+
+	&:hover {
+		stroke-width: 5px;
+	}
+}
+
+
+
+.out-of-range {
+	stroke: $dot-border;
+	fill: $unsafe-zone;
+}
+
+.healthyRange {
+	fill: $safe-zone-bg;
+}
+
+.higherRange {
+	fill: $unsafe-zone-bg;
+}
+
+.lowerRange{
+	fill: $unsafe-zone-bg;
+}
+
+.valueTooltip {
+	display: none;
+	fill: rgba(0, 0, 0, 0.73);
+}
+
+
+.tooltip {
+	font-size: $font-size-small;
+	padding: 8px;
+	position: absolute;
+	text-align: left;
+	color: white;
+	background: $safe-zone;
+	pointer-events: none;
+	z-index: 11;
+	border-radius: 4px;
+
+	strong {
+		font-size: $font-size-huge;
+		line-height: 1em;
+	}
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-color: transparent;
+		border-width: 6px;
+		border-style: solid;
+		pointer-events: none;
+		bottom: 100%;
+		top: auto;
+		left: $tooltip-padding + $tooltip-left-margin;
+		margin-left: -$tooltip-left-margin;
+		border-bottom-color: $safe-zone;
+	}
+
+
+	&:after {
+		border-bottom-color: black;
+		border-top: none;
+		top: 100%;
+		left: 10px;
+		margin-top: 4px;
+		content: "";
+	}
+
+	&.out-of-range {
+		background: $unsafe-zone;
+
+
+		&:before {
+			border-bottom-color: $unsafe-zone;
+		}
+	}
+}
