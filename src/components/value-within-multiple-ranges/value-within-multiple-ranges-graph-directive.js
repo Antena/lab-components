@@ -186,7 +186,7 @@ var d3 = require('d3');
 var _ = require('underscore');
 var angular = require('angular');
 
-require("./_value-within-multiple-ranges.scss");
+require('./_value-within-multiple-ranges.scss');
 
 // @ngInject
 module.exports = function() {
@@ -333,8 +333,7 @@ module.exports = function() {
 					.attr('class', function(d) { return d.class; });
 
 				// Find the target and append a meter
-				targetRect = svg.selectAll('g.target');   // 1 solo
-				console.log("targetRect.data()[0] = ", targetRect.data()[0]);    //TODO (bc) remove log
+				targetRect = svg.selectAll('g.target');
 				targetScale = scale(scope.value, targetRect.data()[0], sectors);
 
 				// Create text for ranges
@@ -371,9 +370,7 @@ module.exports = function() {
 					appendMeter(targetRect);
 				}
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function(d) {
-					return translate(targetScale(scope.value), d.rectHeight);
-				});
+				meter.attr('transform', function(d) { return translate(targetScale(scope.value), d.rectHeight); });
 
 				// Update the meter's label
 				meter.select('span').html([scope.value, scope.unit].join(' '));
@@ -441,33 +438,28 @@ module.exports = function() {
 			 * Generates the text to describe a range.
 			 *
 			 * @param range: the range.
+			 * @param domain: total domain.
 			 * @returns {*}
 			 */
 			var rangeText = function(range, domain) {
-
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
-
-					return [range.low, options.rangeSeparator, range.high].join(" ");
-
+					return [range.low, options.rangeSeparator, range.high].join(' ');
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-
-					if (_.isNumber(domain.high) && !_.isNaN(domain.high)) {
-						return [range.low, domain.high].join(" a ");
+					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
+						return [range.low, domain.high].join(' a ');
 					} else {
-						return [options.graterThanSymbol, range.low].join(" ");
+						return [options.graterThanSymbol, range.low].join(' ');
 					}
-
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-
-					if (_.isNumber(domain.low) && !_.isNaN(domain.low)) {
-						return [domain.low, range.high].join(" a ");
+					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
+						return [domain.low, range.high].join(' a ');
 					} else {
-						return [options.lowerThanSymbol, range.high].join(" ");
+						return [options.lowerThanSymbol, range.high].join(' ');
 					}
-
 				} else {
-					return "";
+					return '';
 				}
+
 			};
 
 			/**
@@ -496,16 +488,10 @@ module.exports = function() {
 			 * @param ranges: the other ranges.
 			 * @returns {number}: output of the scale applied to the value.
 			 */
-
 			var scale = function(value, sector, ranges) {
-				//console.log("sector.first = ", sector.first);    //TODO (bc) remove log
 
 				// Build scale
 				var domain = [null, null];
-
-				// Sectors
-				// no-low - high / low - high / low no-high
-
 
 				if (_.isNumber(sector.range.low) || _.isNumber(options.domain.low)) {
 					domain[0] = _.isNumber(options.domain.low) && sector.first ? options.domain.low : sector.range.low;
