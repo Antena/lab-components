@@ -3,7 +3,8 @@
 		ng-if="vm.observation.valueQuantity && vm.observation.referenceRange && vm.calculatedRanges"
 		value="vm.observation.valueQuantity.value"
 		unit="vm.observation.valueQuantity.units"
-		ranges="vm.calculatedRanges">
+		ranges="vm.calculatedRanges"
+		options="vm.opts">
 	</value-within-multiple-ranges-graph>
 
 	<div ng-if="!vm.observation.valueQuantity && !!vm.observation.valueString">
