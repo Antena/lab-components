@@ -21,7 +21,6 @@ module.exports = function($scope, $filter) {
 	$scope.vm.opts = {
 		domain: {
 			low: 0,  // Default low domain to 0
-			high: ''
 		}
 	};
 
@@ -138,6 +137,10 @@ module.exports = function($scope, $filter) {
 
 		if (originalRange.low.value === $scope.vm.opts.domain.low) {
 			result.shift();
+		}
+
+		if (originalRange.high.value === $scope.vm.opts.domain.high) {
+			result.pop();
 		}
 
 		return result;

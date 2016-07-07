@@ -443,16 +443,21 @@ module.exports = function() {
 			 */
 			var rangeText = function(range, domain) {
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
+					// Middle Sector
 					return [range.low, options.rangeSeparator, range.high].join(' ');
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
+					// Last Sector
 					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
-						return [range.low, domain.high].join(' a ');
+						// Checks if we defined a high in Domain
+						return [range.low, options.rangeSeparator, domain.high].join(' ');
 					} else {
 						return [options.graterThanSymbol, range.low].join(' ');
 					}
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
+					// First Sector
 					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
-						return [domain.low, range.high].join(' a ');
+						// Checks if we defined a low in Domain
+						return [domain.low, options.rangeSeparator, range.high].join(' ');
 					} else {
 						return [options.lowerThanSymbol, range.high].join(' ');
 					}
@@ -484,7 +489,7 @@ module.exports = function() {
 			 * Generates a linear scale for a range within other ranges.
 			 *
 			 * @param value: the value.
-			 * @param range: the target range.
+			 * @param sector: the sector.
 			 * @param ranges: the other ranges.
 			 * @returns {number}: output of the scale applied to the value.
 			 */
