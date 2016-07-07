@@ -5,15 +5,21 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
 @import "~susy/sass/susy";
 
+$observation-box-color: #F7F9FA;
+$observation-box-border: 2px solid #F0F1F2;
+$observation-box-padding: 8px;
+
+%observation-gallery-box {
+	padding: $observation-box-padding;
+}
 
 .observation-gallery-item {
 	position: relative;
 	margin-bottom: 12px;
-	padding: 20px;
-	background: map-get($read-text-color, lighter);
+	background: $observation-box-color;
+	border: $observation-box-border;
 	overflow: hidden;
 	@include clearfix;
-	border-radius: 4px;
 
 	h3 {
 		margin-top: 0;
@@ -39,155 +45,168 @@
 		padding: 10px;
 	}
 
-	.observation-content {
+	.observation-gallery-header {
+		@extend %observation-gallery-box;
+
+		display: table;
+		text-align: left;
+		width: 100%;
+		border-bottom: $observation-box-border;
+
+		.observation-gallery-header-text,
+		.observation-gallery-header-actions {
+			display: table-cell;
+		}
+
+		.observation-gallery-header-text {
+			font-size: 18px;
+			line-height: 1;
+		}
+
+		.observation-gallery-header-action {
+			font-size: 12px;
+			font-weight: bold;
+			color: map-get($actions, contextual);
+			cursor: pointer;
+			text-decoration: none;
+
+			.icon {
+				border: 1px solid;
+				border-color: map-get($actions, contextual);
+				padding: 3px;
+				border-radius: 15px;
+				text-align: center;
+				width: 19px;
+			}
+
+			&.hovered {
+				color: map-get($actions, contextual-hovered);
+			}
+
+			&.active {
+				color: map-get($actions, add);
+
+				.icon {
+					border-color: map-get($actions, add);
+				}
+
+				&.hovered {
+					color: map-get($actions, remove);
+
+					.icon {
+						border-color: map-get($actions, remove);
+					}
+				}
+			}
+		}
+	}
+
+	.observation-gallery-content {
 		display: table;
 		width: 100%;
-		margin-top: 10px;
+
+		.observation-primary-content {
+			width: 100%;
+
+			@include susy-breakpoint($screen-tablet) {
+				width: 70%;
+
+				.compact-observation & {
+					width: 45%;
+				}
+
+				.multi-range-mode & {
+					width: 70%;
+				}
+
+				.observation-extended-content & {
+					width: 35%;
+				}
+			}
+		}
+
+		.observation-secondary-content {
+			width: 100%;
+
+			@include susy-breakpoint($screen-tablet) {
+				width: 15%;
+
+				.compact-observation & {
+					width: 25%;
+					padding-right: 10px;
+				}
+
+				.compact-observation .observation-incomplete-content & {
+					width: 70%;
+				}
+
+				.observation-extended-content & {
+					width: 20%;
+				}
+			}
+		}
+
+		.observation-tertiary-content {
+			width: 100%;
+
+			@include susy-breakpoint($screen-tablet) {
+				width: 15%;
+				padding-left: 20px;
+
+				.compact-observation & {
+					width: 28%;
+					padding-left: 10px;
+				}
+
+				.observation-extended-content & {
+					width: 30%;
+				}
+			}
+		}
+
+		.observation-generic-content {
+			width: 100%;
+
+			@include susy-breakpoint($screen-tablet) {
+				width: 14%;
+
+				.compact-observation & {
+
+				}
+
+				.observation-extended-content & {
+					width: 15%;
+				}
+			}
+		}
+
+		.observation-generic-content {
+			padding: 10px 0;
+
+			button {
+				margin: 0;
+			}
+		}
 	}
 
 	.observation-column {
+		@extend %observation-gallery-box;
 		display: block;
 		text-align: center;
 		vertical-align: middle;
 
+		&:not(:last-child) {
+			border-right: $observation-box-border;
+		}
+
 		@include susy-breakpoint($screen-tablet) {
 			display: table-cell;
 		}
-	}
 
-	.observation-primary-content {
-		width: 100%;
-
-		@include susy-breakpoint($screen-tablet) {
-			width: 30%;
-
-			.compact-observation & {
-				width: 45%;
-			}
-
-			.multi-range-mode & {
-				width: 70%;
-			}
-
-			.observation-extended-content & {
-				width: 35%;
-			}
-		}
-
-		.observation-primary-content-header {
-			display: table;
-			text-align: left;
-			width: 100%;
-
-			.observation-primary-content-header-text,
-			.observation-primary-content-header-actions {
-				display: table-cell;
-			}
-
-			.observation-primary-content-header-text {
-				font-size: 18px;
-				line-height: 1;
-			}
-
-			.observation-primary-content-header-action {
-				font-size: 12px;
-				font-weight: bold;
-				color: map-get($actions, contextual);
-				cursor: pointer;
-				text-decoration: none;
-
-				.icon {
-					border: 1px solid;
-					border-color: map-get($actions, contextual);
-					padding: 3px;
-					border-radius: 15px;
-					text-align: center;
-					width: 19px;
-				}
-
-				&.hovered {
-					color: map-get($actions, contextual-hovered);
-				}
-
-				&.active {
-					color: map-get($actions, add);
-
-					.icon {
-						border-color: map-get($actions, add);
-					}
-
-					&.hovered {
-						color: map-get($actions, remove);
-
-						.icon {
-							border-color: map-get($actions, remove);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	.observation-secondary-content {
-		width: 100%;
-
-		@include susy-breakpoint($screen-tablet) {
-			width: 30%;
-
-			.compact-observation & {
-				width: 25%;
-				padding-right: 10px;
-			}
-
-			.compact-observation .observation-incomplete-content & {
-				width: 70%;
-			}
-
-			.observation-extended-content & {
-				width: 20%;
-			}
-		}
-	}
-
-	.observation-tertiary-content {
-		width: 100%;
-
-		@include susy-breakpoint($screen-tablet) {
-			width: 40%;
-			padding-left: 20px;
-
-			.compact-observation & {
-				width: 28%;
-				padding-left: 10px;
-			}
-
-			.observation-extended-content & {
-				width: 30%;
-			}
-		}
-	}
-
-	.observation-generic-content {
-		width: 100%;
-
-		@include susy-breakpoint($screen-tablet) {
-			width: 14%;
-
-			.compact-observation & {
-
-			}
-
-			.observation-extended-content & {
-				width: 15%;
-			}
-		}
-	}
-
-	.observation-generic-content {
-		padding: 10px 0;
-
-		button {
-			margin: 0;
+		.observation-column-title {
+			vertical-align: top;
+			color: map-get($read-text-color, regular);
+			font-size: $font-size-small;
 		}
 	}
 
@@ -278,7 +297,6 @@
 .observation-group-title {
 	font-size: 22px;
 }
-
 
 .meaning-indicator-healthy {
 	border-left: 8px solid rgba(91, 180, 3, 0.7);

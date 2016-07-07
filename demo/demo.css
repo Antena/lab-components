@@ -13,6 +13,10 @@
 	padding: 20px;
 }
 
+.demo-navigation {
+	width: 15% !important;
+}
+
 .icon-more,
 .icon-check {
 	font-size: inherit;

@@ -1,11 +1,12 @@
-<div class="observation-gallery-item meaning-indicator-{{ observation.interpretation | referenceRangeMeaningColorCode }}" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
-	<div class="observation-primary-content-header">
-		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
-		<h3 class="observation-primary-content-header-text" ng-if="!hideTitle && !observation.metricIdentifier">{{ observation.code | codeableConcept }}</span></h3>
-		<div ng-if="!vm.viewOnly && headerActions.length" class="observation-primary-content-header-actions right">
+<div class="observation-gallery-item" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
+
+	<div class="observation-gallery-header">
+		<h3 class="observation-gallery-header-text" ng-if="!hideTitle && observation.metricIdentifier">{{ observation.metricIdentifier.label | capitalize:true }}</h3>
+		<h3 class="observation-gallery-header-text" ng-if="!hideTitle && !observation.metricIdentifier">{{ observation.code | codeableConcept }}</span></h3>
+		<div ng-if="!vm.viewOnly && headerActions.length" class="observation-gallery-header-actions right">
 			<a ng-repeat="headerAction in headerActions"
 			   ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"
-			   class="observation-primary-content-header-action"
+			   class="observation-gallery-header-action"
 			   ng-class="{ 'active' : headerAction.isActive(observation), 'hovered': hovered === observation._id || headerAction.showAsHovered(observation) }"
 			   ng-mouseover="hovered = observation._id"
 			   ng-mouseleave="hovered = null"
@@ -13,35 +14,37 @@
 				<span>{{ (headerAction.isActive(observation) ? (hovered === observation._id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}" ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}"></span></span>
 			</a>
 		</div>
-		<span ng-if="observation.interpretation" class="right label label-{{ observation.interpretation | referenceRangeMeaningColorCode }}">{{ observation.interpretation | referenceRangeMeaning | translate }}</span>
 	</div>
 
-	<div class="observation-content" ng-class="{ 'observation-extended-content': !!actions.length, 'observation-incomplete-content': !!observation.referenceRange[0].text || !!observation.valueString || !observation.referenceRange }">
+	<div class="observation-gallery-content">
 
-		<div ng-if="!!observation.valueQuantity && !observation.referenceRange[0].text && canShowRangeGraph" class="observation-column observation-primary-content observation-result">
+		<div class="observation-column observation-secondary-content">
+			<div class="observation-column-title">Resultado</div>
+			<lab-observation-result observation="observation"></lab-observation-result>
+		</div>
+
+		<div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
+			<div class="observation-column-title">Historia</div>
+			<div>
+				<span>
+					..i.i.i.i..i.i
+				</span>
+			</div>
+		</div>
+
+		<div class="observation-column observation-primary-content observation-result" ng-if="!!observation.valueQuantity && !observation.referenceRange[0].text && canShowRangeGraph">
 			<lab-observation-range-graph observation="observation" ng-if="!multiRangeMode"></lab-observation-range-graph>
 			<lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode"></lab-observation-multirange-graph>
 		</div>
 
-		<div class="observation-column observation-secondary-content" ng-if="!multiRangeMode || !canShowRangeGraph || !!observation.referenceRange[0].text || !!observation.valueString">
-			<lab-observation-range-card observation="observation"></lab-observation-range-card>
+		<div class="observation-column observation-generic-content" ng-if="observation.referenceRange[0].text">
+			<div class="observation-column-title">Referencia</div>
+			<div class="reference-range" ng-class="{'big-reference-range': !!observation.valueString}" style="white-space: pre;">
+				<p class="value">{{ observation.referenceRange[0].text }}</p>
+			</div>
 		</div>
 
-		<div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
-			<ul class="details-item-list">
-				<li ng-if="observation.method && observation.method !== '-'" class="details-item">
-					<span class="item-name">{{ 'LAB.METHOD' | translate | semicolon }}</span><span class="item-value">{{ observation.method | codeableConcept | optional }}</span>
-				</li>
-				<li ng-if="observation.status" class="details-item">
-					<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}</span><span class="item-value">{{ observation.status | toStatusKey | translate }}</span>
-				</li>
-				<li ng-if="observation.comments && observation.comments !== '-'" class="details-item">
-					<span class="item-name">{{ 'LAB.NOTE' | translate | semicolon }}</span><span class="item-value">{{ observation.comments }}</span>
-				</li>
-			</ul>
-		</div>
-
-		<div ng-if="!viewOnly && actions.length" class="observation-column observation-generic-content" ng-if="actions.length">
+		<div ng-if="!viewOnly && actions.length" class="observation-column observation-generic-content">
 
 			<div ng-repeat="action in actions">
 				<a ng-if="!!action.href" href="{{ action.href }}" class="action" ng-class="{'ghost': !action.primary, 'global-action right': action.global }"><span ng-if="action.icon" class="{{action.icon}}"></span> {{ action.label }}</a>
