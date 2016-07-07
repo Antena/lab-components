@@ -6,7 +6,7 @@
 @import "~susy/sass/susy";
 
 $observation-box-bg: #FFFFFF;
-$observation-box-footer-bg: map-get($read-text-color, lighter);
+$observation-box-footer-bg: map-get($read-text-color, semi);
 $observation-box-border: 2px solid #F0F1F2;
 $observation-box-padding: 8px;
 
