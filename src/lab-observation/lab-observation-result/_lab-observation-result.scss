@@ -1,11 +1,21 @@
 @import "../../variables";
 
 .lab-observation-result {
+	text-align: left;
+	vertical-align: top;
+
+	.lab-observation-value {
+		margin: 0;
+	}
+
 	.main-value {
 		font-size: $font-size-gigantic;
+		margin: 0;
+		font-weight: bold;
 	}
 
 	.unit {
 		vertical-align: top;
+		line-height: $font-size-gigantic;
 	}
 }

@@ -1,12 +1,20 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
 @import "../layout";
+@import "../colors";
 
 @import "lab-tree";
+
+$lab-observation-group-border: 2px solid map-get($read-text-color, light);
+$lab-observation-group-bg: map-get($read-text-color, lighter);
+$lab-observation-group-padding: 20px;
 
 .observation-groups {
 	margin-bottom: 20px;
 	display: table;
 	width: 100%;
+	border: $lab-observation-group-border;
+	background-color: $lab-observation-group-bg;
+	padding: $lab-observation-group-padding;
 
 	.observation-group-title {
 		margin: 5px 0 15px !important;

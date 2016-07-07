@@ -2,7 +2,10 @@
 
 var _ = require('underscore');
 var lodash = require('lodash');
-var fhirBundle = require('./grouped-bundle.json');
+
+// var fhirBundle = require('./grouped-bundle.json');
+var fhirBundle = require('./with-notes.json');
+
 var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
 

@@ -5,7 +5,8 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/labels";
 @import "~susy/sass/susy";
 
-$observation-box-color: #F7F9FA;
+$observation-box-bg: #FFFFFF;
+$observation-box-footer-bg: map-get($read-text-color, lighter);
 $observation-box-border: 2px solid #F0F1F2;
 $observation-box-padding: 8px;
 
@@ -16,7 +17,7 @@ $observation-box-padding: 8px;
 .observation-gallery-item {
 	position: relative;
 	margin-bottom: 12px;
-	background: $observation-box-color;
+	background: $observation-box-bg;
 	border: $observation-box-border;
 	overflow: hidden;
 	@include clearfix;
@@ -45,12 +46,25 @@ $observation-box-padding: 8px;
 		padding: 10px;
 	}
 
-	.observation-gallery-header {
+	.observation-gallery-header,
+	.observation-gallery-footer {
 		@extend %observation-gallery-box;
 
 		display: table;
 		text-align: left;
 		width: 100%;
+
+		.observation-gallery-footer-title {
+			@extend %observation-box-sub-content-title;
+		}
+	}
+
+	.observation-gallery-footer {
+		border-top: $observation-box-border;
+		background-color: $observation-box-footer-bg;
+	}
+
+	.observation-gallery-header {
 		border-bottom: $observation-box-border;
 
 		.observation-gallery-header-text,
@@ -109,7 +123,7 @@ $observation-box-padding: 8px;
 			width: 100%;
 
 			@include susy-breakpoint($screen-tablet) {
-				width: 70%;
+				width: 65%;
 
 				.compact-observation & {
 					width: 45%;
@@ -129,7 +143,7 @@ $observation-box-padding: 8px;
 			width: 100%;
 
 			@include susy-breakpoint($screen-tablet) {
-				width: 15%;
+				width: 20%;
 
 				.compact-observation & {
 					width: 25%;
@@ -167,6 +181,10 @@ $observation-box-padding: 8px;
 		.observation-generic-content {
 			width: 100%;
 
+			button {
+				margin: 0;
+			}
+
 			@include susy-breakpoint($screen-tablet) {
 				width: 14%;
 
@@ -178,22 +196,31 @@ $observation-box-padding: 8px;
 					width: 15%;
 				}
 			}
-		}
 
-		.observation-generic-content {
-			padding: 10px 0;
+			.reference-range {
 
-			button {
-				margin: 0;
+				.value {
+					text-align: left;
+					margin: 0;
+				}
 			}
 		}
+	}
+
+	%observation-box-sub-content-title {
+		text-align: left;
+		color: map-get($read-text-color, regular);
+		font-size: $font-size-base;
+		font-weight: bold;
+		margin-bottom: 4px;
 	}
 
 	.observation-column {
 		@extend %observation-gallery-box;
 		display: block;
 		text-align: center;
-		vertical-align: middle;
+		vertical-align: top;
+		height: 100%;
 
 		&:not(:last-child) {
 			border-right: $observation-box-border;
@@ -204,9 +231,11 @@ $observation-box-padding: 8px;
 		}
 
 		.observation-column-title {
+			@extend %observation-box-sub-content-title;
+		}
+
+		.observation-column-content {
 			vertical-align: top;
-			color: map-get($read-text-color, regular);
-			font-size: $font-size-small;
 		}
 	}
 
@@ -319,3 +348,14 @@ $observation-box-padding: 8px;
 	min-height: 300px;
 }
 
+
+.sparkline {
+	fill: none;
+	stroke: #000;
+	stroke-width: 0.5px;
+}
+
+.sparkcircle {
+	fill: #f00;
+	stroke: none;
+}
