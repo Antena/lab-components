@@ -269,14 +269,18 @@ module.exports = function() {
 				// Pre-process ranges
 				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				sectors = _.map(scope.ranges, function(range, i) {
-					range.index = i;
-					range.fist = i === 0;
-					range.last = i === scope.ranges.length - 1;
-					range.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
-					range.width = sectorWidth;
-					range.height = options.height - options.padding.top - options.padding.bottom;
-					range.rectHeight = range.height - options.labelHeight;
-					return range;
+					var sector = {};
+					sector.range = range;
+					sector.class = range.class;
+					sector.label = range.label;
+					sector.index = i;
+					sector.first = (i === 0);
+					sector.last = (i === scope.ranges.length - 1);
+					sector.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
+					sector.width = sectorWidth;
+					sector.height = options.height - options.padding.top - options.padding.bottom;
+					sector.rectHeight = sector.height - options.labelHeight;
+					return sector;
 				});
 
 				// Create sector groups
@@ -289,23 +293,12 @@ module.exports = function() {
 				// Append rectangles to sectors
 				rect = targetSector.append('g')
 					.attr('transform', translate(0, options.labelHeight))
-					.classed('target', function(d) { return valueInRange(scope.value, d); });
+					.classed('target', function(d) { return valueInRange(scope.value, d.range); });
 				rect.append('rect')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', function(d) { return d.rectHeight; })
 					.attr('class', function(d) { return d.class; });
 
-				// Create text for ranges
-				rect.append('foreignObject')
-					.attr('x', '0')
-					.attr('y', '0')
-					.attr('width', function(d) { return d.width; })
-					.attr('height', function(d) { return d.rectHeight; })
-					.append('xhtml:div')
-					.classed('range-text', true)
-					.append('span')
-					.classed('range-text-content', true)
-					.html(function(d) { return rangeText(d); });
 
 				// Create labels for ranges
 				targetSector.append('foreignObject')
@@ -340,8 +333,22 @@ module.exports = function() {
 					.attr('class', function(d) { return d.class; });
 
 				// Find the target and append a meter
-				targetRect = svg.selectAll('g.target');
+				targetRect = svg.selectAll('g.target');   // 1 solo
+				console.log("targetRect.data()[0] = ", targetRect.data()[0]);    //TODO (bc) remove log
 				targetScale = scale(scope.value, targetRect.data()[0], sectors);
+
+				// Create text for ranges
+				rect.append('foreignObject')
+					.attr('x', '0')
+					.attr('y', '0')
+					.attr('width', function(d) { return d.width; })
+					.attr('height', function(d) { return d.rectHeight; })
+					.append('xhtml:div')
+					.classed('range-text', true)
+					.append('span')
+					.classed('range-text-content', true)
+					.html(function(d) { return rangeText(d.range, options.domain); });
+
 				appendMeter(targetRect);
 
 				// Refresh to update values
@@ -354,7 +361,7 @@ module.exports = function() {
 			function refresh() {
 				// Find the new target (if changed)
 				var oldTarget = targetRect;
-				rect.classed('target', function(d) { return valueInRange(scope.value, d); });
+				rect.classed('target', function(d) { return valueInRange(scope.value, d.range); });
 
 				// Update the meter's position (build new scale if target changed)
 				targetRect = svg.selectAll('g.target');
@@ -364,7 +371,9 @@ module.exports = function() {
 					appendMeter(targetRect);
 				}
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function(d) { return translate(targetScale(scope.value), d.rectHeight); });
+				meter.attr('transform', function(d) {
+					return translate(targetScale(scope.value), d.rectHeight);
+				});
 
 				// Update the meter's label
 				meter.select('span').html([scope.value, scope.unit].join(' '));
@@ -434,13 +443,28 @@ module.exports = function() {
 			 * @param range: the range.
 			 * @returns {*}
 			 */
-			var rangeText = function(range) {
+			var rangeText = function(range, domain) {
+
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
+
 					return [range.low, options.rangeSeparator, range.high].join(" ");
+
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-					return [options.graterThanSymbol, range.low].join(" ");
+
+					if (_.isNumber(domain.high) && !_.isNaN(domain.high)) {
+						return [range.low, domain.high].join(" a ");
+					} else {
+						return [options.graterThanSymbol, range.low].join(" ");
+					}
+
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-					return [options.lowerThanSymbol, range.high].join(" ");
+
+					if (_.isNumber(domain.low) && !_.isNaN(domain.low)) {
+						return [domain.low, range.high].join(" a ");
+					} else {
+						return [options.lowerThanSymbol, range.high].join(" ");
+					}
+
 				} else {
 					return "";
 				}
@@ -472,46 +496,54 @@ module.exports = function() {
 			 * @param ranges: the other ranges.
 			 * @returns {number}: output of the scale applied to the value.
 			 */
-			var scale = function(value, range, ranges) {
+
+			var scale = function(value, sector, ranges) {
+				//console.log("sector.first = ", sector.first);    //TODO (bc) remove log
 
 				// Build scale
 				var domain = [null, null];
 
-				if (_.isNumber(range.low) || _.isNumber(options.domain.low)) {
-					domain[0] = _.isNumber(options.domain.low) && range.first ? options.domain.low : range.low;
+				// Sectors
+				// no-low - high / low - high / low no-high
+
+
+				if (_.isNumber(sector.range.low) || _.isNumber(options.domain.low)) {
+					domain[0] = _.isNumber(options.domain.low) && sector.first ? options.domain.low : sector.range.low;
 				}
 
-				if (_.isNumber(range.high) || _.isNumber(options.domain.high)) {
-					domain[1] = _.isNumber(options.domain.high) && range.last ? options.domain.high : range.high;
+				if (_.isNumber(sector.range.high) || _.isNumber(options.domain.high)) {
+					domain[1] = _.isNumber(options.domain.high) && sector.last ? options.domain.high : sector.range.high;
 				}
 
 				if (!_.isNumber(domain[0])) {
 					var nextConcreteRange;
 					if (_.isNumber(options.domain.low)) {
-						nextConcreteRange = _.find(ranges, function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); });
+						nextConcreteRange = _.find(ranges, function(sector) {
+							return _.isNumber(sector.range.low) && _.isNumber(sector.range.high);
+						});
 					}
 
 					if (nextConcreteRange) {
-						domain[0] = range.high - (nextConcreteRange.high - nextConcreteRange.low);
+						domain[0] = sector.range.high - (nextConcreteRange.range.high - nextConcreteRange.range.low);
 					} else {
-						domain[0] = _.isNumber(options.domain.low) ? options.domain.low : range.high - 2 * (Math.abs(value - range.high));
+						domain[0] = _.isNumber(options.domain.low) ? options.domain.low : sector.range.high - 2 * (Math.abs(value - sector.range.high));
 					}
 				}
 
 				if (!_.isNumber(domain[1])) {
 					var rangesCopy = _.map(ranges, _.clone);
-					var previousConcreteRange = _.find(rangesCopy.reverse(), function(sector) { return _.isNumber(sector.low) && _.isNumber(sector.high); });
+					var previousConcreteRange = _.find(rangesCopy.reverse(), function(sector) { return _.isNumber(sector.range.low) && _.isNumber(sector.range.high); });
 
 					if (previousConcreteRange) {
-						domain[1] = range.low + (previousConcreteRange.high - previousConcreteRange.low);
+						domain[1] = sector.range.low + (previousConcreteRange.range.high - previousConcreteRange.range.low);
 					} else {
-						domain[1] = _.isNumber(options.domain.high) ? options.domain.high : range.low + 2*(Math.abs(value-range.low));
+						domain[1] = _.isNumber(options.domain.high) ? options.domain.high : sector.range.low + 2*(Math.abs(value-(sector.range.low)));
 					}
 				}
 
 				return d3.scale.linear()
 					.clamp(true)
-					.range([0, range.width])
+					.range([0, sector.width])
 					.domain(domain);
 			};
 		}

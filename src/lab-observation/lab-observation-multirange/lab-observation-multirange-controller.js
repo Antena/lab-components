@@ -19,6 +19,12 @@ module.exports = function($scope, $filter) {
 	$scope.vm.calculatedRanges = [];
 	$scope.vm.options = [];
 
+	if (Math.random() > 0.5) {
+		$scope.vm.opts = {
+			domain: {low: 12, high: 46}
+		};
+	}
+
 	var RANGE_CLASSES = {
 		GREAT: 'range-great',
 		GOOD: 'range-good',
