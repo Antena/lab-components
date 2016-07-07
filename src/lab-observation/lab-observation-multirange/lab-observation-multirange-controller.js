@@ -18,12 +18,12 @@ module.exports = function($scope, $filter) {
 
 	$scope.vm.calculatedRanges = [];
 	$scope.vm.options = [];
-
-	if (Math.random() > 0.5) {
-		$scope.vm.opts = {
-			domain: {low: 12, high: 46}
-		};
-	}
+	$scope.vm.opts = {
+		domain: {
+			low: 0,  // Default low domain to 0
+			high: ''
+		}
+	};
 
 	var RANGE_CLASSES = {
 		GREAT: 'range-great',
@@ -93,42 +93,54 @@ module.exports = function($scope, $filter) {
 	function fillMissingRanges(observation) {
 		var originalRange = observation.referenceRange[0];
 
-		return [
-			{
-				high: originalRange.low,
-				meaning: {
-					coding: [
+		var result = [
 						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "L"
-						}
-					]
-				}
-			},
-			{
-				high: originalRange.high,
-				low: originalRange.low,
-				meaning: {
-					coding: [
+							high: originalRange.low,
+							low: {
+								value: $scope.vm.opts.domain.low,
+								units: originalRange.low.units,
+								system: originalRange.low.system,
+								code: originalRange.low.code
+							},
+							meaning: {
+								coding: [
+									{
+										system: "http://hl7.org/fhir/v2/0078",
+										code: "L"
+									}
+								]
+							}
+						},
 						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "N" 	//TODO (denise) remove onces this is fixed from KERN!!!!!
-						}
-					]
-				}
-			},
-			{
-				low: originalRange.high,
-				meaning: {
-					coding: [
+							high: originalRange.high,
+							low: originalRange.low,
+							meaning: {
+								coding: [
+									{
+										system: "http://hl7.org/fhir/v2/0078",
+										code: "N" 	//TODO (denise) remove onces this is fixed from KERN!!!!!
+									}
+								]
+							}
+						},
 						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "H"
+							low: originalRange.high,
+							meaning: {
+								coding: [
+									{
+										system: "http://hl7.org/fhir/v2/0078",
+										code: "H"
+									}
+								]
+							}
 						}
-					]
-				}
-			}
-		];
+						];
+
+		if (originalRange.low.value === $scope.vm.opts.domain.low) {
+			result.shift();
+		}
+
+		return result;
 	}
 
 	function transformRangesForGraphDisplay(ranges) {
@@ -150,6 +162,20 @@ module.exports = function($scope, $filter) {
 
 		if(observation && observation.referenceRange && observation.referenceRange.length) {
 			var ranges;
+
+			var domainExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/domain"});
+
+			if (domainExtension) {
+
+				if (_.has(domainExtension.valueRange, 'low')) {
+					$scope.vm.opts.domain.low = domainExtension.valueRange.low.value;
+				}
+
+				if (_.has(domainExtension.valueRange, 'high')) {
+					$scope.vm.opts.domain.high = domainExtension.valueRange.high.value;
+				}
+
+			}
 
 			if(shouldFillMissingRanges(observation)) {
 				ranges = fillMissingRanges(observation);

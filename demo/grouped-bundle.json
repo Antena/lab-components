@@ -5086,6 +5086,23 @@
           {
             "url": "http://www.cdrossi.com/tipo_resultado",
             "valueCode": "N"
+          },
+          {
+            "url": "http://www.cdrossi.com/domain",
+            "valueRange": {
+              "low": {
+                "units": "fL",
+                "code": "fL",
+                "system": "http://unitsofmeasure.org",
+                "value": 1
+              },
+              "high": {
+                "units": "fL",
+                "code": "fL",
+                "system": "http://unitsofmeasure.org",
+                "value": 600
+              }
+            }
           }
         ],
         "text": {
