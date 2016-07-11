@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
+		<div ng-if="!!observation.valueQuantity" class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
 			<div class="observation-column-title">{{ 'LAB.HISTORIC' | translate }}</div>
 			<div class="observation-column-content">
 				<lab-observation-sparkline

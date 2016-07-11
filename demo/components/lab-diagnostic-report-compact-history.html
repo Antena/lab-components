@@ -1,0 +1,22 @@
+<div>
+	<h2>Lab Diagnostic Report demo</h2>
+	<h4>Patient is FEMALE, compact mode, multi-ranges display</h4>
+
+	<div class="demo-instance-container">
+
+		<div lab-diagnostic-report
+			 class="demo-content compact-observations"
+			 diagnostic-order="demo3.order"
+			 observations="demo3.rawObservations"
+			 patient="demo3.patient"
+			 organization="demo3.organization"
+			 status="{{demo3.status}}"
+			 report-date="demo3.reportDate"
+			 view-only="true"
+			 compact-mode="true"
+			 de-dupe-top-level-observations="true"
+			 date-format="{{demo3.dateFormat}}"
+			 display-observations-with-multiple-ranges="true">
+		</div>
+	</div>
+</div>
