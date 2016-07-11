@@ -18,9 +18,11 @@ module.exports = function($scope, $filter) {
 
 	$scope.vm.calculatedRanges = [];
 	$scope.vm.options = [];
-	$scope.vm.opts = {
+
+	$scope.vm.graphOptions = {
+		innerSpacing: 0,
 		domain: {
-			low: 0,  // Default low domain to 0
+			low: 0  // Default low domain to 0
 		}
 	};
 
@@ -96,7 +98,7 @@ module.exports = function($scope, $filter) {
 						{
 							high: originalRange.low,
 							low: {
-								value: $scope.vm.opts.domain.low,
+								value: $scope.vm.graphOptions.domain.low,
 								units: originalRange.low.units,
 								system: originalRange.low.system,
 								code: originalRange.low.code
@@ -135,11 +137,11 @@ module.exports = function($scope, $filter) {
 						}
 						];
 
-		if (originalRange.low.value === $scope.vm.opts.domain.low) {
+		if (originalRange.low.value === $scope.vm.graphOptions.domain.low) {
 			result.shift();
 		}
 
-		if (originalRange.high.value === $scope.vm.opts.domain.high) {
+		if (originalRange.high.value === $scope.vm.graphOptions.domain.high) {
 			result.pop();
 		}
 
@@ -171,11 +173,11 @@ module.exports = function($scope, $filter) {
 			if (domainExtension) {
 
 				if (_.has(domainExtension.valueRange, 'low')) {
-					$scope.vm.opts.domain.low = domainExtension.valueRange.low.value;
+					$scope.vm.graphOptions.domain.low = domainExtension.valueRange.low.value;
 				}
 
 				if (_.has(domainExtension.valueRange, 'high')) {
-					$scope.vm.opts.domain.high = domainExtension.valueRange.high.value;
+					$scope.vm.graphOptions.domain.high = domainExtension.valueRange.high.value;
 				}
 
 			}

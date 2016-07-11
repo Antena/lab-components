@@ -74,7 +74,17 @@ module.exports = function($scope) {
 
 	// Helper function to avoid complex ng-if in the template (uses the same code to show 1 or N Observations)
 	$scope.getObservationList = function(observation) {
-		return observation.related ? observation.related : [observation];
+		var result;
+		if(observation.related) {
+			result = _.where(observation.related, {type: 'has-member'});
+			result = _.pluck(result, 'target');
+		}
+
+		if(!result || result.length < 1) {
+			result = [observation];
+		}
+
+		return result;
 	};
 
 	/**
@@ -83,7 +93,7 @@ module.exports = function($scope) {
 	 * @methodOf lab-components.lab-diagnostic-report.controller:LabDiagnosticReportController
 	 * @description
 	 *
-	 * Returns an Observation display. The display property structure varies depending on if the observation has members (it's a group) or not. 
+	 * Returns an Observation display. The display property structure varies depending on if the observation has members (it's a group) or not.
 	 *
 	 * @param {Object} observation The FHIR observation to extract the display from.
 	 *
