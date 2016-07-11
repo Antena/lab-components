@@ -66,12 +66,14 @@ module.exports = function() {
 			realObs.related = _.map(realObs.related, function (relatedObs) {
 				var resolved;
 
-				if (relatedObs.target) {
-					resolved = _.findWhere(fhirBundleResources, {
+				if (relatedObs.target && relatedObs.target.reference) {
+					var tempResolved = { type: relatedObs.type };
+					tempResolved.target = _.findWhere(fhirBundleResources, {
 						resourceType: "Observation",
 						id: getReferencedId(relatedObs.target.reference)
 					});
-					resolveRelatedObservations(resolved, fhirBundleResources);
+					resolved = tempResolved;
+					resolveRelatedObservations(resolved.target, fhirBundleResources);
 				} else {
 					resolved = relatedObs;
 				}

@@ -2,7 +2,10 @@
   "LAB": {
     "METHOD": "Método",
     "STATUS": "Estado",
-    "NOTE": "Nota",
+    "NOTES": "Notas",
+    "REFERENCE": "Referencia",
+    "HISTORIC": "Historia",
+    "RESULT": "Result",
     "MEANING": "Interpretación",
     "PATIENT": "Paciente",
     "ORGANIZATION": "Organización",

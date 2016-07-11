@@ -201,6 +201,51 @@ module.exports = function() {
 		},
 		link: function(scope, elem) {
 
+			var SHAPES = {
+				TRIANGLE: function(options, direction, d) {
+					var result;
+
+					if(direction === 'left') {
+						result = '' +
+							'M' + '0' + ' ' + '0' + ' ' +
+							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
+							'L' + '0' + ' ' + d.rectHeight;
+					} else if(direction === 'right') {
+						result = '' +
+							'M' + d.width + ' ' + '0' + ' ' +
+							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
+							'L' + d.width + ' ' + d.rectHeight;
+					}
+
+					return result;
+				},
+				HALF_CIRCLE: function(options, direction, d) {
+					/*
+						 M cx cy
+						 m -r, 0
+						 a r,r 0 1,0 (r * 2),0
+						 a r,r 0 1,0 -(r * 2),0
+					 */
+
+					var cx;
+
+					if(direction === 'left') {
+						cx = 0;
+					} else if(direction === 'right') {
+						cx = d.width;
+					}
+
+					var cy = d.rectHeight / 2;
+					var radius = d.rectHeight / 2;
+
+					return '' +
+						'M ' + cx + ' ' + cy + ' ' +
+						'm ' + -radius + ',' + ' 0' + ' ' +
+						'a ' + radius + ',' + radius + ' 0 1,0 ' + (radius * 2) + ',0' + ' ' +
+						'a ' + radius + ',' + radius + ' 0 1,0 ' + -(radius * 2) + ',0';
+				}
+			};
+
 			/**
 			 * Helper functions to re-draw graph based on scope's updates.
 			 * @type {Function}
@@ -240,7 +285,8 @@ module.exports = function() {
 				meterTriangle: { base: 12, height: 10 },
 				meterOffset: { x: 0, y: -4 },
 				meterLabelOffset: { x: -10, y: 0 },
-				domain: {}
+				domain: {},
+				shape: 'HALF_CIRCLE'
 			});
 
 			/**
@@ -313,22 +359,13 @@ module.exports = function() {
 
 				// Create arrows
 				rect.append('path')
-					.attr('d', function(d) {
-						return '' +
-							'M' + '0' + ' ' + '0' + ' ' +
-							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
-							'L' + '0' + ' ' + d.rectHeight;
-					})
+					.attr('d', _.partial(SHAPES[options.shape], options, 'left'))
 					.style('visibility', function(d, i) { return i === 0 ? 'visible': 'hidden'; } )
 					.attr('class', function(d) { return d.class; });
 
+
 				rect.append('path')
-					.attr('d', function(d) {
-						return '' +
-							'M' + d.width + ' ' + '0' + ' ' +
-							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
-							'L' + d.width + ' ' + d.rectHeight;
-					})
+					.attr('d', _.partial(SHAPES[options.shape], options, 'right'))
 					.style('visibility', function(d, i) { return i === (sectors.length - 1) ? 'visible': 'hidden'; } )
 					.attr('class', function(d) { return d.class; });
 

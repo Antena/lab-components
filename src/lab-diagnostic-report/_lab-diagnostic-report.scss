@@ -1,33 +1,88 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
 @import "../layout";
+@import "../colors";
 
 @import "lab-tree";
+
+$lab-observation-group-border: 2px solid map-get($read-text-color, light);
+$lab-observation-group-bg: map-get($read-text-color, lighter);
+$lab-observation-group-padding: 20px;
 
 .observation-groups {
 	margin-bottom: 20px;
 	display: table;
 	width: 100%;
+	border: $lab-observation-group-border;
+	background-color: $lab-observation-group-bg;
+	padding: $lab-observation-group-padding;
 
 	.observation-group-title {
 		margin: 5px 0 15px !important;
 	}
 }
 
+%table-container {
+	display: table;
+	width: 100%;
+}
+
+%table-half-column {
+	display: table-cell;
+	width: 50%;
+}
+
+%table-one-third-column {
+	display: table-cell;
+	width: 33%;
+}
+%table-two-third-column {
+	display: table-cell;
+	width: 66%;
+}
+
 .lab-diagnostic-report-info {
+	@extend %table-container;
+
 	width: 70%;
 	margin-bottom: 20px;
+	text-align: left;
 
 	.details-item-list {
-		display: table-cell;
-		word-break: break-all;
-		width: 50%;
-		padding-right: 20px;
-	}
+		@extend %table-one-third-column;
 
-	.item-value-help {
-		font-size: 12px;
-		line-height: 13px;
-		color: #bcbcbc;
-		font-weight: normal;
+		&.stretch {
+			@extend %table-two-thirds-column;
+		}
+
+		//padding-right: 20px;
+		word-break: break-all;
+		list-style: none;
+		font-size: $font-size-small;
+
+		.details-item {
+			@extend %table-container;
+
+			.item-name,
+			.item-value {
+				@extend %table-half-column;
+			}
+
+			.item-name {
+				color: map-get($read-text-color, regular);
+				width: 25%;
+			}
+
+			.item-value {
+				font-weight: bold;
+				width: 75%;
+			}
+
+			.item-value-help {
+				font-size: 12px;
+				line-height: 13px;
+				color: #bcbcbc;
+				font-weight: normal;
+			}
+		}
 	}
 }
