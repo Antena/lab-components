@@ -509,17 +509,56 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	$scope.sparklines = [
 		{
-			title: "Test",
+			title: "Several points (9)",
 			data: [
-				{ date: "2016-06-29T16:00:00.000-03:00", value: 55 },
-				{ date: "2016-06-21T16:00:00.000-03:00", value: 60 },
-				{ date: "2016-06-02T16:00:00.000-03:00", value: 63 },
-				{ date: "2016-05-03T16:00:00.000-03:00", value: 52 },
-				{ date: "2016-04-03T16:00:00.000-03:00", value: 51 },
-				{ date: "2016-03-03T16:00:00.000-03:00", value: 50 },
-				{ date: "2016-01-10T16:00:00.000-03:00", value: 48 },
-				{ date: "2015-01-10T16:00:00.000-03:00", value: 55 },
-				{ date: "2014-01-10T16:00:00.000-03:00", value: 58 }
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 },
+				{ date: "2016-06-02", value: 63 },
+				{ date: "2016-05-03", value: 52 },
+				{ date: "2016-04-03", value: 51 },
+				{ date: "2016-03-03", value: 50 },
+				{ date: "2016-01-10", value: 48 },
+				{ date: "2015-01-10", value: 55 },
+				{ date: "2014-01-10", value: 58 }
+			]
+		},
+		{
+			"title": "Fewer points (3)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 },
+				{ date: "2016-06-02", value: 63 }
+			]
+		},
+		{
+			"title": "Even fewer points (2)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 }
+			]
+		},
+		{
+			"title": "Just one point (1)",
+			data: [
+				{ date: "2016-06-29", value: 55 }
+			]
+		},
+		{
+			"title": "Data with gaps (3 and 1)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-01-10", value: 48 },
+				{ date: "2015-01-10", value: 62 },
+				{ date: "2014-01-10", value: 58 }
+			]
+		},
+		{
+			"title": "Data with gaps (1 and 3)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 63 },
+				{ date: "2016-06-02", value: 60 },
+				{ date: "2014-01-10", value: 58 }
 			]
 		}
 	];
