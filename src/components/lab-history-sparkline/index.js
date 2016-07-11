@@ -2,7 +2,6 @@
 
 var angular = require('angular');
 var ngModule = angular.module('lab-components.lab-history-sparkline', [
-	require('../components/index.js')
 ]);
 
 ngModule.controller('LabHistorySparklineController', require('./lab-history-sparkline-controller'));
