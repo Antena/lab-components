@@ -4,7 +4,7 @@
 
 @import "lab-tree";
 
-$lab-observation-group-border: 2px solid map-get($read-text-color, light);
+$lab-observation-group-border: 1px solid #e2e2e2;
 $lab-observation-group-bg: map-get($read-text-color, lighter);
 $lab-observation-group-padding: 20px;
 
@@ -12,9 +12,10 @@ $lab-observation-group-padding: 20px;
 	margin-bottom: 20px;
 	display: table;
 	width: 100%;
+	max-width: 775px;
 	border: $lab-observation-group-border;
 	background-color: $lab-observation-group-bg;
-	padding: $lab-observation-group-padding;
+	padding: $lab-observation-group-padding $lab-observation-group-padding 0;
 
 	.observation-group-title {
 		margin: 5px 0 15px !important;
@@ -49,6 +50,8 @@ $lab-observation-group-padding: 20px;
 
 	.details-item-list {
 		@extend %table-one-third-column;
+		padding-left: 0;
+		padding-right: 20px;
 
 		&.stretch {
 			@extend %table-two-thirds-column;
@@ -70,6 +73,7 @@ $lab-observation-group-padding: 20px;
 			.item-name {
 				color: map-get($read-text-color, regular);
 				width: 25%;
+				line-height: 1.8em;
 			}
 
 			.item-value {
