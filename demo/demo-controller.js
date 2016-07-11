@@ -506,4 +506,21 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			}
 		}
 	];
+
+	$scope.sparklines = [
+		{
+			title: "Test",
+			data: [
+				{ date: "2016-06-29T16:00:00.000-03:00", value: 55 },
+				{ date: "2016-06-21T16:00:00.000-03:00", value: 60 },
+				{ date: "2016-06-02T16:00:00.000-03:00", value: 63 },
+				{ date: "2016-05-03T16:00:00.000-03:00", value: 52 },
+				{ date: "2016-04-03T16:00:00.000-03:00", value: 51 },
+				{ date: "2016-03-03T16:00:00.000-03:00", value: 50 },
+				{ date: "2016-01-10T16:00:00.000-03:00", value: 48 },
+				{ date: "2015-01-10T16:00:00.000-03:00", value: 55 },
+				{ date: "2014-01-10T16:00:00.000-03:00", value: 58 }
+			]
+		}
+	];
 };

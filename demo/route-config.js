@@ -55,5 +55,10 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			url: '/lab-history-graph',
 			templateUrl: 'components/lab-history-graph.html',
 			controller: 'DemoController'
-		});
+		})
+		.state('lab-history-sparkline-graph', {
+			url: '/lab-history-sparkline-graph',
+			templateUrl: 'components/lab-history-sparkline-graph.html',
+			controller: 'DemoController'
+		})
 };
