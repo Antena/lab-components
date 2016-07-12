@@ -41,6 +41,13 @@ $lab-observation-group-padding: 20px;
 	width: 66%;
 }
 
+.lab-diagnostic-report-observations {
+	
+	h1, h2, h3, h4 {
+		font-family: "Helvetica", Arial, sans-serif;
+	}
+}
+
 .lab-diagnostic-report-info {
 	@extend %table-container;
 
