@@ -201,51 +201,6 @@ module.exports = function() {
 		},
 		link: function(scope, elem) {
 
-			var SHAPES = {
-				TRIANGLE: function(options, direction, d) {
-					var result;
-
-					if(direction === 'left') {
-						result = '' +
-							'M' + '0' + ' ' + '0' + ' ' +
-							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
-							'L' + '0' + ' ' + d.rectHeight;
-					} else if(direction === 'right') {
-						result = '' +
-							'M' + d.width + ' ' + '0' + ' ' +
-							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
-							'L' + d.width + ' ' + d.rectHeight;
-					}
-
-					return result;
-				},
-				HALF_CIRCLE: function(options, direction, d) {
-					/*
-						 M cx cy
-						 m -r, 0
-						 a r,r 0 1,0 (r * 2),0
-						 a r,r 0 1,0 -(r * 2),0
-					 */
-
-					var cx;
-
-					if(direction === 'left') {
-						cx = 0;
-					} else if(direction === 'right') {
-						cx = d.width;
-					}
-
-					var cy = d.rectHeight / 2;
-					var radius = d.rectHeight / 2;
-
-					return '' +
-						'M ' + cx + ' ' + cy + ' ' +
-						'm ' + -radius + ',' + ' 0' + ' ' +
-						'a ' + radius + ',' + radius + ' 0 1,0 ' + (radius * 2) + ',0' + ' ' +
-						'a ' + radius + ',' + radius + ' 0 1,0 ' + -(radius * 2) + ',0';
-				}
-			};
-
 			/**
 			 * Helper functions to re-draw graph based on scope's updates.
 			 * @type {Function}
@@ -282,11 +237,16 @@ module.exports = function() {
 				rangeSeparator: 'a',
 				lowerThanSymbol: '<',
 				graterThanSymbol: '>',
-				meterTriangle: { base: 12, height: 10 },
+				meterShape: {
+					type: 'BOX',
+					meterTriangle: { base: 12, height: 10 }
+				},
+				meterPosition: 'bottom',
 				meterOffset: { x: 0, y: -4 },
 				meterLabelOffset: { x: -10, y: 0 },
+				meterLabelWithUnits: true,
 				domain: {},
-				shape: 'HALF_CIRCLE'
+				rangeEndShape: 'HALF_CIRCLE'
 			});
 
 			/**
@@ -296,7 +256,101 @@ module.exports = function() {
 				width,
 				sectors, targetSector,
 				rect, targetRect, targetScale,
-				meter, meterWrapper, meterLabel;
+				meter, meterWrapper, rangeRectHeight;
+
+			var RANGE_END_SHAPES = {
+				TRIANGLE: function(options, direction, d) {
+					var result;
+
+					if(direction === 'left') {
+						result = '' +
+							'M' + '0' + ' ' + '0' + ' ' +
+							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
+							'L' + '0' + ' ' + d.rectHeight;
+					} else if(direction === 'right') {
+						result = '' +
+							'M' + d.width + ' ' + '0' + ' ' +
+							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
+							'L' + d.width + ' ' + d.rectHeight;
+					}
+
+					return result;
+				},
+				HALF_CIRCLE: function(options, direction, d) {
+					/*
+					 M cx cy
+					 m -r, 0
+					 a r,r 0 1,0 (r * 2),0
+					 a r,r 0 1,0 -(r * 2),0
+					 */
+
+					var cx;
+
+					if(direction === 'left') {
+						cx = 0;
+					} else if(direction === 'right') {
+						cx = d.width;
+					}
+
+					var cy = d.rectHeight / 2;
+					var radius = d.rectHeight / 2;
+
+					return '' +
+						'M ' + cx + ' ' + cy + ' ' +
+						'm ' + -radius + ',' + ' 0' + ' ' +
+						'a ' + radius + ',' + radius + ' 0 1,0 ' + (radius * 2) + ',0' + ' ' +
+						'a ' + radius + ',' + radius + ' 0 1,0 ' + -(radius * 2) + ',0';
+				}
+			};
+
+			var METER_SHAPES = {
+				BOX: {
+					marker: function(options, placement) {
+						// if placement === bottom // TODO (denise) add support for bottom placement
+						return isoscelesTriangle(options.meterShape.meterTriangle.base, options.meterShape.meterTriangle.height);
+					},
+					label: function(meter) {
+						meterWrapper = meter.append('foreignObject')
+							.attr('y', options.meterLabelOffset.y + options.meterShape.meterTriangle.height + options.meterOffset.y)
+							.attr('width', '100%')
+							.attr('height', '100%')
+							.style('visibility', 'hidden');
+						var meterLabel = meterWrapper.append('xhtml:div');
+						meterLabel.attr('class', 'meter-label-container');
+						meterLabel.append('xhtml:span').attr('class', 'meter-label');
+					},
+					updateLabel: function(meterLabel, text) {
+						meterLabel.html(text);
+					},
+					getIndicatorOverflow: function() {
+						return 0;
+					}
+				},
+				BALLOON: {
+					marker: function(options, placement) {
+						//TODO (denise) dismantle path so that width is configurable
+
+						// if placement === top	// TODO (denise) does it make sense to support this shape placed at bottom?
+						return "M0 .15" +
+							"c-12.5 0-22.7 10.2-22.7 22.7 0 15.4 15.2 28.8 21.7 30.2v5.7h2v-5.7" +
+							"c6.3-1.4 21.7-14.4 21.7-30.2C22.7 10.35 12.6.15 0 .15m0 42.4" +
+							"c-10.9 0-19.7-8.8-19.7-19.7 0-10.9 8.8-19.7 19.7-19.7 10.9 0 19.7 8.8 19.7 19.7.1 10.9-8.8 19.7-19.7 19.7z";
+					},
+					label: function(meter) {
+						meter.append('text')
+							.attr('y', (meter.node().getBBox().height/2) + options.meterLabelOffset.y)
+							.attr('x', '0')
+							.attr('text-anchor', 'middle')
+							.attr('class', 'meter-label meter-label-container');
+					},
+					updateLabel: function(meterLabel, text) {
+						meterLabel.text(text);
+					},
+					getIndicatorOverflow: function() {
+						return (45 / 2);	//TODO (denise) extract width from path (45)
+					}
+				}
+			};
 
 			setTimeout(function() {
 				width = angular.element(elem.parent()[0]).width();
@@ -309,11 +363,16 @@ module.exports = function() {
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
-					.attr('height', options.height)
+					// .attr('height', options.height) 	//TODO (denise) fix height
 					.classed('value-within-multiple-ranges-graph', true);
 
+
 				// Pre-process ranges
-				var sectorWidth = (width - options.padding.left - options.padding.right - (2 * options.arrowWidth) - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
+				var paddingAndBuffer = options.padding.left + options.padding.right + (2 * options.arrowWidth) + METER_SHAPES[options.meterShape.type].getIndicatorOverflow();
+				var sectorWidth = (width - paddingAndBuffer - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
+				var sectorHeight = options.height - options.padding.top - options.padding.bottom;
+				rangeRectHeight = sectorHeight - options.labelHeight;
+
 				sectors = _.map(scope.ranges, function(range, i) {
 					var sector = {};
 					sector.range = range;
@@ -322,10 +381,10 @@ module.exports = function() {
 					sector.index = i;
 					sector.first = (i === 0);
 					sector.last = (i === scope.ranges.length - 1);
-					sector.x = options.padding.left + options.arrowWidth + i * (sectorWidth + options.innerSpacing);
+					sector.x = (paddingAndBuffer / 2) + i * (sectorWidth + options.innerSpacing);
 					sector.width = sectorWidth;
-					sector.height = options.height - options.padding.top - options.padding.bottom;
-					sector.rectHeight = sector.height - options.labelHeight;
+					sector.height = sectorHeight;
+					sector.rectHeight = rangeRectHeight;
 					return sector;
 				});
 
@@ -338,13 +397,12 @@ module.exports = function() {
 
 				// Append rectangles to sectors
 				rect = targetSector.append('g')
-					.attr('transform', translate(0, options.labelHeight))
+					.attr('transform', translate(0, options.meterPosition === 'top' ? 0 : options.labelHeight))
 					.classed('target', function(d) { return valueInRange(scope.value, d.range); });
 				rect.append('rect')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', function(d) { return d.rectHeight; })
-					.attr('class', function(d) { return d.class; });
-
+					.attr('class', function(d) { return d.class + ' sector-rect'; });
 
 				// Create labels for ranges
 				targetSector.append('foreignObject')
@@ -352,22 +410,23 @@ module.exports = function() {
 					.attr('y', '0')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', options.labelHeight)
+					.classed('sector-meaning-rect', true)
 					.append('xhtml:div')
 					.classed('range-label', true)
 					.append('span')
 					.html(function(d) { return d.label; });
 
-				// Create arrows
+				// Create range end shape
 				rect.append('path')
-					.attr('d', _.partial(SHAPES[options.shape], options, 'left'))
+					.attr('d', _.partial(RANGE_END_SHAPES[options.rangeEndShape], options, 'left'))
 					.style('visibility', function(d, i) { return i === 0 ? 'visible': 'hidden'; } )
-					.attr('class', function(d) { return d.class; });
+					.attr('class', function(d) { return d.class + ' sector-rect'; });
 
 
 				rect.append('path')
-					.attr('d', _.partial(SHAPES[options.shape], options, 'right'))
+					.attr('d', _.partial(RANGE_END_SHAPES[options.rangeEndShape], options, 'right'))
 					.style('visibility', function(d, i) { return i === (sectors.length - 1) ? 'visible': 'hidden'; } )
-					.attr('class', function(d) { return d.class; });
+					.attr('class', function(d) { return d.class + ' sector-rect'; });
 
 				// Find the target and append a meter
 				targetRect = svg.selectAll('g.target');
@@ -379,6 +438,7 @@ module.exports = function() {
 					.attr('y', '0')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', function(d) { return d.rectHeight; })
+					.classed('sector-rect', true)
 					.append('xhtml:div')
 					.classed('range-text', true)
 					.append('span')
@@ -407,17 +467,28 @@ module.exports = function() {
 					appendMeter(targetRect);
 				}
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function(d) { return translate(targetScale(scope.value), d.rectHeight); });
+				meter.attr('transform', function(d) { return translate(targetScale(scope.value), (options.meterPosition === 'bottom' ? d.rectHeight : 0 )); });
 
 				// Update the meter's label
-				meter.select('span').html([scope.value, scope.unit].join(' '));
+				var labelValue = options.meterLabelWithUnits ? ([scope.value, scope.unit].join(' ')) : scope.value;
+				var meterLabelComponent = meter.select('.meter-label');
+				METER_SHAPES[options.meterShape.type].updateLabel(meterLabelComponent, labelValue);
+				var meterLabelContainer = meter.select('.meter-label-container');
 				var offsetX = targetRect.data()[0].x + targetScale(scope.value) + options.meterLabelOffset.x;
-				var labelWidth = meterLabel[0][0].clientWidth;
+				var labelWidth = meterLabelContainer[0][0].clientWidth;
 				var foOffsetX = (offsetX + labelWidth) > width ? -labelWidth - options.meterLabelOffset.x : options.meterLabelOffset.x;
-				meterWrapper
-					.attr('x', foOffsetX)
-					.style('visibility', 'visible');
+				if (meterWrapper) {
+					meterWrapper
+						.attr('x', foOffsetX)
+						.style('visibility', 'visible');
+				}
 
+				if(options.meterPosition === 'top') {
+					//shift all sector components down so that meter fits at top
+					var meterHeight = meter.node().getBBox().height;
+					svg.selectAll('.sector-rect').attr('transform', function (d) { return translate(0, meterHeight); });
+					svg.selectAll('.sector-meaning-rect').attr('transform', function (d) { return translate(0, meterHeight + rangeRectHeight); });
+				}
 			}
 
 			/**
@@ -428,22 +499,16 @@ module.exports = function() {
 			function appendMeter(targetSector) {
 				// Create group for meter
 				meter = targetSector.append('g')
-					.classed('meter', true);
+					.classed('meter', true)
+					.classed('meter-' + options.meterShape.type.toLowerCase(), true);
 
 				// Append the triangle
 				meter.append('path')
-					.attr('d', isoscelesTriangle(options.meterTriangle.base, options.meterTriangle.height))
+					.attr('d', _.partial(METER_SHAPES[options.meterShape.type].marker, options, 'bottom'))
 					.attr('transform', translate(options.meterOffset.x, options.meterOffset.y));
 
 				// Append the label
-				meterWrapper = meter.append('foreignObject')
-					.attr('y', options.meterLabelOffset.y + options.meterTriangle.height + options.meterOffset.y)
-					.attr('width', '100%')
-					.attr('height', '100%')
-					.style('visibility', 'hidden');
-				meterLabel = meterWrapper.append('xhtml:div');
-				meterLabel.attr('class', 'meter-label-container');
-				meterLabel.append('xhtml:span').attr('class', 'meter-label');
+				METER_SHAPES[options.meterShape.type].label(meter);
 			}
 
 			/**

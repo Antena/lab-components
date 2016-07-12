@@ -1,4 +1,5 @@
 $tree-node-selection-color: #333333;
+$tree-node-selection-color-secondary: #888;
 $nav-height: 20px;
 
 
@@ -10,7 +11,7 @@ $nav-height: 20px;
 }
 
 .lab-tree {
-	padding-left: 20px;
+	padding: 0 20px;
 	position: absolute;
 	display: block;
 
@@ -51,30 +52,37 @@ $nav-height: 20px;
 			&.parent-active a {
 				display: block;
 			}
+
+			&.parent-active {
+
+				> a {
+					font-weight: bold;
+				}
+			}
 		}
 
 		.lab-tree-node:not(.lab-tree-top-level) {
+
 			a {
-				padding-left: 30px;
+				padding: 1px 0 1px 20px;
+				color: $tree-node-selection-color-secondary;
+
+				&.active,
+				&:hover,
+				&:focus {
+					font-weight: bold;
+					background-color: transparent;
+					border-left-color: $tree-node-selection-color;
+					color: $tree-node-selection-color;
+				}
 			}
 		}
 
 		a {
 			display: none;
 			text-decoration: none;
-
-			padding-left: 20px;
-
 			color: $tree-node-selection-color;
 			border-left: 2px solid transparent;
-
-			&.active,
-			&:hover,
-			&:focus {
-				font-weight: bold;
-				background-color: transparent;
-				border-left-color: $tree-node-selection-color;
-			}
 		}
 	}
 }
@@ -85,4 +93,5 @@ $nav-height: 20px;
 	padding-left: 0;
 	list-style: none;
 	margin-bottom: 0;
+	margin-top: 0px;
 }
