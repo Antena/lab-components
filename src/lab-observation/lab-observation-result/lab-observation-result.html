@@ -3,7 +3,12 @@
 		<span class="main-value">{{ observation.valueQuantity.value }}</span>
 		<span ng-if="observation.valueQuantity.units" class="unit">{{ observation.valueQuantity.units }}</span>
 	</p>
-	<p ng-if="observation.valueString" class="lab-observation-value">
+	<p ng-if="observation.valueString && !isValueStringHtml(observation)" class="lab-observation-value">
 		<span class="main-value">{{ observation.valueString }}</span>
 	</p>
+	<div ng-if="isValueStringHtml(observation)" class="obsevation-html">
+		<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"
+				srcdoc="{{ observation.valueString | trusted }}">
+		</iframe>
+	</div>
 </div>
