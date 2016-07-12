@@ -15,8 +15,10 @@ module.exports = function($scope) {
 		var values = [];
 
 		values.push(extractValue(observation));
-		_.each(_.pluck(observation.related.reverse(), 'target'), function(obs) {
-			values.push(extractValue(obs))
+		_.each(_.pluck(_.union([], observation.related).reverse(), 'target'), function(obs) {
+			if (obs.valueQuantity && obs.issued) {
+				values.push(extractValue(obs))
+			}
 		});
 
 		$scope.vm.values = values;
