@@ -23,8 +23,16 @@ module.exports = function($scope, $filter) {
 		innerSpacing: 0,
 		domain: {
 			low: 0  // Default low domain to 0
-		}
+		},
+		meterShape: {
+			type: 'BALLOON'
+		},
+		meterLabelWithUnits: false,
+		meterPosition: 'top',
+		meterOffset: { x: 0, y: 0 },
+		meterLabelOffset: { x: 0, y: -2 }
 	};
+
 
 	var RANGE_CLASSES = {
 		GREAT: 'range-great',

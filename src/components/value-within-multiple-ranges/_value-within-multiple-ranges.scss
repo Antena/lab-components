@@ -10,8 +10,8 @@ $range-color-danger: map-get($interpretation-colors, danger);
 $range-color-unknown: map-get($interpretation-colors, unknown);
 
 
-$range-meter-background-color: black;
-$range-meter-text-color: white;
+$meter-main-color: black;
+$meter-contrasting-color: white;
 
 .value-within-multiple-ranges-graph {
 	.range-great {
@@ -76,17 +76,31 @@ $range-meter-text-color: white;
 	}
 
 	.meter {
-		fill: $range-meter-background-color;
 		text-align: left;
 
-		.meter-label-container {
-			display: inline-block;
-			background-color: $range-meter-background-color;
+		&.meter-box {
+			fill: $meter-main-color;
+
+			.meter-label {
+				color: $meter-contrasting-color;
+			}
+
+			.meter-label-container {
+				display: inline-block;
+				background-color: $meter-main-color;
+			}
+		}
+
+		&.meter-balloon {
+
+			.meter-label {
+				color: $meter-main-color;
+				font-weight: bold;
+			}
 		}
 
 		.meter-label {
 			font-size: $font-size-small;
-			color: $range-meter-text-color;
 			padding: 4px;
 		}
 	}

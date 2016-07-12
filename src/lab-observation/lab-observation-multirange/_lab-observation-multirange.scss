@@ -1,10 +1,11 @@
 @import "../../components/value-within-multiple-ranges/value-within-multiple-ranges";
 
-$range-meter-background-color: #222;
+$range-meter-background-color: #444;
 $range-meter-text-color: #EAEAEA;
 
 
 .meter {
+
 	fill: $range-meter-background-color;
 
 	.meter-label-container {
