@@ -330,6 +330,9 @@ module.exports = function() {
 					}
 				},
 				BALLOON: {
+					cx: 0.15,
+					cy: 23.8,
+					r: 20.3,
 					marker: function(options, placement) {
 						//TODO (denise) dismantle path so that width is configurable
 
@@ -340,6 +343,11 @@ module.exports = function() {
 							"c-10.9 0-19.7-8.8-19.7-19.7 0-10.9 8.8-19.7 19.7-19.7 10.9 0 19.7 8.8 19.7 19.7.1 10.9-8.8 19.7-19.7 19.7z";
 					},
 					label: function(meter) {
+						meter.append('circle')
+							.attr('class', 'meter-center-area')
+							.attr("cx", this.cx)
+							.attr("cy", this.cy)
+							.attr("r", this.r);
 						meter.append('text')
 							.attr('y', (meter.node().getBBox().height/2) + options.meterLabelOffset.y)
 							.attr('x', '0')
