@@ -13,6 +13,8 @@ $range-color-unknown: map-get($interpretation-colors, unknown);
 $meter-main-color: black;
 $meter-contrasting-color: white;
 
+$range-label-separation: 5px;
+
 .value-within-multiple-ranges-graph {
 	.range-great {
 		stroke: $range-color-great;
@@ -71,8 +73,16 @@ $meter-contrasting-color: white;
 		font-size: 9px;
 		font-weight: 900;
 		line-height: 1.1em;
-		display: inline-block;
+		display: block;
 		text-align: center;
+
+		&.bottom {
+			padding-top: $range-label-separation;
+		}
+
+		&.top {
+			padding-bottom: $range-label-separation;
+		}
 	}
 
 	.meter {

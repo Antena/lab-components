@@ -229,8 +229,8 @@ module.exports = function() {
 			 * Parse and extend options object.
 			 */
 			var options = _.defaults({}, scope.options, {
-				height: 80,
-				padding: { left: 10, right: 10, top: 10, bottom: 20 },
+				height: 120,
+				padding: { left: 0, right: 10, top: 10, bottom: 0 },
 				innerSpacing: 10,
 				arrowWidth: 7,
 				labelHeight: 25,
@@ -324,6 +324,9 @@ module.exports = function() {
 					},
 					getIndicatorOverflow: function() {
 						return 0;
+					},
+					getIndicatorHeight: function() {
+						return 0;
 					}
 				},
 				BALLOON: {
@@ -348,6 +351,9 @@ module.exports = function() {
 					},
 					getIndicatorOverflow: function() {
 						return (45 / 2);	//TODO (denise) extract width from path (45)
+					},
+					getIndicatorHeight: function() {
+						return 58;	//TODO (denise) extract from path
 					}
 				}
 			};
@@ -363,7 +369,7 @@ module.exports = function() {
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
-					// .attr('height', options.height) 	//TODO (denise) fix height
+					.attr('height', options.height) 	//TODO (denise) fix height
 					.classed('value-within-multiple-ranges-graph', true);
 
 
@@ -371,7 +377,9 @@ module.exports = function() {
 				var paddingAndBuffer = options.padding.left + options.padding.right + (2 * options.arrowWidth) + METER_SHAPES[options.meterShape.type].getIndicatorOverflow();
 				var sectorWidth = (width - paddingAndBuffer - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				var sectorHeight = options.height - options.padding.top - options.padding.bottom;
-				rangeRectHeight = sectorHeight - options.labelHeight;
+				console.log("sectorHeight = ", sectorHeight);	//TODO (denise) remove log
+				rangeRectHeight = sectorHeight - options.labelHeight - METER_SHAPES[options.meterShape.type].getIndicatorHeight();
+				console.log("rangeRectHeight = ", rangeRectHeight);	//TODO (denise) remove log
 
 				sectors = _.map(scope.ranges, function(range, i) {
 					var sector = {};
@@ -413,6 +421,8 @@ module.exports = function() {
 					.classed('sector-meaning-rect', true)
 					.append('xhtml:div')
 					.classed('range-label', true)
+					.classed('bottom', options.meterPosition === 'top')
+					.classed('top', options.meterPosition !== 'top')
 					.append('span')
 					.html(function(d) { return d.label; });
 
