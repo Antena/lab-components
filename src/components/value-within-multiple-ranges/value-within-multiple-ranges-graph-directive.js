@@ -385,10 +385,8 @@ module.exports = function() {
 				var paddingAndBuffer = options.padding.left + options.padding.right + (2 * options.arrowWidth) + METER_SHAPES[options.meterShape.type].getIndicatorOverflow();
 				var sectorWidth = (width - paddingAndBuffer - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				var sectorHeight = options.height - options.padding.top - options.padding.bottom;
-				console.log("sectorHeight = ", sectorHeight);	//TODO (denise) remove log
 				rangeRectHeight = sectorHeight - options.labelHeight - METER_SHAPES[options.meterShape.type].getIndicatorHeight();
-				console.log("rangeRectHeight = ", rangeRectHeight);	//TODO (denise) remove log
-
+				
 				sectors = _.map(scope.ranges, function(range, i) {
 					var sector = {};
 					sector.range = range;
