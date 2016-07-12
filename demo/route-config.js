@@ -31,6 +31,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/lab-diagnostic-report-compact-female.html',
 			controller: 'DemoController'
 		})
+		.state('lab-diagnostic-report-compact-history', {
+			url: '/lab-diagnostic-report-compact-history',
+			templateUrl: 'components/lab-diagnostic-report-compact-history.html',
+			controller: 'DemoController'
+		})
 		.state('value-within-range-graph', {
 			url: '/value-within-range-graph',
 			templateUrl: 'components/value-within-range-graph.html',
@@ -55,5 +60,10 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			url: '/lab-history-graph',
 			templateUrl: 'components/lab-history-graph.html',
 			controller: 'DemoController'
-		});
+		})
+		.state('lab-history-sparkline-graph', {
+			url: '/lab-history-sparkline-graph',
+			templateUrl: 'components/lab-history-sparkline-graph.html',
+			controller: 'DemoController'
+		})
 };

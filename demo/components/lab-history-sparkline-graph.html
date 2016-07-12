@@ -1,0 +1,10 @@
+<div>
+	<h2>Lab History Sparkline Graph demos</h2>
+
+	<div ng-repeat="history in sparklines" class="demo-instance-container">
+		<h4 class="demo-description">{{ history.title }}</h4>
+		<lab-history-sparkline
+			values="history.data">
+		</lab-history-sparkline>
+	</div>
+</div>

@@ -5,6 +5,7 @@ var lodash = require('lodash');
 
 // var fhirBundle = require('./grouped-bundle.json');
 var fhirBundle = require('./with-notes.json');
+var historyBundle = require('./with-history.json');
 
 var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
@@ -14,6 +15,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 
 	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
 	var anotherResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(anotherFhirBundle);
+	var historyResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(historyBundle);
 
 	var observations = _.map(resolvedBundle.observations, function(observation) {
 		var result = lodash.cloneDeep(observation);
@@ -123,6 +125,17 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		reportDate: anotherResolvedBundle.diagnosticReport.issued,
 		patient: anotherResolvedBundle.diagnosticReport.subject,
 		organization: anotherResolvedBundle.diagnosticReport.performer,
+		dateFormat: "DD-MM-YYYY",
+		observationHistoryService: LabObservationService.getHistory
+	};
+
+	$scope.demo3 = {
+		rawObservations: historyResolvedBundle.observations,
+		order: historyResolvedBundle.diagnosticOrder,
+		status: historyResolvedBundle.diagnosticReport.status,
+		reportDate: historyResolvedBundle.diagnosticReport.issued,
+		patient: historyResolvedBundle.diagnosticReport.subject,
+		organization: historyResolvedBundle.diagnosticReport.performer,
 		dateFormat: "DD-MM-YYYY",
 		observationHistoryService: LabObservationService.getHistory
 	};
@@ -507,6 +520,62 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 			options: {
 				domain: { low: 0, high: 200 }
 			}
+		}
+	];
+
+	$scope.sparklines = [
+		{
+			title: "Several points (9)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 },
+				{ date: "2016-06-02", value: 63 },
+				{ date: "2016-05-03", value: 52 },
+				{ date: "2016-04-03", value: 51 },
+				{ date: "2016-03-03", value: 50 },
+				{ date: "2016-01-10", value: 48 },
+				{ date: "2015-01-10", value: 55 },
+				{ date: "2014-01-10", value: 58 }
+			]
+		},
+		{
+			"title": "Fewer points (3)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 },
+				{ date: "2016-06-02", value: 63 }
+			]
+		},
+		{
+			"title": "Even fewer points (2)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 60 }
+			]
+		},
+		{
+			"title": "Just one point (1)",
+			data: [
+				{ date: "2016-06-29", value: 55 }
+			]
+		},
+		{
+			"title": "Data with gaps (3 and 1)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-01-10", value: 48 },
+				{ date: "2015-01-10", value: 62 },
+				{ date: "2014-01-10", value: 58 }
+			]
+		},
+		{
+			"title": "Data with gaps (1 and 3)",
+			data: [
+				{ date: "2016-06-29", value: 55 },
+				{ date: "2016-06-21", value: 63 },
+				{ date: "2016-06-02", value: 60 },
+				{ date: "2014-01-10", value: 58 }
+			]
 		}
 	];
 };
