@@ -38,9 +38,12 @@ $observation-box-padding: 10px;
 
 	width: 100%;
 	&.observation-basic-content {
-		width: 49%;
-		&:not(:last-child) {
-			margin-right: 2%;
+
+		@include susy-breakpoint($screen-tablet) {
+			width: 49%;
+			&:not(:last-child) {
+				margin-right: 2%;
+			}
 		}
 	}
 
@@ -303,7 +306,8 @@ $observation-box-padding: 10px;
 			}
 
 			&.observation-secondary-content,
-			&.observation-tertiary-content {
+			&.observation-tertiary-content,
+			&.observation-generic-content {
 				display: table-cell;
 
 				@include susy-breakpoint($screen-tablet) {
