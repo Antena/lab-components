@@ -1,4 +1,5 @@
 @import "../../components/value-within-multiple-ranges/value-within-multiple-ranges";
+@import "~susy/sass/susy";
 
 $range-meter-background-color: #444;
 $range-meter-text-color: #EAEAEA;
@@ -19,8 +20,10 @@ $range-meter-text-color: #EAEAEA;
 	}
 }
 
-.lab-observation-multirange-graph {
-    position: relative;
-    top: -25px;
-	margin-bottom: -25px;
-}
+//@include susy-breakpoint($screen-tablet) {
+	.lab-observation-multirange-graph {
+		position: relative;
+		top: -25px;
+		margin-bottom: -25px;
+	}
+//}

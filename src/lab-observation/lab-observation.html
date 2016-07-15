@@ -1,4 +1,5 @@
-<div class="observation-gallery-item" ng-class="{'compact-observation': !!compactMode, 'multi-range-mode': !!multiRangeMode }">
+<div class="observation-gallery-item" ng-init="observation.hasHistory = !!observation.valueQuantity"
+	 ng-class="{'observation-reduced-content': !observation.hasHistory || !observation.referenceRange[0].text, 'observation-stripped-content': !observation.hasHistory && !observation.referenceRange[0].text, 'observation-basic-content': !!observation.valueString }">
 
 	<div class="observation-gallery-header" ng-if="!hideTitle">
 		<h3 class="observation-gallery-header-text">{{ observation.code | codeableConcept }}</span></h3>
@@ -17,14 +18,14 @@
 
 	<div class="observation-gallery-content">
 
-		<div class="observation-column observation-secondary-content">
+		<div class="observation-column observation-secondary-content observation-column-non-wrap">
 			<div class="observation-column-title">{{ 'LAB.RESULT' | translate }}</div>
 			<div class="observation-column-content">
 				<lab-observation-result observation="observation"></lab-observation-result>
 			</div>
 		</div>
 
-		<div ng-if="!!observation.valueQuantity" class="observation-column observation-tertiary-content observation-details" ng-init="observation.showHistory = 0">
+		<div class="observation-column observation-tertiary-content observation-column-non-wrap observation-details" ng-if="!!observation.hasHistory">
 			<div class="observation-column-title">{{ 'LAB.HISTORIC' | translate }}</div>
 			<div class="observation-column-content">
 				<lab-observation-sparkline
@@ -38,7 +39,7 @@
 			<lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode"></lab-observation-multirange-graph>
 		</div>
 
-		<div class="observation-column observation-generic-content" ng-if="observation.referenceRange[0].text">
+		<div class="observation-column observation-generic-content observation-column-non-wrap" ng-if="observation.referenceRange[0].text">
 			<div class="observation-column-title">{{ 'LAB.REFERENCE' | translate }}</div>
 			<div class="observation-column-content">
 				<div class="reference-range" ng-class="{'big-reference-range': !!observation.valueString}">
@@ -47,6 +48,7 @@
 			</div>
 		</div>
 
+		<!-- TODO (denise) incorporate this-->
 		<div ng-if="!viewOnly && actions.length" class="observation-column observation-generic-content">
 
 			<div ng-repeat="action in actions">

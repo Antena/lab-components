@@ -368,6 +368,7 @@ module.exports = function() {
 
 			setTimeout(function() {
 				width = angular.element(elem.parent()[0]).width();
+				// width = 500;
 				init();
 			}, 0);
 
@@ -386,7 +387,7 @@ module.exports = function() {
 				var sectorWidth = (width - paddingAndBuffer - ((scope.ranges.length - 1) * options.innerSpacing)) / scope.ranges.length;
 				var sectorHeight = options.height - options.padding.top - options.padding.bottom;
 				rangeRectHeight = sectorHeight - options.labelHeight - METER_SHAPES[options.meterShape.type].getIndicatorHeight();
-				
+				console.log("sectorWidth = ", sectorWidth);	//TODO (denise) remove log
 				sectors = _.map(scope.ranges, function(range, i) {
 					var sector = {};
 					sector.range = range;

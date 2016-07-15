@@ -47,6 +47,7 @@ var config = {
 		}
 	},
 	plugins: [
+		new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /es/),
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.ProvidePlugin({
 			$: "jquery",
