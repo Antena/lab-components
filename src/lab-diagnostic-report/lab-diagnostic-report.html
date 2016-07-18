@@ -21,25 +21,47 @@
 	<div ng-if="vm.observations.length" class="lab-diagnostic-report-observations split-content">
 
 		<div class="primary-content" id="observations-container">
-			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations">
-
+			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations" ng-if="$index < 5">
 				<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }}</span></h2>
 
-				<div class="observation-gallery">
-					<lab-observation ng-repeat="observation in getObservationList(firstLevelObservation)" id="{{ observation.id }}"
-									 observation="observation"
-									 actions="observation.actions"
-									 header-actions="observation.headerActions"
-									 view-only="vm.viewOnly"
-									 compact-mode="vm.compactMode"
-									 multi-range-mode="vm.displayObservationsWithMultipleRanges"
-									 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
-									 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
-									 patient-gender="vm.patientGender">
-						<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
-					</lab-observation>
-				</div>
+				<div ng-repeat="observation in (observationList = getObservationList(firstLevelObservation))"
+						 ng-if="showNext(observationList, observation, $index) || !observation.added"
+						 class="observation-gallery-wrapper">
 
+						<div class="observation-gallery" ng-if="!observation.added" ng-class="{'half': !!observation.valueString}">
+							<div lab-observation
+								 id="{{ observation.id }}"
+								 class="lab-observation"
+								 observation="observation"
+								 actions="observation.actions"
+								 header-actions="observation.headerActions"
+								 view-only="vm.viewOnly"
+								 compact-mode="vm.compactMode"
+								 multi-range-mode="vm.displayObservationsWithMultipleRanges"
+								 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
+								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
+								 patient-gender="vm.patientGender">
+								<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
+							</div>
+						</div>
+
+						<div class="observation-gallery" ng-if="showNext(observationList, observation, $index)" ng-class="{'half': !!observationList[$index+1].valueString}">
+							<div lab-observation
+								 id="{{ observationList[$index+1].id }}"
+								 class="lab-observation"
+								 observation="observationList[$index+1]"
+								 actions="observationList[$index+1].actions"
+								 header-actions="observationList[$index+1].headerActions"
+								 view-only="vm.viewOnly"
+								 compact-mode="vm.compactMode"
+								 multi-range-mode="vm.displayObservationsWithMultipleRanges"
+								 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
+								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
+								 patient-gender="vm.patientGender">
+								<lab-history-graph ng-if="observationList[$index+1].showHistory && !!observationList[$index+1].history" observation-list="observationList[$index+1].history"></lab-history-graph>
+							</div>
+						</div>
+					</div>
 			</div>
 		</div>
 

@@ -72,6 +72,15 @@ module.exports = function($scope) {
 		return observation.valueString === observation.referenceRange[0].text || observation.referenceRange[0].text === '.' || _.isUndefined(observation.referenceRange[0].text);
 	};
 
+	$scope.showNext = function(list, current, index) {
+		var next = list[index+1];
+		var result = !current.added && !!next && !!current.valueString && !!next.valueString;
+		if(result) {
+			next.added = true;
+		}
+		return result;
+	};
+
 	// Helper function to avoid complex ng-if in the template (uses the same code to show 1 or N Observations)
 	$scope.getObservationList = function(observation) {
 		var result;

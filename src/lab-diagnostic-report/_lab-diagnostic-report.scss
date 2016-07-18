@@ -1,4 +1,5 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize";
+@import "~susy/sass/susy";
 @import "../layout";
 @import "../colors";
 
@@ -8,28 +9,30 @@ $lab-observation-group-border: 1px solid #e2e2e2;
 $lab-observation-group-bg: map-get($read-text-color, lighter);
 $lab-observation-group-padding: 20px;
 
-.observation-groups {
-	margin-bottom: 20px;
-	display: table;
-	width: 100%;
-	max-width: 775px;
-	border: $lab-observation-group-border;
-	background-color: $lab-observation-group-bg;
-	padding: $lab-observation-group-padding $lab-observation-group-padding 0;
-
-	.observation-group-title {
-		margin: 5px 0 15px !important;
-	}
-}
-
 %table-container {
 	display: table;
 	width: 100%;
+	height: 100%;
+}
+
+%table-column {
+	@include susy-breakpoint($screen-tablet) {
+		display: table-cell;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 %table-half-column {
-	display: table-cell;
-	width: 50%;
+	@include susy-breakpoint($screen-tablet) {
+		display: table-cell;
+		width: 49%;
+
+		&:not(:last-child) {
+			padding-right: 2%;
+			padding-bottom: 0 !important;
+		}
+	}
 }
 
 %table-one-third-column {
@@ -39,6 +42,43 @@ $lab-observation-group-padding: 20px;
 %table-two-third-column {
 	display: table-cell;
 	width: 66%;
+}
+
+.observation-groups {
+	margin-bottom: 20px;
+	display: table;
+	width: 100%;
+	height: 100%;
+	max-width: 775px;
+	border: $lab-observation-group-border;
+	background-color: $lab-observation-group-bg;
+	padding: $lab-observation-group-padding $lab-observation-group-padding 0;
+
+	.observation-group-title {
+		margin: 5px 0 15px !important;
+	}
+
+	.observation-gallery-wrapper {
+		padding-bottom: 20px;
+		@extend %table-container;
+
+		.observation-gallery {
+			vertical-align: top;
+			@extend %table-column;
+
+			&.half {
+				@extend %table-half-column;
+
+				&:not(:last-child) {
+					padding-bottom: 20px;
+				}
+			}
+
+			.lab-observation {
+				height: 100%;
+			}
+		}
+	}
 }
 
 .lab-diagnostic-report-observations {
@@ -68,7 +108,6 @@ $lab-observation-group-padding: 20px;
 			@extend %table-two-thirds-column;
 		}
 
-		//padding-right: 20px;
 		word-break: break-all;
 		list-style: none;
 		font-size: $font-size-small;

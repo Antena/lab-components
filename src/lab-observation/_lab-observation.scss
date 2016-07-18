@@ -30,23 +30,11 @@ $observation-box-padding: 10px;
 }
 
 .observation-gallery-item {
-	position: relative;
-	margin: 20px 0;
 	background: $observation-box-bg;
 	border: $observation-box-border;
-	display: inline-block;
 
 	width: 100%;
-	&.observation-basic-content {
-
-		@include susy-breakpoint($screen-tablet) {
-			width: 49%;
-			&:not(:last-child) {
-				margin-right: 2%;
-			}
-		}
-	}
-
+	height: 100%;
 
 	@include clearfix;
 
@@ -395,10 +383,6 @@ $observation-box-padding: 10px;
 			}
 		}
 
-		.observation-gallery {
-			padding: 20px;
-		}
-
 		.observation-generic-content {
 
 			button {
@@ -414,6 +398,12 @@ $observation-box-padding: 10px;
 					font-weight: 600;
 					line-height: 1.4em;
 					white-space: pre-wrap;
+					word-break: break-all;
+
+					@include susy-breakpoint($screen-tablet) {
+						white-space: pre;
+						word-break: initial;
+					}
 				}
 			}
 		}
