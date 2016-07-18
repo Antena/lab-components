@@ -21,7 +21,7 @@
 	<div ng-if="vm.observations.length" class="lab-diagnostic-report-observations split-content">
 
 		<div class="primary-content" id="observations-container">
-			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations" ng-if="$index < 5">
+			<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations">
 				<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }}</span></h2>
 
 				<div ng-repeat="observation in (observationList = getObservationList(firstLevelObservation))"

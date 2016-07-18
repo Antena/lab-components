@@ -426,6 +426,7 @@ module.exports = function() {
 					.attr('width', function(d) { return d.width; })
 					.attr('height', options.labelHeight)
 					.classed('sector-meaning-rect', true)
+					.classed('range-label-wrapper', true)
 					.append('xhtml:div')
 					.classed('range-label', true)
 					.classed('bottom', options.meterPosition === 'top')
