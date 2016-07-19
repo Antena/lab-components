@@ -14,30 +14,30 @@
 	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
 		<ul class="details-item-list">
 			<li ng-if="vm.patient" class="details-item">
-				<img ng-src="images/icons/icon-patient.svg"> 
+				<img src="../images/icons/icon-patient.svg">
 				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }}</span>
 			</li>
 			<li ng-if="vm.patient" class="details-item">
-				<img ng-src="images/icons/icon-years-old.svg">
+				<img src="../images/icons/icon-years-old.svg">
 				<span class="item-name"> Edad: &nbsp;</span><span class="item-value">{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</span>
 			</li>
 			<li ng-if="vm.patient" class="details-item">
-				<img ng-src="images/icons/icon-mail.svg">  
+				<img src="../images/icons/icon-mail.svg">
 				<span class="item-name">&nbsp;</span><span class="item-value"><a href="mailto:mateo@cdrossi.com.ar">mateo@cdrossi.com.ar</a></span>
 
 			</li>
 		</ul>
 		<ul class="details-item-list stretch">
 			<li ng-if="vm.organization" class="details-item">
-				<img ng-src="images/icons/icon-medic.svg">
+				<img src="../images/icons/icon-doctor.svg">
 				<span class="item-name">Médico: &nbsp;</span><span class="item-value">Carlos Perez</span>
 			</li>
 			<li ng-if="vm.organization" class="details-item">
-				<img ng-src="images/icons/icon-building.svg">
+				<img src="../images/icons/icon-building.svg">
 				<span class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.organization.name }}</span>
 			</li>
 			<li ng-if="vm.status" class="details-item">
-				<img ng-src="images/icons/icon-state.svg">  
+				<img src="../images/icons/icon-state.svg">
 				<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.status | toStatusKey | translate }}&nbsp;<span class="item-value-help">({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})</span></span>
 			</li>
 		</ul>
