@@ -3,7 +3,7 @@
 
 $range-meter-background-color: #444;
 $range-meter-text-color: #EAEAEA;
-
+$range-meter-offset: 25px;
 
 .meter {
 
@@ -20,10 +20,8 @@ $range-meter-text-color: #EAEAEA;
 	}
 }
 
-//@include susy-breakpoint($screen-tablet) {
-	.lab-observation-multirange-graph {
-		position: relative;
-		top: -25px;
-		margin-bottom: -25px;
-	}
-//}
+.lab-observation-multirange-graph {
+	position: relative;
+	top: -$range-meter-offset;
+	margin-bottom: -$range-meter-offset;
+}

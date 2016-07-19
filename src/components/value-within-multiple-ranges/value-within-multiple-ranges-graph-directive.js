@@ -421,15 +421,13 @@ module.exports = function() {
 				// Create labels for ranges
 				targetSector.append('foreignObject')
 					.attr('x', '0')
-					.attr('y', '0')
+					.attr('y', options.meterPosition === 'top' ? '5' : '0')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', options.labelHeight)
 					.classed('sector-meaning-rect', true)
 					.classed('range-label-wrapper', true)
 					.append('xhtml:div')
 					.classed('range-label', true)
-					.classed('bottom', options.meterPosition === 'top')
-					.classed('top', options.meterPosition !== 'top')
 					.append('span')
 					.html(function(d) { return d.label; });
 
