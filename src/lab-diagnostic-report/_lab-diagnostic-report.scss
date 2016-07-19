@@ -96,7 +96,8 @@ $lab-observation-group-padding: 20px;
 	text-align: left;
 
 	@include susy-breakpoint($screen-tablet) {
-		width: 70%;
+		width: 78%;
+		max-width: 775px;
 	}
 
 	.details-item-list {
@@ -113,22 +114,21 @@ $lab-observation-group-padding: 20px;
 		font-size: $font-size-small;
 
 		.details-item {
-			@extend %table-container;
+			height: 40px;
 
-			.item-name,
-			.item-value {
-				@extend %table-half-column;
+			img {
+				display: inline-block;
 			}
 
 			.item-name {
 				color: map-get($read-text-color, regular);
-				width: 25%;
 				line-height: 1.8em;
+				display: inline-block;
 			}
 
 			.item-value {
 				font-weight: bold;
-				width: 75%;
+				display: inline-block;
 			}
 
 			.item-value-help {
