@@ -1,3 +1,15 @@
+<div class="lab-diagnostic-report-state-bar">
+		<ul class="details-item-list">
+			<li ng-if="vm.patient" class="details-item">
+				<img ng-src="images/icons/icon-patient.svg"> 
+				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }}</span>
+			</li>
+			<li ng-if="vm.patient" class="details-item">
+				<img ng-src="images/icons/icon-years-old.svg">
+				<span class="item-name"> Edad: &nbsp;</span><span class="item-value">{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</span>
+			</li>
+		</ul>
+	</div>
 <div>
 	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
 		<ul class="details-item-list">

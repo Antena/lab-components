@@ -88,6 +88,11 @@ $lab-observation-group-padding: 20px;
 	}
 }
 
+.lab-diagnostic-report-state-bar {
+	background-color:$color-blue-lab;
+	color: white;
+}
+
 .lab-diagnostic-report-info {
 	@extend %table-container;
 
