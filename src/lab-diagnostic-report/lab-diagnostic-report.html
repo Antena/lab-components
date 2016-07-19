@@ -1,44 +1,58 @@
-<div class="lab-diagnostic-report-state-bar">
+	<div class="lab-diagnostic-report-state-bar">
 		<ul class="details-item-list">
-			<li ng-if="vm.patient" class="details-item">
-				<img ng-src="images/icons/icon-patient.svg"> 
-				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }}</span>
+			<li class="details-item">
+				<img class="icon" src="../images/icons/icon-time.svg"> 
+				<span><div class="item-name">Fecha del estudio: </div><b> 17-04-2016</b></span>
 			</li>
-			<li ng-if="vm.patient" class="details-item">
-				<img ng-src="images/icons/icon-years-old.svg">
-				<span class="item-name"> Edad: &nbsp;</span><span class="item-value">{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</span>
+			<li class="details-item">
+				<img class="icon" src="../images/icons/icon-numeral.svg">
+				<span><div class="item-name">Ref:</div><b> 8882300239293</b></span>
 			</li>
 		</ul>
 	</div>
-<div>
+	<div>
 	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
 		<ul class="details-item-list">
 			<li ng-if="vm.patient" class="details-item">
-				<img src="../images/icons/icon-patient.svg">
-				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }}</span>
+				<img class="icon" src="../images/icons/icon-patient.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div><div class="item-value"><b>{{ vm.patient | patientFullName }}</b></div>
+				</div>
 			</li>
 			<li ng-if="vm.patient" class="details-item">
-				<img src="../images/icons/icon-years-old.svg">
-				<span class="item-name"> Edad: &nbsp;</span><span class="item-value">{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</span>
+				<img class="icon" src="../images/icons/icon-years-old.svg">
+				<div class="item-wrapper">
+					<div class="item-name"> Edad: &nbsp;</div><div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</b></div>
+				</div>
 			</li>
 			<li ng-if="vm.patient" class="details-item">
-				<img src="../images/icons/icon-mail.svg">
-				<span class="item-name">&nbsp;</span><span class="item-value"><a href="mailto:mateo@cdrossi.com.ar">mateo@cdrossi.com.ar</a></span>
-
+				<img class="icon" src="../images/icons/icon-mail.svg">
+				<div class="item-wrapper">
+					<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:mateo@cdrossi.com.ar"><b>mateo@cdrossi.com.ar</b></a></div>
+				</div>
 			</li>
 		</ul>
 		<ul class="details-item-list stretch">
 			<li ng-if="vm.organization" class="details-item">
-				<img src="../images/icons/icon-doctor.svg">
-				<span class="item-name">Médico: &nbsp;</span><span class="item-value">Carlos Perez</span>
+				<img class="icon" src="../images/icons/icon-doctor.svg">
+				<div class="item-wrapper">
+					<div class="item-name">Médico: &nbsp;</div><div class="item-value"><b>Carlos Perez</b></div>
+				</div>
 			</li>
 			<li ng-if="vm.organization" class="details-item">
-				<img src="../images/icons/icon-building.svg">
-				<span class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.organization.name }}</span>
+				<img class="icon" src="../images/icons/icon-building.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</div>
+					<div class="item-value"><b>{{ vm.organization.name }}</b></div>
+				</div>
 			</li>
 			<li ng-if="vm.status" class="details-item">
-				<img src="../images/icons/icon-state.svg">
-				<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.status | toStatusKey | translate }}&nbsp;<span class="item-value-help">({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})</span></span>
+				<img class="icon" src="../images/icons/icon-state.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</div>
+					<div class="item-value"><b>{{ vm.status | toStatusKey | translate }}</b>&nbsp;({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>

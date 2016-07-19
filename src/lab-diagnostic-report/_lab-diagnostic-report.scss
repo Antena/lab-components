@@ -36,8 +36,13 @@ $lab-observation-group-padding: 20px;
 }
 
 %table-one-third-column {
-	display: table-cell;
-	width: 33%;
+	display: block;
+	width: 100%;
+
+	@include susy-breakpoint($screen-tablet) {
+		display: table-cell;
+		width: 33%;
+	}
 }
 %table-two-third-column {
 	display: table-cell;
@@ -91,16 +96,58 @@ $lab-observation-group-padding: 20px;
 .lab-diagnostic-report-state-bar {
 	background-color:$color-blue-lab;
 	color: white;
+
+	.details-item-list {
+		padding: 0;
+		margin: 0 auto;
+		list-style: none;
+		font-size: 12px;
+		max-width: 1024px;
+		width: 100%;
+
+		.details-item {
+			padding: 25px 10px;
+			text-align: left;
+		    position: relative;
+    		display: inline-block;
+    		white-space: nowrap;
+			border-left: 1px solid #009ad6;
+			width: 49%;
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+
+			@include susy-breakpoint($screen-tablet) {
+				width: auto;
+			}
+			
+			.item-name {
+				display: none;
+
+				@include susy-breakpoint($screen-tablet) {
+					display: inline-block;
+				}
+			}
+
+			.icon {
+    			
+				display: inline-block;
+				width: 25px;
+    			vertical-align: middle;
+			}
+		}
+	}
 }
 
 .lab-diagnostic-report-info {
 	@extend %table-container;
 
 	width: 100%;
-	margin-bottom: 20px;
+	margin: 0px;
 	text-align: left;
 
 	@include susy-breakpoint($screen-tablet) {
+		margin: 15px 0 20px;
 		width: 78%;
 		max-width: 775px;
 	}
@@ -109,38 +156,58 @@ $lab-observation-group-padding: 20px;
 		@extend %table-one-third-column;
 		padding-left: 0;
 		padding-right: 20px;
+		margin: 0;
+		word-break: break-all;
+		list-style: none;
+		font-size: $font-size-small;
+
+		@include susy-breakpoint($screen-tablet) { 
+			margin: 10px;
+		}
 
 		&.stretch {
 			@extend %table-two-thirds-column;
 		}
 
-		word-break: break-all;
-		list-style: none;
-		font-size: $font-size-small;
+		&:nth-child(1) .details-item:first-child {
+			border-top: none;
+		}
 
 		.details-item {
-			height: 40px;
+			padding: 10px 0 20px;
+			text-align: left;
+			position: relative;
+			border-top: 1px solid #ededed;
 
-			img {
-				display: inline-block;
+
+			@include susy-breakpoint($screen-tablet) {
+				padding: 10px 0;
+				border-top: none;
 			}
 
+			.icon {
+    			float: left;
+				max-width: 25px;
+    			max-height: 32px;
+			}
+			
+			.item-wrapper {
+			    position: relative;
+			    top: 6px;
+			    left: 10px;
+			}
 			.item-name {
+				float: left;
+    			display: table-column;
 				color: map-get($read-text-color, regular);
-				line-height: 1.8em;
-				display: inline-block;
+				line-height: 1.5em;
+    			word-break: normal;
 			}
 
 			.item-value {
-				font-weight: bold;
-				display: inline-block;
-			}
-
-			.item-value-help {
-				font-size: 12px;
-				line-height: 13px;
-				color: #bcbcbc;
-				font-weight: normal;
+    			line-height: 1.5em;
+    			display: table-cell;
+    			word-break: normal;
 			}
 		}
 	}
