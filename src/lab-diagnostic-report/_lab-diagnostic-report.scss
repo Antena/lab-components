@@ -93,52 +93,6 @@ $lab-observation-group-padding: 20px;
 	}
 }
 
-.lab-diagnostic-report-state-bar {
-	background-color:$color-blue-lab;
-	color: white;
-
-	.details-item-list {
-		padding: 0;
-		margin: 0 auto;
-		list-style: none;
-		font-size: 12px;
-		max-width: 1024px;
-		width: 100%;
-
-		.details-item {
-			padding: 25px 15px;
-			text-align: left;
-		    position: relative;
-    		display: inline-block;
-    		white-space: nowrap;
-			border-left: 1px solid #009ad6;
-			width: 49%;
-			box-sizing: border-box;
-			-moz-box-sizing: border-box;
-			-webkit-box-sizing: border-box;
-
-			@include susy-breakpoint($screen-tablet) {
-				width: auto;
-			}
-			
-			.item-name {
-				display: none;
-
-				@include susy-breakpoint($screen-tablet) {
-					display: inline-block;
-				}
-			}
-
-			.icon {
-    			
-				display: inline-block;
-				width: 25px;
-    			vertical-align: middle;
-			}
-		}
-	}
-}
-
 .lab-diagnostic-report-info {
 	@extend %table-container;
 
