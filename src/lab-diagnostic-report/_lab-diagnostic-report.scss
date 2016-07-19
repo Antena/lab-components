@@ -152,6 +152,15 @@ $lab-observation-group-padding: 20px;
 		max-width: 775px;
 	}
 
+	a {
+		color: $color-blue-lab;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	.details-item-list {
 		@extend %table-one-third-column;
 		padding-left: 0;
