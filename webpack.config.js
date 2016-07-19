@@ -31,7 +31,8 @@ var config = {
 					'style', // backup loader when not building .css file
 					'css!sass' // loaders to preprocess CSS
 				)
-			}
+			},
+			{ test: /\.(png|svg)$/, loader: 'url-loader' }
 		]
 	},
 	resolve: {

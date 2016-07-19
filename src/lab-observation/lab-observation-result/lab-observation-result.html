@@ -7,9 +7,8 @@
 		<span class="main-value">{{ observation.valueString }}</span>
 	</p>
 	<div ng-if="isValueStringHtml(observation)" class="obsevation-html">
-		HTML!!
-		<!--<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"-->
-				<!--srcdoc="{{ observation.valueString | trusted }}">-->
-		<!--</iframe>-->
+		<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"
+				srcdoc="{{ observation.valueString | trusted }}">
+		</iframe>
 	</div>
 </div>
