@@ -64,8 +64,13 @@ $range-label-separation: 5px;
 			vertical-align: middle;
 			text-align: center;
 			color: white;
-			font-size: 12px;
-			line-height: 1;
+			font-size: 11px;
+			line-height: 10px;
+
+			@include susy-breakpoint($screen-tablet) {
+				font-size: 12px;
+				line-height: 1;
+			}
 		}
 	}
 
