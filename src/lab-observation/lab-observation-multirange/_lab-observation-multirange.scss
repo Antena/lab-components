@@ -1,8 +1,9 @@
 @import "../../components/value-within-multiple-ranges/value-within-multiple-ranges";
+@import "~susy/sass/susy";
 
 $range-meter-background-color: #444;
 $range-meter-text-color: #EAEAEA;
-
+$range-meter-offset: 25px;
 
 .meter {
 
@@ -20,7 +21,7 @@ $range-meter-text-color: #EAEAEA;
 }
 
 .lab-observation-multirange-graph {
-    position: relative;
-    top: -25px;
-	margin-bottom: -25px;
+	position: relative;
+	top: -$range-meter-offset;
+	margin-bottom: -$range-meter-offset;
 }

@@ -1,7 +1,9 @@
+@import "../variables";
+@import "~susy/sass/susy";
+
 $tree-node-selection-color: #333333;
 $tree-node-selection-color-secondary: #888;
 $nav-height: 20px;
-
 
 
 .fix-tree .lab-tree {
@@ -13,13 +15,11 @@ $nav-height: 20px;
 .lab-tree {
 	padding: 0 20px;
 	position: absolute;
-	display: block;
+	display: none;
 
-	//display: none;
-	//
-	//@include susy-breakpoint($screen-tablet) {
-	//	display: block;
-	//}
+	@include susy-breakpoint($screen-tablet) {
+		display: block;
+	}
 
 	.lab-tree-node {
 		padding: 4px 0;

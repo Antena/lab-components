@@ -20,13 +20,22 @@ $observation-box-padding: 10px;
 	padding: $observation-box-padding;
 }
 
+%observation-column-tablet-wrap {
+	display: table-caption;
+	caption-side: bottom;
+
+	@include susy-breakpoint($screen-tablet) {
+		display: table-cell;
+	}
+}
+
 .observation-gallery-item {
-	position: relative;
-	margin: 20px 0;
 	background: $observation-box-bg;
 	border: $observation-box-border;
-	display: inline-block;
+
 	width: 100%;
+	height: 100%;
+
 	@include clearfix;
 
 	h3 {
@@ -48,6 +57,111 @@ $observation-box-padding: 10px;
 			padding: 10px;
 		}
 	}
+
+
+
+
+	///// observation-column width distribution:
+	// * mobile
+	.observation-secondary-content,
+	.observation-tertiary-content,
+	.observation-generic-content {
+		width: 33%;
+	}
+	.observation-primary-content {
+		width: 100%;
+	}
+
+	// secondary | generic (no tertiary)
+	// secondary | tertiary (no generic)
+	&.observation-reduced-content {
+		.observation-secondary-content,
+		.observation-tertiary-content,
+		.observation-generic-content {
+			width: 50%;
+		}
+	}
+
+	// no tertiary and no generic
+	&.observation-stripped-content {
+		.observation-secondary-content {
+			width: 100%;
+		}
+	}
+
+	// * tablet + desktop
+	@include susy-breakpoint($screen-tablet) {
+
+		$observation-secondary-content-fixed-width: 20%;
+		$observation-tertiary-content-fixed-width: 15%;
+		$observation-generic-content-width-when-next-to-range: 20%;
+
+		// fixed, these two don't not depend on other columns appearing or not
+		.observation-secondary-content {
+			width: $observation-secondary-content-fixed-width;
+		}
+		.observation-tertiary-content {
+			width: $observation-tertiary-content-fixed-width;
+		}
+
+		// secondary | primary | generic (no tertiary)
+		// secondary | tertiary | primary | generic
+		.observation-primary-content + .observation-generic-content {
+			width: $observation-generic-content-width-when-next-to-range;
+		}
+
+		// secondary | tertiary | generic (no primary)
+		.observation-tertiary-content + .observation-generic-content {
+			// 65%
+			width: 100% - $observation-secondary-content-fixed-width - $observation-tertiary-content-fixed-width;
+		}
+
+		// no tertiary or no generic
+		&.observation-reduced-content {
+			// fixed, these two don't not depend on other columns appearing or not
+			.observation-secondary-content {
+				width: $observation-secondary-content-fixed-width;
+			}
+			.observation-tertiary-content {
+				width: $observation-tertiary-content-fixed-width;
+			}
+
+			.observation-secondary-content + .observation-primary-content {
+				// 65%
+				width: 100% - $observation-secondary-content-fixed-width - $observation-tertiary-content-fixed-width;
+			}
+			.observation-tertiary-content + .observation-primary-content {
+				// 60%
+				width: 100% - $observation-secondary-content-fixed-width - $observation-generic-content-width-when-next-to-range;
+			}
+		}
+
+		// no tertiary and/or no generic
+		&.observation-stripped-content {
+
+			// fixed, these two don't not depend on other columns appearing or not
+			.observation-secondary-content {
+				width: $observation-secondary-content-fixed-width;
+			}
+
+			.observation-primary-content {
+				// 80%
+				width: 100% - $observation-secondary-content-fixed-width;
+			}
+		}
+	}
+
+	// string values
+	&.observation-basic-content {
+		.observation-secondary-content {
+			width: 70%;
+		}
+		.observation-generic-content {
+			width: 30%;
+		}
+	}
+	//////
+
 
 	.compact-observation & {
 		padding: 10px;
@@ -126,82 +240,148 @@ $observation-box-padding: 10px;
 		display: table;
 		width: 100%;
 
-		.observation-primary-content {
-			width: 100%;
+		%observation-box-sub-content-title {
+			text-align: left;
+			color: map-get($read-text-color, regular);
+			font-size: $font-size-base;
+			font-weight: bold;
+			margin-bottom: 4px;
+		}
+
+
+
+		.observation-column {
+			@extend %observation-gallery-box;
+
+			text-align: center;
+			vertical-align: top;
+			height: 100%;
+
+			// in mobile, primary content goes on a separate row, so
+			// add border left to all except first and primary content
+			&:not(:first-child):not(.observation-primary-content) {
+				border-left: $observation-box-border;
+			}
 
 			@include susy-breakpoint($screen-tablet) {
-				width: 65%;
 
-				.compact-observation & {
-					width: 45%;
+				&.observation-primary-content {
+					border-left: $observation-box-border;
 				}
+			}
 
-				.multi-range-mode & {
-					width: 70%;
+			.observation-column-title {
+				@extend %observation-box-sub-content-title;
+			}
+
+			.observation-column-content {
+				vertical-align: top;
+			}
+
+			&.observation-primary-content {
+				@extend %observation-column-tablet-wrap;
+
+				border-top: $observation-box-border;
+
+				@include susy-breakpoint($screen-tablet) {
+					border-top: none;
 				}
+			}
 
-				.observation-extended-content & {
-					width: 35%;
+			&.observation-secondary-content,
+			&.observation-tertiary-content,
+			&.observation-generic-content {
+				display: table-cell;
+
+				@include susy-breakpoint($screen-tablet) {
+					border-bottom: none;
 				}
 			}
 		}
 
-		.observation-secondary-content {
-			width: 100%;
-
-			@include susy-breakpoint($screen-tablet) {
-				width: 25%;
-
-				.compact-observation & {
-					width: 25%;
-					padding-right: 10px;
-				}
-
-				.compact-observation .observation-incomplete-content & {
-					width: 70%;
-				}
-
-				.observation-extended-content & {
-					width: 20%;
-				}
+		.observation-values {
+			p {
+				padding: 0;
+				line-height: 1;
 			}
 		}
 
-		.observation-tertiary-content {
-			width: 100%;
+		.observation-details {
+			text-align: left;
 
-			@include susy-breakpoint($screen-tablet) {
-				width: 15%;
-				padding-left: 20px;
-
-				.compact-observation & {
-					width: 28%;
-					padding-left: 10px;
-				}
-
-				.observation-extended-content & {
+			.details-item-list {
+				.item-name {
 					width: 30%;
 				}
+
+				.item-value {
+					width: 70%;
+					padding-left: 4px;
+				}
+			}
+
+			.observation-extended-content & {
+				.details-item-list {
+					.item-name {
+						width: 40%;
+					}
+
+					.item-value {
+						width: 60%;
+					}
+				}
+			}
+
+			.details-item-list {
+				.item-name {
+					font-weight: bold;
+				}
+
+				.item-name,
+				.item-value {
+					width: 50%;
+					display: table-cell;
+					word-break: break-all;
+				}
+
+				.details-item {
+					width: 100%;
+					display: table;
+					margin: 2px 0;
+					font-size: $font-size-small;
+					line-height: ($font-size-small)+0.2;
+					color: #bcbcbc;
+					//@include Source-Sans-Pro-Regular;	//TODO (denise)
+				}
+			}
+		}
+
+		.observation-result {
+			font-size: 1em;
+
+			.observation-result-meaning {
+				margin-left: 20px;
+				display: none;
+
+				li {
+					margin: 8px 0;
+				}
+
+				@include susy-breakpoint($screen-tablet) {
+					display: block;
+				}
+			}
+
+			.lab-text {
+				margin-top: 0;
+				text-align: center;
 			}
 		}
 
 		.observation-generic-content {
-			width: 100%;
 
 			button {
 				margin: 0;
-			}
-
-			@include susy-breakpoint($screen-tablet) {
-				width: 14%;
-
-				.compact-observation & {
-
-				}
-
-				.observation-extended-content & {
-					width: 15%;
-				}
 			}
 
 			.reference-range {
@@ -213,124 +393,15 @@ $observation-box-padding: 10px;
 					font-weight: 600;
 					line-height: 1.4em;
 					white-space: pre-wrap;
+					word-break: break-all;
+
+					@include susy-breakpoint($screen-tablet) {
+						white-space: pre;
+						word-break: initial;
+					}
 				}
 			}
 		}
-	}
-
-	%observation-box-sub-content-title {
-		text-align: left;
-		color: map-get($read-text-color, regular);
-		font-size: $font-size-base;
-		font-weight: bold;
-		margin-bottom: 4px;
-	}
-
-	.observation-column {
-		@extend %observation-gallery-box;
-		display: block;
-		text-align: center;
-		vertical-align: top;
-		height: 100%;
-
-		&:not(:last-child) {
-			border-right: $observation-box-border;
-		}
-
-		@include susy-breakpoint($screen-tablet) {
-			display: table-cell;
-		}
-
-		.observation-column-title {
-			@extend %observation-box-sub-content-title;
-		}
-
-		.observation-column-content {
-			vertical-align: top;
-		}
-	}
-
-	.observation-values {
-		p {
-			padding: 0;
-			line-height: 1;
-		}
-	}
-
-	.observation-details {
-		text-align: left;
-
-		.details-item-list {
-			.item-name {
-				width: 30%;
-			}
-
-			.item-value {
-				width: 70%;
-				padding-left: 4px;
-			}
-		}
-
-		.observation-extended-content & {
-			.details-item-list {
-				.item-name {
-					width: 40%;
-				}
-
-				.item-value {
-					width: 60%;
-				}
-			}
-		}
-
-		.details-item-list {
-			.item-name {
-				font-weight: bold;
-			}
-
-			.item-name,
-			.item-value {
-				width: 50%;
-				display: table-cell;
-				word-break: break-all;
-			}
-
-			.details-item {
-				width: 100%;
-				display: table;
-				margin: 2px 0;
-				font-size: $font-size-small;
-				line-height: ($font-size-small)+0.2;
-				color: #bcbcbc;
-				//@include Source-Sans-Pro-Regular;	//TODO (denise)
-			}
-		}
-	}
-
-	.observation-result {
-		font-size: 1em;
-
-		.observation-result-meaning {
-			margin-left: 20px;
-			display: none;
-
-			li {
-				margin: 8px 0;
-			}
-
-			@include susy-breakpoint($screen-tablet) {
-				display: block;
-			}
-		}
-
-		.lab-text {
-			margin-top: 0;
-			text-align: center;
-		}
-	}
-
-	.observation-gallery {
-		padding: 20px;
 	}
 }
 
@@ -359,10 +430,6 @@ $observation-box-padding: 10px;
 	min-height: 300px;
 }
 
-sparkline {
-    position: relative;
-    top: 15px;
-}
 
 .sparkline {
 	fill: none;
