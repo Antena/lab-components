@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc filter
- * @name lab-components.common.filter:patientFullName
+ * @name lab-components.common.filter:fhirFullName
  * @kind function
  *
  * @description
@@ -16,7 +16,7 @@
  <example module="patient-full-name-example">
  <file name="index.html">
  <div ng-controller="ExampleController">
- 	<p>Patient: <strong>{{ patient | patientFullName }}</strong></p>
+ 	<p>Patient: <strong>{{ patient | fhirFullName }}</strong></p>
  </div>
  </file>
  <file name="demo.js">
@@ -41,11 +41,18 @@
 // @ngInject
 module.exports = function() {
 
-	function buildFullName(patientName) {
-		return patientName.given + ' ' + patientName.family;
+	function buildFullName(patient) {
+		var name;
+		if(_.isArray(patient.name) && patient.name.length) {
+			name = patient.name[0];
+		} else if(_.isObject(patient.name)) {
+			name = patient.name;
+		}
+
+		return name ? name.given + ' ' + name.family : null;
 	}
 
 	return function(patient) {
-		return patient && patient.name.length ? buildFullName(patient.name[0]) : null;
+		return patient ? buildFullName(patient) : null;
 	};
 };

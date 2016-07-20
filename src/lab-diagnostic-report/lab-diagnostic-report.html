@@ -5,7 +5,7 @@
 			<li ng-if="vm.patient" class="details-item">
 				<img class="icon" src="../images/icons/icon-patient.svg">
 				<div class="item-wrapper">
-					<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div><div class="item-value"><b>{{ vm.patient | patientFullName }}</b></div>
+					<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div><div class="item-value"><b>{{ vm.patient | fhirFullName }}</b></div>
 				</div>
 			</li>
 			<li ng-if="vm.patient" class="details-item">
@@ -17,15 +17,15 @@
 			<li ng-if="vm.patient" class="details-item">
 				<img class="icon" src="../images/icons/icon-mail.svg">
 				<div class="item-wrapper">
-					<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:mateo@cdrossi.com.ar"><b>mateo@cdrossi.com.ar</b></a></div>
+					<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:{{ vm.patient | patientEmail | lowercase }}"><b>{{ vm.patient | patientEmail | lowercase }}</b></a></div>
 				</div>
 			</li>
 		</ul>
 		<ul class="details-item-list stretch">
-			<li ng-if="vm.organization" class="details-item">
+			<li ng-if="vm.diagnosticOrder.orderer" class="details-item">
 				<img class="icon" src="../images/icons/icon-doctor.svg">
 				<div class="item-wrapper">
-					<div class="item-name">Médico: &nbsp;</div><div class="item-value"><b>Carlos Perez</b></div>
+					<div class="item-name">Médico: &nbsp;</div><div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirFullName }}</b></div>
 				</div>
 			</li>
 			<li ng-if="vm.organization" class="details-item">
