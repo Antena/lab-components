@@ -257,21 +257,16 @@ $observation-box-padding: 10px;
 			vertical-align: top;
 			height: 100%;
 
-			&:not(:last-child):not(:nth-last-child(2)) {
-				border-right: $observation-box-border;
-			}
-
-			&.observation-generic-content {
+			// in mobile, primary content goes on a separate row, so
+			// add border left to all except first and primary content
+			&:not(:first-child):not(.observation-primary-content) {
 				border-left: $observation-box-border;
 			}
 
 			@include susy-breakpoint($screen-tablet) {
-				&:not(:last-child) {
-					border-right: $observation-box-border !important;
-				}
 
-				&.observation-generic-content {
-					border-left: none;
+				&.observation-primary-content {
+					border-left: $observation-box-border;
 				}
 			}
 
@@ -435,10 +430,6 @@ $observation-box-padding: 10px;
 	min-height: 300px;
 }
 
-sparkline {
-    position: relative;
-    top: 15px;
-}
 
 .sparkline {
 	fill: none;

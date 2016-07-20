@@ -2,7 +2,7 @@
 	 ng-class="{'observation-reduced-content': !observation.hasHistory || !observation.referenceRange[0].text, 'observation-stripped-content': !observation.hasHistory && !observation.referenceRange[0].text, 'observation-basic-content': !!observation.valueString }">
 
 	<div class="observation-gallery-header" ng-if="!hideTitle">
-		<h3 class="observation-gallery-header-text">{{ observation.code | codeableConcept }}</span></h3>
+		<h3 class="observation-gallery-header-text">{{ observation.code | codeableConcept }}</h3>
 		<div ng-if="!vm.viewOnly && headerActions.length" class="observation-gallery-header-actions right">
 			<a ng-repeat="headerAction in headerActions"
 			   ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"

@@ -27,6 +27,7 @@ module.exports = function($scope, $filter) {
 		meterShape: {
 			type: 'BALLOON'
 		},
+		labelHeight: 30,
 		meterLabelWithUnits: false,
 		meterPosition: 'top',
 		meterOffset: { x: 0, y: 0 },
