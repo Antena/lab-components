@@ -87,7 +87,8 @@ module.exports = function() {
 	return {
 		restrict: 'EA',
 		scope: {
-			observation: '='
+			observation: '=',
+			options: '='
 		},
 		templateUrl: require('./lab-observation-range-graph.html'),
 		controller: 'LabObservationRangeController'

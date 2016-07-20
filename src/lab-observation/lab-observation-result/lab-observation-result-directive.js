@@ -8,7 +8,8 @@ module.exports = function() {
 	return {
 		restrict: 'EA',
 		scope: {
-			observation: '='
+			observation: '=',
+			options: '='
 		},
 		templateUrl: require('./lab-observation-result.html'),
 		link: function($scope) {

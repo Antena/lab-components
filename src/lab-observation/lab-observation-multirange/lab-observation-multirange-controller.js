@@ -17,7 +17,6 @@ var _ = require('underscore');
 module.exports = function($scope, $filter) {
 
 	$scope.vm.calculatedRanges = [];
-	$scope.vm.options = [];
 
 	$scope.vm.graphOptions = {
 		innerSpacing: 0,
@@ -31,9 +30,9 @@ module.exports = function($scope, $filter) {
 		meterLabelWithUnits: false,
 		meterPosition: 'top',
 		meterOffset: { x: 0, y: 0 },
-		meterLabelOffset: { x: 0, y: -2 }
+		meterLabelOffset: { x: 0, y: -2 },
+		precision: $scope.vm.options.precision
 	};
-
 
 	var RANGE_CLASSES = {
 		GREAT: 'range-great',

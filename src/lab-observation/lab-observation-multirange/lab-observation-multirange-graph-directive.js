@@ -35,31 +35,31 @@
 		fill: #70AB4E;
 		color: #70AB4E;
 	 }
-	
+
 	 .range-good {
 		stroke: #DDC100;
 		fill: #DDC100;
 		color: #DDC100;
 	 }
-	
+
 	 .range-so-so {
 		stroke: #DD8B05;
 		fill: #DD8B05;
 		color: #DD8B05;
 	 }
-	
+
 	 .range-bad {
 		stroke: #C86403;
 		fill: #C86403;
 		color: #C86403;
 	 }
-	
+
 	 .range-danger {
 		stroke: #C10000;
 		fill: #C10000;
 		color: #C10000;
 	 }
-	
+
 	 .range-catch-all {
 		stroke: #747474;
 		fill: #747474;
@@ -102,7 +102,8 @@ module.exports = function() {
 	return {
 		restrict: 'EA',
 		scope: {
-			observation: '='
+			observation: '=',
+			options: '='
 		},
 		templateUrl: require('./lab-observation-multirange-graph.html'),
 		bindToController: true,
