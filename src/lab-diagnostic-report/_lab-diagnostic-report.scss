@@ -95,14 +95,13 @@ $lab-observation-group-padding: 20px;
 
 .lab-diagnostic-report-info {
 	@extend %table-container;
-
 	width: 100%;
 	margin: 0px;
 	text-align: left;
 
 	@include susy-breakpoint($screen-tablet) {
 		margin: 15px 0 20px;
-		width: 78%;
+		width: 75%;
 		max-width: 775px;
 	}
 
@@ -118,23 +117,30 @@ $lab-observation-group-padding: 20px;
 	.details-item-list {
 		@extend %table-one-third-column;
 		padding-left: 0;
-		padding-right: 20px;
+		padding-right: 0;
 		margin: 0;
 		word-break: break-all;
 		list-style: none;
 		font-size: $font-size-small;
 
-		@include susy-breakpoint($screen-tablet) { 
+		@include susy-breakpoint($screen-tablet) {
+			padding-right: 20px; 
 			margin: 10px;
+		}
+		
+		&:last-child {
+			padding-right: 0;
+		}
+
+		&:nth-child(1) .details-item:first-child {
+			border-top: none;
 		}
 
 		&.stretch {
 			@extend %table-two-thirds-column;
 		}
 
-		&:nth-child(1) .details-item:first-child {
-			border-top: none;
-		}
+		
 
 		.details-item {
 			padding: 10px 0 20px;
