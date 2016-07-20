@@ -1,0 +1,9 @@
+@import "../../variables";
+@import "~susy/sass/susy";
+
+.lab-observation-sparkline {
+	@include susy-breakpoint($screen-tablet) {
+		position: relative;
+		top: 15px;
+	}
+}

@@ -1,5 +1,7 @@
 @import "../../colors";
 @import "../../variables";
+@import "~susy/sass/susy";
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/vendor-prefixes";
 
 
 $range-color-great: map-get($interpretation-colors, great);
@@ -62,13 +64,14 @@ $range-label-separation: 5px;
 			vertical-align: middle;
 			text-align: center;
 			color: white;
-			font-size: 12px;
-			line-height: 1;
+			font-size: 11px;
+			line-height: 10px;
+
+			@include susy-breakpoint($screen-tablet) {
+				font-size: 12px;
+				line-height: 1;
+			}
 		}
-	}
-
-	.range-label-wrapper {
-
 	}
 
 	.range-label {
@@ -81,12 +84,8 @@ $range-label-separation: 5px;
 		display: block;
 		text-align: center;
 
-		&.bottom {
-			padding-top: $range-label-separation;
-		}
-
-		&.top {
-			padding-bottom: $range-label-separation;
+		@include susy-breakpoint(0 $screen-tablet) {
+			@include hyphens();
 		}
 	}
 
