@@ -12,6 +12,7 @@
  *
  * @element ANY
  * @param {Object} observation A fhir observation object to display. If the value of the Observation is numeric, it takes the info from the observation and renders a {@link lab-components.components.value-within-range.directive:valueWithinRangeGraph valueWithinRangeGraph}. Otherwise, it displays the Observation's valueString. See https://www.hl7.org/fhir/2015MAY/observation.html
+ * @param {Object} options An object with options
  *
  *
  * @example
