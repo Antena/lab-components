@@ -15,7 +15,7 @@ var _ = require('underscore');
 var moment = require('moment');
 
 // @ngInject
-module.exports = function($scope) {
+module.exports = function($scope, $filter) {
 
 	$scope.$watch('vm.observations', function(observations) {
 
@@ -27,6 +27,13 @@ module.exports = function($scope) {
 		$scope.vm.groupedObservations = _.groupBy(observations, function(obs) {
 			return obs.extension && obs.extension[0].valueIdentifier ? obs.extension[0].valueIdentifier.value : obs.id;
 		});
+	});
+
+	$scope.$watch('vm.patient', function(patient) {
+		
+		if (patient) {
+			$scope.vm.patientEmail = $filter('patientEmail')(patient);
+		}
 	});
 
 	/**

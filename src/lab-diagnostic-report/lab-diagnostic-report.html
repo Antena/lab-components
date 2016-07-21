@@ -1,19 +1,47 @@
+
 <div>
 	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
 		<ul class="details-item-list">
 			<li ng-if="vm.patient" class="details-item">
-				<span class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.patient | patientFullName }} ({{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }})</span>
+				<img class="icon" src="../images/icons/icon-patient.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div><div class="item-value"><b>{{ vm.patient | fhirFullName }}</b></div>
+				</div>
 			</li>
-			<li ng-if="vm.reportDate" class="details-item">
-				<span class="item-name">{{ 'LAB.DATE' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.reportDate | customFormatDate:vm.dateFormat }}</span>
+			<li ng-if="vm.patient" class="details-item">
+				<img class="icon" src="../images/icons/icon-years-old.svg">
+				<div class="item-wrapper">
+					<div class="item-name"> Edad: &nbsp;</div><div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</b></div>
+				</div>
+			</li>
+			<li ng-if="vm.patientEmail" class="details-item">
+				<img class="icon" src="../images/icons/icon-mail.svg">
+				<div class="item-wrapper">
+					<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:{{ vm.patientEmail | lowercase }}"><b>{{ vm.patientEmail | lowercase }}</b></a></div>
+				</div>
 			</li>
 		</ul>
 		<ul class="details-item-list stretch">
+			<li ng-if="vm.diagnosticOrder.orderer" class="details-item">
+				<img class="icon" src="../images/icons/icon-doctor.svg">
+				<div class="item-wrapper">
+					<div class="item-name">Médico: &nbsp;</div><div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirFullName }}</b></div>
+				</div>
+			</li>
 			<li ng-if="vm.organization" class="details-item">
-				<span class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.organization.name }}</span>
+				<img class="icon" src="../images/icons/icon-building.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.ORGANIZATION' | translate | semicolon }}&nbsp;</div>
+					<div class="item-value"><b>{{ vm.organization.name }}</b></div>
+				</div>
 			</li>
 			<li ng-if="vm.status" class="details-item">
-				<span class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</span><span class="item-value">{{ vm.status | toStatusKey | translate }}&nbsp;<span class="item-value-help">({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})</span></span>
+				<img class="icon" src="../images/icons/icon-state.svg">
+				<div class="item-wrapper">
+					<div class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</div>
+					<div class="item-value"><b>{{ vm.status | toStatusKey | translate }}</b>&nbsp;({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>

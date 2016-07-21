@@ -1,0 +1,165 @@
+@mixin radius ($radius) {
+	-moz-border-radius:$radius;
+	-webkit-border-radius:$radius;
+	border-radius:$radius;
+}
+
+@mixin opacity ($value) {
+	opacity: $value;
+	-khtml-opacity: $value;
+	-moz-opacity: $value;
+	$opacity-ie: $value * 100;
+	filter: alpha(opacity=$opacity-ie); //ie-8
+}
+
+@mixin clearfix {
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+@mixin transform($value) {
+	-webkit-transform: $value;
+	-moz-transform: $value;
+	transform: $value;
+}
+
+@mixin vertical-align {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+@mixin horizontal-align {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+
+@mixin center-align {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+@mixin not-algin {
+	position: auto;
+	left: auto;
+	top: auto;
+	@include transform(none);
+}
+
+@mixin breakpoint ($point, $value:0) {
+	@if $point == "mobile-ladscape" {
+		@media (min-width:320px) and (orientation: landscape) { @content; }
+	}
+	
+	@else if $point == "tablet" {
+		@media (min-width:768px) { @content; }
+	}
+
+	@else if $point == "desktop" {
+		@media (min-width:960px) { @content; }
+	}
+
+	@else {
+		@meadia ($point == $value) { @content }
+	}
+}
+
+@mixin grid ($cols, $gutter:0, $childs: ".item") {
+	width: auto;
+	margin-right: -$gutter;
+
+	#{$childs} {
+		float: left;
+		width: (100%/$cols);
+		padding-right: $gutter;
+		background-clip: content-box;
+	}
+}
+
+@mixin keyframes ($name) {
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	
+	@-o-keyframes #{$name} {
+		@content;
+	}
+	
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation ($arguments...) {
+	-moz-animation: $arguments;
+	-webkit-animation: $arguments;
+	-o-animation: $arguments;
+	animation: $arguments;
+}
+
+@mixin transition ($arguments...) {
+	-moz-transition: $arguments;
+	-webkit-transition: $arguments;
+	transition: $arguments;
+}
+
+@mixin blocks-grid ($blocks) {
+	$blocks-grid: $blocks;
+	$blocks-grid-margin: $blocks / 2;
+	$blocks-width-size: 100% / $blocks-grid;
+	$blocks-height-size: 100vw / $blocks-grid;
+	width: $blocks-width-size;
+	height: $blocks-height-size;
+	@include background-clip(padding-box);
+	border: #{$blocks-grid-margin}px solid transparent;
+
+	&.course-important {
+		width: $blocks-width-size * 2;
+		height: $blocks-height-size * 2;
+	}
+}
+
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white){
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount; 
+  text-align: justify;
+  margin-right: -1em;
+  padding-right: 1em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
