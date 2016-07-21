@@ -164,11 +164,15 @@ $lab-observation-group-padding: 20px;
     			max-height: 32px;
 			}
 
+			$item-icon-compensation: 10px;
+
 			.item-wrapper {
-			    position: relative;
-			    top: 6px;
-			    left: 10px;
+				position: relative;
+				top: 6px;
+				left: $item-icon-compensation;
+				margin-right: $item-icon-compensation;
 			}
+
 			.item-name {
 				float: left;
     			display: table-column;
