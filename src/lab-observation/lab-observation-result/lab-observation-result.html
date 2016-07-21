@@ -1,6 +1,6 @@
 <div ng-if="observation" class="lab-observation-result">
 	<p ng-if="observation.valueQuantity" class="lab-observation-value">
-		<span class="main-value">{{ observation.valueQuantity.value }}</span>
+		<span class="main-value">{{ observation.valueQuantity.value | number: options.precision }}</span>
 		<span ng-if="observation.valueQuantity.units" class="unit">{{ observation.valueQuantity.units }}</span>
 	</p>
 	<p ng-if="observation.valueString && !isValueStringHtml(observation)" class="lab-observation-value">
