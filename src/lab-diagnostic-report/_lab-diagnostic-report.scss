@@ -124,10 +124,10 @@ $lab-observation-group-padding: 20px;
 		font-size: $font-size-small;
 
 		@include susy-breakpoint($screen-tablet) {
-			padding-right: 20px; 
+			padding-right: 20px;
 			margin: 10px;
 		}
-		
+
 		&:last-child {
 			padding-right: 0;
 		}
@@ -140,10 +140,8 @@ $lab-observation-group-padding: 20px;
 			@extend %table-two-thirds-column;
 		}
 
-		
-
 		.details-item {
-			padding: 10px 0 20px;
+			padding: 10px 10px 20px;
 			text-align: left;
 			position: relative;
 			border-top: 1px solid #ededed;
@@ -159,7 +157,7 @@ $lab-observation-group-padding: 20px;
 				max-width: 25px;
     			max-height: 32px;
 			}
-			
+
 			.item-wrapper {
 			    position: relative;
 			    top: 6px;
