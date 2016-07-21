@@ -171,10 +171,9 @@ module.exports = function() {
 		templateUrl: require('./lab-observation.html'),
 		controller: 'LabObservationController',
 		link: function($scope, $element, attrs, LabObservationController) {
+			$scope.options = {};
+			
 			$scope.$watch('observation', function(observation) {
-
-				$scope.options = {};
-
 				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});
 
 				if (precisionExtension) {
