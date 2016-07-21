@@ -171,7 +171,17 @@ module.exports = function() {
 		templateUrl: require('./lab-observation.html'),
 		controller: 'LabObservationController',
 		link: function($scope, $element, attrs, LabObservationController) {
+			$scope.options = {};
+			
 			$scope.$watch('observation', function(observation) {
+				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});
+
+				if (precisionExtension) {
+					var precision = precisionExtension.valueInteger;
+					$scope.options.precision = precision;
+
+				}
+
 				if($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
 						$scope.observation.referenceRange = LabObservationController.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);

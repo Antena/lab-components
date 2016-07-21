@@ -250,6 +250,16 @@ module.exports = function() {
 			});
 
 			/**
+			 * textValue
+			 * Formats the value returning the final label
+			 * i.e: Formatting the value according to options (precision) to return a safe value label.
+			 */
+
+			function textValue(value) {
+				return !_.isUndefined(options.precision) ? value.toFixed(options.precision) : value;
+			}
+
+			/**
 			 * Declare local variables and initialize the graph
 			 */
 			var svg,
@@ -355,7 +365,7 @@ module.exports = function() {
 							.attr('class', 'meter-label meter-label-container');
 					},
 					updateLabel: function(meterLabel, text) {
-						meterLabel.text(text);
+						meterLabel.text(textValue(text));
 					},
 					getIndicatorOverflow: function() {
 						return (45 / 2);	//TODO (denise) extract width from path (45)
@@ -561,22 +571,22 @@ module.exports = function() {
 			var rangeText = function(range, domain) {
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
 					// Middle Sector
-					return [range.low, options.rangeSeparator, range.high].join(' ');
+					return [textValue(range.low), options.rangeSeparator, textValue(range.high)].join(' ');
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
 					// Last Sector
 					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
 						// Checks if we defined a high in Domain
-						return [range.low, options.rangeSeparator, domain.high].join(' ');
+						return [textValue(range.low), options.rangeSeparator, textValue(domain.high)].join(' ');
 					} else {
-						return [options.graterThanSymbol, range.low].join(' ');
+						return [options.graterThanSymbol, textValue(range.low)].join(' ');
 					}
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
 					// First Sector
 					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
 						// Checks if we defined a low in Domain
-						return [domain.low, options.rangeSeparator, range.high].join(' ');
+						return [textValue(domain.low), options.rangeSeparator, textValue(range.high)].join(' ');
 					} else {
-						return [options.lowerThanSymbol, range.high].join(' ');
+						return [options.lowerThanSymbol, textValue(range.high)].join(' ');
 					}
 				} else {
 					return '';
