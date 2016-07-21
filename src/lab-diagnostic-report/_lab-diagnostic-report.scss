@@ -50,14 +50,20 @@ $lab-observation-group-padding: 20px;
 }
 
 .observation-groups {
-	margin-bottom: 20px;
+	border-bottom: $lab-observation-group-border;
+	border-bottom-style: dotted;
+	border-bottom-width: 2px;
 	display: table;
 	width: 100%;
 	height: 100%;
 	max-width: 775px;
-	border: $lab-observation-group-border;
 	background-color: $lab-observation-group-bg;
 	padding: $lab-observation-group-padding $lab-observation-group-padding 0;
+
+	@include susy-breakpoint($screen-tablet) {
+		margin-bottom: 20px;
+		border: $lab-observation-group-border;
+	}
 
 	.observation-group-title {
 		margin: 5px 0 15px !important;
