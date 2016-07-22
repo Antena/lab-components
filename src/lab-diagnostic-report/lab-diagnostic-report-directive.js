@@ -66,51 +66,53 @@ module.exports = function($rootScope, $document) {
 		controllerAs: 'vm',
 		controller: 'LabDiagnosticReportController',
 		link: function($scope, $element) {
-			var lastScrollTop = -1;
+			var SCROLL_DURATION = 1000,
+				SCROLL_OFFSET = 50;
 
-			function autoScrollUpcomingTreeNodes($element, downward) {
-				var makeSureItsVisible;
+			var prevScrollTop = -1,
+				currentlyScrolling = false;
 
-				var allUpcomingSiblings = downward ? $element.nextAll() : $element.prevAll();
+			function autoScrollUpcomingTreeNodes($element, downwardScrolling) {
+				var elementThatShouldBeVisible;
+
+				var allUpcomingSiblings = downwardScrolling ? $element.nextAll() : $element.prevAll();
 				var hasLotsOfSiblings = allUpcomingSiblings.length > 2;
 				if (hasLotsOfSiblings) {
-					makeSureItsVisible = allUpcomingSiblings[2];
+					elementThatShouldBeVisible = allUpcomingSiblings[2];
 				} else {
 					var groupParent = $($element).parents('.lab-tree-group');
 
-					var upcoming = downward ? groupParent.next() : groupParent.prev();
+					var upcoming = downwardScrolling ? groupParent.next() : groupParent.prev();
 					var upcomingGroup = upcoming ? upcoming.find('.lab-tree-top-level') : null;
 					if (upcomingGroup) {
-						makeSureItsVisible = downward ? _.first(upcomingGroup) : _.last(upcomingGroup);
+						elementThatShouldBeVisible = downwardScrolling ? _.first(upcomingGroup) : _.last(upcomingGroup);
 					} else if (allUpcomingSiblings.length) {
-						makeSureItsVisible = downward ? _.last(allUpcomingSiblings) : _.first(allUpcomingSiblings);
+						elementThatShouldBeVisible = downwardScrolling ? _.last(allUpcomingSiblings) : _.first(allUpcomingSiblings);
 					}
 				}
 
-				if (makeSureItsVisible && !isScrolledIntoView(makeSureItsVisible)) {
+				if (elementThatShouldBeVisible && !isScrolledIntoView(elementThatShouldBeVisible)) {
 					var container = angular.element(document.getElementById('fixedTree'));
-					var targetElement = angular.element(makeSureItsVisible);
+					var targetElement = angular.element(elementThatShouldBeVisible);
 
-					$scope.scrolling = true;
-					container.scrollTo(targetElement, 50, 1000).then(function() {
-						$scope.scrolling = false;
+					currentlyScrolling = true;
+					container.scrollTo(targetElement, SCROLL_OFFSET, SCROLL_DURATION).then(function() {
+						currentlyScrolling = false;
 					});
 				}
 			}
 
 			var onChildActiveChange = function(active, $event, $element) {
-				console.log("$element = ", $element);	//TODO (denise) remove log
-
 				var parents = $($element).parents('.lab-tree-top-level');
 				if (active) {
 					$('.parent-active').removeClass('parent-active');
 					parents.addClass('parent-active');
 
 					var currentScrollTop = $document.scrollTop();
-					var goingDown = currentScrollTop > lastScrollTop;
-					lastScrollTop = currentScrollTop;
+					var goingDown = currentScrollTop > prevScrollTop;
+					prevScrollTop = currentScrollTop;
 
-					if (!$scope.scrolling) {
+					if (!currentlyScrolling) {
 						autoScrollUpcomingTreeNodes($element, goingDown);
 					}
 
@@ -133,17 +135,20 @@ module.exports = function($rootScope, $document) {
 
 			var onScroll = function(e) {
 				var reference = $('.primary-content');
-				var compensation = reference.length ? reference[0].offsetTop : 0;	//TODO (denise) find a more generic way
-				var targetScroll = $element.offset().top + compensation - 20;
+				var compensation = reference.length ? reference[0].offsetTop : 0;
+				var targetScroll = $element.offset().top + compensation - 20;	// 20 for padding
 				var currentScroll = $document.scrollTop();
 
 				if (currentScroll > targetScroll) {
-					$element.addClass("fix-tree");
-					$element.scrollTop = 0;
+					if(!$element.hasClass("fix-tree")) {
+						$element.addClass("fix-tree");
+
+						//reset scroll position on tree expansion
+						document.getElementById('fixedTree').scrollTop = 0;
+					}
 				} else {
 					$element.removeClass("fix-tree");
 				}
-
 			};
 
 			var unregisterDuScrollBecameActive = $rootScope.$on('duScrollspy:becameActive', _.partial(onChildActiveChange, true));
