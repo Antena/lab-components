@@ -1,6 +1,6 @@
 
 <div>
-	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info">
+	<div ng-if="!vm.hideHeader" class="lab-diagnostic-report-info navigation">
 		<ul class="details-item-list">
 			<li ng-if="vm.patient" class="details-item">
 				<img class="icon" src="../images/icons/icon-patient.svg">
@@ -94,13 +94,13 @@
 		</div>
 
 		<div class="secondary-content">
-			<div class="lab-tree">
+			<div id="fixedTree" class="lab-tree" isolate-scrolling>
 				<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
 						<a href="#{{ firstLevelObservation.id }}" du-smooth-scroll du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
-						<div ng-if="!isTopLevel(firstLevelObservation)" class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'top-level-content': !isTopLevel(firstLevelObservation) }">
-							<a href="#{{ observation.id }}" ng-repeat="observation in getObservationList(firstLevelObservation)" du-smooth-scroll du-scrollspy offset="100">
+						<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
+							<a href="#{{ observation.id }}" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-smooth-scroll du-scrollspy offset="100">
 								<span >{{ observation.code | codeableConcept | capitalize:true }}</span>
 							</a>
 						</div>

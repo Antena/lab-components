@@ -7,9 +7,20 @@ $nav-height: 20px;
 
 
 .fix-tree .lab-tree {
+	//margin: 10px 0;
+	//height: 100%;
+
+	.lab-tree-node {
+		&:not(.lab-tree-top-level) {
+			display: block;
+		}
+	}
+
+	top: 0;
+	bottom: 0;
 	position: fixed;
-	margin-top: 10px;
-	top: $nav-height;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 
 .lab-tree {
@@ -23,6 +34,10 @@ $nav-height: 20px;
 
 	.lab-tree-node {
 		padding: 4px 0;
+
+		&:not(.lab-tree-top-level) {
+			display: none;
+		}
 	}
 
 	.lab-tree-observation-group-title {
@@ -48,10 +63,12 @@ $nav-height: 20px;
 				display: block;
 			}
 
-			a.active,
-			&.parent-active a {
-				display: block;
-			}
+			//a.active,
+			//&.parent-active a {
+			//	display: block;
+			//}
+
+
 
 			&.parent-active {
 
@@ -79,7 +96,7 @@ $nav-height: 20px;
 		}
 
 		a {
-			display: none;
+			display: block;
 			text-decoration: none;
 			color: $tree-node-selection-color;
 			border-left: 2px solid transparent;
