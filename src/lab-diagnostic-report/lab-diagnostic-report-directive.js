@@ -133,21 +133,50 @@ module.exports = function($rootScope, $document) {
 				return (containerTop < elemTop) && (containerBottom > elemBottom);
 			}
 
+			var originalBottom;
+
+			function makeTreeFollowPrimaryContent() {
+				var theTree = $('#fixedTree');
+				var mainRect = $('.primary-content')[0].getBoundingClientRect();
+				var secondRect = theTree[0].getBoundingClientRect();
+
+				if (!originalBottom) {
+					originalBottom = secondRect.bottom;
+				}
+
+				var surpassed = mainRect.bottom <= originalBottom;
+				var diff = originalBottom - mainRect.bottom;
+
+				theTree.css({
+					top: surpassed ? (-diff) : 0,
+					bottom: surpassed ? (diff) : 0
+				});
+
+
+				if (!surpassed) {
+					originalBottom = undefined;
+				}
+			}
+
 			var onScroll = function(e) {
 				var reference = $('.primary-content');
 				var compensation = reference.length ? reference[0].offsetTop : 0;
 				var targetScroll = $element.offset().top + compensation - 20;	// 20 for padding
 				var currentScroll = $document.scrollTop();
+				var fixedTreeElem = document.getElementById('fixedTree');
 
 				if (currentScroll > targetScroll) {
 					if(!$element.hasClass("fix-tree")) {
 						$element.addClass("fix-tree");
 
 						//reset scroll position on tree expansion
-						document.getElementById('fixedTree').scrollTop = 0;
+						fixedTreeElem.scrollTop = 0;
 					}
+
+					makeTreeFollowPrimaryContent();
 				} else {
 					$element.removeClass("fix-tree");
+					$(fixedTreeElem).css({ top: 'auto', bottom: 'auto' });
 				}
 			};
 

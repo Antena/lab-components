@@ -61,7 +61,11 @@ $lab-observation-group-padding: 20px;
 	padding: $lab-observation-group-padding $lab-observation-group-padding 0;
 
 	@include susy-breakpoint($screen-tablet) {
-		margin-bottom: 20px;
+
+		&:not(:last-child) {
+			margin-bottom: 20px;
+		}
+
 		border: $lab-observation-group-border;
 	}
 
