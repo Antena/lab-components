@@ -52,7 +52,6 @@ $scrollbar-width: 17px;
 		font-size: 12px;
 	}
 
-
 	.lab-tree-top-level:not(.parent-active) {
 		.lab-tree-observation-observation-title.top-level-content {
 			padding: 0;
@@ -67,15 +66,7 @@ $scrollbar-width: 17px;
 				display: block;
 			}
 
-			//a.active,
-			//&.parent-active a {
-			//	display: block;
-			//}
-
-
-
 			&.parent-active {
-
 				> a {
 					font-weight: bold;
 				}
@@ -83,7 +74,6 @@ $scrollbar-width: 17px;
 		}
 
 		.lab-tree-node:not(.lab-tree-top-level) {
-
 			a {
 				padding: 1px 0 1px 20px;
 				color: $tree-node-selection-color-secondary;

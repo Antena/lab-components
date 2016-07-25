@@ -10,6 +10,7 @@ var ngModule = angular.module('lab-components.lab-diagnostic-report', [
 	require('../lab-observation/index.js')
 ]);
 
+//avoids jumping when scroll targets (i.e. observations) are far apart in the page (i.e. big margin in between)
 ngModule.value('duScrollGreedy', true);
 
 ngModule.controller('LabDiagnosticReportController', require('./lab-diagnostic-report-controller'));
