@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name lab-components.common.directive:isolateScrolling
+ * @name lab-components.common.directive:isolateScrollingWhen
  * @restrict A
  * @scope
  *
@@ -17,11 +17,12 @@
 
 
 // @ngInject
-module.exports = function() {
+module.exports = function($timeout, AngularUtilities) {
 	return {
 		restrict: 'A',
-		link: function (scope, element) {
-			element.bind('DOMMouseScroll', function (e) {
+		link: function (scope, element, attrs) {
+
+			var fallbackBehaviour = function (e) {
 				if (e.detail > 0 && this.clientHeight + this.scrollTop == this.scrollHeight) {
 					this.scrollTop = this.scrollHeight - this.clientHeight;
 					e.stopPropagation();
@@ -34,8 +35,9 @@ module.exports = function() {
 					e.preventDefault();
 					return false;
 				}
-			});
-			element.bind('mousewheel', function (e) {
+			};
+
+			var mainBehaviour = function (e) {
 				if (e.originalEvent.deltaY > 0 && this.clientHeight + this.scrollTop >= this.scrollHeight) {
 					this.scrollTop = this.scrollHeight - this.clientHeight;
 					e.stopPropagation();
@@ -50,6 +52,18 @@ module.exports = function() {
 				}
 
 				return true;
+			};
+
+			AngularUtilities.watchNonIntrusive(scope, attrs.isolateScrollingWhen, function(value) {
+				if (value) {
+					$timeout(function() {
+						element.bind('DOMMouseScroll', fallbackBehaviour);
+						element.bind('mousewheel', mainBehaviour);
+					}, 0, false);
+				} else {
+					element.unbind('DOMMouseScroll', fallbackBehaviour);
+					element.unbind('mousewheel', mainBehaviour);
+				}
 			});
 		}
 	};

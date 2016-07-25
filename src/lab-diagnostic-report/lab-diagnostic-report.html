@@ -94,7 +94,7 @@
 		</div>
 
 		<div class="secondary-content">
-			<div id="fixedTree" class="lab-tree" isolate-scrolling>
+			<div id="fixedTree" class="lab-tree" isolate-scrolling-when="treeIsFixed">
 				<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
 						<a href="#{{ firstLevelObservation.id }}" du-smooth-scroll du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>

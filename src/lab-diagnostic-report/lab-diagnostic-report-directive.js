@@ -166,6 +166,7 @@ module.exports = function($rootScope, $document) {
 				var fixedTreeElem = document.getElementById('fixedTree');
 
 				if (currentScroll > targetScroll) {
+					$scope.treeIsFixed = true;
 					if(!$element.hasClass("fix-tree")) {
 						$element.addClass("fix-tree");
 
@@ -175,6 +176,7 @@ module.exports = function($rootScope, $document) {
 
 					makeTreeFollowPrimaryContent();
 				} else {
+					$scope.treeIsFixed = false;
 					$element.removeClass("fix-tree");
 					$(fixedTreeElem).css({ top: 'auto', bottom: 'auto' });
 				}

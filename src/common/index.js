@@ -19,6 +19,7 @@ ngModule.filter('patientAgeAtReportDate', require('./patient-age-at-report-filte
 ngModule.filter('toStatusKey', require('./to-status-key-filter'));
 ngModule.filter('trusted', require('./trusted-filter'));
 
-ngModule.directive('isolateScrolling', require('./isolate-scrolling-directive'));
+ngModule.factory('AngularUtilities', require('./angular-utilities'));
+ngModule.directive('isolateScrollingWhen', require('./isolate-scrolling-when-directive'));
 
 module.exports = ngModule.name;
