@@ -28,8 +28,8 @@ module.exports = function($parse) {
 		 * This should only be used for operations that should not trigger other watchers.
 		 *
 		 * @param {Scope} scope The scope to watch on.
-		 * @param {(string|Function(scope))} watchExpression Angular expression to watch for.
-		 * @param {Function(newVal, oldVal, scope)} listener Function to execute when the expression changes.
+		 * @param {String|Function} watchExpression Angular expression to watch for.
+		 * @param {Function} listener Function to execute when the expression changes.
 		 *
 		 * @returns {Function} unwatch function, that when invoked will uninstall the watcher.
 		 *

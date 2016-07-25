@@ -8,10 +8,14 @@
  *
  * @description
  *
- * //TODO (denise) add description
+ * Isolates the scrolling event within this directive's element on a given condition.
+ * This can be used to avoid scroll events from reaching the $document.
  *
  * @element ANY
  *
+ * @param {String|Function} isolateScrollingWhen Angular expression to watch for. When this expression evaluates
+ * to truthy, the scroll event will be isolated within this directive's element. When it evaluates to falsy,
+ * the default event bubbling is restored.
  *
  */
 
@@ -57,12 +61,12 @@ module.exports = function($timeout, AngularUtilities) {
 			AngularUtilities.watchIndependently(scope, attrs.isolateScrollingWhen, function(value) {
 				if (value) {
 					$timeout(function() {
-						element.bind('DOMMouseScroll', fallbackBehaviour);
 						element.bind('mousewheel', mainBehaviour);
+						element.bind('DOMMouseScroll', fallbackBehaviour); 	//IE
 					}, 0, false);
 				} else {
-					element.unbind('DOMMouseScroll', fallbackBehaviour);
 					element.unbind('mousewheel', mainBehaviour);
+					element.unbind('DOMMouseScroll', fallbackBehaviour);
 				}
 			});
 		}
