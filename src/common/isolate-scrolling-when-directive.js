@@ -54,7 +54,7 @@ module.exports = function($timeout, AngularUtilities) {
 				return true;
 			};
 
-			AngularUtilities.watchNonIntrusive(scope, attrs.isolateScrollingWhen, function(value) {
+			AngularUtilities.watchIndependently(scope, attrs.isolateScrollingWhen, function(value) {
 				if (value) {
 					$timeout(function() {
 						element.bind('DOMMouseScroll', fallbackBehaviour);
