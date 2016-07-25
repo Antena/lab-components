@@ -6,6 +6,11 @@ module.exports = function($parse) {
 	var FAKE_CONSTANT = {};
 
 	return {
+		/*
+		 * Watches for an expression and calls the provided handler when the value changes,
+		 * but without triggering a new digest cycle.
+		 * This should only be used for operations that should not trigger other watchers.
+		 */
 		watchNonIntrusive: function watchNonIntrusive(scope, watchExpression, handler) {
 			// use a constant for invoking the handler the first time (with value === oldValue).
 			var last = FAKE_CONSTANT,

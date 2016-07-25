@@ -97,11 +97,11 @@
 			<div id="fixedTree" class="lab-tree" isolate-scrolling-when="treeIsFixed">
 				<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 					<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
-						<a href="#{{ firstLevelObservation.id }}" du-smooth-scroll du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
+						<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(observation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
 						<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
-							<a href="#{{ observation.id }}" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-smooth-scroll du-scrollspy offset="100">
-								<span >{{ observation.code | codeableConcept | capitalize:true }}</span>
+							<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
+								<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
 							</a>
 						</div>
 					</li>

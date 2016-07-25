@@ -43,7 +43,7 @@ var angular = require('angular');
 require("./_lab-diagnostic-report.scss");
 
 // @ngInject
-module.exports = function($rootScope, $document) {
+module.exports = function($rootScope, $document, $timeout) {
 
 	return {
 		scope: {
@@ -70,7 +70,10 @@ module.exports = function($rootScope, $document) {
 				SCROLL_OFFSET = 50;
 
 			var prevScrollTop = -1,
-				currentlyScrolling = false;
+				initialTreeBottomPosition,
+				currentlyScrolling = false,
+				unregisterDuScrollBecameActive,
+				unregisterDuScrollBecameInactive;
 
 			function autoScrollUpcomingTreeNodes($element, downwardScrolling) {
 				var elementThatShouldBeVisible;
@@ -133,19 +136,17 @@ module.exports = function($rootScope, $document) {
 				return (containerTop < elemTop) && (containerBottom > elemBottom);
 			}
 
-			var originalBottom;
-
 			function makeTreeFollowPrimaryContent() {
 				var theTree = $('#fixedTree');
 				var mainRect = $('.primary-content')[0].getBoundingClientRect();
 				var secondRect = theTree[0].getBoundingClientRect();
 
-				if (!originalBottom) {
-					originalBottom = secondRect.bottom;
+				if (!initialTreeBottomPosition) {
+					initialTreeBottomPosition = secondRect.bottom;
 				}
 
-				var surpassed = mainRect.bottom <= originalBottom;
-				var diff = originalBottom - mainRect.bottom;
+				var surpassed = mainRect.bottom <= initialTreeBottomPosition;
+				var diff = initialTreeBottomPosition - mainRect.bottom;
 
 				theTree.css({
 					top: surpassed ? (-diff) : 0,
@@ -154,7 +155,7 @@ module.exports = function($rootScope, $document) {
 
 
 				if (!surpassed) {
-					originalBottom = undefined;
+					initialTreeBottomPosition = undefined;
 				}
 			}
 
@@ -182,8 +183,15 @@ module.exports = function($rootScope, $document) {
 				}
 			};
 
-			var unregisterDuScrollBecameActive = $rootScope.$on('duScrollspy:becameActive', _.partial(onChildActiveChange, true));
-			var unregisterDuScrollBecameInactive = $rootScope.$on('duScrollspy:becameInactive', _.partial(onChildActiveChange, false));
+			function registerDuScrollListeners() {
+				unregisterDuScrollBecameActive = $rootScope.$on('duScrollspy:becameActive', _.partial(onChildActiveChange, true));
+				unregisterDuScrollBecameInactive = $rootScope.$on('duScrollspy:becameInactive', _.partial(onChildActiveChange, false));
+			}
+
+			function unregisterDuScrollListeners() {
+				unregisterDuScrollBecameActive();
+				unregisterDuScrollBecameInactive();
+			}
 
 			$scope.initLabTree = function() {
 				if (!$('.parent-active').length) {
@@ -191,17 +199,28 @@ module.exports = function($rootScope, $document) {
 				}
 			};
 
+			$scope.onManualNavigation = function(obsId) {
+				unregisterDuScrollListeners();
+
+				var targetElement = angular.element($('#' + obsId));
+				$document.scrollToElementAnimated(targetElement, 100, SCROLL_DURATION).then(function() { });
+
+				$timeout(function() {
+					registerDuScrollListeners();
+				}, SCROLL_DURATION + 100, false);
+			};
+
 			// init
 			$scope.vm.dateFormat = $scope.vm.dateFormat || "DD-MM-YYYY";
 
 			$document.on("scroll", onScroll);
+			registerDuScrollListeners();
 			$scope.initLabTree();
 
 			//cleanup
 			$scope.$on('$destroy', function() {
 				$document.off("scroll", onScroll);
-				unregisterDuScrollBecameActive();
-				unregisterDuScrollBecameInactive();
+				unregisterDuScrollListeners();
 			});
 		}
 	};
