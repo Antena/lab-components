@@ -1,11 +1,11 @@
 <div ng-if="vm.observation" class="lab-observation-multirange-graph">
-	<value-within-multiple-ranges-graph
+	<div value-within-multiple-ranges-graph
 		ng-if="vm.observation.valueQuantity && vm.observation.referenceRange && vm.calculatedRanges"
 		value="vm.observation.valueQuantity.value"
 		unit="vm.observation.valueQuantity.units"
 		ranges="vm.calculatedRanges"
 		options="vm.graphOptions">
-	</value-within-multiple-ranges-graph>
+	</div>
 
 	<div ng-if="!vm.observation.valueQuantity && !!vm.observation.valueString">
 		<h2 class="lab-text" ng-class="{'healthy': valueStringMatchesReference(vm.observation), 'unhealthy': !valueStringMatchesReference(vm.observation) } ">{{ getObservationValueDisclosure(vm.observation) }}</h2>
