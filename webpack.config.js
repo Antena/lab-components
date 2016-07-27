@@ -44,7 +44,8 @@ var config = {
 			jquery: 'jquery/dist/jquery.min.js',
 			moment: 'moment/moment.js',
 			underscore: 'underscore/underscore-min.js',
-			uiRouter: 'angular-ui-router/release/angular-ui-router.min.js'
+			uiRouter: 'angular-ui-router/release/angular-ui-router.min.js',
+			snapjs: 'snap.js/dist/snap.min.js'
 		}
 	},
 	plugins: [

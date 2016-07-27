@@ -9,6 +9,40 @@ $lab-observation-group-border: 1px solid #e2e2e2;
 $lab-observation-group-bg: map-get($read-text-color, lighter);
 $lab-observation-group-padding: 20px;
 
+$panel-layer-delta: 10;
+$content-layer-index: 2;
+$index-layer-index: 1;
+
+.mobile-index {
+
+	.lab-tree {
+		top: 122px;
+		padding: 5px 10px 0;
+		width: 280px;
+		border-right: 1px solid #ccc;
+		box-shadow: 0 4px 0 0 rgba(black, .4);
+	}
+}
+
+.mobile-drawer-handle {
+	width: 100%;
+	background-color: white;
+
+	@include susy-breakpoint($screen-tablet) {
+		display: none;
+	}
+}
+
+.lab-content-wrapper {
+	position: relative;
+	z-index: $content-layer-index * $panel-layer-delta;
+}
+.mobile-index {
+	position: relative;
+	z-index: $index-layer-index * $panel-layer-delta;
+}
+
+
 %table-container {
 	display: table;
 	width: 100%;
@@ -107,6 +141,7 @@ $lab-observation-group-padding: 20px;
 	width: 100%;
 	margin: 0px;
 	text-align: left;
+	background-color: white;
 
 	@include susy-breakpoint($screen-tablet) {
 		margin: 15px 0 20px;
@@ -192,3 +227,45 @@ $lab-observation-group-padding: 20px;
 		}
 	}
 }
+
+
+
+//
+//.slideout-menu {
+//	@include susy-breakpoint(0, $screen-tablet) {
+//		position: absolute;
+//		left: 0;
+//		top: 0;
+//		bottom: 0;
+//		right: 0;
+//		z-index: 0;
+//		width: 280px;
+//		overflow-y: scroll;
+//		-webkit-overflow-scrolling: touch;
+//		display: none;
+//	}
+//
+//}
+//
+//.slideout-panel {
+//	@include susy-breakpoint(0, $screen-tablet) {
+//		position: relative;
+//		z-index: 1;
+//		will-change: transform;
+//	}
+//}
+//
+//.slideout-open,
+//.slideout-open body,
+//.slideout-open .slideout-panel {
+//
+//	@include susy-breakpoint(0, $screen-tablet) {
+//		overflow: hidden;
+//	}
+//}
+//
+//.slideout-open .slideout-menu {
+//	@include susy-breakpoint(0, $screen-tablet) {
+//		display: block;
+//	}
+//}

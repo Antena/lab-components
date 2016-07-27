@@ -30,11 +30,11 @@ $scrollbar-width: 17px;
 .lab-tree {
 	padding: 0 20px;
 	position: absolute;
-	display: none;
+	//display: none;
 
-	@include susy-breakpoint($screen-tablet) {
+	//@include susy-breakpoint($screen-tablet) {
 		display: block;
-	}
+	//}
 
 	.lab-tree-node {
 		padding: 4px 0;
