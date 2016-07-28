@@ -1,6 +1,5 @@
-<div>
-	<div class="mobile-index fix-tree" ng-if="isMobile()">
-		<div class="lab-tree" isolate-scrolling-when="true">
+<div ng-class="{ 'fix-tree': isMobile() }">
+		<div class="mobile-index lab-tree" isolate-scrolling-when="true" ng-if="isMobile()">
 			<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 				<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
 					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="slideout.toggle(); onManualNavigation(observation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
@@ -13,7 +12,6 @@
 				</li>
 			</ul>
 		</div>
-	</div>
 
 	<div class="lab-content-wrapper">
 		<div class="mobile-drawer-handle">

@@ -14,13 +14,19 @@ $content-layer-index: 2;
 $index-layer-index: 1;
 
 .mobile-index {
-
-	.lab-tree {
-		top: 122px;
+	&.lab-tree {
+		display: none;
 		padding: 5px 10px 0;
 		width: 280px;
 		border-right: 1px solid #ccc;
 		box-shadow: 0 4px 0 0 rgba(black, .4);
+		background-color: white;
+
+		.lab-tree-node {
+			&:not(.lab-tree-top-level) {
+				display: block;
+			}
+		}
 	}
 }
 
@@ -230,6 +236,35 @@ $index-layer-index: 1;
 
 
 
+.slideout-menu {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 0;
+	width: 280px;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+
+}
+
+.slideout-panel {
+	position: relative;
+	z-index: 1;
+}
+
+.slideout-open,
+.slideout-open .slideout-panel {
+	overflow: hidden;
+}
+
+
+.slideout-open .slideout-menu {
+	display: block;
+}
+
+
 //
 //.slideout-menu {
 //	@include susy-breakpoint(0, $screen-tablet) {
@@ -238,7 +273,7 @@ $index-layer-index: 1;
 //		top: 0;
 //		bottom: 0;
 //		right: 0;
-//		z-index: 0;
+//		z-index: 100;
 //		width: 280px;
 //		overflow-y: scroll;
 //		-webkit-overflow-scrolling: touch;
