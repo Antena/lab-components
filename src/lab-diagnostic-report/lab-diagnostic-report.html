@@ -1,7 +1,7 @@
 <div ng-class="{ 'fix-tree': isMobile() }">
-	<div class="mobile-index" isolate-scrolling-when="true" ng-if="isMobile()">
+	<div class="mobile-index" ng-if="isMobile()">
 		<div class="drawer-header"><span class="drawer-header-title">Indice</span><img class="drawer-close-handle" src="../images/icons/icon-cross.svg" ng-click="slideout.close()"></div>
-		<div class="drawer-content lab-tree">
+		<div class="drawer-content lab-tree" isolate-scrolling-when="true">
 			<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 				<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
 					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="slideout.toggle(); onManualNavigation(observation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>

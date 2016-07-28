@@ -252,7 +252,7 @@ module.exports = function($rootScope, $document, $timeout) {
 						'panel': content[0],
 						'menu': index[0],
 						'padding': 280,
-						'tolerance': 250,
+						'tolerance': 100,
 						'touch': true
 					});
 
