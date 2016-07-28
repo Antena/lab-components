@@ -59,19 +59,15 @@ module.exports = function($rootScope, $document, $timeout) {
 			viewOnly: '=?',
 			compactMode: '=?',
 			deDupeTopLevelObservations: '=?',
-			displayObservationsWithMultipleRanges: '=?'
+			displayObservationsWithMultipleRanges: '=?',
+			indexPanelContainerClass: '@?'
 		},
 		restrict: 'EA',
 		templateUrl: require('./lab-diagnostic-report.html'),
 		bindToController: true,
 		controllerAs: 'vm',
 		controller: 'LabDiagnosticReportController',
-		link: function($scope, $element) {
-
-			var options = _.defaults($scope.options, {
-
-			});
-
+		link: function($scope, $element, attrs) {
 
 			var SCROLL_DURATION = 1000,
 				SCROLL_OFFSET = 50;
@@ -114,8 +110,6 @@ module.exports = function($rootScope, $document, $timeout) {
 
 			var onChildActiveChange = function(active, $event, $element) {
 				var parents = $($element).parents('.lab-tree-top-level');
-
-				// var fixedTreeElem = document.getElementById('fixedTree');
 
 				if (active) {
 					$('.parent-active').removeClass('parent-active');
@@ -243,11 +237,16 @@ module.exports = function($rootScope, $document, $timeout) {
 
 			if ($scope.isMobile()) {
 				$timeout(function() {
-					// var content = $('.lab-content-wrapper')[0];
-					var content = $('.study-viewer');
+					var contentClassName = attrs.indexPanelContainerClass || 'lab-content-wrapper';
+					var content = $('.' + contentClassName);
 					var index = $('.mobile-index');
 
-					content.parent().append(index);
+					if (attrs.indexPanelContainerClass) {
+						content.parent().append(index);
+						var drawerHandleElement = $('.mobile-drawer-handle');
+						drawerHandleElement.addClass('outside');
+						content.prepend(drawerHandleElement);
+					}
 
 					$scope.slideout = new Slideout({
 						'panel': content[0],
@@ -257,11 +256,13 @@ module.exports = function($rootScope, $document, $timeout) {
 						'touch': true
 					});
 
-					$scope.slideout.on('beforeopen', function() {
-						var container = angular.element($('.lab-tree'));
-						var targetElement = angular.element($('.active'));
-
-						container.scrollTo(targetElement, SCROLL_OFFSET, SCROLL_DURATION).then(function() { });
+					$scope.slideout.on('beforeopen translatestart', function() {
+						var activeItem = $('.active');
+						if (activeItem[0]) {
+							var container = angular.element($('.lab-tree'));
+							var targetElement = angular.element(activeItem);
+							container.scrollTo(targetElement, SCROLL_OFFSET, SCROLL_DURATION).then(function() { });
+						}
 					});
 
 					content.on("touchmove", function(e) {
