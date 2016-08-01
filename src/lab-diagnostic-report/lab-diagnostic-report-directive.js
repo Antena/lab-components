@@ -78,6 +78,7 @@ module.exports = function($rootScope, $document, $timeout) {
 				unregisterDuScrollBecameActive,
 				unregisterDuScrollBecameInactive;
 
+			//TODO (denise) CV-1631 move all lab-tree/scroll logic into a separate directive
 			function autoScrollUpcomingTreeNodes($element, downwardScrolling) {
 				var elementThatShouldBeVisible;
 
