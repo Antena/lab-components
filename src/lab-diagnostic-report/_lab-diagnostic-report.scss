@@ -15,7 +15,6 @@ $index-layer-index: 1;
 
 .mobile-index {
 	display: none;
-	width: 280px;
 	padding: 0;
 	border-right: 1px solid #ccc;
 	box-shadow: 0 4px 0 0 rgba(black, .4);
@@ -35,6 +34,7 @@ $index-layer-index: 1;
 
 	.drawer-content {
 		padding: 5px 10px 0;
+		width: 100%;
 
 		&.lab-tree {
 
@@ -50,10 +50,7 @@ $index-layer-index: 1;
 .mobile-drawer-handle {
 	width: 100%;
 	background-color: white;
-
-	@include susy-breakpoint($screen-tablet) {
-		display: none;
-	}
+	display: none;
 
 	&.outside {
 		position: absolute;
@@ -61,6 +58,10 @@ $index-layer-index: 1;
 		left: 2px;
 		z-index: 90;
 		background-color: transparent;
+	}
+
+	&.positioned {
+		display: block;
 	}
 }
 
@@ -78,6 +79,10 @@ $index-layer-index: 1;
 .lab-content-wrapper {
 	position: relative;
 	z-index: $content-layer-index * $panel-layer-delta;
+
+	&.non-scrollable-x {
+		overflow-x: hidden;
+	}
 }
 
 .mobile-index {
@@ -271,8 +276,6 @@ $index-layer-index: 1;
 	}
 }
 
-
-
 .slideout-menu {
 	position: fixed;
 	left: 0;
@@ -294,7 +297,6 @@ $index-layer-index: 1;
 .slideout-open .slideout-panel {
 	overflow: hidden;
 }
-
 
 .slideout-open .slideout-menu {
 	display: block;

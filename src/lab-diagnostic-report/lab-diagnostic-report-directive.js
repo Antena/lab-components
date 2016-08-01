@@ -39,7 +39,7 @@
 var _ = require('underscore');
 var $ = require('jquery');
 var angular = require('angular');
-var Slideout = require('slideout');
+var Slideout = require('slideout-custom');
 
 require("./_lab-diagnostic-report.scss");
 
@@ -97,12 +97,12 @@ module.exports = function($rootScope, $document, $timeout) {
 					}
 				}
 
-				if (elementThatShouldBeVisible && !isScrolledIntoView(elementThatShouldBeVisible)) {
-					var container = angular.element(document.getElementById('fixedTree'));
+				if (elementThatShouldBeVisible && ($scope.isMobile() || !isScrolledIntoView(elementThatShouldBeVisible))) {
+					var container = $scope.isMobile() ? angular.element($('.mobile-index')) : angular.element(document.getElementById('fixedTree'));
 					var targetElement = angular.element(elementThatShouldBeVisible);
 
 					currentlyScrolling = true;
-					container.scrollTo(targetElement, SCROLL_OFFSET, SCROLL_DURATION).then(function() {
+					container.scrollTo(targetElement, SCROLL_OFFSET, $scope.isMobile() ? 1 : SCROLL_DURATION).then(function() {
 						currentlyScrolling = false;
 					});
 				}
@@ -212,12 +212,17 @@ module.exports = function($rootScope, $document, $timeout) {
 			$scope.onManualNavigation = function(obsId) {
 				unregisterDuScrollListeners();
 
+				if($scope.slideout) {
+					$scope.slideout.close();
+				}
+
 				var targetElement = angular.element($('#' + obsId));
-				$document.scrollToElementAnimated(targetElement, 100, SCROLL_DURATION).then(function() { });
+				var offset = $scope.isMobile() ? 70: 100;
+				$document.scrollToElementAnimated(targetElement, offset, SCROLL_DURATION).then(function() { });
 
 				$timeout(function() {
 					registerDuScrollListeners();
-				}, SCROLL_DURATION + 100, false);
+				}, SCROLL_DURATION/2, false);
 			};
 
 			// init
@@ -228,12 +233,10 @@ module.exports = function($rootScope, $document, $timeout) {
 			registerDuScrollListeners();
 			$scope.initLabTree();
 
-
 			$scope.isMobile = function() {
 				var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 				return w < 768;
 			};
-
 
 			if ($scope.isMobile()) {
 				$timeout(function() {
@@ -248,24 +251,28 @@ module.exports = function($rootScope, $document, $timeout) {
 						content.prepend(drawerHandleElement);
 					}
 
+					drawerHandleElement.addClass('positioned');
+
 					$scope.slideout = new Slideout({
 						'panel': content[0],
 						'menu': index[0],
 						'padding': 280,
-						'tolerance': 100,
+						'tolerance': 20,
 						'touch': true
 					});
 
-					$scope.slideout.on('beforeopen translatestart', function() {
-						var activeItem = $('.active');
-						if (activeItem[0]) {
-							var container = angular.element($('.lab-tree'));
-							var targetElement = angular.element(activeItem);
-							container.scrollTo(targetElement, SCROLL_OFFSET, SCROLL_DURATION).then(function() { });
+					$scope.slideout.on('beforeopen', function() {
+						var activeElem = $('.active');
+						var itsTopLevel = activeElem.parents('.fake-active');
+						if (activeElem[0] && !itsTopLevel) {
+							angular.element($('.mobile-index')).scrollToElement(angular.element(activeElem));
+						} else {
+							var actuallyActive = activeElem.parents('.parent-active');
+							angular.element($('.mobile-index')).scrollToElement(angular.element(actuallyActive));
 						}
 					});
 
-					content.on("touchmove", function(e) {
+					content.on("touchmove scroll mousewheel", function(e) {
 						if($scope.slideout.isOpen()) {
 							e.stopPropagation();
 							e.preventDefault();
@@ -275,7 +282,6 @@ module.exports = function($rootScope, $document, $timeout) {
 
 				}, 0, false);
 			}
-
 
 			//cleanup
 			$scope.$on('$destroy', function() {

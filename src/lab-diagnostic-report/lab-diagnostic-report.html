@@ -1,13 +1,13 @@
 <div ng-class="{ 'fix-tree': isMobile() }">
 	<div class="mobile-index" ng-if="isMobile()">
 		<div class="drawer-header"><span class="drawer-header-title">Indice</span><img class="drawer-close-handle" src="../images/icons/icon-cross.svg" ng-click="slideout.close()"></div>
-		<div class="drawer-content lab-tree" isolate-scrolling-when="true">
+		<div class="drawer-content lab-tree">
 			<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 				<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
-					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="slideout.toggle(); onManualNavigation(observation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
+					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(firstLevelObservation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
-					<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
-						<a ng-href="#{{ observation.id }}" ng-click="slideout.toggle(); onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
+					<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden fake-active': isTopLevel(firstLevelObservation) }">
+						<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
 							<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
 						</a>
 					</div>
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<div class="lab-content-wrapper">
+	<div class="lab-content-wrapper" ng-class="{ 'non-scrollable-x': isMobile() }">
 		<div class="mobile-drawer-handle">
 			<img class="drawer-open-handle" src="../images/icons/icon-burger.svg" ng-click="slideout.toggle()">
 		</div>
@@ -118,7 +118,7 @@
 				<div id="fixedTree" class="lab-tree" isolate-scrolling-when="treeIsFixed">
 					<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
 						<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
-							<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(observation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
+							<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(firstLevelObservation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
 							<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
 								<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
