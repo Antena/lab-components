@@ -35,7 +35,7 @@
 						<div class="item-name"> Edad: &nbsp;</div><div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</b></div>
 					</div>
 				</li>
-				<li ng-if="vm.patientEmail" class="details-item">
+				<li ng-if="vm.patientEmail && vm.patientEmail !== '-'" class="details-item">
 					<img class="icon" src="../images/icons/icon-mail.svg">
 					<div class="item-wrapper">
 						<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:{{ vm.patientEmail | lowercase }}"><b>{{ vm.patientEmail | lowercase }}</b></a></div>
