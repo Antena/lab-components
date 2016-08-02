@@ -30,11 +30,7 @@ $scrollbar-width: 17px;
 .lab-tree {
 	padding: 0 20px;
 	position: absolute;
-	display: none;
-
-	@include susy-breakpoint($screen-tablet) {
-		display: block;
-	}
+	display: block;
 
 	.lab-tree-node {
 		padding: 4px 0;
@@ -73,18 +69,35 @@ $scrollbar-width: 17px;
 			}
 		}
 
+		a {
+			&:hover,
+			&:focus {
+				@include susy-breakpoint($screen-tablet) {
+					font-weight: bold;
+				}
+			}
+		}
+
 		.lab-tree-node:not(.lab-tree-top-level) {
 			a {
 				padding: 1px 0 1px 20px;
 				color: $tree-node-selection-color-secondary;
 
-				&.active,
-				&:hover,
-				&:focus {
+				&.active {
 					font-weight: bold;
 					background-color: transparent;
 					border-left-color: $tree-node-selection-color;
 					color: $tree-node-selection-color;
+				}
+
+				&:hover,
+				&:focus {
+					@include susy-breakpoint($screen-tablet) {
+						font-weight: bold;
+						background-color: transparent;
+						border-left-color: $tree-node-selection-color;
+						color: $tree-node-selection-color;
+					}
 				}
 			}
 		}
