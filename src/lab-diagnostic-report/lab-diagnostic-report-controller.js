@@ -24,13 +24,19 @@ module.exports = function($scope, $filter) {
 			$scope.vm.patientGender = $scope.vm.patient.gender;
 		}
 
+		_.each(observations, function(obs) {
+			obs.doesChildMethodMatch = function(method) {
+				return !obs.method || !method || (obs.method.text !== method.text);
+			};
+		});
+
 		$scope.vm.groupedObservations = _.groupBy(observations, function(obs) {
 			return obs.extension && obs.extension[0].valueIdentifier ? obs.extension[0].valueIdentifier.value : obs.id;
 		});
 	});
 
 	$scope.$watch('vm.patient', function(patient) {
-		
+
 		if (patient) {
 			$scope.vm.patientEmail = $filter('patientEmail')(patient);
 		}
