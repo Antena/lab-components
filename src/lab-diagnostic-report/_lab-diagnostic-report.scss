@@ -150,8 +150,18 @@ $index-layer-index: 1;
 		border: $lab-observation-group-border;
 	}
 
-	.observation-group-title {
+	.observation-group-title-wrapper {
 		margin: 5px 0 15px !important;
+
+		.observation-group-title {
+			margin: 0;
+		}
+	}
+
+	.observation-group-method {
+		color: map-get($read-text-color, sub);
+		font-weight: bold;
+		font-size: 11px;
 	}
 
 	.observation-gallery-wrapper {

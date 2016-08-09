@@ -409,6 +409,12 @@ $observation-box-padding: 10px;
 	font-size: 18px;
 }
 
+.observation-method {
+	color: map-get($read-text-color, sub);
+	font-weight: bold;
+	font-size: 11px;
+}
+
 .meaning-indicator-healthy {
 	border-left: 8px solid rgba(91, 180, 3, 0.7);
 }

@@ -19,6 +19,7 @@
  * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content.
  * @param {Number=} [patientAgeInYears] The patient age in years (decimal). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
  * @param {String=} [patientGender] A string representaiton of the patient gender ({@link http://hl7.org/fhir/ValueSet/administrative-gender valid values}). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
+ * @param {Function(method)=} [shouldShowMethod] A function which calculates wheather or not the method for this observation should be shown.
  *
  *
  * @example
@@ -150,6 +151,7 @@
  */
 
 require("./_lab-observation.scss");
+var _ = require('underscore');
 
 // @ngInject
 module.exports = function() {
@@ -164,7 +166,8 @@ module.exports = function() {
 			compactMode: '=?',
 			multiRangeMode: '=?',
 			patientAgeInYears: '=?',
-			patientGender: '=?'
+			patientGender: '=?',
+			shouldShowMethod: '&'
 		},
 		restrict: 'EA',
 		transclude: true,
@@ -172,7 +175,7 @@ module.exports = function() {
 		controller: 'LabObservationController',
 		link: function($scope, $element, attrs, LabObservationController) {
 			$scope.options = {};
-			
+
 			$scope.$watch('observation', function(observation) {
 				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});
 
@@ -191,6 +194,15 @@ module.exports = function() {
 
 			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
 			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
+
+
+			if(_.isUndefined(attrs.shouldShowMethod)) {
+				$scope.doShowMethod = _.constant(true);
+			} else {
+				$scope.doShowMethod = function(method) {
+					return $scope.shouldShowMethod({method: method});
+				}
+			}
 		}
 	};
 };
