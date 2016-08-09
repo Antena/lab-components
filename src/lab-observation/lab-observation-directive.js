@@ -151,6 +151,7 @@
  */
 
 require("./_lab-observation.scss");
+var _ = require('underscore');
 
 // @ngInject
 module.exports = function() {
@@ -174,7 +175,7 @@ module.exports = function() {
 		controller: 'LabObservationController',
 		link: function($scope, $element, attrs, LabObservationController) {
 			$scope.options = {};
-			
+
 			$scope.$watch('observation', function(observation) {
 				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});
 
@@ -193,6 +194,15 @@ module.exports = function() {
 
 			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
 			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
+
+
+			if(_.isUndefined(attrs.shouldShowMethod)) {
+				$scope.doShowMethod = _.constant(true);
+			} else {
+				$scope.doShowMethod = function(method) {
+					return $scope.shouldShowMethod({method: method});
+				}
+			}
 		}
 	};
 };
