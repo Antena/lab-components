@@ -26,7 +26,7 @@ module.exports = function($scope, $filter) {
 
 		_.each(observations, function(obs) {
 			obs.doesChildMethodMatch = function(method) {
-				return !obs.method || !method || (obs.method.text !== method.text);
+				return !obs.method || !method || (obs.method.text.toLowerCase() !== method.text.toLowerCase());
 			};
 		});
 
