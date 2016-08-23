@@ -429,7 +429,12 @@ module.exports = function() {
 					.attr('class', function(d) { return d.class + ' sector-rect'; });
 
 				// Create labels for ranges
-				targetSector.append('foreignObject')
+				var switchElem = targetSector.append("switch");
+
+				// Labels for modern browsers
+				// If the 'requiredFeatures' test passes, this element is displayed
+				switchElem.append('foreignObject')
+					.attr("requiredFeatures","http://www.w3.org/TR/SVG11/feature#Extensibility")
 					.attr('x', '0')
 					.attr('y', options.meterPosition === 'top' ? '5' : '0')
 					.attr('width', function(d) { return d.width; })
@@ -440,6 +445,15 @@ module.exports = function() {
 					.classed('range-label', true)
 					.append('span')
 					.html(function(d) { return d.label; });
+
+				// Labels for IE < IE10
+				// If it fails, show fallback labels instead.
+				switchElem.append("text")
+					.attr('dx', '0')
+					.attr('dy', options.meterPosition === 'top' ? '5' : '0')
+					.classed('range-label', true)
+					.classed('range-label-fallback', true)
+					.text(function(d) { return d.label; });
 
 				// Create range end shape
 				rect.append('path')
@@ -457,8 +471,12 @@ module.exports = function() {
 				targetRect = svg.selectAll('g.target');
 				targetScale = scale(scope.value, targetRect.data()[0], sectors);
 
-				// Create text for ranges
-				rect.append('foreignObject')
+				// Create labels for ranges
+				var rectLabelSwitchElem = rect.append("switch");
+
+				// Labels for modern browsers
+				// If the 'requiredFeatures' test passes, this element is displayed
+				rectLabelSwitchElem.append('foreignObject')
 					.attr('x', '0')
 					.attr('y', '0')
 					.attr('width', function(d) { return d.width; })
@@ -469,6 +487,14 @@ module.exports = function() {
 					.append('span')
 					.classed('range-text-content', true)
 					.html(function(d) { return rangeText(d.range, options.domain); });
+
+				// Labels for IE < IE10
+				// If it fails, show fallback labels instead.
+				rectLabelSwitchElem.append("text")
+					.attr('x', function(d) { return d.width / 2; })
+					.attr('y', function(d) { return d.rectHeight / 2; })
+					.classed('range-text-fallback', true)
+					.text(function(d) { return rangeText(d.range, options.domain); });
 
 				appendMeter(targetRect);
 
@@ -512,7 +538,17 @@ module.exports = function() {
 					//shift all sector components down so that meter fits at top
 					var meterHeight = meter.node().getBBox().height;
 					svg.selectAll('.sector-rect').attr('transform', function (d) { return translate(0, meterHeight); });
+
+					var fallbackLabels = svg.selectAll('.range-text-fallback');
+					fallbackLabels.each(function() {
+						var bbox = this.getBBox();
+						$(this).attr('transform', function () {
+							return translate(-bbox.width/2, meterHeight + bbox.height/4);
+						});
+					});
+
 					svg.selectAll('.sector-meaning-rect').attr('transform', function (d) { return translate(0, meterHeight + rangeRectHeight); });
+					svg.selectAll('.range-label-fallback').attr('transform', function (d) { return translate(0, meterHeight + rangeRectHeight + 5); });
 				}
 			}
 

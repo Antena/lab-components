@@ -74,6 +74,21 @@ $range-label-separation: 5px;
 		}
 	}
 
+	.range-text-fallback {
+		vertical-align: middle;
+		text-align: center;
+		color: white;
+		fill: white;
+		font-size: 18px;
+		line-height: 10px;
+		background-color: pink;
+
+		@include susy-breakpoint($screen-tablet) {
+			font-size: 12px;
+			line-height: 1;
+		}
+	}
+
 	.range-label {
 		height: 100%;
 		width: 100%;
