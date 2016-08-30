@@ -68,6 +68,10 @@ module.exports = function($rootScope, $document, $timeout) {
 		controllerAs: 'vm',
 		controller: 'LabDiagnosticReportController',
 		link: function($scope, $element, attrs) {
+			
+			$scope.viewerState = {
+				hovered: null
+			};
 
 			var SCROLL_DURATION = 1000,
 				SCROLL_OFFSET = 50;

@@ -167,7 +167,8 @@ module.exports = function() {
 			multiRangeMode: '=?',
 			patientAgeInYears: '=?',
 			patientGender: '=?',
-			shouldShowMethod: '&'
+			shouldShowMethod: '&',
+			hovered: '=?hoveredState'
 		},
 		restrict: 'EA',
 		transclude: true,
@@ -175,6 +176,14 @@ module.exports = function() {
 		controller: 'LabObservationController',
 		link: function($scope, $element, attrs, LabObservationController) {
 			$scope.options = {};
+
+			$scope.onActionHover = function(obs) {
+				$scope.hovered = obs.id;
+			};
+
+			$scope.onActionLeave = function() {
+				$scope.hovered = null;
+			};
 
 			$scope.$watch('observation', function(observation) {
 				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});

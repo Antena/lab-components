@@ -96,7 +96,8 @@
 								 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
 								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
 								 patient-gender="vm.patientGender"
-								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)">
+								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)"
+								 hovered-state="viewerState.hovered">
 
 								<div lab-history-graph
 									 ng-if="observation.showHistory && !!observation.history"
@@ -119,7 +120,8 @@
 								 hide-title="vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1"
 								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
 								 patient-gender="vm.patientGender"
-								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)">
+								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)"
+								 hovered-state="viewerState.hovered">
 
 								<div lab-history-graph
 									 ng-if="observationList[$index+1].showHistory && !!observationList[$index+1].history"
