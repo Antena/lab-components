@@ -155,10 +155,20 @@ module.exports = function($rootScope, $document, $timeout) {
 				var surpassed = mainRect.bottom <= initialTreeBottomPosition;
 				var diff = initialTreeBottomPosition - mainRect.bottom;
 
-				theTree.css({
-					top: surpassed ? (-diff) : 0,
-					bottom: surpassed ? (diff) : 0
-				});
+				var header = $('.floating-header');
+				if(header) {
+					if (surpassed) {
+						theTree.css({
+							top: -diff,
+							bottom: diff
+						});
+					}
+				} else {
+					theTree.css({
+						top: surpassed ? (-diff) : 0,
+						bottom: surpassed ? (diff) : 0
+					});
+				}
 
 
 				if (!surpassed) {
@@ -171,7 +181,14 @@ module.exports = function($rootScope, $document, $timeout) {
 				if (!$scope.isMobile()) {
 					var reference = $('.primary-content');
 					var compensation = reference.length ? reference[0].offsetTop : 0;
+
 					var targetScroll = $element.offset().top + compensation - 20;	// 20 for padding
+					var header = $('.floating-header');
+					if(header) {
+						targetScroll = targetScroll - header.height();
+					}
+
+					// var targetScroll = $element.offset().top + compensation - 20;	// 20 for padding
 					var currentScroll = $document.scrollTop();
 					var fixedTreeElem = document.getElementById('fixedTree');
 
@@ -189,7 +206,9 @@ module.exports = function($rootScope, $document, $timeout) {
 					} else {
 						$scope.treeIsFixed = false;
 						$element.removeClass("fix-tree");
-						$(fixedTreeElem).css({ top: 'auto', bottom: 'auto' });
+						if(!header) {
+							$(fixedTreeElem).css({top: 'auto', bottom: 'auto'});
+						}
 					}
 				}
 			};

@@ -159,6 +159,11 @@ $index-layer-index: 1;
 		}
 	}
 
+	.observation-group-title,
+	.observation-gallery-header-text {
+		font-weight: bold;
+	}
+
 	.observation-group-method {
 		color: map-get($read-text-color, sub);
 		font-weight: bold;
