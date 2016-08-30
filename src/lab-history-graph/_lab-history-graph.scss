@@ -201,6 +201,9 @@ $axis-color: map-get($read-text-color, regular);
 }
 
 .lab-history-graph {
+
+	padding: 20px;
+
 	.tooltip {
 		font-size: $font-size-small;
 		padding: 8px;

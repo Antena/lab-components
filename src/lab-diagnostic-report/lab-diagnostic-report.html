@@ -97,7 +97,12 @@
 								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
 								 patient-gender="vm.patientGender"
 								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)">
-								<lab-history-graph ng-if="observation.showHistory && !!observation.history" observation-list="observation.history"></lab-history-graph>
+
+								<div lab-history-graph
+									 ng-if="observation.showHistory && !!observation.history"
+									 class="observation-transcluded-content"
+									 observation-list="observation.history">
+								</div>
 							</div>
 						</div>
 
@@ -115,7 +120,12 @@
 								 patient-age-in-years="vm.patientAgeInYearsAtMomentOfReport"
 								 patient-gender="vm.patientGender"
 								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)">
-								<lab-history-graph ng-if="observationList[$index+1].showHistory && !!observationList[$index+1].history" observation-list="observationList[$index+1].history"></lab-history-graph>
+
+								<div lab-history-graph
+									 ng-if="observationList[$index+1].showHistory && !!observationList[$index+1].history"
+									 class="observation-transcluded-content"
+									 observation-list="observationList[$index+1].history">
+								</div>
 							</div>
 						</div>
 					</div>

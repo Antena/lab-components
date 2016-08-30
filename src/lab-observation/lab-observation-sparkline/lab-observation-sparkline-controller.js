@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('underscore');
+
 // @ngInject
 module.exports = function($scope) {
 	var observation = $scope.vm.observation;
@@ -15,7 +17,15 @@ module.exports = function($scope) {
 		var values = [];
 
 		values.push(extractValue(observation));
-		_.each(_.pluck(_.union([], observation.related).reverse(), 'target'), function(obs) {
+
+		var obsList = _.pluck(_.union([], observation.related), 'target');
+		
+		var sorted = _.sortBy(obsList,
+			function (item) {
+				return -new Date(item.issued).getTime();
+			});
+		
+		_.each(sorted, function(obs) {
 			if (obs.valueQuantity && obs.issued) {
 				values.push(extractValue(obs))
 			}

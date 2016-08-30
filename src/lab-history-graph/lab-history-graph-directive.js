@@ -85,7 +85,7 @@ module.exports = function() {
 			dateFormat: '=?'
 		},
 		templateUrl: require('./lab-history-graph.html'),
-		restrict: 'E',
+		restrict: 'AE',
 		controller: 'LabHistoryGraphController',
 		link: function($scope, element, attrs, LabGraph) {
 			if ($scope.observationList.length) {
@@ -301,7 +301,7 @@ module.exports = function() {
 					})
 					.attr("class", "valueTooltip");
 
-				d3.selectAll('circle')
+				labGraph.selectAll('circle')
 					.transition()
 					.duration(300)
 					.ease('quad-out')
