@@ -11,8 +11,21 @@
 			   ng-class="{ 'active' : headerAction.isActive(observation), 'hovered': hovered === observation.id || headerAction.showAsHovered(observation) }"
 			   ng-mouseover="onActionHover(observation)"
 			   ng-mouseleave="onActionLeave()"
-			   ng-click="headerAction.click(observation); hovered = null;">
-				<span>{{ (headerAction.isActive(observation) ? (hovered === observation.id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }} <span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}" ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}"></span></span>
+			   ng-click="onActionClick(headerAction, observation, $event)">
+				<span>
+					<span uib-popover-template="headerAction.featurePreview.templateUrl"
+						  popover-title="{{ headerAction.featurePreview.title }}"
+						  popover-placement="left"
+						  popover-popup-delay="50"
+						  popover-is-open="headerAction.featurePreviewOpen"
+						  popover-enable="!!headerAction.featurePreview && headerAction.featurePreviewOpen"
+						  popover-append-to-body="true"
+						  popover-trigger="none">
+
+					{{ (headerAction.isActive(observation) ? (hovered === observation.id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }}
+					</span>
+					<span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}" ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}"></span>
+				</span>
 			</a>
 		</div>
 	</div>
