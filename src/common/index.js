@@ -3,6 +3,9 @@
 var angular = require('angular');
 var ngModule = angular.module('lab-components.common', [
 	require('angular-translate'),
+	'ngAnimate',
+	'ui.bootstrap',
+	'ui.bootstrap.tpls'
 ]);
 
 ngModule.filter('capitalize', require('./capitalize-filter'));
@@ -21,5 +24,6 @@ ngModule.filter('trusted', require('./trusted-filter'));
 
 ngModule.factory('AngularUtilities', require('./angular-utilities'));
 ngModule.directive('isolateScrollingWhen', require('./isolate-scrolling-when-directive'));
+ngModule.directive('featurePreview', require('./feature-preview-directive'));
 
 module.exports = ngModule.name;

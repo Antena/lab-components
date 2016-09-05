@@ -68,7 +68,7 @@ module.exports = function($rootScope, $document, $timeout) {
 		controllerAs: 'vm',
 		controller: 'LabDiagnosticReportController',
 		link: function($scope, $element, attrs) {
-			
+
 			$scope.viewerState = {
 				hovered: null
 			};
@@ -160,7 +160,7 @@ module.exports = function($rootScope, $document, $timeout) {
 				var diff = initialTreeBottomPosition - mainRect.bottom;
 
 				var header = $('.floating-header');
-				if(header) {
+				if(header.length) {
 					if (surpassed) {
 						theTree.css({
 							top: -diff,
@@ -188,7 +188,7 @@ module.exports = function($rootScope, $document, $timeout) {
 
 					var targetScroll = $element.offset().top + compensation - 20;	// 20 for padding
 					var header = $('.floating-header');
-					if(header) {
+					if(header.length) {
 						targetScroll = targetScroll - header.height();
 					}
 
@@ -210,7 +210,8 @@ module.exports = function($rootScope, $document, $timeout) {
 					} else {
 						$scope.treeIsFixed = false;
 						$element.removeClass("fix-tree");
-						if(!header) {
+
+						if(!header.length) {
 							$(fixedTreeElem).css({top: 'auto', bottom: 'auto'});
 						}
 					}
