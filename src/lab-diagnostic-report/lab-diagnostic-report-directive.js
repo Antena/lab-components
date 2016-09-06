@@ -147,6 +147,10 @@ module.exports = function($rootScope, $document, $timeout) {
 				return (containerTop < elemTop) && (containerBottom > elemBottom);
 			}
 
+			var emitScrollReachedBottomEvent = _.once(function() {
+				$rootScope.$emit('labDiagnosticReport:scrollReachedBottom');
+			});
+
 			function makeTreeFollowPrimaryContent() {
 				var theTree = $('#fixedTree');
 				var mainRect = $('.primary-content')[0].getBoundingClientRect();
@@ -168,6 +172,11 @@ module.exports = function($rootScope, $document, $timeout) {
 						});
 					}
 				} else {
+
+					if (surpassed) {
+						emitScrollReachedBottomEvent();
+					}
+
 					theTree.css({
 						top: surpassed ? (-diff) : 0,
 						bottom: surpassed ? (diff) : 0
@@ -236,6 +245,8 @@ module.exports = function($rootScope, $document, $timeout) {
 
 			$scope.onManualNavigation = function(obsId) {
 				unregisterDuScrollListeners();
+
+				$rootScope.$emit('labDiagnosticReport:usedIndexNavigation');
 
 				if($scope.slideout) {
 					$scope.slideout.close();
