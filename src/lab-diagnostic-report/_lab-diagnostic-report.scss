@@ -126,9 +126,15 @@ $index-layer-index: 1;
 		width: 33%;
 	}
 }
+
 %table-two-thirds-column {
-	display: table-cell;
-	width: 66%;
+	display: block;
+	width: 100%;
+
+	@include susy-breakpoint($screen-tablet) {
+		display: table-cell;
+		width: 66%;
+	}
 }
 
 .observation-groups {
@@ -242,10 +248,6 @@ $index-layer-index: 1;
 
 		&:nth-child(1) .details-item:first-child {
 			border-top: none;
-		}
-
-		&.stretch {
-			@extend %table-two-thirds-column;
 		}
 
 		.details-item {

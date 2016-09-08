@@ -13,14 +13,13 @@ var ngModule = angular.module('lab-components', [
 	require('lab-diagnostic-report/index.js')
 ]);
 
-ngModule.config(function($translateProvider) {
+//@ngInject
+ngModule.config(function($translateProvider, $compileProvider) {
 	$translateProvider
 		.translations('es', require('./spanish.json'))
 		.preferredLanguage('es')
 		.useSanitizeValueStrategy('sanitizeParameters');
-});
 
-ngModule.config(function($compileProvider) {
 	$compileProvider.debugInfoEnabled(false);
 });
 

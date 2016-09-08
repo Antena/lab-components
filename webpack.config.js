@@ -44,9 +44,7 @@ var config = {
 			jquery: 'jquery/dist/jquery.min.js',
 			moment: 'moment/moment.js',
 			underscore: 'underscore/underscore-min.js',
-			uiRouter: 'angular-ui-router/release/angular-ui-router.min.js',
-			'ui-bootstrap': 'angular-ui-bootstrap/dist/ui-bootstrap.js',
-			'ui-bootstrap-tpls': 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
+			uiRouter: 'angular-ui-router/release/angular-ui-router.min.js'
 		}
 	},
 	plugins: [

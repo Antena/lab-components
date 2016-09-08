@@ -27,9 +27,12 @@
   },
   "dependencies": {
     "angular": "~1.4.x",
+    "angular-animate": "~1.4.x",
     "angular-sanitize": "~1.4.x",
     "angular-scroll": "~1.0.0",
     "angular-translate": "~2.7.2",
+    "angular-ui-bootstrap": "^2.0.1",
+    "angular-ui-router": "^0.2.15",
     "bootstrap-sass": "~3.3.6",
     "d3": "~3.5.17",
     "jquery": "1.11.1",
@@ -41,9 +44,6 @@
   },
   "devDependencies": {
     "absolut-loader": "~0.0.3",
-    "angular-animate": "~1.4.0",
-    "angular-ui-bootstrap": "^2.0.1",
-    "angular-ui-router": "^0.2.15",
     "css-loader": "0.21.0",
     "express": "^4.12.3",
     "extract-text-webpack-plugin": "~1.0.1",
