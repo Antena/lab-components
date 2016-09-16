@@ -1,13 +1,22 @@
 <div ng-class="{ 'fix-tree': isMobile() }">
 	<div class="mobile-index" ng-if="isMobile()">
-		<div class="drawer-header"><span class="drawer-header-title">Indice</span><img class="drawer-close-handle" src="../images/icons/icon-cross.svg" ng-click="slideout.close()"></div>
+		<div class="drawer-header"><span class="drawer-header-title">Indice</span><img class="drawer-close-handle"
+																					   src="../images/icons/icon-cross.svg"
+																					   ng-click="slideout.close()">
+		</div>
 		<div class="drawer-content lab-tree">
 			<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
-				<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
-					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(firstLevelObservation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
+				<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title"
+					class="lab-tree-group-item">
+					<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(firstLevelObservation.id)"
+					   du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true
+						}}</a>
 
-					<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden fake-active': isTopLevel(firstLevelObservation) }">
-						<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
+					<div class="lab-tree-node lab-tree-observation-observation-title"
+						 ng-class="{ 'hidden fake-active': isTopLevel(firstLevelObservation) }">
+						<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)"
+						   ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy
+						   offset="100">
 							<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
 						</a>
 					</div>
@@ -26,19 +35,24 @@
 				<li ng-if="vm.patient" class="details-item">
 					<img class="icon" src="../images/icons/icon-patient.svg">
 					<div class="item-wrapper">
-						<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div><div class="item-value"><b>{{ vm.patient | fhirFullName }}</b></div>
+						<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div>
+						<div class="item-value"><b>{{ vm.patient | fhirFullName }}</b></div>
 					</div>
 				</li>
 				<li ng-if="vm.patient" class="details-item">
 					<img class="icon" src="../images/icons/icon-years-old.svg">
 					<div class="item-wrapper">
-						<div class="item-name"> Edad: &nbsp;</div><div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true }}</b></div>
+						<div class="item-name"> Edad: &nbsp;</div>
+						<div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true
+							}}</b></div>
 					</div>
 				</li>
 				<li ng-if="vm.patientEmail && vm.patientEmail !== '-'" class="details-item">
 					<img class="icon" src="../images/icons/icon-mail.svg">
 					<div class="item-wrapper">
-						<div class="item-name">&nbsp;</div><div class="item-value"><a href="mailto:{{ vm.patientEmail | lowercase }}"><b>{{ vm.patientEmail | lowercase }}</b></a></div>
+						<div class="item-name">&nbsp;</div>
+						<div class="item-value"><a href="mailto:{{ vm.patientEmail | lowercase }}"><b>{{ vm.patientEmail
+							| lowercase }}</b></a></div>
 					</div>
 				</li>
 			</ul>
@@ -46,7 +60,8 @@
 				<li ng-if="vm.diagnosticOrder.orderer" class="details-item">
 					<img class="icon" src="../images/icons/icon-doctor.svg">
 					<div class="item-wrapper">
-						<div class="item-name">Médico: &nbsp;</div><div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirFullName }}</b></div>
+						<div class="item-name">Médico: &nbsp;</div>
+						<div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirFullName }}</b></div>
 					</div>
 				</li>
 				<li ng-if="vm.organization" class="details-item">
@@ -60,7 +75,8 @@
 					<img class="icon" src="../images/icons/icon-state.svg">
 					<div class="item-wrapper">
 						<div class="item-name">{{ 'LAB.STATUS' | translate | semicolon }}&nbsp;</div>
-						<div class="item-value"><b>{{ vm.status | toStatusKey | translate }}</b>&nbsp;({{ vm.status | toStatusKey:'_DESCRIPTION' | translate }})
+						<div class="item-value"><b>{{ vm.status | toStatusKey | translate }}</b>&nbsp;({{ vm.status |
+							toStatusKey:'_DESCRIPTION' | translate }})
 						</div>
 					</div>
 				</li>
@@ -72,10 +88,13 @@
 			<div class="primary-content" id="observations-container">
 				<div class="observation-groups" ng-repeat="firstLevelObservation in vm.observations">
 					<div class="observation-group-title-wrapper">
-						<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}" class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase }}</span></h2>
+						<h2 ng-if="firstLevelObservation.related" id="{{ firstLevelObservation.id }}"
+							class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase
+							}}</span></h2>
 						<div class="observation-group-method">
 							<span>{{ firstLevelObservation.method | codeableConcept | optional | capitalize:true }}</span>
-							<span ng-if="!firstLevelObservation.method && vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1">{{ getObservationList(firstLevelObservation)[0].method | codeableConcept | optional | capitalize:true }}</span>
+							<span
+								ng-if="!firstLevelObservation.method && vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1">{{ getObservationList(firstLevelObservation)[0].method | codeableConcept | optional | capitalize:true }}</span>
 						</div>
 					</div>
 
@@ -83,7 +102,8 @@
 						 ng-if="showNext(observationList, observation, $index) || !observation.added"
 						 class="observation-gallery-wrapper">
 
-						<div class="observation-gallery" ng-if="!observation.added" ng-class="{'half': !!observation.valueString}">
+						<div class="observation-gallery" ng-if="!observation.added"
+							 ng-class="{'half': !!observation.valueString}">
 							<div lab-observation
 								 id="{{ observation.id }}"
 								 class="lab-observation"
@@ -99,7 +119,7 @@
 								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)"
 								 hovered-state="viewerState.hovered">
 
-								<div lab-history-graph
+								<div observation-history-graph
 									 ng-if="observation.showHistory && !!observation.history"
 									 class="observation-transcluded-content"
 									 observation-list="observation.history">
@@ -107,7 +127,8 @@
 							</div>
 						</div>
 
-						<div class="observation-gallery" ng-if="showNext(observationList, observation, $index)" ng-class="{'half': !!observationList[$index+1].valueString}">
+						<div class="observation-gallery" ng-if="showNext(observationList, observation, $index)"
+							 ng-class="{'half': !!observationList[$index+1].valueString}">
 							<div lab-observation
 								 id="{{ observationList[$index+1].id }}"
 								 class="lab-observation"
@@ -123,7 +144,7 @@
 								 should-show-method="firstLevelObservation.doesChildMethodMatch(method)"
 								 hovered-state="viewerState.hovered">
 
-								<div lab-history-graph
+								<div observation-history-graph
 									 ng-if="observationList[$index+1].showHistory && !!observationList[$index+1].history"
 									 class="observation-transcluded-content"
 									 observation-list="observationList[$index+1].history">
@@ -136,12 +157,19 @@
 
 			<div class="secondary-content desktop-index" ng-if="!isMobile()">
 				<div id="fixedTree" class="lab-tree" isolate-scrolling-when="treeIsFixed">
-					<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()" class="lab-tree-group">
-						<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title" class="lab-tree-group-item">
-							<a ng-href="#{{ firstLevelObservation.id }}" ng-click="onManualNavigation(firstLevelObservation.id)" du-scrollspy offset="100">{{ getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
+					<ul ng-repeat="firstLevelObservation in vm.observations" ng-init="initLabTree()"
+						class="lab-tree-group">
+						<li class="lab-tree-top-level lab-tree-node lab-tree-observation-group-title"
+							class="lab-tree-group-item">
+							<a ng-href="#{{ firstLevelObservation.id }}"
+							   ng-click="onManualNavigation(firstLevelObservation.id)" du-scrollspy offset="100">{{
+								getObservationDisplay(firstLevelObservation) | capitalize:true }}</a>
 
-							<div class="lab-tree-node lab-tree-observation-observation-title" ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
-								<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)" ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy offset="100">
+							<div class="lab-tree-node lab-tree-observation-observation-title"
+								 ng-class="{ 'hidden': isTopLevel(firstLevelObservation) }">
+								<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)"
+								   ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))"
+								   du-scrollspy offset="100">
 									<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
 								</a>
 							</div>

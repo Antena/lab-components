@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name lab-components.lab-history-graph.directive:labHistoryGraph
+ * @name lab-components.observation-history-graph.directive:observationHistoryGraph
  * @restrict AE
  * @scope
  *
@@ -20,7 +20,7 @@
  <file name="index.html">
 
  <div ng-controller="ExampleController" class="example">
- 	<lab-history-graph observation-list="example.history"></lab-history-graph>
+ <observation-history-graph observation-list="example.history"></observation-history-graph>
  </div>
 
  </file>
@@ -44,8 +44,8 @@
  </file>
  <file name="demo.js">
 
- angular.module('lab-observation-example', ['lab-components.lab-history-graph'])
- 	.controller('ExampleController', ['$scope', function($scope) {
+ angular.module('lab-observation-example', ['lab-components.observation-history-graph'])
+ .controller('ExampleController', ['$scope', function($scope) {
 			$scope.example = {
 				history: [{"id":"573dfea91732954910873174","code":{"coding":[{"display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-02T03:00:00.000Z","subject":{"reference":"Patient/1"},"referenceRange":[{"high":{"unit":"mg/dl","value":110},"low":{"unit":"mg/dl","value":70}}],"status":"final","identifier":{},"extension":[{"valueIdentifier":{}}],"valueQuantity":{"value":86,"units":"mg/dl","code":"mg/dl","system":"http://unitsofmeasure.org"}},{"id":"573dff1c173295491087319c","code":{"coding":[{"display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-02T03:00:00.000Z","subject":{"reference":"Patient/1"},"referenceRange":[{"high":{"unit":"mg/dl","value":99},"low":{"unit":"mg/dl","value":74}}],"status":"final","identifier":{},"valueQuantity":{"value":81,"units":"mg/dl","code":"mg/dl","system":"http://unitsofmeasure.org"}},{"id":"ddd000000000000000000001","code":{"coding":[{"system":"http://www.cdrossi.com/tests","code":"GLU","display":"GLUCEMIA"}]},"resourceType":"Observation","issued":"2016-05-19T16:58:03.890Z","subject":{"reference":"Patient/1"},"referenceRange":[{"low":{"value":70,"unit":"mg/dl","system":"http://unitsofmeasure.org","code":"mg/dL"},"high":{"value":110,"unit":"mg/dl","system":"http://unitsofmeasure.org","code":"mg/dL"},"meaning":{"coding":[{"code":"H","display":"High","userSelected":"http://hl7.org/fhir/v2/0078"}]}}],"status":"final","identifier":{},"valueQuantity":{"value":120.3,"units":"mg/dL","code":"mg/dL","system":"http://unitsofmeasure.org"}}]
 			};
@@ -77,17 +77,17 @@ var SPANISH = d3.locale({
 require("./_lab-history-graph.scss");
 
 // @ngInject
-module.exports = function() {
+module.exports = function () {
 
 	return {
 		scope: {
 			observationList: '=',
 			dateFormat: '=?'
 		},
-		templateUrl: require('./lab-history-graph.html'),
+		templateUrl: require('./observation-history-graph.html'),
 		restrict: 'AE',
-		controller: 'LabHistoryGraphController',
-		link: function($scope, element, attrs, LabGraph) {
+		controller: 'ObservationHistoryGraphController',
+		link: function ($scope, element, attrs, LabGraph) {
 			if ($scope.observationList.length) {
 
 				/** Map observations to simpler objects, and transform dates **/
@@ -95,7 +95,7 @@ module.exports = function() {
 
 				/** Lab Graph Init **/
 
-				//TODO (gm) this sizes are not adjusted for mobile
+					//TODO (gm) this sizes are not adjusted for mobile
 				var margin = {top: 30, right: 10, bottom: 30, left: 30},
 					width = 530 - margin.left - margin.right - 20,
 					height = 270 - margin.top - margin.bottom,
@@ -104,14 +104,14 @@ module.exports = function() {
 
 				/** Dates **/
 
-				//TODO (denise) check if this format isn't overriden later on
+					//TODO (denise) check if this format isn't overriden later on
 				var formatDate = d3.time.format($scope.dateFormat || "%d-%m-%Y");
 
-				_.each(data, function(d) {
+				_.each(data, function (d) {
 					d.date = new Date(d.date);
 				});
 
-				var dateExtent = d3.extent(data, function(d) {
+				var dateExtent = d3.extent(data, function (d) {
 					return d.date;
 				});
 				var minDt = dateExtent[0];
@@ -119,7 +119,7 @@ module.exports = function() {
 
 				/** Axis **/
 
-				var genericValueRange = [0, d3.max(data, function(d) {
+				var genericValueRange = [0, d3.max(data, function (d) {
 					return (d.value > d.highValue) ? d.value : d.highValue;
 				})];
 
@@ -153,7 +153,7 @@ module.exports = function() {
 					.scale(y)
 					.tickSize(width + margin.right)
 					.ticks(5)
-					.tickFormat(function(d) {
+					.tickFormat(function (d) {
 						return d === y.domain()[1] ? d + " " + UNIT : d;
 					})
 					.orient("right");
@@ -176,10 +176,10 @@ module.exports = function() {
 					.style("opacity", 0);
 
 				var line = d3.svg.line()
-					.x(function(d) {
+					.x(function (d) {
 						return x(d.date);
 					})
-					.y(function(d) {
+					.y(function (d) {
 						return y(d.value);
 					})
 					.interpolate("lineal");
@@ -201,16 +201,16 @@ module.exports = function() {
 				labGraph.selectAll("healthyRange")
 					.data(LabGraph.calculateRectangles(data))
 					.enter().append("rect")
-					.attr("x", function(d) {
+					.attr("x", function (d) {
 						return d.x;
 					})
-					.attr("y", function(d) {
+					.attr("y", function (d) {
 						return d.y;
 					})
-					.attr("width", function(d) {
+					.attr("width", function (d) {
 						return d.width;
 					})
-					.attr("height", function(d) {
+					.attr("height", function (d) {
 						return d.height;
 					})
 					.attr("class", "healthyRange");
@@ -219,7 +219,7 @@ module.exports = function() {
 					.attr("class", "y axis")
 					.attr("transform", "translate( " + (-margin.left) + ",0)")
 					.call(yAxis)
-					.call(function(g) {
+					.call(function (g) {
 						g.selectAll("text")
 							.attr("x", 4)
 							.attr("dy", -4);
@@ -237,10 +237,10 @@ module.exports = function() {
 					.enter().append("line")
 					.attr("stroke-width", "1px")
 					.attr("stroke", "black")
-					.attr("x1", function(d) {
+					.attr("x1", function (d) {
 						return x(d.date);
 					})
-					.attr("x2", function(d) {
+					.attr("x2", function (d) {
 						return x(d.date);
 					})
 					.attr("y1", height)
@@ -257,17 +257,17 @@ module.exports = function() {
 				labGraph.selectAll("dot")
 					.data(data)
 					.enter().append("circle")
-					.attr("class", function(d) {
+					.attr("class", function (d) {
 						return (d.value > d.highValue || d.value < d.lowValue) ? "dot out-of-range" : "dot in-range";
 					})
 					.attr("r", 3.5)
-					.attr("cx", function(d) {
+					.attr("cx", function (d) {
 						return x(d.date);
 					})
-					.attr("cy", function(d) {
+					.attr("cy", function (d) {
 						return y(d.value);
 					})
-					.on("mouseover", function(d) {
+					.on("mouseover", function (d) {
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						var tooltipClass = (d.value < d.lowValue || d.value > d.highValue ) ? "tooltip out-of-range" : "tooltip";
 
@@ -282,7 +282,7 @@ module.exports = function() {
 							.css("top", yPos + "px");
 
 					})
-					.on("mouseout", function(d) {
+					.on("mouseout", function (d) {
 						var tooltip = $(this).parents('.graph').find('.tooltip');
 						tooltip.css("opacity", 0);
 					});
@@ -290,13 +290,13 @@ module.exports = function() {
 				labGraph.selectAll("text")
 					.data(data)
 					.enter().append("text")
-					.attr("x", function(d) {
+					.attr("x", function (d) {
 						return x(d.date);
 					})
-					.attr("y", function(d) {
+					.attr("y", function (d) {
 						return y(d.value);
 					})
-					.text(function(d) {
+					.text(function (d) {
 						return d.value;
 					})
 					.attr("class", "valueTooltip");
@@ -305,7 +305,7 @@ module.exports = function() {
 					.transition()
 					.duration(300)
 					.ease('quad-out')
-					.attr('r', function(d) {
+					.attr('r', function (d) {
 						return 5;
 					});
 			}

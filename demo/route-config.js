@@ -1,7 +1,7 @@
 'use strict';
 
 // @ngInject
-module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+module.exports = function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
 	$locationProvider.html5Mode({
 		enabled: true,
@@ -56,9 +56,9 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'components/lab-observation-multirange-graph.html',
 			controller: 'DemoController'
 		})
-		.state('lab-history-graph', {
-			url: '/lab-history-graph',
-			templateUrl: 'components/lab-history-graph.html',
+		.state('observation-history-graph', {
+			url: '/observation-history-graph',
+			templateUrl: 'components/observation-history-graph.html',
 			controller: 'DemoController'
 		})
 		.state('lab-history-sparkline-graph', {

@@ -2,7 +2,6 @@
 @import "../variables";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/clearfix";
 
-
 $tooltip-padding: 8px;
 $tooltip-left-margin: 16px;
 
@@ -20,7 +19,6 @@ $reference-text-color: map-get($read-text-color, dark);
 $axis-text-color: map-get($read-text-color, regular);
 $axis-tick-color: map-get($read-text-color, regular);
 $axis-color: map-get($read-text-color, regular);
-
 
 .graph-references {
 	margin-top: $graph-references-margin;
@@ -81,7 +79,7 @@ $axis-color: map-get($read-text-color, regular);
 	margin-left: -30px;
 
 	.graph-bg {
-		background: repeating-linear-gradient( -45deg, $unsafe-zone-bg, $unsafe-zone-bg 7px, transparent 7px, transparent 14px);
+		background: repeating-linear-gradient(-45deg, $unsafe-zone-bg, $unsafe-zone-bg 7px, transparent 7px, transparent 14px);
 		position: absolute;
 		left: 60px;
 		right: 0;
@@ -118,29 +116,11 @@ $axis-color: map-get($read-text-color, regular);
 	//@include Open-Sans-Semibold;
 }
 
-//.lab-graph {
-//	position: relative;
-//	font-size: $font-size-small;
-//	color: map-get($read-text-color, dark);
-//	//@include Open-Sans-Regular;
-//	@include clearfix;
-//
-//	&:before,
-//	&:after {
-//		content: " ";
-//		display: table;
-//	}
-//
-//	&:after {
-//		clear: both;
-//	}
-//}
-
 .underunder {
 	fill: none;
 	stroke: $axis-color;
 	stroke-width: 1;
-	stroke-dasharray: 2,2;
+	stroke-dasharray: 2, 2;
 }
 
 .axis {
@@ -159,7 +139,7 @@ $axis-color: map-get($read-text-color, regular);
 
 		line {
 			stroke: $axis-color;
-			stroke-dasharray: 2,2;
+			stroke-dasharray: 2, 2;
 		}
 	}
 }
@@ -176,8 +156,6 @@ $axis-color: map-get($read-text-color, regular);
 	}
 }
 
-
-
 .out-of-range {
 	stroke: $dot-border;
 	fill: $unsafe-zone;
@@ -191,7 +169,7 @@ $axis-color: map-get($read-text-color, regular);
 	fill: $unsafe-zone-bg;
 }
 
-.lowerRange{
+.lowerRange {
 	fill: $unsafe-zone-bg;
 }
 
@@ -200,7 +178,7 @@ $axis-color: map-get($read-text-color, regular);
 	fill: rgba(0, 0, 0, 0.73);
 }
 
-.lab-history-graph {
+.observation-history-graph {
 
 	padding: 20px;
 
@@ -237,7 +215,6 @@ $axis-color: map-get($read-text-color, regular);
 			border-bottom-color: $safe-zone;
 		}
 
-
 		&:after {
 			border-bottom-color: black;
 			border-top: none;
@@ -249,7 +226,6 @@ $axis-color: map-get($read-text-color, regular);
 
 		&.out-of-range {
 			background: $unsafe-zone;
-
 
 			&:before {
 				border-bottom-color: $unsafe-zone;

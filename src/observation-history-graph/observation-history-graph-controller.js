@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc controller
- * @name lab-components.lab-history-graph.controller:LabHistoryGraphController
+ * @name lab-components.observation-history-graph.controller:ObservationHistoryGraphController
  *
  * @description
  * `LabDiagnosticReportController` provides some utilitary functions for mapping report observations to order items, and grouping observations.
@@ -14,12 +14,12 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope) {
+module.exports = function ($scope) {
 
 	/**
 	 * @ngdoc function
 	 * @name simplifyObservations
-	 * @methodOf lab-components.lab-history-graph.controller:LabHistoryGraphController
+	 * @methodOf lab-components.observation-history-graph.controller:ObservationHistoryGraphController
 	 * @description
 	 *
 	 * //TODO (denise) add description
@@ -29,9 +29,9 @@ module.exports = function($scope) {
 	 * @returns {Array} The list of simplifed observations.
 	 *
 	 */
-	this.simplifyObservations = function(observations) {
+	this.simplifyObservations = function (observations) {
 
-		return _.map(observations, function(observation) {
+		return _.map(observations, function (observation) {
 			return {
 				'value': observation.valueQuantity.value,
 				'lowValue': observation.referenceRange[0].low.value,
@@ -48,7 +48,7 @@ module.exports = function($scope) {
 			if (i < data.length - 1) {
 				var currValue = $scope.dimensions.x(data[i].date);
 				var nextValue = $scope.dimensions.x(data[i + 1].date);
-				var dottedline = { x: ( (nextValue - currValue) / 2 ) + currValue };
+				var dottedline = {x: ( (nextValue - currValue) / 2 ) + currValue};
 				dottedLines.push(dottedline);
 			}
 		}
@@ -58,7 +58,7 @@ module.exports = function($scope) {
 	/**
 	 * @ngdoc function
 	 * @name calculateRectangles
-	 * @methodOf lab-components.lab-history-graph.controller:LabHistoryGraphController
+	 * @methodOf lab-components.observation-history-graph.controller:ObservationHistoryGraphController
 	 * @description
 	 *
 	 * //TODO (denise) add description
@@ -68,16 +68,16 @@ module.exports = function($scope) {
 	 * @returns {Array} The list of rectangles.
 	 *
 	 */
-	this.calculateRectangles = function(data) {
+	this.calculateRectangles = function (data) {
 		var rectangles = [];
 		var xRectangles = calculateDottedLines(data);
-		xRectangles.unshift({x:0});
+		xRectangles.unshift({x: 0});
 
 		for (var i = 0; i < data.length; i++) {
 			if (i < data.length) {
 				var widthRectangle;
 
-				if (i === (data.length - 1) ) {
+				if (i === (data.length - 1)) {
 					widthRectangle = $scope.dimensions.width;
 				} else {
 					widthRectangle = xRectangles[i + 1].x - xRectangles[i].x;
