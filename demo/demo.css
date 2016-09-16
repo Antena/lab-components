@@ -61,6 +61,7 @@
 .demo-instance-container {
 	border: 2px dashed rgba(255, 153, 0, 0.4);
 	margin-bottom: 10px;
+	width: 100%;
 }
 
 .demo-instance-container.multiple-ranges {
