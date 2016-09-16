@@ -66,17 +66,18 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 		return result;
 	});
 
+	// Observation history
 	var historyJson = require('./observation-history.json');
 
 	var curatedHistory = [];
 	_.each(historyJson, function(samples) {
 		if (_.isArray(samples[0])) {
 			curatedHistory = _.union(curatedHistory, samples);
-
 		} else {
 			curatedHistory.push(samples);
 		}
 	});
+
 
 	$scope.histories = _.map(curatedHistory, function(history) {
 		var description = "";
