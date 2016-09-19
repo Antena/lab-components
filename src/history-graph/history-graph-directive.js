@@ -45,7 +45,8 @@ module.exports = function () {
 			var defaults = {
 				margin: {top: 10, right: 20, bottom: 20, left: 30},
 				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
-				timeInterval: '1m'
+				timeInterval: '1m',
+				interpolate: 'linear'
 			};
 
 			// Parse config
@@ -57,7 +58,8 @@ module.exports = function () {
 					$scope.config.yDomain && !isNaN($scope.config.yDomain.to) ? $scope.config.yDomain.to : null
 				],
 				timeInterval: $scope.config.timeInterval || defaults.timeInterval,
-				ranges: $scope.config.ranges
+				ranges: $scope.config.ranges,
+				interpolate: $scope.config.interpolate || defaults.interpolate
 			};
 
 			// Date parser
@@ -113,7 +115,8 @@ module.exports = function () {
 			// Line function
 			var line = d3.svg.line()
 				.x(function (d) { return x(d.date); })
-				.y(function (d) { return y(d.value); });
+				.y(function (d) { return y(d.value); })
+				.interpolate(config.interpolate);
 
 			var zoom = d3.behavior.zoom()
 				.x(x)

@@ -245,7 +245,9 @@
       "title": "Weight: real life example from Fitbit integration",
       "config": {
         "title": "Peso (kg)",
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
+        "timeInterval": "6m",
+        "interpolate": "cardinal"
       },
       "data": [
         {
