@@ -38,12 +38,13 @@ module.exports = function () {
 			data: '='
 		},
 		templateUrl: require('./history-graph.html'),
+		controller: 'HistoryGraphController',
 		restrict: 'A',
 		link: function ($scope, element) {
 			// Default config
 			var defaults = {
 				margin: {top: 10, right: 20, bottom: 20, left: 30},
-				dateFormat: '%d-%b-%y',
+				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
 				timeInterval: '1m'
 			};
 
@@ -55,7 +56,8 @@ module.exports = function () {
 					$scope.config.yDomain && !isNaN($scope.config.yDomain.from) ? $scope.config.yDomain.from : null,
 					$scope.config.yDomain && !isNaN($scope.config.yDomain.to) ? $scope.config.yDomain.to : null
 				],
-				timeInterval: $scope.config.timeInterval || defaults.timeInterval
+				timeInterval: $scope.config.timeInterval || defaults.timeInterval,
+				ranges: $scope.config.ranges
 			};
 
 			// Date parser
@@ -98,6 +100,16 @@ module.exports = function () {
 				.scale(y)
 				.orient("left");
 
+			// Ranges
+			var stack = d3.layout.stack()
+				.offset("zero")
+				.values(function(d) { return d.values; });
+
+			var area = d3.svg.area()
+				.x(function(d) { return x(formatDate.parse(d.date)); })
+				.y0(function(d) { return d.low ? y(d.low) : height; })
+				.y1(function(d) { return d.high ? y(d.high) : 0; });
+
 			// Line function
 			var line = d3.svg.line()
 				.x(function (d) { return x(d.date); })
@@ -115,12 +127,6 @@ module.exports = function () {
 				.append("g")
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
-			svg.append("rect")
-				.attr("class", "pane")
-				.attr("width", width)
-				.attr("height", height)
-				.call(zoom);
-
 			// x-Axis
 			svg.append("g")
 				.attr("class", "x axis")
@@ -129,6 +135,13 @@ module.exports = function () {
 			// y-Axis
 			svg.append("g")
 				.attr("class", "y axis");
+
+			// Ranges
+			svg.selectAll("path")
+				.data(stack($scope.ranges))
+				.enter().append("path")
+				.attr("class", function (d) {return 'range range-' + d.code; })
+				.style("fill", function (d) { if (config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
 
 			// Line
 			svg.append("path")
@@ -141,6 +154,12 @@ module.exports = function () {
 				.attr("class", "dot")
 				.attr("r", 3.5);
 
+			svg.append("rect")
+				.attr("class", "pane")
+				.attr("width", width)
+				.attr("height", height)
+				.call(zoom);
+
 			/**
 			 * Draws all dynamic elements of the chart.
 			 */
@@ -149,7 +168,7 @@ module.exports = function () {
 				var width = element.find('.chart')[0].offsetWidth - config.margin.left - config.margin.right,
 					height = element.find('.chart')[0].offsetHeight - config.margin.top - config.margin.bottom;
 
-				// Update scale ranges/domain
+				// x-scale
 				var xScaleParameters = dateRangeFromTimeInterval(timeInterval);
 				x
 					.range([0, width])
@@ -157,8 +176,8 @@ module.exports = function () {
 					.nice(d3.time.day);
 				zoom.x(x);
 
+				// y-scale
 				y.range([height, 0]);
-
 
 				// Redraw axes
 				svg.select('.x.axis')
@@ -168,6 +187,10 @@ module.exports = function () {
 				svg.select('.y.axis')
 					.transition()
 					.call(yAxis);
+
+				svg.selectAll('.range')
+					.transition()
+					.attr("d", function(d) { return area(d.values); });
 
 				// Redraw the line
 				svg.select('.line')
@@ -192,6 +215,7 @@ module.exports = function () {
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
+				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
 			}
 
 			// Initialize chart

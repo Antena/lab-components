@@ -69,7 +69,20 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 	// Observation history
 	var histories = require('./observation-history.json');
 
-	// Process metric histories data
+	// Process observation histories
+	var observation = [];
+	_.each(histories.observation, function (o) {
+		var anObservation = _.first(o.data);
+		var config = o.config;
+		config.title = anObservation.code.coding[0].display + ' (' + anObservation.valueQuantity.units + ')';
+		observation.push({
+			title: o.title,
+			config: config,
+			data: o.data
+		})
+	});
+
+	// Process metric histories
 	var metric = [];
 	_.each(histories.metric, function (m) {
 		var data = [];

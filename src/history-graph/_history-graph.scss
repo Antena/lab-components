@@ -20,26 +20,36 @@ $axis-tick-color: map-get($read-text-color, regular);
 $axis-color: map-get($read-text-color, regular);
 
 .history-graph {
-	.time-controls {
-		font-size: 12px;
-		text-align: right;
-		height: 15px;
-		width: 100%;
+	.chart-header {
+		height: 18px;
 
-		ul {
-			list-style: none;
-			padding-left: 0px;
-			float: right;
-			margin-top: 0px;
-			margin-bottom: 0px;
+		.title {
+			font-size: 16px;
+			font-weight: bold;
+			float: left;
+			margin-left: 30px;
+		}
 
-			li {
-				float: left;
-				margin-right: 10px;
-				cursor: pointer;
-				&.selected {
-					text-decoration: underline;
-					font-weight: bold;
+		.time-controls {
+			font-size: 12px;
+			text-align: right;
+			width: 100%;
+
+			ul {
+				list-style: none;
+				padding-left: 0px;
+				float: right;
+				margin-top: 0px;
+				margin-bottom: 0px;
+
+				li {
+					float: left;
+					margin-right: 10px;
+					cursor: pointer;
+					&.selected {
+						text-decoration: underline;
+						font-weight: bold;
+					}
 				}
 			}
 		}
@@ -75,6 +85,26 @@ $axis-color: map-get($read-text-color, regular);
 			fill: none;
 			stroke: steelblue;
 			stroke-width: 1.5px;
+		}
+
+		.dot {
+			fill: steelblue;
+		}
+
+		.range {
+			opacity: 0.5;
+			&.range-L, &.range-H {
+				fill: #ed6f62;
+			}
+			&.range-N {
+				fill: #43d186;
+			}
+			&.range-LIM {
+				fill: #f4c540;
+			}
+			&.range-HU {
+				fill: #ef986c;
+			}
 		}
 	}
 }

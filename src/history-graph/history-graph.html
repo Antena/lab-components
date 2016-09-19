@@ -1,10 +1,17 @@
 <div class="history-graph">
-	<div class="time-controls">
-		<ul>
-			<li class="option" data-interval="1m">1m</li>
-			<li class="option" data-interval="6m">6m</li>
-			<li class="option" data-interval="12m">1y</li>
-		</ul>
+	<div class="chart-header">
+		<div class="title" ng-if="config.title">
+			{{ config.title }}
+		</div>
+		<div class="time-controls">
+			<ul>
+				<li class="option" data-interval="1m">1m</li>
+				<li class="option" data-interval="3m">3m</li>
+				<li class="option" data-interval="6m">6m</li>
+				<li class="option" data-interval="12m">1y</li>
+				<li class="option" data-interval="24m">2y</li>
+			</ul>
+		</div>
 	</div>
 	<div class="chart"></div>
 </div>

@@ -3,8 +3,8 @@
     {
       "title": "Hemoglobin: hardwired y domain",
       "config": {
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
-        "yDomain": { "from": 0, "to": 20 }
+        "yDomain": { "from": 0, "to": 20 },
+        "timeInterval": "6m"
       },
       "data": [
         {
@@ -12,35 +12,52 @@
           "issued": "2016-09-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 15.8, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-08-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 15.8, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 15 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 15 }, "high": { "value": 18 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 18 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-07-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 15.8, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-06-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 15.8, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         }
       ]
     },
     {
       "title": "Hemoglobin: automatic y domain",
       "config": {
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
+        "timeInterval": "6m",
+        "yDomain": { "from": 10 }
       },
       "data": [
         {
@@ -48,38 +65,187 @@
           "issued": "2016-09-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 15.8, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-08-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 14.2, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-07-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 13.7, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
         },
         {
           "resourceType": "Observation",
           "issued": "2016-06-16T00:00:00.000Z",
           "code": { "coding": [ { "display": "Hemoglobina" } ] },
           "valueQuantity": { "value": 16.1, "units": "g/dl" },
-          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "L" } ] }, "high": { "value": 13.5 } },
+            { "meaning": { "coding": [ { "code": "N" } ] }, "low": { "value": 13.5 }, "high": { "value": 15.5 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 15.5 } }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Triglyceride: multiple ranges",
+      "config": {
+        "yDomain": { "from": 0, "to": 600 },
+        "timeInterval": "6m",
+        "ranges": {
+          "H": "#ef986c",
+          "HU": "#ed6f62"
+        }
+      },
+      "data": [
+        {
+          "resourceType": "Observation",
+          "issued": "2016-09-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 112.8, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-09-15T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 125, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-09-10T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 142, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-09-05T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 143, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-08-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 156, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-07-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 222, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-06-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 296, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-05-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 303, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-04-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 251, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-03-30T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 154, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
         }
       ]
     }
   ],
   "metric": [
     {
-      "title": "Weight: real life example",
+      "title": "Weight: real life example from Fitbit integration",
       "config": {
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
-        "timeInterval": "6m"
+        "title": "Peso (kg)",
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
       },
       "data": [
         {
