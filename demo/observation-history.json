@@ -1,1045 +1,738 @@
 {
-  "29": [
+  "observation": [
     {
-      "id": "573e2c7fb03129524b6af448",
-      "code": {
-        "coding": [
-          {
-            "display": "Recuento De Globulos Rojos"
-          }
-        ]
+      "title": "Hemoglobin: 1 datapoint per month, no variation",
+      "config": {
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
+        "yDomain": { "from": 0, "to": 20 }
       },
-      "resourceType": "Observation",
-      "issued": "2002-08-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
+      "data": [
         {
-          "high": {
-            "unit": "10e12/L",
-            "value": 5.66
-          },
-          "low": {
-            "unit": "10e12/L",
-            "value": 4.32
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
+          "resourceType": "Observation",
+          "issued": "2016-09-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 15.8, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
         {
-          "valueIdentifier": {}
+          "resourceType": "Observation",
+          "issued": "2016-08-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 15.8, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-07-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 15.8, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
+        {
+          "resourceType": "Observation",
+          "issued": "2016-06-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 15.8, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
         }
-      ],
-      "valueQuantity": {
-        "value": 4.83,
-        "units": "10e12/L",
-        "code": "10e12/L",
-        "system": "http://unitsofmeasure.org"
-      }
+      ]
     },
     {
-      "id": "573dfea91732954910873163",
-      "code": {
-        "coding": [
-          {
-            "display": "Recuento De Globulos Rojos"
-          }
-        ]
+      "title": "Hemoglobin: 1 datapoint per month, slight variation",
+      "config": {
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
       },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
+      "data": [
         {
-          "high": {
-            "unit": "10e12/L",
-            "value": 5.66
-          },
-          "low": {
-            "unit": "10e12/L",
-            "value": 4.32
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
+          "resourceType": "Observation",
+          "issued": "2016-09-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 15.8, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
         {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 5.16,
-        "units": "10e12/L",
-        "code": "10e12/L",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "573dff1c1732954910873182",
-      "code": {
-        "coding": [
-          {
-            "display": "Recuento de Glóbulos Rojos"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
+          "resourceType": "Observation",
+          "issued": "2016-08-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 14.2, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
         {
-          "high": {
-            "unit": "10e12/L",
-            "value": 5.2
-          },
-          "low": {
-            "unit": "10e12/L",
-            "value": 4
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
+          "resourceType": "Observation",
+          "issued": "2016-07-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 13.7, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
+        },
         {
-          "valueIdentifier": {}
+          "resourceType": "Observation",
+          "issued": "2016-06-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Hemoglobina" } ] },
+          "valueQuantity": { "value": 16.1, "units": "g/dl" },
+          "referenceRange": [{ "low": 13.5, "high": 15.5 }]
         }
-      ],
-      "valueQuantity": {
-        "value": 4.44,
-        "units": "10e12/L",
-        "code": "10e12/L",
-        "system": "http://unitsofmeasure.org"
-      }
+      ]
     }
   ],
-  "16": [
+  "metric": [
     {
-      "id": "573dfea91732954910873173",
-      "code": {
-        "coding": [
-          {
-            "display": "Recuento De Plaquetas"
-          }
-        ]
+      "title": "Weight: real life example",
+      "config": {
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
       },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
+      "data": [
         {
-          "high": {
-            "unit": "10e9/L",
-            "value": 400
-          },
-          "low": {
-            "unit": "10e9/L",
-            "value": 150
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
+          "createdDate": "2016-09-16T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.29
+        },
         {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 261,
-        "units": "10e9/L",
-        "code": "10e9/L",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "573dff1c1732954910873190",
-      "code": {
-        "coding": [
-          {
-            "display": "Recuento de Plaquetas"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
+          "createdDate": "2016-09-15T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.475
+        },
         {
-          "high": {
-            "unit": "10e9/L",
-            "value": 400
-          },
-          "low": {
-            "unit": "10e9/L",
-            "value": 150
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
+          "createdDate": "2016-09-14T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.66
+        },
         {
-          "valueIdentifier": {}
+          "createdDate": "2016-09-13T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.09
+        },
+        {
+          "createdDate": "2016-09-12T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.52
+        },
+        {
+          "createdDate": "2016-09-11T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.38
+        },
+        {
+          "createdDate": "2016-09-10T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.136
+        },
+        {
+          "createdDate": "2016-09-09T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.893
+        },
+        {
+          "createdDate": "2016-09-08T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.65
+        },
+        {
+          "createdDate": "2016-09-07T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.018
+        },
+        {
+          "createdDate": "2016-09-06T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.384
+        },
+        {
+          "createdDate": "2016-09-05T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.75
+        },
+        {
+          "createdDate": "2016-09-04T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.27
+        },
+        {
+          "createdDate": "2016-09-03T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.695
+        },
+        {
+          "createdDate": "2016-09-02T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.12
+        },
+        {
+          "createdDate": "2016-09-01T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 84.95
+        },
+        {
+          "createdDate": "2016-08-31T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.09
+        },
+        {
+          "createdDate": "2016-08-30T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.5
+        },
+        {
+          "createdDate": "2016-08-29T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.508
+        },
+        {
+          "createdDate": "2016-08-28T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.509
+        },
+        {
+          "createdDate": "2016-08-27T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.51
+        },
+        {
+          "createdDate": "2016-08-26T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.511
+        },
+        {
+          "createdDate": "2016-08-25T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.512
+        },
+        {
+          "createdDate": "2016-08-24T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.513
+        },
+        {
+          "createdDate": "2016-08-23T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.514
+        },
+        {
+          "createdDate": "2016-08-22T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.515
+        },
+        {
+          "createdDate": "2016-08-21T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.516
+        },
+        {
+          "createdDate": "2016-08-20T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.517
+        },
+        {
+          "createdDate": "2016-08-19T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.518
+        },
+        {
+          "createdDate": "2016-08-18T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.519
+        },
+        {
+          "createdDate": "2016-08-17T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.52
+        },
+        {
+          "createdDate": "2016-08-16T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 83
+        },
+        {
+          "createdDate": "2016-08-15T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.78
+        },
+        {
+          "createdDate": "2016-08-14T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.65
+        },
+        {
+          "createdDate": "2016-08-13T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.52
+        },
+        {
+          "createdDate": "2016-08-12T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.64
+        },
+        {
+          "createdDate": "2016-08-11T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.78
+        },
+        {
+          "createdDate": "2016-08-10T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.19
+        },
+        {
+          "createdDate": "2016-08-09T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.77
+        },
+        {
+          "createdDate": "2016-08-08T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.81
+        },
+        {
+          "createdDate": "2016-08-07T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.85
+        },
+        {
+          "createdDate": "2016-08-06T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.89
+        },
+        {
+          "createdDate": "2016-08-05T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.93
+        },
+        {
+          "createdDate": "2016-08-04T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.19
+        },
+        {
+          "createdDate": "2016-08-03T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.09
+        },
+        {
+          "createdDate": "2016-08-02T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.5
+        },
+        {
+          "createdDate": "2016-08-01T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 84.75
+        },
+        {
+          "createdDate": "2016-07-31T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 84.26
+        },
+        {
+          "createdDate": "2016-07-30T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.35
+        },
+        {
+          "createdDate": "2016-07-29T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.44
+        },
+        {
+          "createdDate": "2016-07-28T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.36
+        },
+        {
+          "createdDate": "2016-07-27T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.28
+        },
+        {
+          "createdDate": "2016-07-26T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.2
+        },
+        {
+          "createdDate": "2016-07-25T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.93
+        },
+        {
+          "createdDate": "2016-07-24T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.235
+        },
+        {
+          "createdDate": "2016-07-23T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.54
+        },
+        {
+          "createdDate": "2016-07-22T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.07
+        },
+        {
+          "createdDate": "2016-07-21T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.07
+        },
+        {
+          "createdDate": "2016-07-20T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.95
+        },
+        {
+          "createdDate": "2016-07-19T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.3
+        },
+        {
+          "createdDate": "2016-07-18T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.83
+        },
+        {
+          "createdDate": "2016-07-17T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.622
+        },
+        {
+          "createdDate": "2016-07-16T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.416
+        },
+        {
+          "createdDate": "2016-07-15T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.21
+        },
+        {
+          "createdDate": "2016-07-14T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.34
+        },
+        {
+          "createdDate": "2016-07-13T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.7
+        },
+        {
+          "createdDate": "2016-07-12T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.83
+        },
+        {
+          "createdDate": "2016-07-11T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.704
+        },
+        {
+          "createdDate": "2016-07-10T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.578
+        },
+        {
+          "createdDate": "2016-07-09T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.452
+        },
+        {
+          "createdDate": "2016-07-08T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.326
+        },
+        {
+          "createdDate": "2016-07-07T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.2
+        },
+        {
+          "createdDate": "2016-07-06T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.53
+        },
+        {
+          "createdDate": "2016-07-05T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.53
+        },
+        {
+          "createdDate": "2016-07-04T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.61
+        },
+        {
+          "createdDate": "2016-07-03T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.85
+        },
+        {
+          "createdDate": "2016-07-02T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.71
+        },
+        {
+          "createdDate": "2016-07-01T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.57
+        },
+        {
+          "createdDate": "2016-06-30T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.43
+        },
+        {
+          "createdDate": "2016-06-29T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 87.05
+        },
+        {
+          "createdDate": "2016-06-28T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.26
+        },
+        {
+          "createdDate": "2016-06-27T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.062
+        },
+        {
+          "createdDate": "2016-06-26T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.866
+        },
+        {
+          "createdDate": "2016-06-25T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.67
+        },
+        {
+          "createdDate": "2016-06-24T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.82
+        },
+        {
+          "createdDate": "2016-06-23T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.58
+        },
+        {
+          "createdDate": "2016-06-22T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.7
+        },
+        {
+          "createdDate": "2016-06-21T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.39
+        },
+        {
+          "createdDate": "2016-06-20T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.74
+        },
+        {
+          "createdDate": "2016-06-19T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 87.09
+        },
+        {
+          "createdDate": "2016-06-18T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.68
+        },
+        {
+          "createdDate": "2016-06-17T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 86.27
+        },
+        {
+          "createdDate": "2016-06-16T00:00:00.000Z",
+          "description": {},
+          "source": "fitbit",
+          "units": "kg",
+          "value": 85.86
         }
-      ],
-      "valueQuantity": {
-        "value": 203,
-        "units": "10e9/L",
-        "code": "10e9/L",
-        "system": "http://unitsofmeasure.org"
-      }
+      ]
     }
-  ],
-  "27": [
-    {
-      "id": "573dfea91732954910873165",
-      "code": {
-        "coding": [
-          {
-            "display": "Hemoglobina"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "g/dl",
-            "value": 16.7
-          },
-          "low": {
-            "unit": "g/dl",
-            "value": 13.3
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 14.7,
-        "units": "g/dl",
-        "code": "g/dl",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "573dff1c1732954910873183",
-      "code": {
-        "coding": [
-          {
-            "display": "Hemoglobina"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "g/dl",
-            "value": 16
-          },
-          "low": {
-            "unit": "g/dl",
-            "value": 12
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 12.6,
-        "units": "g/dl",
-        "code": "g/dl",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "ddd000000000000000000003",
-      "code": {
-        "coding": [
-          {
-            "system": "http://www.cdrossi.com/tests",
-            "code": "HGB",
-            "display": "HEMOGLOBINA"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-19T16:58:03.890Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "low": {
-            "value": 13.8,
-            "unit": "g/Dl",
-            "system": "http://unitsofmeasure.org",
-            "code": "g/Dl"
-          },
-          "high": {
-            "value": 16,
-            "unit": "g/Dl",
-            "system": "http://unitsofmeasure.org",
-            "code": "g/Dl"
-          },
-          "meaning": {
-            "coding": [
-              {
-                "code": "N",
-                "display": "Normal",
-                "userSelected": "http://hl7.org/fhir/v2/0078"
-              }
-            ]
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "valueQuantity": {
-        "value": 15.7,
-        "units": "g/Dl",
-        "code": "g/Dl",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "28": [
-    {
-      "id": "573dfea91732954910873164",
-      "code": {
-        "coding": [
-          {
-            "display": "Hematocrito"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "%",
-            "value": 50
-          },
-          "low": {
-            "unit": "%",
-            "value": 39
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 43,
-        "units": "%",
-        "code": "%",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "573dff1c1732954910873184",
-      "code": {
-        "coding": [
-          {
-            "display": "Hematocrito"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "%",
-            "value": 46
-          },
-          "low": {
-            "unit": "%",
-            "value": 36
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 38,
-        "units": "%",
-        "code": "%",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "ddd000000000000000000002",
-      "code": {
-        "coding": [
-          {
-            "system": "http://www.cdrossi.com/tests",
-            "code": "HTO",
-            "display": "HEMATOCRITO"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-19T16:58:03.890Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "low": {
-            "value": 40.7,
-            "unit": "%",
-            "system": "http://unitsofmeasure.org",
-            "code": "%"
-          },
-          "high": {
-            "value": 50.3,
-            "unit": "%",
-            "system": "http://unitsofmeasure.org",
-            "code": "%"
-          },
-          "meaning": {
-            "coding": [
-              {
-                "code": "N",
-                "display": "Normal",
-                "userSelected": "http://hl7.org/fhir/v2/0078"
-              }
-            ]
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "valueQuantity": {
-        "value": 45.3,
-        "units": "%",
-        "code": "%",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "21": [
-    {
-      "id": "573dff1c173295491087318b",
-      "code": {
-        "coding": [
-          {
-            "display": "Neutrófilos Seg."
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "%",
-            "value": 74
-          },
-          "low": {
-            "unit": "%",
-            "value": 42
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 39,
-        "units": "%",
-        "code": "%",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "7": [
-    {
-      "id": "573dfea91732954910873179",
-      "code": {
-        "coding": [
-          {
-            "display": "Fosfatasa Alcalina"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "UI/l",
-            "value": 150
-          },
-          "low": {
-            "unit": "UI/l",
-            "value": 40
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 73,
-        "units": "UI/l",
-        "code": "UI/l",
-        "system": "http://unitsofmeasure.org"
-      }
-    },
-    {
-      "id": "573dff1c173295491087319a",
-      "code": {
-        "coding": [
-          {
-            "display": "FAL (Fosfatasa Alcalina)"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "UI/L",
-            "value": 105
-          },
-          "low": {
-            "unit": "UI/L",
-            "value": 35
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 60,
-        "units": "UI/L",
-        "code": "UI/L",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "8": [
-    {
-      "id": "573dff1c1732954910873199",
-      "code": {
-        "coding": [
-          {
-            "display": "GOT (ASAT)"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "UI/L",
-            "value": 32
-          },
-          "low": {
-            "unit": "UI/L",
-            "value": 5
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 17,
-        "units": "UI/L",
-        "code": "UI/L",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "9": [
-    {
-      "id": "573dff1c1732954910873198",
-      "code": {
-        "coding": [
-          {
-            "display": "GPT (ALAT)"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "UI/L",
-            "value": 33
-          },
-          "low": {
-            "unit": "UI/L",
-            "value": 5
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 14,
-        "units": "UI/L",
-        "code": "UI/L",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "14": [
-    {
-      "id": "573dff1c1732954910873197",
-      "code": {
-        "coding": [
-          {
-            "display": "Albúmina"
-          }
-        ]
-      },
-      "resourceType": "Observation",
-      "issued": "2016-05-02T03:00:00.000Z",
-      "subject": {
-        "reference": "Patient/1"
-      },
-      "referenceRange": [
-        {
-          "high": {
-            "unit": "g/dl",
-            "value": 5.2
-          },
-          "low": {
-            "unit": "g/dl",
-            "value": 3.5
-          }
-        }
-      ],
-      "status": "final",
-      "identifier": {},
-      "extension": [
-        {
-          "valueIdentifier": {}
-        }
-      ],
-      "valueQuantity": {
-        "value": 4.5,
-        "units": "g/dl",
-        "code": "g/dl",
-        "system": "http://unitsofmeasure.org"
-      }
-    }
-  ],
-  "samples": [
-    [
-      {
-        "id": "573dfea91732954910873174",
-        "code": {
-          "coding": [
-            {
-              "display": "GLUCEMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dl",
-              "value": 110
-            },
-            "low": {
-              "unit": "mg/dl",
-              "value": 70
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "extension": [
-          {
-            "valueIdentifier": {}
-          }
-        ],
-        "valueQuantity": {
-          "value": 86,
-          "units": "mg/dl",
-          "code": "mg/dl",
-          "system": "http://unitsofmeasure.org"
-        }
-      },
-      {
-        "id": "573dff1c173295491087319c",
-        "code": {
-          "coding": [
-            {
-              "display": "GLUCEMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dl",
-              "value": 99
-            },
-            "low": {
-              "unit": "mg/dl",
-              "value": 74
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "valueQuantity": {
-          "value": 81,
-          "units": "mg/dl",
-          "code": "mg/dl",
-          "system": "http://unitsofmeasure.org"
-        }
-      },
-      {
-        "id": "ddd000000000000000000001",
-        "code": {
-          "coding": [
-            {
-              "system": "http://www.cdrossi.com/tests",
-              "code": "GLU",
-              "display": "GLUCEMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-19T16:58:03.890Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "low": {
-              "value": 70,
-              "unit": "mg/dl",
-              "system": "http://unitsofmeasure.org",
-              "code": "mg/dL"
-            },
-            "high": {
-              "value": 110,
-              "unit": "mg/dl",
-              "system": "http://unitsofmeasure.org",
-              "code": "mg/dL"
-            },
-            "meaning": {
-              "coding": [
-                {
-                  "code": "H",
-                  "display": "High",
-                  "userSelected": "http://hl7.org/fhir/v2/0078"
-                }
-              ]
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "valueQuantity": {
-          "value": 120.3,
-          "units": "mg/dL",
-          "code": "mg/dL",
-          "system": "http://unitsofmeasure.org"
-        }
-      }
-    ],
-    [
-      {
-        "id": "573dff1c173295491087319b",
-        "code": {
-          "coding": [
-            {
-              "display": "IGA - INMUNOGLOBULINA A"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dL",
-              "value": 400
-            },
-            "low": {
-              "unit": "mg/dL",
-              "value": 70
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "valueQuantity": {
-          "value": 411,
-          "units": "mg/dL",
-          "code": "mg/dL",
-          "system": "http://unitsofmeasure.org"
-        }
-      }
-    ],
-    [
-      {
-        "id": "573dff1c1732954910873192",
-        "code": {
-          "coding": [
-            {
-              "display": "Sodio"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mEq/l",
-              "value": 145
-            },
-            "low": {
-              "unit": "mEq/l",
-              "value": 136
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "extension": [
-          {
-            "valueIdentifier": {}
-          }
-        ],
-        "valueQuantity": {
-          "value": 140,
-          "units": "mEq/l",
-          "code": "mEq/l",
-          "system": "http://unitsofmeasure.org"
-        }
-      }
-    ],
-    [
-      {
-        "id": "573e2c7fb03129524b6af45a",
-        "code": {
-          "coding": [
-            {
-              "display": "UREMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2002-08-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dl",
-              "value": 55
-            },
-            "low": {
-              "unit": "mg/dl",
-              "value": 18
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "extension": [
-          {
-            "valueIdentifier": {}
-          }
-        ],
-        "valueQuantity": {
-          "value": 42,
-          "units": "mg/dl",
-          "code": "mg/dl",
-          "system": "http://unitsofmeasure.org"
-        }
-      },
-      {
-        "id": "573dfea91732954910873175",
-        "code": {
-          "coding": [
-            {
-              "display": "UREMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dl",
-              "value": 44
-            },
-            "low": {
-              "unit": "mg/dl",
-              "value": 19
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "extension": [
-          {
-            "valueIdentifier": {}
-          }
-        ],
-        "valueQuantity": {
-          "value": 32,
-          "units": "mg/dl",
-          "code": "mg/dl",
-          "system": "http://unitsofmeasure.org"
-        }
-      },
-      {
-        "id": "573dff1c1732954910873194",
-        "code": {
-          "coding": [
-            {
-              "display": "UREMIA"
-            }
-          ]
-        },
-        "resourceType": "Observation",
-        "issued": "2016-05-02T03:00:00.000Z",
-        "subject": {
-          "reference": "Patient/1"
-        },
-        "referenceRange": [
-          {
-            "high": {
-              "unit": "mg/dl",
-              "value": 40
-            },
-            "low": {
-              "unit": "mg/dl",
-              "value": 15
-            }
-          }
-        ],
-        "status": "final",
-        "identifier": {},
-        "valueQuantity": {
-          "value": 28,
-          "units": "mg/dl",
-          "code": "mg/dl",
-          "system": "http://unitsofmeasure.org"
-        }
-      }
-    ]
   ]
 }

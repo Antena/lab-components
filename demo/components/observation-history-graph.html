@@ -1,9 +1,0 @@
-<div>
-	<h2>Observation History Graph demos</h2>
-
-	<div ng-repeat="history in histories" class="demo-instance-container"
-		 ng-class="{ 'demo-instance-container-shrinked': $first }">
-		<h4 class="demo-description">{{ history.description}} [{{history.data[0].code.coding[0].display}}]</h4>
-		<observation-history-graph observation-list="history.data"></observation-history-graph>
-	</div>
-</div>

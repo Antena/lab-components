@@ -56,9 +56,9 @@ module.exports = function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 			templateUrl: 'components/lab-observation-multirange-graph.html',
 			controller: 'DemoController'
 		})
-		.state('observation-history-graph', {
-			url: '/observation-history-graph',
-			templateUrl: 'components/observation-history-graph.html',
+		.state('history-graph', {
+			url: '/history-graph',
+			templateUrl: 'components/history-graph.html',
 			controller: 'DemoController'
 		})
 		.state('lab-history-sparkline-graph', {

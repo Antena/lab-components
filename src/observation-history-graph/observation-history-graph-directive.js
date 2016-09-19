@@ -6,7 +6,7 @@ module.exports = function () {
 	return {
 		scope: {
 			observationList: '=',
-			dateFormat: '=?'
+			config: '=?'
 		},
 		templateUrl: require('./observation-history-graph.html'),
 		restrict: 'AE',

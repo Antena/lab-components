@@ -6,9 +6,14 @@ var d3 = require('d3');
 
 // @ngInject
 module.exports = function () {
+
+	function isNumber(n) {
+		return !isNaN(parseFloat(n)) && isFinite(n);
+	}
+
 	return {
 		scope: {
-			config: '=?',
+			config: '=',
 			data: '='
 		},
 		templateUrl: require('./history-graph.html'),
@@ -23,14 +28,25 @@ module.exports = function () {
 			// Parse config
 			var config = {
 				margin: defaults.margin,
-				formatDate: d3.time.format(defaults.dateFormat)
+				dateFormat: $scope.config.dateFormat || defaults.dateFormat,
+				dateFrom: $scope.config.dateFrom,
+				dateTo: $scope.config.dateTo,
+				yDomain: [
+					$scope.config.yDomain && !isNaN($scope.config.yDomain.from) ? $scope.config.yDomain.from : null,
+					$scope.config.yDomain && !isNaN($scope.config.yDomain.to) ? $scope.config.yDomain.to : null
+				],
+				metricName: $scope.config.metricName,
+				metricUnit: $scope.config.metricUnit
 			};
+
+			// Date parser
+			var formatDate = d3.time.format(config.dateFormat);
 
 			// Process data
 			var data = [];
 			for (var i = 0; i < $scope.data.length; i++) {
 				data.push({
-					date: config.formatDate.parse($scope.data[i].date),
+					date: formatDate.parse($scope.data[i].date),
 					value: $scope.data[i].value
 				})
 			}
@@ -40,16 +56,14 @@ module.exports = function () {
 				height = element[0].offsetHeight - config.margin.top - config.margin.bottom;
 
 			// Scales
+			var xDomain = d3.extent(data, function (d) { return d.date; });
 			var x = d3.time.scale()
-				.domain(d3.extent(data, function (d) {
-					return d.date;
-				}))
+				.domain([config.dateFrom || xDomain[0], config.dateTo || xDomain[1]])
 				.range([0, width]);
 
+			var yDomain = d3.extent(data, function (d) { return d.value; });
 			var y = d3.scale.linear()
-				.domain(d3.extent(data, function (d) {
-					return d.value;
-				}))
+				.domain([isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1] ])
 				.range([height, 0]);
 
 			// Axes
@@ -63,12 +77,8 @@ module.exports = function () {
 
 			// Line function
 			var line = d3.svg.line()
-				.x(function (d) {
-					return x(d.date);
-				})
-				.y(function (d) {
-					return y(d.value);
-				});
+				.x(function (d) { return x(d.date); })
+				.y(function (d) { return y(d.value); });
 
 			// SVG
 			var svg = d3.select(element.find('.graph')[0]).append("svg")
@@ -83,19 +93,19 @@ module.exports = function () {
 				.attr("transform", "translate(0," + height + ")");
 
 			// y-Axis
-			svg.append("g")
-				.attr("class", "y axis")
-				.append("text")
-				.attr("transform", "rotate(-90)")
-				.attr("y", 6)
-				.attr("dy", ".71em")
-				.style("text-anchor", "end")
-				.text("Price ($)");
+			var yAxisGroup = svg.append("g")
+				.attr("class", "y axis");
 
 			// Line
 			svg.append("path")
-				.datum(data)
 				.attr("class", "line");
+
+			// Data points
+			svg.selectAll(".dot")
+				.data(data)
+				.enter().append('circle')
+				.attr("class", "dot")
+				.attr("r", 3.5);
 
 			/**
 			 * Draws all dynamic elements of the graph.
@@ -116,9 +126,14 @@ module.exports = function () {
 				svg.select('.y.axis')
 					.call(yAxis);
 
-				// Re draw the line
+				// Redraw the line
 				svg.select('.line')
-					.attr("d", line);
+					.attr("d", line(data));
+
+				// Redraw dots
+				svg.selectAll(".dot")
+					.attr("cx", function(d) { return x(d.date); })
+					.attr("cy", function(d) { return y(d.value); });
 			};
 
 			// Initialize graph
@@ -126,7 +141,6 @@ module.exports = function () {
 
 			// Listen on window resize
 			d3.select(window).on('resize.' + $scope.$id, draw);
-
 		}
 	};
 };
