@@ -1,7 +1,7 @@
 {
   "observation": [
     {
-      "title": "Hemoglobin: 1 datapoint per month, no variation",
+      "title": "Hemoglobin: hardwired y domain",
       "config": {
         "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
         "yDomain": { "from": 0, "to": 20 }
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "title": "Hemoglobin: 1 datapoint per month, slight variation",
+      "title": "Hemoglobin: automatic y domain",
       "config": {
         "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
       },
@@ -78,7 +78,8 @@
     {
       "title": "Weight: real life example",
       "config": {
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ"
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
+        "timeInterval": "6m"
       },
       "data": [
         {

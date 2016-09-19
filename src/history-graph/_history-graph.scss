@@ -19,30 +19,62 @@ $axis-text-color: map-get($read-text-color, regular);
 $axis-tick-color: map-get($read-text-color, regular);
 $axis-color: map-get($read-text-color, regular);
 
-.graph {
-	font: 10px sans-serif;
-
-	svg {
+.history-graph {
+	.time-controls {
+		font-size: 12px;
+		text-align: right;
+		height: 15px;
 		width: 100%;
-		height: 100%;
+
+		ul {
+			list-style: none;
+			padding-left: 0px;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+
+			li {
+				float: left;
+				margin-right: 10px;
+				cursor: pointer;
+				&.selected {
+					text-decoration: underline;
+					font-weight: bold;
+				}
+			}
+		}
 	}
 
-	height: 300px;
+	.chart {
+		font: 10px sans-serif;
+		height: 300px;
 
-	.axis path,
-	.axis line {
-		fill: none;
-		stroke: #000;
-		shape-rendering: crispEdges;
-	}
+		svg {
+			width: 100%;
+			height: 100%;
+		}
 
-	.x.axis path {
-		display: none;
-	}
+		rect.pane {
+			cursor: move;
+			fill: none;
+			pointer-events: all;
+		}
 
-	.line {
-		fill: none;
-		stroke: steelblue;
-		stroke-width: 1.5px;
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+
+		.x.axis path {
+			display: none;
+		}
+
+		.line {
+			fill: none;
+			stroke: steelblue;
+			stroke-width: 1.5px;
+		}
 	}
 }
