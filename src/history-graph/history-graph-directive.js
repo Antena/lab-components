@@ -23,14 +23,41 @@ module.exports = function () {
 	 */
 	var dateRangeFromTimeInterval = function (interval) {
 		// Domain
+		var months = parseInt(interval);
+		//TODO(gb): fix this date arithmetic
 		var now = new Date(),
 			to = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999),
-			from = new Date(now.getFullYear(), now.getMonth()-parseInt(interval), now.getDate(), 0, 0, 0, 0);
+			from = new Date(now.getFullYear(), now.getMonth()- months, now.getDate(), 0, 0, 0, 0);
 
 		return {
 			domain: [from, to]
 		};
 	};
+
+	// Time scale localization
+	var SPANISH = d3.locale({
+		"decimal": ",",
+		"thousands": ".",
+		"grouping": [3],
+		"currency": ["$", ""],
+		"dateTime": "%a %b %e %X %Y",
+		"date": "%d/%m/%Y",
+		"time": "%H:%M:%S",
+		"periods": ["AM", "PM"],
+		"days": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"],
+		"shortDays": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+		"months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+		"shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+	});
+	var customTimeFormat = SPANISH.timeFormat.multi([
+		[".%L", function(d) { return d.getMilliseconds(); }],
+		[":%S", function(d) { return d.getSeconds(); }],
+		["%I:%M", function(d) { return d.getMinutes(); }],
+		["%I %p", function(d) { return d.getHours(); }],
+		["%d", function(d) { return d.getDate() != 1 }],
+		["%b", function(d) { return d.getMonth(); }],
+		["%Y", function() { return true; }]
+	]);
 
 	return {
 		scope: {
@@ -85,7 +112,6 @@ module.exports = function () {
 			var xDomain = d3.extent(data, function (d) { return d.date; });
 			var x = d3.time.scale()
 				.domain([config.dateFrom || xDomain[0], config.dateTo || xDomain[1]])
-				.nice(d3.time.month)
 				.range([0, width]);
 
 			var yDomain = d3.extent(data, function (d) { return d.value; });
@@ -96,6 +122,7 @@ module.exports = function () {
 			// Axes
 			var xAxis = d3.svg.axis()
 				.scale(x)
+				.tickFormat(customTimeFormat)
 				.orient("bottom");
 
 			var yAxis = d3.svg.axis()
@@ -130,15 +157,6 @@ module.exports = function () {
 				.append("g")
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
-			// x-Axis
-			svg.append("g")
-				.attr("class", "x axis")
-				.attr("transform", "translate(0," + height + ")");
-
-			// y-Axis
-			svg.append("g")
-				.attr("class", "y axis");
-
 			// Ranges
 			svg.selectAll("path")
 				.data(stack($scope.ranges))
@@ -157,11 +175,29 @@ module.exports = function () {
 				.attr("class", "dot")
 				.attr("r", 3.5);
 
+			// Pan pane
 			svg.append("rect")
 				.attr("class", "pane")
 				.attr("width", width)
 				.attr("height", height)
 				.call(zoom);
+
+			svg.append("rect")
+				.attr("class", "yaxis-mask")
+				.attr("width", config.margin.left)
+				.attr("x", -config.margin.left)
+				.attr("height", height);
+
+			// x-Axis
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + height + ")");
+
+			// y-Axis
+			svg.append("g")
+				.attr("class", "y axis");
+
+
 
 			/**
 			 * Draws all dynamic elements of the chart.
@@ -187,6 +223,7 @@ module.exports = function () {
 					.transition()
 					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
+
 				svg.select('.y.axis')
 					.transition()
 					.call(yAxis);

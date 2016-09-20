@@ -77,8 +77,9 @@ $axis-color: map-get($read-text-color, regular);
 			shape-rendering: crispEdges;
 		}
 
-		.x.axis path {
-			display: none;
+		.yaxis-mask {
+			fill: white;
+			opacity: 0.75;
 		}
 
 		.line {
