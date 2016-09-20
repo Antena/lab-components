@@ -85,6 +85,7 @@ $axis-color: map-get($read-text-color, regular);
 		.line {
 			fill: none;
 			stroke: steelblue;
+			stroke-dasharray: 5;
 			stroke-width: 1.5px;
 		}
 
