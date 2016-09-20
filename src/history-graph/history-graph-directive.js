@@ -3,6 +3,7 @@
 require("./_history-graph.scss");
 
 var d3 = require('d3');
+var _ = require('underscore');
 
 // @ngInject
 module.exports = function () {
@@ -62,18 +63,20 @@ module.exports = function () {
 				interpolate: 'linear'
 			};
 
+			var options = !!$scope.config ? _.defaults({}, $scope.config, defaults) : defaults;
+
 			// Parse config
 			var config = {
 				margin: defaults.margin,
-				dateFormat: $scope.config.dateFormat || defaults.dateFormat,
+				dateFormat: options.dateFormat,
 				yDomain: [
-					$scope.config.yDomain && !isNaN($scope.config.yDomain.from) ? $scope.config.yDomain.from : null,
-					$scope.config.yDomain && !isNaN($scope.config.yDomain.to) ? $scope.config.yDomain.to : null
+					options.yDomain && !isNaN(options.yDomain.from) ? options.yDomain.from : null,
+					options.yDomain && !isNaN(options.yDomain.to) ? options.yDomain.to : null
 				],
-				timeControls: $scope.config.timeControls || defaults.timeControls,
-				timeInterval: $scope.config.timeInterval || defaults.timeInterval,
-				ranges: $scope.config.ranges,
-				interpolate: $scope.config.interpolate || defaults.interpolate
+				timeControls: options.timeControls,
+				timeInterval: options.timeInterval,
+				ranges: options.ranges,
+				interpolate: options.interpolate
 			};
 
 			// Date parser

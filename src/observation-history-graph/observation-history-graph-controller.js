@@ -3,10 +3,13 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function ($scope) {
-	function processReferenceRange(referenceRange) {
+module.exports = function ($scope, FhirReferenceRangeConverterService) {
+	function processReferenceRange(observation) {
 		var ranges = [];
-		_.each(referenceRange, function(range) {
+
+		var convertedRanges = FhirReferenceRangeConverterService.convertToMultipleRanges(observation);
+
+		_.each(convertedRanges, function(range) {
 			ranges.push({
 				code: range.meaning.coding[0].code,
 				low: range.low ? range.low.value : null,
@@ -23,7 +26,7 @@ module.exports = function ($scope) {
 		var datum = {};
 		datum.date = obs.issued;
 		datum.value = obs.valueQuantity.value;
-		datum.ranges = processReferenceRange(obs.referenceRange);
+		datum.ranges = processReferenceRange(obs);
 
 		data.push(datum);
 	});

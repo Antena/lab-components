@@ -24,5 +24,6 @@ ngModule.config(function($translateProvider, $compileProvider) {
 });
 
 ngModule.service('FhirBundleService', require('./fhir-bundle-service'));
+ngModule.service('FhirReferenceRangeConverterService', require('./fhir-reference-range-converter-service'));
 
 module.exports = ngModule.name;

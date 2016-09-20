@@ -14,7 +14,7 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope, $filter) {
+module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
 
 	$scope.vm.calculatedRanges = [];
 
@@ -95,107 +95,6 @@ module.exports = function($scope, $filter) {
 		return result;
 	}
 
-	function shouldFillMissingRanges(observation) {
-		return observation.referenceRange.length === 1 && observation.referenceRange[0].low && observation.referenceRange[0].high;
-	}
-
-	function getDecimalCount(value) {
-		return Math.floor(value) === value ? 0 : (value.toString().split(".")[1].length || 0);
-	}
-
-	function calculateLowBorder(originalRange, observation) {
-		var highDecimals = getDecimalCount(originalRange.high.value);
-		var lowDecimals = getDecimalCount(originalRange.low.value);
-		var valueDecimals = getDecimalCount(observation.valueQuantity.value);
-		var decimalCount = Math.max(valueDecimals, Math.max(highDecimals, lowDecimals));
-		var minUnit;
-
-		var diffToApply = 0;
-
-		if (originalRange.low.value > 0) {
-			if (decimalCount > 0) {
-				minUnit = Math.pow(10, decimalCount);
-				diffToApply = 1 / minUnit;
-			} else {
-				// var digits = ("" + originalRange.low.value).length;
-				// minUnit = Math.pow(10, digits);
-				// diffToApply = 1 * minUnit;
-
-				diffToApply = 1;
-			}
-		}
-
-		var lowBorder = originalRange.low.value - diffToApply;
-		if (decimalCount > 0) {
-			lowBorder = parseFloat(lowBorder.toFixed(decimalCount));
-		}
-		return lowBorder;
-	}
-
-	function fillMissingRanges(observation) {
-		var originalRange = observation.referenceRange[0];
-
-		var lowBorder = calculateLowBorder(originalRange, observation);
-
-		var result = [
-			{
-				low: {
-					value: $scope.vm.graphOptions.domain.low,
-					units: originalRange.low.units,
-					system: originalRange.low.system,
-					code: originalRange.low.code
-				},
-				high: {
-					value: lowBorder,
-					units: originalRange.low.units,
-					system: originalRange.low.system,
-					code: originalRange.low.code
-				},
-				meaning: {
-					coding: [
-						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "L"
-						}
-					]
-				}
-			},
-			{
-				low: originalRange.low,
-				high: originalRange.high,
-				meaning: {
-					coding: [
-						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "N" 	//TODO (denise) remove onces this is fixed from KERN!!!!!
-						}
-					]
-				}
-			},
-			{
-				low: originalRange.high,
-				meaning: {
-					coding: [
-						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "H"
-						}
-					]
-				}
-			}
-		];
-
-		if (originalRange.low.value === $scope.vm.graphOptions.domain.low) {
-			result.shift();
-		}
-
-		if (originalRange.high.value === $scope.vm.graphOptions.domain.high) {
-			result.pop();
-		}
-
-		return result;
-	}
-
 	function transformRangesForGraphDisplay(ranges) {
 		var codeScale = _.map(ranges, function(range) { return range.meaning.coding[0].code; });
 
@@ -214,7 +113,6 @@ module.exports = function($scope, $filter) {
 	$scope.$watch('vm.observation', function(observation) {
 
 		if(observation && observation.referenceRange && observation.referenceRange.length) {
-			var ranges;
 
 			var domainExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/domain"});
 
@@ -230,11 +128,7 @@ module.exports = function($scope, $filter) {
 
 			}
 
-			if(shouldFillMissingRanges(observation)) {
-				ranges = fillMissingRanges(observation);
-			} else {
-				ranges = observation.referenceRange;
-			}
+			var ranges = FhirReferenceRangeConverterService.convertToMultipleRangesWithDomain(observation, $scope.vm.graphOptions.domain);
 
 			$scope.vm.calculatedRanges = transformRangesForGraphDisplay(ranges);
 		}

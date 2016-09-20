@@ -1,0 +1,2914 @@
+{
+  "_id": "57daebe7ccd32ca212c262ad",
+  "__t": "AttachmentLabStudy",
+  "addedDate": "2016-09-15T18:43:51.416Z",
+  "description": "",
+  "organization": null,
+  "organizationSite": null,
+  "owner": "galvan@antena.co",
+  "patient": {
+    "_id": "000000000000000000000aaa",
+    "__t": "Patient",
+    "firstName": "Viviana",
+    "lastName": "Galván",
+    "birthDate": "1977-02-01T03:00:00.000Z"
+  },
+  "performedDate": "2016-07-20T03:00:00.000Z",
+  "performingPhysician": null,
+  "previousStudies": [],
+  "referringPhysician": null,
+  "relatedStudies": [],
+  "source": "upload",
+  "title": "GB",
+  "parserVersion": "v1.0.2",
+  "attachments": [
+    {
+      "_id": "57daebe7ccd32ca212c262ac",
+      "uri": "https://test-cv-private.s3-us-west-2.amazonaws.com/uploads/galvan%40antena.co/attachment/8b374855-af81-4679-9cc0-8d4da3d44f9fGB_Lab.pdf?AWSAccessKeyId=AKIAJBG3X6HVUYWVPJHQ&Expires=1474413817&Signature=UT6nJWb7btLcqqVJ5GBu1FA4uBs%3D",
+      "bucket": "test-cv-private",
+      "key": "uploads/galvan@antena.co/attachment/8b374855-af81-4679-9cc0-8d4da3d44f9fGB_Lab.pdf",
+      "owner": "galvan@antena.co",
+      "mimeType": "application/pdf"
+    }
+  ],
+  "observations": [
+    {
+      "_id": "57daebeeccd32ca212c262ae",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+        "__t": "MetricIdentifier",
+        "label": "Recuento de Glóbulos Rojos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e12/L",
+        "value": 5.16
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e12/L",
+            "value": 5.66
+          },
+          "low": {
+            "unit": "10e12/L",
+            "value": 4.32
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Recuento De Globulos Rojos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4adf",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento de Glóbulos Rojos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e12/L",
+            "value": 4.6
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e12/L",
+                "value": 5.2
+              },
+              "low": {
+                "unit": "10e12/L",
+                "value": 4
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262ae",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento De Globulos Rojos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e12/L",
+            "value": 5.16
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_ROJOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e12/L",
+                "value": 5.66
+              },
+              "low": {
+                "unit": "10e12/L",
+                "value": 4.32
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262af",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_HEMATOCRITO",
+        "__t": "MetricIdentifier",
+        "label": "Hematocrito",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "%",
+        "value": 43
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "%",
+            "value": 50
+          },
+          "low": {
+            "unit": "%",
+            "value": 39
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Hematocrito"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "ddd000000000000000000002",
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T18:34:18.339Z",
+          "identifier": {
+            "system": "http://www.cdrossi.com/pedido_prestacion",
+            "value": "BE-291777-2-1"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/tests",
+                "code": "HTO",
+                "display": "HEMATOCRITO"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 45.3,
+            "unit": "%",
+            "system": "http://unitsofmeasure.org",
+            "code": "%"
+          },
+          "method": {
+            "text": "Automatizado / Sysmex"
+          },
+          "metricIdentifier": "EM_HEMATOCRITO",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "referenceRange": [
+            {
+              "low": {
+                "value": 40.7,
+                "unit": "%",
+                "system": "http://unitsofmeasure.org",
+                "code": "%"
+              },
+              "high": {
+                "value": 50.3,
+                "unit": "%",
+                "system": "http://unitsofmeasure.org",
+                "code": "%"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "code": "N",
+                    "display": "Normal",
+                    "userSelected": "http://hl7.org/fhir/v2/0078"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57c7242ee8f22489052f4ae1",
+          "code": {
+            "coding": [
+              {
+                "display": "Hematocrito"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 43
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_HEMATOCRITO",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 46
+              },
+              "low": {
+                "unit": "%",
+                "value": 36
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262af",
+          "code": {
+            "coding": [
+              {
+                "display": "Hematocrito"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 43
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_HEMATOCRITO",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 50
+              },
+              "low": {
+                "unit": "%",
+                "value": 39
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b0",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_HEMOGLOBINA",
+        "__t": "MetricIdentifier",
+        "label": "Hemoglobina",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "g/dl",
+        "value": 14.7
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "g/dl",
+            "value": 16.7
+          },
+          "low": {
+            "unit": "g/dl",
+            "value": 13.3
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Hemoglobina"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "ddd000000000000000000003",
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T18:34:18.339Z",
+          "identifier": {
+            "system": "http://www.cdrossi.com/pedido_prestacion",
+            "value": "BE-291777-3"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/tests",
+                "code": "HGB",
+                "display": "HEMOGLOBINA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 15.7,
+            "unit": "g/Dl",
+            "system": "http://unitsofmeasure.org",
+            "code": "g/Dl"
+          },
+          "method": {
+            "text": "Automatizado - Sysmex"
+          },
+          "metricIdentifier": "EM_HEMOGLOBINA",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "referenceRange": [
+            {
+              "low": {
+                "value": 13.8,
+                "unit": "g/Dl",
+                "system": "http://unitsofmeasure.org",
+                "code": "g/Dl"
+              },
+              "high": {
+                "value": 16,
+                "unit": "g/Dl",
+                "system": "http://unitsofmeasure.org",
+                "code": "g/Dl"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "code": "N",
+                    "display": "Normal",
+                    "userSelected": "http://hl7.org/fhir/v2/0078"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57c7242ee8f22489052f4ae0",
+          "code": {
+            "coding": [
+              {
+                "display": "Hemoglobina"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "g/dl",
+            "value": 14
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_HEMOGLOBINA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "g/dl",
+                "value": 16
+              },
+              "low": {
+                "unit": "g/dl",
+                "value": 12
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262b0",
+          "code": {
+            "coding": [
+              {
+                "display": "Hemoglobina"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "g/dl",
+            "value": 14.7
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_HEMOGLOBINA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "g/dl",
+                "value": 16.7
+              },
+              "low": {
+                "unit": "g/dl",
+                "value": 13.3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b1",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_V_C_M_",
+        "__t": "MetricIdentifier",
+        "label": "V.C.M.",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "fL",
+        "value": 83
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "fL",
+            "value": 98
+          },
+          "low": {
+            "unit": "fL",
+            "value": 82
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "V.C.M."
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b1",
+          "code": {
+            "coding": [
+              {
+                "display": "V.C.M."
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "fL",
+            "value": 83
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_V_C_M_",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "fL",
+                "value": 98
+              },
+              "low": {
+                "unit": "fL",
+                "value": 82
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b2",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_CHCM",
+        "__t": "MetricIdentifier",
+        "label": "Chcm",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "g/dL",
+        "value": 34.4
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "g/dL",
+            "value": 34.9
+          },
+          "low": {
+            "unit": "g/dL",
+            "value": 31.6
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "CHCM"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b2",
+          "code": {
+            "coding": [
+              {
+                "display": "CHCM"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "g/dL",
+            "value": 34.4
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_CHCM",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "g/dL",
+                "value": 34.9
+              },
+              "low": {
+                "unit": "g/dL",
+                "value": 31.6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b3",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_HCM",
+        "__t": "MetricIdentifier",
+        "label": "HCM",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "pg",
+        "value": 28
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "pg",
+            "value": 33
+          },
+          "low": {
+            "unit": "pg",
+            "value": 27
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "HCM"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b3",
+          "code": {
+            "coding": [
+              {
+                "display": "HCM"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "pg",
+            "value": 28
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_HCM",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "pg",
+                "value": 33
+              },
+              "low": {
+                "unit": "pg",
+                "value": 27
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b4",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_RDW_ADE",
+        "__t": "MetricIdentifier",
+        "label": "RDW (ADE)",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "%",
+        "value": 13
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "%",
+            "value": 16
+          },
+          "low": {
+            "unit": "%",
+            "value": 10
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "RDW (ADE)"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b4",
+          "code": {
+            "coding": [
+              {
+                "display": "RDW (ADE)"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 13
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_RDW_ADE",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 16
+              },
+              "low": {
+                "unit": "%",
+                "value": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b5",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_RECUENTO_DE_GLOBULOS_BLANCOS",
+        "__t": "MetricIdentifier",
+        "label": "Recuento de Glóbulos Blancos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 7.8
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 9.5
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 3.7
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Recuento De Globulos Blancos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4ae6",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento de Glóbulos Blancos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 8.2
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_BLANCOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 11
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 4.5
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262b5",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento De Globulos Blancos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 7.8
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_GLOBULOS_BLANCOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 9.5
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 3.7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b6",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_MIELOCITOS",
+        "__t": "MetricIdentifier",
+        "label": "Mielocitos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Mielocitos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b6",
+          "code": {
+            "coding": [
+              {
+                "display": "Mielocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_MIELOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b7",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_METAMIELOCITOS",
+        "__t": "MetricIdentifier",
+        "label": "Metamielocitos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Metamielocitos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b7",
+          "code": {
+            "coding": [
+              {
+                "display": "Metamielocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_METAMIELOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b8",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_NEUTROFILOS_EN_CAYADO",
+        "__t": "MetricIdentifier",
+        "label": "Neutrofilos en cayado",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0.2
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Neutrofilos En Cayado"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4ae7",
+          "code": {
+            "coding": [
+              {
+                "display": "Neutrófilos en cayado"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_NEUTROFILOS_EN_CAYADO",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 3
+              },
+              "low": {
+                "unit": "%",
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262b8",
+          "code": {
+            "coding": [
+              {
+                "display": "Neutrofilos En Cayado"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_NEUTROFILOS_EN_CAYADO",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0.2
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262b9",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_NEUTROFILOS_SEGMENTADOS",
+        "__t": "MetricIdentifier",
+        "label": "Neutrofilos segmentados",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 5.3
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 6.5
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 1.5
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Neutrofilos Segmentados"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262b9",
+          "code": {
+            "coding": [
+              {
+                "display": "Neutrofilos Segmentados"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 5.3
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_NEUTROFILOS_SEGMENTADOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 6.5
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 1.5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262ba",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_BASOFILOS",
+        "__t": "MetricIdentifier",
+        "label": "Basofilos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0.1
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Basofilos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4aeb",
+          "code": {
+            "coding": [
+              {
+                "display": "Basófilos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_BASOFILOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 2
+              },
+              "low": {
+                "unit": "%",
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262ba",
+          "code": {
+            "coding": [
+              {
+                "display": "Basofilos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_BASOFILOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0.1
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262bb",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_EOSINOFILOS",
+        "__t": "MetricIdentifier",
+        "label": "Eosinofilos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0.1
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0.7
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Eosinofilos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4aec",
+          "code": {
+            "coding": [
+              {
+                "display": "Eosinófilos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 3
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_EOSINOFILOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 8
+              },
+              "low": {
+                "unit": "%",
+                "value": 0
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262bb",
+          "code": {
+            "coding": [
+              {
+                "display": "Eosinofilos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0.1
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_EOSINOFILOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0.7
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262bc",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_LINFOCITOS",
+        "__t": "MetricIdentifier",
+        "label": "Linfocitos",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 1.8
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 3.5
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 1.1
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Linfocitos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4ae9",
+          "code": {
+            "coding": [
+              {
+                "display": "Linfocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 33
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_LINFOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 44
+              },
+              "low": {
+                "unit": "%",
+                "value": 18
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262bc",
+          "code": {
+            "coding": [
+              {
+                "display": "Linfocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 1.8
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_LINFOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 3.5
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 1.1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262bd",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_MONOCITOS",
+        "__t": "MetricIdentifier",
+        "label": "Monocitos:",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 0.6
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 0.9
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 0.2
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Monocitos"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4aea",
+          "code": {
+            "coding": [
+              {
+                "display": "Monocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "%",
+            "value": 7
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_MONOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "%",
+                "value": 13
+              },
+              "low": {
+                "unit": "%",
+                "value": 5
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262bd",
+          "code": {
+            "coding": [
+              {
+                "display": "Monocitos"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 0.6
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_MONOCITOS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 0.9
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 0.2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262be",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_RECUENTO_DE_PLAQUETAS",
+        "__t": "MetricIdentifier",
+        "label": "Recuento de Plaquetas",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "10e9/L",
+        "value": 261
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "10e9/L",
+            "value": 400
+          },
+          "low": {
+            "unit": "10e9/L",
+            "value": 150
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Recuento De Plaquetas"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4aed",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento de Plaquetas"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 295
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_PLAQUETAS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 400
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 150
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262be",
+          "code": {
+            "coding": [
+              {
+                "display": "Recuento De Plaquetas"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "10e9/L",
+            "value": 261
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_RECUENTO_DE_PLAQUETAS",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "10e9/L",
+                "value": 400
+              },
+              "low": {
+                "unit": "10e9/L",
+                "value": 150
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262bf",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_GLUCEMIA",
+        "__t": "MetricIdentifier",
+        "label": "Glucemia",
+        "fullRange": [
+          0,
+          200
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "mg/dl",
+        "value": 86
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "mg/dl",
+            "value": 110
+          },
+          "low": {
+            "unit": "mg/dl",
+            "value": 70
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "GLUCEMIA"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "ddd000000000000000000001",
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T18:34:18.339Z",
+          "identifier": {
+            "system": "http://www.cdrossi.com/pedido_prestacion",
+            "value": "BE-291777-1"
+          },
+          "status": "final",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/tests",
+                "code": "GLU",
+                "display": "GLUCEMIA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 120.3,
+            "unit": "mg/dL",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/dL"
+          },
+          "comments": "Confirmado por duplicado",
+          "method": {
+            "text": "Enzimático/Colorimétrico"
+          },
+          "metricIdentifier": "EM_GLUCEMIA",
+          "metricGroupIdentifier": "MG_GLUCEMIA",
+          "__v": 0,
+          "referenceRange": [
+            {
+              "low": {
+                "value": 70,
+                "unit": "mg/dl",
+                "system": "http://unitsofmeasure.org",
+                "code": "mg/dL"
+              },
+              "high": {
+                "value": 110,
+                "unit": "mg/dl",
+                "system": "http://unitsofmeasure.org",
+                "code": "mg/dL"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "code": "H",
+                    "display": "High",
+                    "userSelected": "http://hl7.org/fhir/v2/0078"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57c7242ee8f22489052f4af7",
+          "code": {
+            "coding": [
+              {
+                "display": "GLUCEMIA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "mg/dl",
+            "value": 86
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "__v": 0,
+          "metricIdentifier": "EM_GLUCEMIA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "mg/dl",
+                "value": 99
+              },
+              "low": {
+                "unit": "mg/dl",
+                "value": 70
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262bf",
+          "code": {
+            "coding": [
+              {
+                "display": "GLUCEMIA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "mg/dl",
+            "value": 86
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_GLUCEMIA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "mg/dl",
+                "value": 110
+              },
+              "low": {
+                "unit": "mg/dl",
+                "value": 70
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c0",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_UREMIA",
+        "__t": "MetricIdentifier",
+        "label": "Uremia",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "mg/dl",
+        "value": 32
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "mg/dl",
+            "value": 44
+          },
+          "low": {
+            "unit": "mg/dl",
+            "value": 19
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "UREMIA"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c0",
+          "code": {
+            "coding": [
+              {
+                "display": "UREMIA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "mg/dl",
+            "value": 32
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_UREMIA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "mg/dl",
+                "value": 44
+              },
+              "low": {
+                "unit": "mg/dl",
+                "value": 19
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c1",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_CREATININEMIA",
+        "__t": "MetricIdentifier",
+        "label": "Creatininemia",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEMOGRAMA_COMPLETO_",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEMOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "mg/dl",
+        "value": 0.87
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "mg/dl",
+            "value": 1.25
+          },
+          "low": {
+            "unit": "mg/dl",
+            "value": 0.72
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "CREATININEMIA"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c1",
+          "code": {
+            "coding": [
+              {
+                "display": "CREATININEMIA"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "mg/dl",
+            "value": 0.87
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEMOGRAMA_COMPLETO_",
+          "__v": 0,
+          "metricIdentifier": "EM_CREATININEMIA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "mg/dl",
+                "value": 1.25
+              },
+              "low": {
+                "unit": "mg/dl",
+                "value": 0.72
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c2",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_GPT",
+        "__t": "MetricIdentifier",
+        "label": "GPT",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "U/l",
+        "value": 26
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "U/l",
+            "value": 55
+          },
+          "low": {
+            "unit": "U/l",
+            "value": 0
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "GPT"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c2",
+          "code": {
+            "coding": [
+              {
+                "display": "GPT"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "U/l",
+            "value": 26
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_GPT",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "U/l",
+                "value": 55
+              },
+              "low": {
+                "unit": "U/l",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c3",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_GOT",
+        "__t": "MetricIdentifier",
+        "label": "GOT",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "U/l",
+        "value": 20
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "U/l",
+            "value": 34
+          },
+          "low": {
+            "unit": "U/l",
+            "value": 5
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "GOT"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c3",
+          "code": {
+            "coding": [
+              {
+                "display": "GOT"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "U/l",
+            "value": 20
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_GOT",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "U/l",
+                "value": 34
+              },
+              "low": {
+                "unit": "U/l",
+                "value": 5
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c4",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_FAL_FOSFATASA_ALCALINA",
+        "__t": "MetricIdentifier",
+        "label": "FAL (Fosfatasa Alcalina)",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "UI/l",
+        "value": 73
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "UI/l",
+            "value": 150
+          },
+          "low": {
+            "unit": "UI/l",
+            "value": 40
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Fosfatasa Alcalina"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4af6",
+          "code": {
+            "coding": [
+              {
+                "display": "FAL (Fosfatasa Alcalina)"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "UI/L",
+            "value": 78
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_FAL_FOSFATASA_ALCALINA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "UI/L",
+                "value": 105
+              },
+              "low": {
+                "unit": "UI/L",
+                "value": 35
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262c4",
+          "code": {
+            "coding": [
+              {
+                "display": "Fosfatasa Alcalina"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "UI/l",
+            "value": 73
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_FAL_FOSFATASA_ALCALINA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "UI/l",
+                "value": 150
+              },
+              "low": {
+                "unit": "UI/l",
+                "value": 40
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c5",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_PROTEINAS_TOTALES",
+        "__t": "MetricIdentifier",
+        "label": "Proteinas Totales",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "g/dl",
+        "value": 7.6
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "g/dl",
+            "value": 8.3
+          },
+          "low": {
+            "unit": "g/dl",
+            "value": 6.4
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Proteinas Totales"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57c7242ee8f22489052f4af2",
+          "code": {
+            "coding": [
+              {
+                "display": "Proteínas totales"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "g/dL",
+            "value": 7.8
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-08-31T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_PROTEINAS_TOTALES",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "g/dL",
+                "value": 8.3
+              },
+              "low": {
+                "unit": "g/dL",
+                "value": 6.4
+              }
+            }
+          ]
+        },
+        {
+          "_id": "57daebeeccd32ca212c262c5",
+          "code": {
+            "coding": [
+              {
+                "display": "Proteinas Totales"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "g/dl",
+            "value": 7.6
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_PROTEINAS_TOTALES",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "g/dl",
+                "value": 8.3
+              },
+              "low": {
+                "unit": "g/dl",
+                "value": 6.4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c6",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_BILIRRUBINA_TOTAL",
+        "__t": "MetricIdentifier",
+        "label": "Bilirrubina Total",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "mg/dl",
+        "value": 0.69
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "mg/dl",
+            "value": 1.2
+          },
+          "low": {
+            "unit": "mg/dl",
+            "value": 0.2
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "Bilirrubina Total"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c6",
+          "code": {
+            "coding": [
+              {
+                "display": "Bilirrubina Total"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "mg/dl",
+            "value": 0.69
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_BILIRRUBINA_TOTAL",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "mg/dl",
+                "value": 1.2
+              },
+              "low": {
+                "unit": "mg/dl",
+                "value": 0.2
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c7",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_GGT",
+        "__t": "MetricIdentifier",
+        "label": "GGT",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "U/l",
+        "value": 20
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "U/l",
+            "value": 64
+          },
+          "low": {
+            "unit": "U/l",
+            "value": 12
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "GGT"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c7",
+          "code": {
+            "coding": [
+              {
+                "display": "GGT"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "U/l",
+            "value": 20
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_GGT",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "U/l",
+                "value": 64
+              },
+              "low": {
+                "unit": "U/l",
+                "value": 12
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c8",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_LDH",
+        "__t": "MetricIdentifier",
+        "label": "LDH",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "UI/l",
+        "value": 159
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "UI/l",
+            "value": 220
+          },
+          "low": {
+            "unit": "UI/l",
+            "value": 125
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "LDH"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c8",
+          "code": {
+            "coding": [
+              {
+                "display": "LDH"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "UI/l",
+            "value": 159
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_LDH",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "UI/l",
+                "value": 220
+              },
+              "low": {
+                "unit": "UI/l",
+                "value": 125
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262c9",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_T4L_TIROXINA_LIBRE",
+        "__t": "MetricIdentifier",
+        "label": "T4L-Tiroxina libre",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "ng/dl",
+        "value": 1.11
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "ng/dl",
+            "value": 1.48
+          },
+          "low": {
+            "unit": "ng/dl",
+            "value": 0.7
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "T4L-TIROXINA LIBRE"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262c9",
+          "code": {
+            "coding": [
+              {
+                "display": "T4L-TIROXINA LIBRE"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "ng/dl",
+            "value": 1.11
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_T4L_TIROXINA_LIBRE",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "ng/dl",
+                "value": 1.48
+              },
+              "low": {
+                "unit": "ng/dl",
+                "value": 0.7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "_id": "57daebeeccd32ca212c262ca",
+      "identifier": null,
+      "creationDate": "2016-07-20T03:00:00.000Z",
+      "metricIdentifier": {
+        "_id": "EM_TSH_TIROTROFINA_SERICA",
+        "__t": "MetricIdentifier",
+        "label": "TSH- Tirotrofina sérica",
+        "fullRange": [
+          0,
+          100
+        ]
+      },
+      "metricGroupIdentifier": {
+        "_id": "MG_HEPATOGRAMA_COMPLETO",
+        "__t": "MetricGroupIdentifier",
+        "label": "HEPATOGRAMA COMPLETO"
+      },
+      "valueQuantity": {
+        "unit": "µUI/ml",
+        "value": 1.36
+      },
+      "method": null,
+      "resourceType": "Observation",
+      "referenceRange": [
+        {
+          "high": {
+            "unit": "µUI/ml",
+            "value": 4.94
+          },
+          "low": {
+            "unit": "µUI/ml",
+            "value": 0.35
+          },
+          "meaning": null
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "display": "TSH - TIROTROFINA sérica"
+          }
+        ]
+      },
+      "history": [
+        {
+          "_id": "57daebeeccd32ca212c262ca",
+          "code": {
+            "coding": [
+              {
+                "display": "TSH - TIROTROFINA sérica"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "unit": "µUI/ml",
+            "value": 1.36
+          },
+          "resourceType": "Observation",
+          "owner": "galvan@antena.co",
+          "creationDate": "2016-07-20T03:00:00.000Z",
+          "metricGroupIdentifier": "MG_HEPATOGRAMA_COMPLETO",
+          "__v": 0,
+          "metricIdentifier": "EM_TSH_TIROTROFINA_SERICA",
+          "referenceRange": [
+            {
+              "high": {
+                "unit": "µUI/ml",
+                "value": 4.94
+              },
+              "low": {
+                "unit": "µUI/ml",
+                "value": 0.35
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
