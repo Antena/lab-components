@@ -8,8 +8,8 @@ module.exports = function () {
 			observationList: '=',
 			config: '=?'
 		},
-		templateUrl: require('./observation-history-graph.html'),
+		templateUrl: require('./lab-observation-history-graph.html'),
 		restrict: 'AE',
-		controller: 'ObservationHistoryGraphController'
+		controller: 'LabObservationHistoryGraphController'
 	};
 };

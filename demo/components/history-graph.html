@@ -1,8 +1,8 @@
 <div>
-	<h3>Observation History Graph demos</h3>
+	<h3>Lab Observation History Graph demos</h3>
 	<div ng-repeat="history in histories.observation" class="demo-instance-container" ng-class="{ 'demo-instance-container-shrinked': $first }">
 		<h4 class="demo-description">{{ history.title}}</h4>
-		<observation-history-graph config="history.config" observation-list="history.data"></observation-history-graph>
+		<lab-observation-history-graph config="history.config" observation-list="history.data"></lab-observation-history-graph>
 	</div>
 
 	<h3>Metric History Graph demos</h3>
