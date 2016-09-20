@@ -26,7 +26,7 @@ module.exports = function ($scope) {
 	$scope.ranges = ranges;
 
 	// Time controls
-	$scope.timeControls = function (controls) {
+	$scope.parseTimeControls = function (controls) {
 		var timeControls = [];
 		_.each(controls.split(' '), function(control) {
 			var days = control.split('d'),

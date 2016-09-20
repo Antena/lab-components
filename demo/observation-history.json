@@ -56,8 +56,7 @@
     {
       "title": "Hemoglobin: automatic y domain",
       "config": {
-        "timeInterval": "6m",
-        "yDomain": { "from": 10 }
+        "timeInterval": "6m"
       },
       "data": [
         {

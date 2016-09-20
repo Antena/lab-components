@@ -60,7 +60,8 @@ module.exports = function () {
 				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
 				timeControls: '1m 3m 6m 1y',
 				timeInterval: '1m',
-				interpolate: 'linear'
+				interpolate: 'linear',
+				yDomainPadding: { top: 0.1, bottom: 0.1 }
 			};
 
 			var options = !!$scope.config ? _.defaults({}, $scope.config, defaults) : defaults;
@@ -73,6 +74,7 @@ module.exports = function () {
 					options.yDomain && !isNaN(options.yDomain.from) ? options.yDomain.from : null,
 					options.yDomain && !isNaN(options.yDomain.to) ? options.yDomain.to : null
 				],
+				yDomainPadding: defaults.yDomainPadding,
 				timeControls: options.timeControls,
 				timeInterval: options.timeInterval,
 				ranges: options.ranges,
@@ -84,7 +86,7 @@ module.exports = function () {
 
 			// Time interval
 			var timeInterval = null;
-			$scope.timeControls(config.timeControls);
+			$scope.parseTimeControls(config.timeControls);
 			$scope.selectTimeControl(config.timeInterval);
 
 			// Process data
@@ -108,6 +110,14 @@ module.exports = function () {
 
 			// Y scale
 			var yDomain = d3.extent(data, function (d) { return d.value; });
+			if ($scope.ranges.length > 0) {
+				var lowerLimit = d3.min($scope.ranges[0].values, function (d) { return d.high }),
+					higherLimit = d3.max($scope.ranges[$scope.ranges.length-1].values, function (d) { return d.low });
+				yDomain = [Math.min(yDomain[0], lowerLimit), Math.max(yDomain[1], higherLimit)];
+			}
+			var totalRange = yDomain[1] - yDomain[0];
+			yDomain = [yDomain[0] - (totalRange * config.yDomainPadding.bottom), yDomain[1] + (totalRange * config.yDomainPadding.top)];
+
 			var y = d3.scale.linear()
 				.domain([isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1] ])
 				.range([height, 0]);
