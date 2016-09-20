@@ -17,23 +17,6 @@ module.exports = function () {
 		return !isNaN(parseFloat(n)) && isFinite(n);
 	}
 
-	/**
-	 *
-	 * @param interval
-	 */
-	var dateRangeFromTimeInterval = function (interval) {
-		// Domain
-		var months = parseInt(interval);
-		//TODO(gb): fix this date arithmetic
-		var now = new Date(),
-			to = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 999),
-			from = new Date(now.getFullYear(), now.getMonth()- months, now.getDate(), 0, 0, 0, 0);
-
-		return {
-			domain: [from, to]
-		};
-	};
-
 	// Time scale localization
 	var SPANISH = d3.locale({
 		"decimal": ",",
@@ -66,12 +49,15 @@ module.exports = function () {
 		},
 		templateUrl: require('./history-graph.html'),
 		controller: 'HistoryGraphController',
+		controllerAs: '$ctrl',
 		restrict: 'A',
 		link: function ($scope, element) {
+
 			// Default config
 			var defaults = {
 				margin: {top: 10, right: 20, bottom: 20, left: 30},
 				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+				timeControls: '1m 3m 6m 1y',
 				timeInterval: '1m',
 				interpolate: 'linear'
 			};
@@ -84,6 +70,7 @@ module.exports = function () {
 					$scope.config.yDomain && !isNaN($scope.config.yDomain.from) ? $scope.config.yDomain.from : null,
 					$scope.config.yDomain && !isNaN($scope.config.yDomain.to) ? $scope.config.yDomain.to : null
 				],
+				timeControls: $scope.config.timeControls || defaults.timeControls,
 				timeInterval: $scope.config.timeInterval || defaults.timeInterval,
 				ranges: $scope.config.ranges,
 				interpolate: $scope.config.interpolate || defaults.interpolate
@@ -93,7 +80,9 @@ module.exports = function () {
 			var formatDate = d3.time.format(config.dateFormat);
 
 			// Time interval
-			var timeInterval = config.timeInterval;
+			var timeInterval = null;
+			$scope.timeControls(config.timeControls);
+			$scope.selectTimeControl(config.timeInterval);
 
 			// Process data
 			var data = [];
@@ -108,12 +97,13 @@ module.exports = function () {
 			var width = element.find('.chart')[0].offsetWidth - config.margin.left - config.margin.right,
 				height = element.find('.chart')[0].offsetHeight - config.margin.top - config.margin.bottom;
 
-			// Scales
+			// X scale
 			var xDomain = d3.extent(data, function (d) { return d.date; });
 			var x = d3.time.scale()
 				.domain([config.dateFrom || xDomain[0], config.dateTo || xDomain[1]])
 				.range([0, width]);
 
+			// Y scale
 			var yDomain = d3.extent(data, function (d) { return d.value; });
 			var y = d3.scale.linear()
 				.domain([isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1] ])
@@ -197,8 +187,6 @@ module.exports = function () {
 			svg.append("g")
 				.attr("class", "y axis");
 
-
-
 			/**
 			 * Draws all dynamic elements of the chart.
 			 */
@@ -207,15 +195,11 @@ module.exports = function () {
 				var width = element.find('.chart')[0].offsetWidth - config.margin.left - config.margin.right,
 					height = element.find('.chart')[0].offsetHeight - config.margin.top - config.margin.bottom;
 
-				// x-scale
-				var xScaleParameters = dateRangeFromTimeInterval(timeInterval);
-				x
-					.range([0, width])
-					.domain(xScaleParameters.domain)
-					.nice(d3.time.day);
+				// X scale
+				x.range([0, width]).domain([timeInterval.from, timeInterval.to]).nice(d3.time.day);
 				zoom.x(x);
 
-				// y-scale
+				// Y scale
 				y.range([height, 0]);
 
 				// Redraw axes
@@ -223,11 +207,11 @@ module.exports = function () {
 					.transition()
 					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
-
 				svg.select('.y.axis')
 					.transition()
 					.call(yAxis);
 
+				// Redraw ranges
 				svg.selectAll('.range')
 					.transition()
 					.attr("d", function(d) { return area(d.values); });
@@ -249,9 +233,7 @@ module.exports = function () {
 			 */
 			function pan() {
 				// Limit pan
-				if (zoom.translate()[0] < 0) {
-					zoom.translate([0, zoom.translate()[1]])
-				}
+				if (zoom.translate()[0] < 0) { zoom.translate([0, zoom.translate()[1]]) }
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
@@ -264,19 +246,12 @@ module.exports = function () {
 			// Listen on window resize
 			d3.select(window).on('resize.' + $scope.$id, draw);
 
-			// Listen time controls click
-			var options = element.parent().find('.time-controls .option');
-			d3.select(element.parent().find('.time-controls .option[data-interval="' + timeInterval + '"]')[0])
-				.classed('selected', true);
-			d3.selectAll(options).on('click', function() {
-				// Toggle option selection
-				var option = d3.select(this);
-				d3.selectAll(options).classed('selected', false);
-				option.classed('selected', true);
-
-				timeInterval = option.attr("data-interval");
+			// Watch for a change in the time controls
+			$scope.$watch('selectedControl', function (control) {
+				timeInterval = { from: control.from, to: control.to };
 				draw();
 			});
+
 		}
 	};
 };
