@@ -56,7 +56,7 @@ module.exports = function () {
 
 			// Default config
 			var defaults = {
-				margin: {top: 10, right: 1, bottom: 20, left: 30},
+				margin: {top: 10, right: 5, bottom: 20, left: 30},
 				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
 				timeControls: '1m 3m 6m 1y',
 				timeInterval: '1m',
@@ -130,7 +130,6 @@ module.exports = function () {
 			// Axes
 			var xAxis = d3.svg.axis()
 				.scale(x)
-				.tickFormat(customTimeFormat)
 				.orient("bottom");
 
 			var yAxisTicks = [].concat($scope.yAxisTicks);
@@ -240,10 +239,12 @@ module.exports = function () {
 				y.range([height, 0]);
 
 				// Redraw axes
+				xAxis.ticks(d3.time[timeInterval.ticks.interval], timeInterval.ticks.every).tickFormat(customTimeFormat);
 				svg.select('.x.axis')
 					.transition()
 					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
+
 				svg.select('.y.axis')
 					.transition()
 					.call(yAxis);
@@ -299,7 +300,7 @@ module.exports = function () {
 
 			// Watch for a change in the time controls
 			$scope.$watch('selectedControl', function (control) {
-				timeInterval = { from: control.from, to: control.to };
+				timeInterval = control;
 				draw();
 			});
 

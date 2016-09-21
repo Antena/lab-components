@@ -56,6 +56,7 @@ module.exports = function ($scope) {
 				timeControls.push({
 					id: control,
 					label: control,
+					ticks: { every: 1, interval: 'days'},
 					from: to.clone().subtract(parseInt(days[0]), 'days').startOf('day').toDate(),
 					to: to.toDate()
 				})
@@ -63,6 +64,7 @@ module.exports = function ($scope) {
 				timeControls.push({
 					id: control,
 					label: control,
+					ticks: { every: 1, interval: 'days'},
 					from: to.clone().subtract(parseInt(weeks[0]), 'weeks').startOf('day').toDate(),
 					to: to.toDate()
 				})
@@ -70,6 +72,7 @@ module.exports = function ($scope) {
 				timeControls.push({
 					id: control,
 					label: control,
+					ticks: { every: parseInt(months[0]) < 4 ? 8 : 1, interval: parseInt(months[0]) < 4 ? 'days' : 'months'},
 					from: to.clone().subtract(parseInt(months[0]), 'months').startOf('day').toDate(),
 					to: to.toDate()
 				})
@@ -77,6 +80,7 @@ module.exports = function ($scope) {
 				timeControls.push({
 					id: control,
 					label: control,
+					ticks: { every: 1, interval: 'months'},
 					from: to.clone().subtract(parseInt(years[0]), 'years').startOf('day').toDate(),
 					to: to.toDate()
 				})
