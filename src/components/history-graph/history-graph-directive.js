@@ -170,7 +170,9 @@ module.exports = function () {
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
 			// Ranges
-			svg.selectAll("path")
+			var rangesGroup = svg.append('g')
+				.attr('class', 'ranges');
+			rangesGroup.selectAll(".range")
 				.data(stack($scope.ranges))
 				.enter().append("path")
 				.attr("class", function (d) {return 'range range-' + d.code; })
@@ -186,6 +188,14 @@ module.exports = function () {
 				.enter().append('circle')
 				.attr("class", "dot")
 				.attr("r", 3.5);
+
+			svg.selectAll(".current-value")
+				.data([data[0]])
+				.enter().append('text')
+				.attr('class', 'current-value')
+				.attr('dy', '1.35em')
+				.attr('text-anchor', 'middle')
+				.text(function (d) { return d.value });
 
 			// Pan pane
 			svg.append("rect")
@@ -248,6 +258,15 @@ module.exports = function () {
 					.transition()
 					.attr("cx", function(d) { return x(d.date); })
 					.attr("cy", function(d) { return y(d.value); });
+
+				var currentValue = svg.selectAll(".current-value");
+				currentValue.transition()
+					.attr('x', function(d) { return x(d.date); })
+					.attr('y', function(d) { return y(d.value); })
+					.attr('dx', function (d) {
+						var xOverflow = (x(d.date) + currentValue[0][0].clientWidth/2) - width;
+						return xOverflow > 0 ? -xOverflow : 0;
+					});
 			}
 
 			/**
@@ -259,7 +278,9 @@ module.exports = function () {
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
+				svg.selectAll(".current-value").attr("x", function(d) { return x(d.date); });
 				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
+
 			}
 
 			// Initialize chart

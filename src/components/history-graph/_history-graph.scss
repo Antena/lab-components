@@ -101,6 +101,10 @@ $axis-color: map-get($read-text-color, regular);
 			fill: #616161;
 		}
 
+		.current-value {
+			font-size: 16px;
+		}
+
 		.range {
 			fill-opacity: 0.2;
 			&.range-L, &.range-H {
