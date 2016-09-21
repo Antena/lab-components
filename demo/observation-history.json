@@ -954,7 +954,7 @@
         "timeInterval": "3m",
         "timeControls": "1w 1m 3m 6m 1y",
         "interpolate": "cardinal",
-        "lineClass": "purple"
+        "customClass": "purple"
       },
       "data": [
         {

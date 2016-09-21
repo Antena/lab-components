@@ -64,7 +64,7 @@ module.exports = function () {
 				minAmplitude: 10,
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
 				labelOffset: 10,
-				lineClass: null
+				customClass: ''
 			};
 
 			var options = !!$scope.config ? _.defaults({}, $scope.config, defaults) : defaults;
@@ -84,7 +84,7 @@ module.exports = function () {
 				minAmplitude: options.minAmplitude,
 				yDomainPadding: defaults.yDomainPadding,
 				labelOffset: options.labelOffset || defaults.labelOffset,
-				lineClass: options.lineClass || defaults.lineClass
+				customClass: options.customClass || defaults.customClass
 			};
 
 			// Date parser
@@ -169,6 +169,7 @@ module.exports = function () {
 			var svg = d3.select(element.find('.chart')[0]).append("svg")
 				.attr("width", width + config.margin.left + config.margin.right)
 				.attr("height", height + config.margin.top + config.margin.bottom)
+				.classed(config.customClass, true)
 				.append("g")
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
@@ -183,15 +184,13 @@ module.exports = function () {
 
 			// Line
 			svg.append("path")
-				.attr("class", "line")
-				.classed(config.lineClass, true);
+				.attr("class", "line");
 
 			// Data points
 			svg.selectAll(".dot")
 				.data(data)
 				.enter().append('circle')
 				.attr("class", "dot")
-				.classed(config.lineClass, true)
 				.attr("r", 3.5);
 
 			svg.selectAll(".current-value")
