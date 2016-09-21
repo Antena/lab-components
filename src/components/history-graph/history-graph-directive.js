@@ -61,6 +61,7 @@ module.exports = function () {
 				timeControls: '1m 3m 6m 1y',
 				timeInterval: '1m',
 				interpolate: 'linear',
+				minAmplitude: 10,
 				yDomainPadding: { top: 0.1, bottom: 0.1 }
 			};
 
@@ -74,11 +75,12 @@ module.exports = function () {
 					options.yDomain && !isNaN(options.yDomain.from) ? options.yDomain.from : null,
 					options.yDomain && !isNaN(options.yDomain.to) ? options.yDomain.to : null
 				],
-				yDomainPadding: defaults.yDomainPadding,
 				timeControls: options.timeControls,
 				timeInterval: options.timeInterval,
 				ranges: options.ranges,
-				interpolate: options.interpolate
+				interpolate: options.interpolate,
+				minAmplitude: options.minAmplitude,
+				yDomainPadding: defaults.yDomainPadding
 			};
 
 			// Date parser
@@ -115,7 +117,7 @@ module.exports = function () {
 					higherLimit = d3.max($scope.ranges[$scope.ranges.length-1].values, function (d) { return d.low });
 				yDomain = [Math.min(yDomain[0], lowerLimit), Math.max(yDomain[1], higherLimit)];
 			}
-			var amplitude = yDomain[1] - yDomain[0];
+			var amplitude = Math.max(yDomain[1] - yDomain[0], config.minAmplitude);
 			yDomain = [yDomain[0] - (amplitude * config.yDomainPadding.bottom), yDomain[1] + (amplitude * config.yDomainPadding.top)];
 
 			var y = d3.scale.linear()

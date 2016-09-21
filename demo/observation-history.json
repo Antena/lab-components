@@ -237,6 +237,30 @@
           ]
         }
       ]
+    },
+    {
+      "title": "Triglyceride: multiple ranges",
+      "config": {
+        "timeInterval": "3m",
+        "ranges": {
+          "H": "#ef986c",
+          "HU": "#ed6f62"
+        }
+      },
+      "data": [
+        {
+          "resourceType": "Observation",
+          "issued": "2016-09-16T00:00:00.000Z",
+          "code": { "coding": [ { "display": "Trigliceridemia" } ] },
+          "valueQuantity": { "value": 112.8, "units": "mg/dl" },
+          "referenceRange": [
+            { "meaning": { "coding": [ { "code": "N" } ] }, "high": { "value": 150 } },
+            { "meaning": { "coding": [ { "code": "LIM" } ] }, "low": { "value": 150 }, "high": { "value": 200 } },
+            { "meaning": { "coding": [ { "code": "H" } ] }, "low": { "value": 200 }, "high": { "value": 500 } },
+            { "meaning": { "coding": [ { "code": "HU" } ] }, "low": { "value": 500 } }
+          ]
+        }
+      ]
     }
   ],
   "metric": [
@@ -900,6 +924,25 @@
           "source": "fitbit",
           "units": "kg",
           "value": 85.86
+        }
+      ]
+    },
+    {
+      "title": "Weight: initial state",
+      "config": {
+        "title": "Peso (kg)",
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
+        "timeInterval": "3m",
+        "timeControls": "1w 1m 3m 6m 1y",
+        "interpolate": "cardinal"
+      },
+      "data": [
+        {
+          "createdDate": "2016-09-21T00:00:00.000Z",
+          "description": {},
+          "source": "user",
+          "units": "kg",
+          "value": 85.29
         }
       ]
     }

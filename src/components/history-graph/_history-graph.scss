@@ -53,6 +53,10 @@ $axis-color: map-get($read-text-color, regular);
 				}
 			}
 		}
+
+		.time-interval {
+
+		}
 	}
 
 	.chart {
@@ -84,22 +88,22 @@ $axis-color: map-get($read-text-color, regular);
 
 		.line {
 			fill: none;
-			stroke: steelblue;
-			stroke-dasharray: 5;
+			stroke: #616161;
 			stroke-width: 1.5px;
 		}
 
 		.dot {
-			fill: steelblue;
+			fill: #616161;
 		}
 
 		.range {
-			opacity: 0.5;
+			fill-opacity: 0.3;
 			&.range-L, &.range-H {
 				fill: #ed6f62;
 			}
 			&.range-N {
 				fill: #43d186;
+
 			}
 			&.range-LIM {
 				fill: #f4c540;
