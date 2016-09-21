@@ -69,16 +69,21 @@ $axis-color: map-get($read-text-color, regular);
 		}
 
 		rect.pane {
-			cursor: move;
+			cursor: ew-resize;
 			fill: none;
 			pointer-events: all;
 		}
 
-		.axis path,
-		.axis line {
-			fill: none;
-			stroke: #000;
-			shape-rendering: crispEdges;
+		.axis {
+			text {
+				fill: #000;
+			}
+			path, line {
+				fill: none;
+				stroke: #000;
+				stroke-width: 1px;
+				shape-rendering: crispEdges;
+			}
 		}
 
 		.yaxis-mask {
@@ -97,7 +102,7 @@ $axis-color: map-get($read-text-color, regular);
 		}
 
 		.range {
-			fill-opacity: 0.3;
+			fill-opacity: 0.2;
 			&.range-L, &.range-H {
 				fill: #ed6f62;
 			}

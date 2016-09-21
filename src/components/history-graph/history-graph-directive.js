@@ -116,17 +116,13 @@ module.exports = function () {
 				var lowerLimit = d3.min($scope.ranges[0].values, function (d) { return d.high }),
 					higherLimit = d3.max($scope.ranges[$scope.ranges.length-1].values, function (d) { return d.low });
 				yDomain = [Math.min(yDomain[0], lowerLimit), Math.max(yDomain[1], higherLimit)];
-
-				// Adjust range extension
-				// for (var i=0; i<$scope.ranges.length; i++) {
-				// 	$scope.ranges[i].values[0].date = new Date().toISOString();
-				// }
 			}
 			var amplitude = Math.max(yDomain[1] - yDomain[0], config.minAmplitude);
 			yDomain = [yDomain[0] - (amplitude * config.yDomainPadding.bottom), yDomain[1] + (amplitude * config.yDomainPadding.top)];
+			yDomain = [isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1]];
 
 			var y = d3.scale.linear()
-				.domain([isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1] ])
+				.domain(yDomain)
 				.range([height, 0]);
 
 			// Axes
@@ -135,8 +131,13 @@ module.exports = function () {
 				.tickFormat(customTimeFormat)
 				.orient("bottom");
 
+			var yAxisTicks = [].concat($scope.yAxisTicks);
+			yAxisTicks.push(yDomain[0]);
+			yAxisTicks.push(yDomain[1]);
+
 			var yAxis = d3.svg.axis()
 				.scale(y)
+				.tickValues(yAxisTicks)
 				.orient("left");
 
 			// Ranges

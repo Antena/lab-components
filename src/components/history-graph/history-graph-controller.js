@@ -5,7 +5,8 @@ var moment = require('moment');
 module.exports = function ($scope) {
 
 	// Compute ranges
-	var ranges = [];
+	var ranges = [],
+		ticks = [];
 	_.each($scope.data[0].ranges, function (r) {
 		ranges.push({
 			code: r.code,
@@ -20,7 +21,8 @@ module.exports = function ($scope) {
 				date: date,
 				low: range.low,
 				high: range.high
-			})
+			});
+			ticks.push(range.low, range.high);
 		})
 	});
 
@@ -36,6 +38,8 @@ module.exports = function ($scope) {
 		})
 	}
 
+
+	$scope.yAxisTicks = _.without(_.uniq(ticks), null);
 	$scope.ranges = ranges;
 
 	// Time controls
