@@ -4,7 +4,7 @@
       "title": "Hemoglobin: hardwired y domain",
       "config": {
         "yDomain": { "from": 0, "to": 20 },
-        "timeInterval": "1m"
+        "timeInterval": "3m"
       },
       "data": [
         {

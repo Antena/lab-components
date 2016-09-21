@@ -115,8 +115,8 @@ module.exports = function () {
 					higherLimit = d3.max($scope.ranges[$scope.ranges.length-1].values, function (d) { return d.low });
 				yDomain = [Math.min(yDomain[0], lowerLimit), Math.max(yDomain[1], higherLimit)];
 			}
-			var totalRange = yDomain[1] - yDomain[0];
-			yDomain = [yDomain[0] - (totalRange * config.yDomainPadding.bottom), yDomain[1] + (totalRange * config.yDomainPadding.top)];
+			var amplitude = yDomain[1] - yDomain[0];
+			yDomain = [yDomain[0] - (amplitude * config.yDomainPadding.bottom), yDomain[1] + (amplitude * config.yDomainPadding.top)];
 
 			var y = d3.scale.linear()
 				.domain([isNumber(config.yDomain[0]) ? config.yDomain[0] : yDomain[0], isNumber(config.yDomain[1]) ? config.yDomain[1] : yDomain[1] ])
@@ -138,6 +138,7 @@ module.exports = function () {
 				.values(function(d) { return d.values; });
 
 			var area = d3.svg.area()
+				.interpolate('step')
 				.x(function(d) { return x(formatDate.parse(d.date)); })
 				.y0(function(d) { return d.low ? y(d.low) : height; })
 				.y1(function(d) { return d.high ? y(d.high) : 0; });
