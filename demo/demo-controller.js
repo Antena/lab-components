@@ -100,7 +100,7 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 	});
 
 	$scope.histories = {
-		observation: histories.observation,
+		observation: observation,
 		metric: metric
 	};
 

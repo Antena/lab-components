@@ -23,6 +23,19 @@ module.exports = function ($scope) {
 			})
 		})
 	});
+
+	// Add virtual ranges
+	if (ranges.length > 0) {
+		_.each(ranges, function (range) {
+			var last = _.clone(range.values[0]),
+				first = _.clone(range.values[range.values.length - 1]);
+			last.date = moment().endOf("day").toISOString();
+			first.date = moment().subtract(10, 'years').toISOString();
+			range.values.unshift(last);
+			range.values.push(first);
+		})
+	}
+
 	$scope.ranges = ranges;
 
 	// Time controls
