@@ -62,7 +62,8 @@ module.exports = function () {
 				timeInterval: '1m',
 				interpolate: 'linear',
 				minAmplitude: 10,
-				yDomainPadding: { top: 0.1, bottom: 0.1 }
+				yDomainPadding: { top: 0.1, bottom: 0.1 },
+				labelOffset: 10
 			};
 
 			var options = !!$scope.config ? _.defaults({}, $scope.config, defaults) : defaults;
@@ -80,7 +81,8 @@ module.exports = function () {
 				ranges: options.ranges,
 				interpolate: options.interpolate,
 				minAmplitude: options.minAmplitude,
-				yDomainPadding: defaults.yDomainPadding
+				yDomainPadding: defaults.yDomainPadding,
+				labelOffset: options.labelOffset || defaults.labelOffset
 			};
 
 			// Date parser
@@ -191,11 +193,14 @@ module.exports = function () {
 
 			svg.selectAll(".current-value")
 				.data([data[0]])
-				.enter().append('text')
+				.enter().append('foreignObject')
 				.attr('class', 'current-value')
-				.attr('dy', '1.35em')
-				.attr('text-anchor', 'middle')
-				.text(function (d) { return d.value });
+				.append("xhtml:div")
+				.attr('class', 'label')
+				.html(function (d) { return '' +
+					'<div class="date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
+					'<div class="value">' + d.value + '</div>';
+				});
 
 			// Pan pane
 			svg.append("rect")
@@ -259,13 +264,17 @@ module.exports = function () {
 					.attr("cx", function(d) { return x(d.date); })
 					.attr("cy", function(d) { return y(d.value); });
 
-				var currentValue = svg.selectAll(".current-value");
-				currentValue.transition()
-					.attr('x', function(d) { return x(d.date); })
-					.attr('y', function(d) { return y(d.value); })
-					.attr('dx', function (d) {
-						var xOverflow = (x(d.date) + currentValue[0][0].clientWidth/2) - width;
-						return xOverflow > 0 ? -xOverflow : 0;
+				// Redraw current value label
+				svg.select(".current-value").transition()
+					.attr('x', function(d) {
+						var base = x(d.date) - this.clientWidth/2,
+							overflow = base + this.clientWidth - width;
+						return base - (overflow > 0 ? overflow : 0);
+					})
+					.attr('y', function(d) {
+						var base = y(d.value) - this.clientHeight - config.labelOffset,
+							overflow = 0 - base;
+						return overflow > 0 ? base + this.clientHeight + 2*config.labelOffset : base;
 					});
 			}
 
@@ -278,9 +287,8 @@ module.exports = function () {
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
-				svg.selectAll(".current-value").attr("x", function(d) { return x(d.date); });
 				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
-
+				svg.select(".current-value").attr("transform", "translate(" + zoom.translate()[0] + ",0)");
 			}
 
 			// Initialize chart
