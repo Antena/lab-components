@@ -98,10 +98,17 @@ $axis-color: map-get($read-text-color, regular);
 			fill: none;
 			stroke: #616161;
 			stroke-width: 1.5px;
+
+			&.purple {
+				stroke: #b151da;
+			}
 		}
 
 		.dot {
 			fill: #616161;
+			&.purple {
+				fill: #b151da;
+			}
 		}
 
 		.current-value {

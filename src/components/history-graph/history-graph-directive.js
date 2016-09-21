@@ -63,7 +63,8 @@ module.exports = function () {
 				interpolate: 'linear',
 				minAmplitude: 10,
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
-				labelOffset: 10
+				labelOffset: 10,
+				lineClass: null
 			};
 
 			var options = !!$scope.config ? _.defaults({}, $scope.config, defaults) : defaults;
@@ -82,7 +83,8 @@ module.exports = function () {
 				interpolate: options.interpolate,
 				minAmplitude: options.minAmplitude,
 				yDomainPadding: defaults.yDomainPadding,
-				labelOffset: options.labelOffset || defaults.labelOffset
+				labelOffset: options.labelOffset || defaults.labelOffset,
+				lineClass: options.lineClass || defaults.lineClass
 			};
 
 			// Date parser
@@ -181,13 +183,15 @@ module.exports = function () {
 
 			// Line
 			svg.append("path")
-				.attr("class", "line");
+				.attr("class", "line")
+				.classed(config.lineClass, true);
 
 			// Data points
 			svg.selectAll(".dot")
 				.data(data)
 				.enter().append('circle')
 				.attr("class", "dot")
+				.classed(config.lineClass, true)
 				.attr("r", 3.5);
 
 			svg.selectAll(".current-value")
