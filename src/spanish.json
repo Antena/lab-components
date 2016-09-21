@@ -44,5 +44,15 @@
   "UNITS": {
     "YEAR": "año",
     "YEARS": "años"
+  },
+  "HISTORY_GRAPH": {
+    "LAST": "Últimos",
+    "TIME_CONTROLS": {
+      "1w": "7 días",
+      "1m": "30 días",
+      "3m": "3 meses",
+      "6m": "6 meses",
+      "1y": "12 meses"
+    }
   }
 }

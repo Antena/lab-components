@@ -195,10 +195,10 @@ module.exports = function () {
 				.enter().append('foreignObject')
 				.attr('class', 'current-value')
 				.append("xhtml:div")
-				.attr('class', 'label')
+				.attr('class', 'current-value-label')
 				.html(function (d) { return '' +
-					'<div class="date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
-					'<div class="value">' + d.value + '</div>';
+					'<div class="current-value-date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
+					'<div class="current-value-value">' + d.value + '</div>';
 				});
 
 			// Pan pane

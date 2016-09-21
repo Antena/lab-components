@@ -32,6 +32,8 @@ $axis-color: map-get($read-text-color, regular);
 
 		.time-controls {
 			font-size: 12px;
+			height: 18px;
+			line-height: 18px;
 			text-align: right;
 			width: 100%;
 
@@ -51,11 +53,12 @@ $axis-color: map-get($read-text-color, regular);
 						font-weight: bold;
 					}
 				}
+
+				li.options-label {
+					cursor: auto;
+					font-weight: bold;
+				}
 			}
-		}
-
-		.time-interval {
-
 		}
 	}
 
@@ -103,23 +106,23 @@ $axis-color: map-get($read-text-color, regular);
 
 		.current-value {
 			width: 70px;
-			height: 55px;
+			height: 40px;
 			background-color: rgba(255, 255, 255, 0.8);
 
 
-			.label {
+			.current-value-label {
 				text-align: center;
 				width: 100%;
 				height: 100%;
 
-				.date {
+				.current-value-date {
 					font-size: 10px;
 					font-weight: 100;
 					color: #ababab;
 					margin-bottom: 2px;
 				}
 
-				.value {
+				.current-value-value {
 					font-size: 20px;
 					font-weight: 100;
 					color: gray;
