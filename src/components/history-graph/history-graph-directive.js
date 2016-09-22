@@ -165,6 +165,11 @@ module.exports = function () {
 				.scaleExtent([1, 1])
 				.on("zoom", pan);
 
+			var voronoi = d3.geom.voronoi()
+				.x(function (d) { return x(d.date) })
+				.y(function (d) { return y(d.value) })
+				.clipExtent([[-1, -1], [width + 1, height + 1]]);
+
 			// SVG
 			var svg = d3.select(element.find('.chart')[0]).append("svg")
 				.attr("width", width + config.margin.left + config.margin.right)
@@ -172,6 +177,15 @@ module.exports = function () {
 				.classed(config.customClass, true)
 				.append("g")
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
+
+			if (data.length > 1) {
+				var cell = svg.append("g")
+					.attr("class", "polygons")
+					.selectAll("path")
+					.data(voronoi(data))
+					.enter().append("path")
+					.call(redrawCell);
+			}
 
 			// Ranges
 			var rangesGroup = svg.append('g')
@@ -268,6 +282,11 @@ module.exports = function () {
 					.attr("cx", function(d) { return x(d.date); })
 					.attr("cy", function(d) { return y(d.value); });
 
+				// Redraw voronoi
+				if (cell) {
+					cell = cell.data(voronoi(data)).call(redrawCell);
+				}
+
 				// Redraw current value label
 				svg.select(".current-value").transition()
 					.attr('x', function(d) {
@@ -280,6 +299,10 @@ module.exports = function () {
 							overflow = 0 - base;
 						return overflow > 0 ? base + this.clientHeight + 2*config.labelOffset : base;
 					});
+			}
+
+			function redrawCell(polygon) {
+				polygon.attr("d", function(d) { return d ? "M" + d.join("L") + "Z" : null; });
 			}
 
 			/**
