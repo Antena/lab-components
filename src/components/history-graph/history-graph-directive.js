@@ -316,6 +316,7 @@ module.exports = function () {
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
+				svg.selectAll(".bar").attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; })
 				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
 				svg.select(".current-value").attr("transform", "translate(" + zoom.translate()[0] + ",0)");
 			}
