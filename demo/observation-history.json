@@ -1614,6 +1614,11 @@
           "source": "fitbit",
           "units": "kg",
           "value": 85.86
+        },
+        {
+          "createdDate":"2016-09-22T21:54:57.312Z",
+          "units":"kg",
+          "value":90
         }
       ]
     },

@@ -2,7 +2,12 @@ var _ = require('underscore');
 var moment = require('moment');
 
 // @ngInject
-module.exports = function ($scope, $translate) {
+module.exports = function ($scope) {
+
+	// Sort data
+	$scope.data = _.sortBy($scope.data, function (datum) {
+		return -new Date(datum.date).getTime();
+	});
 
 	// Compute ranges
 	var ranges = [],
