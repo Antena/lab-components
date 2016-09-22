@@ -163,3 +163,10 @@ $axis-color: map-get($read-text-color, regular);
 		fill: #b151da;
 	}
 }
+
+.sleep {
+	.line {
+		stroke-width: 0px;
+		fill: steelblue;
+	}
+}

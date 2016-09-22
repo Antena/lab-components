@@ -64,6 +64,7 @@ module.exports = function () {
 				minAmplitude: 10,
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
 				labelOffset: 10,
+				showDatapoints: true,
 				customClass: ''
 			};
 
@@ -84,6 +85,7 @@ module.exports = function () {
 				minAmplitude: options.minAmplitude,
 				yDomainPadding: defaults.yDomainPadding,
 				labelOffset: options.labelOffset || defaults.labelOffset,
+				showDatapoints: _.isBoolean(options.showDatapoints) ? options.showDatapoints : defaults.showDatapoints,
 				customClass: options.customClass || defaults.customClass
 			};
 
@@ -187,11 +189,13 @@ module.exports = function () {
 				.attr("class", "line");
 
 			// Data points
-			svg.selectAll(".dot")
-				.data(data)
-				.enter().append('circle')
-				.attr("class", "dot")
-				.attr("r", 3.5);
+			if (config.showDatapoints) {
+				svg.selectAll(".dot")
+					.data(data)
+					.enter().append('circle')
+					.attr("class", "dot")
+					.attr("r", 3.5);
+			}
 
 			svg.selectAll(".current-value")
 				.data([data[0]])
