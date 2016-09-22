@@ -65,6 +65,7 @@ module.exports = function () {
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
 				labelOffset: 10,
 				showDatapoints: true,
+				chartType: "line",
 				customClass: ''
 			};
 
@@ -86,6 +87,7 @@ module.exports = function () {
 				yDomainPadding: defaults.yDomainPadding,
 				labelOffset: options.labelOffset || defaults.labelOffset,
 				showDatapoints: _.isBoolean(options.showDatapoints) ? options.showDatapoints : defaults.showDatapoints,
+				chartType: options.chartType || defaults.chartType,
 				customClass: options.customClass || defaults.customClass
 			};
 
@@ -184,17 +186,27 @@ module.exports = function () {
 				.attr("class", function (d) {return 'range range-' + d.code; })
 				.style("fill", function (d) { if (config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
 
-			// Line
-			svg.append("path")
-				.attr("class", "line");
+			// Line chart
+			if (config.chartType === "line") {
+				svg.append("path")
+					.attr("class", "line");
 
-			// Data points
-			if (config.showDatapoints) {
-				svg.selectAll(".dot")
+				// Data points
+				if (config.showDatapoints) {
+					svg.selectAll(".dot")
+						.data(data)
+						.enter().append('circle')
+						.attr("class", "dot")
+						.attr("r", 3.5);
+				}
+			}
+
+			// Bar chart
+			if (config.chartType === "bar") {
+				svg.selectAll(".bar")
 					.data(data)
-					.enter().append('circle')
-					.attr("class", "dot")
-					.attr("r", 3.5);
+					.enter().append('rect')
+					.attr("class", "bar")
 			}
 
 			svg.selectAll(".current-value")
@@ -271,6 +283,15 @@ module.exports = function () {
 					.transition()
 					.attr("cx", function(d) { return x(d.date); })
 					.attr("cy", function(d) { return y(d.value); });
+
+				// Redraw bars
+				var xRangeWidth = x(new Date(2000, 1, 2)) - x(new Date(2000, 1, 1));
+				svg.selectAll(".bar")
+					.transition()
+					.attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; })
+					.attr("y", function(d) { return y(d.value); })
+					.attr("height", function(d) { return height - y(d.value); })
+					.attr("width", xRangeWidth);
 
 				// Redraw current value label
 				svg.select(".current-value").transition()
