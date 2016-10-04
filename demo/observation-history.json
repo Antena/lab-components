@@ -954,6 +954,7 @@
         "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
         "timeInterval": "3m",
         "timeControls": "1w 1m 3m 6m 1y",
+        "noDataMessage": "No hay datos, papu",
         "interpolate": "cardinal",
         "customClass": "purple"
       },
@@ -2707,6 +2708,15 @@
           "value": 0
         }
       ]
+    },
+    {
+      "title": "Sleep: no data",
+      "config": {
+        "yDomain": { "from": 0 },
+        "chartType": "bar",
+        "customClass": "sleep"
+      },
+      "data": []
     }
   ]
 }

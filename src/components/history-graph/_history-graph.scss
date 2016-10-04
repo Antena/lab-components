@@ -76,6 +76,12 @@ $axis-color: map-get($read-text-color, regular);
 		pointer-events: all;
 	}
 
+	.no-data {
+		font-size: 24px;
+		font-weight: 900;
+		fill: gray;
+	}
+
 	.axis {
 		text {
 			fill: #000;

@@ -62,6 +62,7 @@ module.exports = function () {
 				timeInterval: '1m',
 				interpolate: 'linear',
 				minAmplitude: 10,
+				noDataMessage: 'No hay datos para este periodo',
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
 				yAxisTicks: { count: 4, factor: 1, prefix: null, suffix: null },
 				labelOffset: 10,
@@ -86,6 +87,7 @@ module.exports = function () {
 				ranges: options.ranges,
 				interpolate: options.interpolate,
 				minAmplitude: options.minAmplitude,
+				noDataMessage: options.noDataMessage || defaults.noDataMessage,
 				yDomainPadding: defaults.yDomainPadding,
 				yAxisTicks: options.yAxisTicks || defaults.yAxisTicks,
 				labelOffset: options.labelOffset || defaults.labelOffset,
@@ -117,9 +119,7 @@ module.exports = function () {
 				height = element.find('.chart')[0].offsetHeight - config.margin.top - config.margin.bottom;
 
 			// X scale
-			var xDomain = d3.extent(data, function (d) { return d.date; });
 			var x = d3.time.scale()
-				.domain([config.dateFrom || xDomain[0], config.dateTo || xDomain[1]])
 				.range([0, width]);
 
 			// Y scale
@@ -214,16 +214,18 @@ module.exports = function () {
 					.attr("class", "bar")
 			}
 
-			svg.selectAll(".current-value")
-				.data([data[0]])
-				.enter().append('foreignObject')
-				.attr('class', 'current-value')
-				.append("xhtml:div")
-				.attr('class', 'current-value-label')
-				.html(function (d) { return '' +
-					'<div class="current-value-date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
-					'<div class="current-value-value">' + d.value + '</div>';
-				});
+			if (data.length > 0) {
+				svg.selectAll(".current-value")
+					.data([data[0]])
+					.enter().append('foreignObject')
+					.attr('class', 'current-value')
+					.append("xhtml:div")
+					.attr('class', 'current-value-label')
+					.html(function (d) { return '' +
+						'<div class="current-value-date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
+						'<div class="current-value-value">' + d.value + '</div>';
+					});
+			}
 
 			// Pan pane
 			svg.append("rect")
@@ -231,6 +233,16 @@ module.exports = function () {
 				.attr("width", width)
 				.attr("height", height)
 				.call(zoom);
+
+			svg.append("text")
+				.attr("width", width)
+				.attr("height", height)
+				.attr("x", width/2)
+				.attr("y", height/2)
+				.attr("class", "no-data")
+				.text(config.noDataMessage)
+				.style("text-anchor", "middle")
+				.style("alignment-baseline", "central");
 
 			svg.append("rect")
 				.attr("class", "yaxis-mask")
@@ -271,9 +283,10 @@ module.exports = function () {
 					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
-				// svg.select('.y.axis')
-				// 	.transition()
-				// 	.call(yAxis);
+				// No data message
+				svg.select(".no-data")
+					.transition()
+					.attr("visibility", dataAvailable() ? "hidden" : "visible");
 
 				// Redraw ranges
 				svg.selectAll('.range')
@@ -329,6 +342,30 @@ module.exports = function () {
 				svg.selectAll(".bar").attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; })
 				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
 				svg.select(".current-value").attr("transform", "translate(" + zoom.translate()[0] + ",0)");
+				svg.select(".no-data").attr("visibility", dataAvailable() ? "hidden" : "visible");
+			}
+
+			/**
+			 * Determines if data elements are present in the current viewport's state.
+			 *
+			 * @param data: the data points
+			 * @param from: the axis starting point
+			 * @param to: the axis ending point
+			 * @returns {boolean}
+			 */
+			function dataAvailable() {
+				var result = false,
+					fromTime = x.domain()[0].getTime(),
+					toTime = x.domain()[1].getTime();
+
+				for (var i=0; i<data.length; i++) {
+					if (data[i].value > 0 && data[i].date.getTime() >= fromTime && data[i].date.getTime() <= toTime) {
+						result = true;
+						break;
+					}
+				}
+
+				return result;
 			}
 
 			// Initialize chart

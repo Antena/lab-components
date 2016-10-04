@@ -12,24 +12,28 @@ module.exports = function ($scope) {
 	// Compute ranges
 	var ranges = [],
 		ticks = [];
-	_.each($scope.data[0].ranges, function (r) {
-		ranges.push({
-			code: r.code,
-			values: []
-		})
-	});
-	_.each($scope.data, function (datum) {
-		var date = datum.date;
-		_.each(datum.ranges, function (range) {
-			var targetRange = _.find(ranges, function (r) { return r.code == range.code });
-			targetRange.values.push({
-				date: date,
-				low: range.low,
-				high: range.high
-			});
-			ticks.push(range.low, range.high);
-		})
-	});
+	if ($scope.data.length > 0) {
+		_.each($scope.data[0].ranges, function (r) {
+			ranges.push({
+				code: r.code,
+				values: []
+			})
+		});
+		_.each($scope.data, function (datum) {
+			var date = datum.date;
+			_.each(datum.ranges, function (range) {
+				var targetRange = _.find(ranges, function (r) {
+					return r.code == range.code
+				});
+				targetRange.values.push({
+					date: date,
+					low: range.low,
+					high: range.high
+				});
+				ticks.push(range.low, range.high);
+			})
+		});
+	}
 
 	// Add virtual ranges
 	if (ranges.length > 0) {
