@@ -63,9 +63,11 @@ module.exports = function () {
 				interpolate: 'linear',
 				minAmplitude: 10,
 				yDomainPadding: { top: 0.1, bottom: 0.1 },
+				yAxisTicks: { count: 4, factor: 1, prefix: null, suffix: null },
 				labelOffset: 10,
 				showDatapoints: true,
 				chartType: "line",
+				barMargin: 1,
 				customClass: ''
 			};
 
@@ -85,9 +87,11 @@ module.exports = function () {
 				interpolate: options.interpolate,
 				minAmplitude: options.minAmplitude,
 				yDomainPadding: defaults.yDomainPadding,
+				yAxisTicks: options.yAxisTicks || defaults.yAxisTicks,
 				labelOffset: options.labelOffset || defaults.labelOffset,
 				showDatapoints: _.isBoolean(options.showDatapoints) ? options.showDatapoints : defaults.showDatapoints,
 				chartType: options.chartType || defaults.chartType,
+				barMargin: options.barMargin || defaults.barMargin,
 				customClass: options.customClass || defaults.customClass
 			};
 
@@ -131,7 +135,8 @@ module.exports = function () {
 
 			var y = d3.scale.linear()
 				.domain(yDomain)
-				.range([height, 0]);
+				.range([height, 0])
+				.nice(config.yAxisTicks.count);
 
 			// Axes
 			var xAxis = d3.svg.axis()
@@ -144,7 +149,7 @@ module.exports = function () {
 
 			var yAxis = d3.svg.axis()
 				.scale(y)
-				.tickValues(yAxisTicks)
+				.ticks(config.yAxisTicks.count)
 				.orient("left");
 
 			// Ranges
@@ -239,8 +244,10 @@ module.exports = function () {
 				.attr("transform", "translate(0," + height + ")");
 
 			// y-Axis
-			svg.append("g")
-				.attr("class", "y axis");
+			var gy = svg.append("g")
+				.attr("class", "y axis")
+				.call(yAxis);
+
 
 			/**
 			 * Draws all dynamic elements of the chart.
@@ -264,9 +271,9 @@ module.exports = function () {
 					.attr("transform", "translate(0," + height + ")")
 					.call(xAxis);
 
-				svg.select('.y.axis')
-					.transition()
-					.call(yAxis);
+				// svg.select('.y.axis')
+				// 	.transition()
+				// 	.call(yAxis);
 
 				// Redraw ranges
 				svg.selectAll('.range')
@@ -285,13 +292,16 @@ module.exports = function () {
 					.attr("cy", function(d) { return y(d.value); });
 
 				// Redraw bars
-				var xRangeWidth = x(new Date(2000, 1, 2)) - x(new Date(2000, 1, 1));
+				var dayWidth = x(new Date(2000, 1, 2)) - x(new Date(2000, 1, 1)),
+					barWidth = Math.max(Math.floor(dayWidth) - 2*config.barMargin, 1),
+					dx = (dayWidth - barWidth) / 2;
+
 				svg.selectAll(".bar")
 					.transition()
-					.attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; })
+					.attr("transform", function(d) { return "translate(" + (x(d.date) + dx) + ",0)"; })
 					.attr("y", function(d) { return y(d.value); })
-					.attr("height", function(d) { return height - y(d.value); })
-					.attr("width", xRangeWidth);
+					.attr("width", barWidth)
+					.attr("height", function(d) { return height - y(d.value); });
 
 				// Redraw current value label
 				svg.select(".current-value").transition()
