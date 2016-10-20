@@ -76,7 +76,7 @@ module.exports = function () {
 
 			// Parse config
 			var config = {
-				margin: defaults.margin,
+				margin: options.margin,
 				dateFormat: options.dateFormat,
 				yDomain: [
 					options.yDomain && !isNaN(options.yDomain.from) ? options.yDomain.from : null,
