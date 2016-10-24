@@ -109,7 +109,7 @@ module.exports = function () {
 			var data = [];
 			for (var i = 0; i < $scope.data.length; i++) {
 				data.push({
-					date: formatDate.parse($scope.data[i].date),
+					date: d3.time.day(formatDate.parse($scope.data[i].date)),
 					value: $scope.data[i].value
 				})
 			}
