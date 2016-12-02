@@ -203,6 +203,14 @@ module.exports = function() {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
 						$scope.observation.referenceRange = LabObservationController.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
 					}
+
+					if($scope.observation.history) {
+						_.each($scope.observation.history, function(historicObs) {
+							if (historicObs.referenceRange && historicObs.referenceRange.length) {
+								historicObs.referenceRange = LabObservationController.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+							}
+						});
+					}
 				}
 			});
 
