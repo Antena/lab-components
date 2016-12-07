@@ -14,6 +14,12 @@
 		margin: 0;
 		font-weight: 600;
 		line-height: 1.2em;
+
+		@media (max-width: $screen-tablet) {
+			&.string-value {
+				font-size: $font-size-huge;
+			}
+		}
 	}
 
 	.unit {

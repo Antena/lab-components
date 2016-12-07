@@ -240,6 +240,8 @@ $observation-box-padding: 10px;
 	.observation-gallery-content {
 		display: table;
 		width: 100%;
+		table-layout: fixed;
+		word-wrap: break-word;
 
 		%observation-box-sub-content-title {
 			text-align: left;

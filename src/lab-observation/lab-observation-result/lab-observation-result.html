@@ -4,7 +4,7 @@
 		<span ng-if="observation.valueQuantity.units" class="unit">{{ observation.valueQuantity.units }}</span>
 	</p>
 	<p ng-if="observation.valueString && !isValueStringHtml(observation)" class="lab-observation-value">
-		<span class="main-value">{{ observation.valueString }}</span>
+		<span class="main-value string-value">{{ observation.valueString }}</span>
 	</p>
 	<div ng-if="isValueStringHtml(observation)" class="obsevation-html">
 		<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"
