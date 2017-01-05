@@ -6,9 +6,7 @@
   "author": "Antena",
   "maintainers": [
     "Denise Fernandez <denise@antena.co>",
-    "Gonzalo Bellver <gonzalo@antena.co>",
-    "Belén Curcio <belen@antena.co>",
-    "Guillermo Mesyngier <guillermo@antena.co>"
+    "Gonzalo Bellver <gonzalo@antena.co>"
   ],
   "license": "UNLICENSED",
   "repository": {
@@ -28,11 +26,13 @@
   "dependencies": {
     "angular": "~1.4.x",
     "angular-animate": "~1.4.x",
+    "angular-fhir-utils": "^0.0.3",
     "angular-sanitize": "~1.4.x",
     "angular-scroll": "~1.0.0",
     "angular-translate": "~2.7.2",
     "angular-ui-bootstrap": "^2.0.1",
     "angular-ui-router": "^0.2.15",
+    "angular-utilities": "^0.0.3",
     "bootstrap-sass": "~3.3.6",
     "d3": "~3.5.17",
     "jquery": "1.11.1",

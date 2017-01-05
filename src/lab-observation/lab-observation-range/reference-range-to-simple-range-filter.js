@@ -8,7 +8,7 @@
  * @description
  *   Simplifies the structure of an Observation's reference range.
  *
- *   To avoid caucing an infinite digest loop when running this filter (http://www.terrencewatson.com/2014/06/28/memoize/),
+ *   To avoid causing an infinite digest loop when running this filter (http://www.terrencewatson.com/2014/06/28/memoize/),
  *   the filter result is memoized. And, since the result is an object, a custom hash is provided to the memoized function.
  *   This hash is generated with Szudzik's elegant pairing for signed values {@link http://szudzik.com/ElegantPairing.pdf}.
  *   More at: http://stackoverflow.com/a/13871379/6317595

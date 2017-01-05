@@ -154,7 +154,7 @@ require("./_lab-observation.scss");
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function() {
+module.exports = function(FhirRangeService) {
 
 	return {
 		scope: {
@@ -173,8 +173,7 @@ module.exports = function() {
 		restrict: 'EA',
 		transclude: true,
 		templateUrl: require('./lab-observation.html'),
-		controller: 'LabObservationController',
-		link: function($scope, $element, attrs, LabObservationController) {
+		link: function($scope, $element, attrs) {
 			$scope.options = {};
 
 			$scope.onActionHover = function(obs) {
@@ -201,13 +200,13 @@ module.exports = function() {
 
 				if($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
-						$scope.observation.referenceRange = LabObservationController.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+						$scope.observation.referenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
 					}
 
 					if($scope.observation.history) {
 						_.each($scope.observation.history, function(historicObs) {
 							if (historicObs.referenceRange && historicObs.referenceRange.length) {
-								historicObs.referenceRange = LabObservationController.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+								historicObs.referenceRange = FhirRangeService.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
 							}
 						});
 					}

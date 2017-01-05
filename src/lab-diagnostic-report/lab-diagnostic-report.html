@@ -17,7 +17,7 @@
 						<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)"
 						   ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))" du-scrollspy
 						   offset="100">
-							<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
+							<span>{{ observation.code | fhirCodeableConcept | capitalize:true }}</span>
 						</a>
 					</div>
 				</li>
@@ -36,7 +36,7 @@
 					<img class="icon" src="../images/icons/icon-patient.svg">
 					<div class="item-wrapper">
 						<div class="item-name">{{ 'LAB.PATIENT' | translate | semicolon }}&nbsp;</div>
-						<div class="item-value"><b>{{ vm.patient | fhirFullName }}</b></div>
+						<div class="item-value"><b>{{ vm.patient | fhirPatientFullName }}</b></div>
 					</div>
 				</li>
 				<li ng-if="vm.patient" class="details-item">
@@ -61,7 +61,7 @@
 					<img class="icon" src="../images/icons/icon-doctor.svg">
 					<div class="item-wrapper">
 						<div class="item-name">Médico: &nbsp;</div>
-						<div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirFullName }}</b></div>
+						<div class="item-value"><b>{{ vm.diagnosticOrder.orderer | fhirPatientFullName }}</b></div>
 					</div>
 				</li>
 				<li ng-if="vm.organization" class="details-item">
@@ -92,9 +92,9 @@
 							class="observation-group-title">{{ getObservationDisplay(firstLevelObservation) | uppercase
 							}}</span></h2>
 						<div class="observation-group-method">
-							<span>{{ firstLevelObservation.method | codeableConcept | optional | capitalize:true }}</span>
+							<span>{{ firstLevelObservation.method | fhirCodeableConcept | optional | capitalize:true }}</span>
 							<span
-								ng-if="!firstLevelObservation.method && vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1">{{ getObservationList(firstLevelObservation)[0].method | codeableConcept | optional | capitalize:true }}</span>
+								ng-if="!firstLevelObservation.method && vm.deDupeTopLevelObservations && firstLevelObservation.related && firstLevelObservation.related.length === 1">{{ getObservationList(firstLevelObservation)[0].method | fhirCodeableConcept | optional | capitalize:true }}</span>
 						</div>
 					</div>
 
@@ -170,7 +170,7 @@
 								<a ng-href="#{{ observation.id }}" ng-click="onManualNavigation(observation.id)"
 								   ng-repeat="observation in (obsList = getObservationList(firstLevelObservation))"
 								   du-scrollspy offset="100">
-									<span>{{ observation.code | codeableConcept | capitalize:true }}</span>
+									<span>{{ observation.code | fhirCodeableConcept | capitalize:true }}</span>
 								</a>
 							</div>
 						</li>

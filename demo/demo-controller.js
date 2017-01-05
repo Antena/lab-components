@@ -11,11 +11,11 @@ var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
 
 // @ngInject
-module.exports = function($scope, LabObservationService, FhirBundleService) {
+module.exports = function($scope, LabObservationService, FhirBundleResolverService) {
 
-	var resolvedBundle = FhirBundleService.resolveOrderAndReportReferences(fhirBundle);
-	var anotherResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(anotherFhirBundle);
-	var historyResolvedBundle = FhirBundleService.resolveOrderAndReportReferences(historyBundle);
+	var resolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(fhirBundle);
+	var anotherResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(anotherFhirBundle);
+	var historyResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(historyBundle);
 
 	var observations = _.map(resolvedBundle.observations, function(observation) {
 		var result = lodash.cloneDeep(observation);

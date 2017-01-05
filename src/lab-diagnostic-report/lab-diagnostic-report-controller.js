@@ -38,7 +38,7 @@ module.exports = function($scope, $filter) {
 	$scope.$watch('vm.patient', function(patient) {
 
 		if (patient) {
-			$scope.vm.patientEmail = $filter('patientEmail')(patient);
+			$scope.vm.patientEmail = $filter('fhirPatientEmail')(patient);
 		}
 	});
 

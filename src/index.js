@@ -10,7 +10,8 @@ var ngModule = angular.module('lab-components', [
 	require('angular-translate'),
 	require('common/index.js'),
 	require('components/index.js'),
-	require('lab-diagnostic-report/index.js')
+	require('lab-diagnostic-report/index.js'),
+	require('angular-fhir-utils')
 ]);
 
 //@ngInject
@@ -23,7 +24,6 @@ ngModule.config(function($translateProvider, $compileProvider) {
 	$compileProvider.debugInfoEnabled(false);
 });
 
-ngModule.service('FhirBundleService', require('./fhir-bundle-service'));
 ngModule.service('FhirReferenceRangeConverterService', require('./fhir-reference-range-converter-service'));
 
 module.exports = ngModule.name;

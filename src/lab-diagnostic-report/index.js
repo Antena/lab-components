@@ -6,6 +6,7 @@ require('angular-scroll');
 var ngModule = angular.module('lab-components.lab-diagnostic-report', [
 	'duScroll',
 	require('../common/index.js'),
+	require('angular-fhir-utils'),
 	require('../lab-observation/lab-observation-history-graph/index.js'),
 	require('../lab-observation/index.js')
 ]);
