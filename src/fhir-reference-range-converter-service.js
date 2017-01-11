@@ -128,12 +128,14 @@ module.exports = function() {
 	return {
 
 		convertToMultipleRanges: function(observation) {
-			var ranges;
+			var ranges = [];
 
-			if(shouldFillMissingRanges(observation)) {
-				ranges = fillMissingRanges(observation);
-			} else {
-				ranges = observation.referenceRange;
+			if (observation.referenceRange && observation.referenceRange.length > 0) {
+				if (shouldFillMissingRanges(observation)) {
+					ranges = fillMissingRanges(observation);
+				} else {
+					ranges = observation.referenceRange;
+				}
 			}
 
 			return ranges;

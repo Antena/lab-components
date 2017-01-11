@@ -2,6 +2,9 @@
 @import "~susy/sass/susy";
 
 .lab-observation-sparkline {
+	display: block;
+	width: 100%;
+
 	@include susy-breakpoint($screen-tablet) {
 		position: relative;
 		top: 15px;
