@@ -42,7 +42,7 @@
 				<li ng-if="vm.patient" class="details-item">
 					<img class="icon" src="../images/icons/icon-years-old.svg">
 					<div class="item-wrapper">
-						<div class="item-name"> Edad: &nbsp;</div>
+						<div class="item-name">{{ 'PATIENT.AGE' | translate | semicolon }}&nbsp;</div>
 						<div class="item-value"><b>{{ vm.patient.birthDate | patientAgeAtReportDate:vm.reportDate:true
 							}}</b></div>
 					</div>

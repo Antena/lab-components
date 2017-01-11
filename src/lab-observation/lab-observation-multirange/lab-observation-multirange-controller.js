@@ -101,11 +101,15 @@ module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
 		var codeToClassMap = mapScaleToClasses(codeScale);
 
 		return _.map(ranges, function(r) {
+			console.log("r.meaning = ", r.meaning);	//TODO (denise) remove log
+			var coding = r.meaning.coding && r.meaning.coding.length ? r.meaning.coding[0] : null;
+			var translationKey = coding ? $filter('coding2TranslationKey')(coding) : null;
+			console.log("translationKey = ", translationKey);	//TODO (denise) remove log
 			return {
 				low: r.low ? r.low.value : undefined,
 				high: r.high ? r.high.value : undefined,
-				label: $filter('translate')($filter('referenceRangeMeaning')(r.meaning)),
-				class: codeToClassMap[r.meaning.coding[0].code] || 'range-catch-all'
+				label: translationKey ? $filter('translate')(translationKey) : (coding ? coding.display : ''),
+				class: codeToClassMap[coding.code] || 'range-catch-all'
 			};
 		});
 	}

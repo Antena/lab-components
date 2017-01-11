@@ -8,9 +8,10 @@ require("./main.scss");
 
 var ngModule = angular.module('lab-components', [
 	require('angular-translate'),
-	require('common/index.js'),
-	require('components/index.js'),
-	require('lab-diagnostic-report/index.js'),
+	require('./common/index'),
+	require('./mappings/index'),
+	require('./components/index'),
+	require('./lab-diagnostic-report/index'),
 	require('angular-fhir-utils')
 ]);
 

@@ -2,49 +2,53 @@
 
 /**
  * @ngdoc filter
- * @name lab-components.common.filter:referenceRangeMeaningColorCode
+ * @name lab-components.mappings.filter:coding2TranslationKey
  * @kind function
  *
  * @description
  *
- * Given a observation's reference range meaning and returns a class name for color-coding it's code.
- * See https://www.hl7.org/fhir/2015MAY/valueset-referencerange-meaning.html
+ * Given a {@link https://www.hl7.org/fhir/2015MAY/datatypes.html#Coding coding} object (i.e. observation's reference range meaning) and returns a key for translating it's code.
+ * For some examples of posible codes, see
+ * http://hl7.org/fhir/v2/0078/index.html
+ * https://www.hl7.org/fhir/2015MAY/valueset-referencerange-meaning.html
  *
- * @param {Object} code An Observation's referenceRange meaning. See https://www.hl7.org/fhir/2015MAY/datatypes.html#CodeableConcept
  *
- * @returns {String} A class name to represent the meaning.
+ * @param {Object} coding A {@link https://www.hl7.org/fhir/2015MAY/datatypes.html#Coding coding} object
+ *
+ * @returns {String} The translation key.
  *
  *
  *
  * @example
- <example module="meaning-color-example">
+ <example module="meaning-example">
  <file name="index.html">
  <div ng-controller="ExampleController" class="example">
 
  <label>Observation Json:</label>
  <textarea class="form-control" rows="5" ng-model="example.json"></textarea>
 
- <p class="{{ example.observation.interpretation | referenceRangeMeaningColorCode }}">{{ example.observation.interpretation.coding[0].code }}</p>
+ <p>{{example.observation.interpretation.coding[0].code}}: <strong>{{ example.observation.interpretation.coding[0] | coding2TranslationKey }}</strong></p>
+ <p>{{example.observation.interpretation.coding[0].code}} (translated): <strong>{{ example.observation.interpretation.coding[0] | coding2TranslationKey | translate }}</strong></p>
 
  </div>
  </file>
- <file name="styles.css">
-
- 	.example .unhealthy {
-		color: #C0334E;
-	}
- 	.example .healthy {
-		color: #00b752;
-	}
-
- 	.example textarea {
-		width: 98%;
-	}
-
- </file>
  <file name="demo.js">
 
- angular.module('meaning-color-example', ['lab-components.common'])
+ angular.module('meaning-example', ['lab-components.common'])
+ 	.config(['$translateProvider', function($translateProvider) {
+			$translateProvider
+				.translations('es', {
+					  LAB: {
+						"REFERENCE_RANGE_MEANING": {
+						  "HIGH": "Alto",
+						  "REGULAR": "Normal",
+						  "LOW": "Bajo"
+						}
+					}
+				})
+				.preferredLanguage('es')
+				.useSanitizeValueStrategy('sanitizeParameters');
+		}])
  	.controller('ExampleController', ['$scope', function($scope) {
 		$scope.example = {
 			json: "",
@@ -66,33 +70,14 @@
  */
 
 // @ngInject
-module.exports = function() {
-	return function(code) {
-		var output = '';
-		if (code && code.coding && code.coding.length) {
-			switch (code.coding[0].code) {
-				case 'H':
-				case 'HH':
-				case 'HU':
-				case 'L':
-					output = 'unhealthy';
-					break;
-				case 'N':
-					output = 'healthy';
-					break;
-				case 'LIM':
-				case 'NN':
-					output = 'almost-healthy';
-					break;
-				case 'RR':
-				case 'NR':
-				case 'IND':
-					output = 'unknown';
-					break;
-				default:
-					output = '';
-			}
+module.exports = ['fhirMappings', function($fhirMappingsProvider) {
+	return function(coding) {
+		var result = '';
+		if (coding && coding.code) {
+			var mappings = $fhirMappingsProvider.getCoding2TranslationKeyMappings();
+			result = mappings[coding.system] && mappings[coding.system][coding.code] ? mappings[coding.system][coding.code] : '';
 		}
-		return output;
+		return result;
 	};
-};
+}];
+

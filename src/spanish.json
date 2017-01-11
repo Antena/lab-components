@@ -34,16 +34,25 @@
       "NEAR_NORMAL": "Cercano al óptimo",
       "LIMIT": "Límite",
       "CRITICALLY_HIGH": "Extremadamente elevado",
+      "CRITICALLY_LOW": "Extremadamente bajo",
       "VERY_HIGH": "Muy elevado",
 
       "NON_REACTIVE": "No Reactivo",
       "REACTIVE": "Reactivo",
-      "INDETERMINATE": "Indeterminado"
+      "INDETERMINATE": "Indeterminado",
+
+      "DEFICIT": "Deficiencia",
+      "INSUFFICIENT": "Insuficiencia",
+      "SUFFICIENT": "Suficiencia",
+      "TOXIC": "Toxicidad"
     }
   },
   "UNITS": {
     "YEAR": "año",
     "YEARS": "años"
+  },
+  "PATIENT": {
+    "AGE": "Edad"
   },
   "HISTORY_GRAPH": {
     "LAST": "Últimos",
