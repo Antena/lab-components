@@ -36,18 +36,14 @@ module.exports = function FhirMappingsProvider() {
 		DANGER: 'range-danger'
 	};
 
-	var SCALE_10_POINT_CLASSES = {
-		10: 'range-great',
-		9: 'range-great',
-		8: 'range-good',
-		7: 'range-good',
-		6: 'range-so-so',
-		5: 'range-so-so',
-		4: 'range-bad',
-		3: 'range-bad',
-		2: 'range-danger',
-		1: 'range-danger',
-		0: 'unknown'
+	var UNKNOWN_RANGE_CLASSES = {
+		UNKNOWN_7: 'range-unknown-7',
+		UNKNOWN_6: 'range-unknown-6',
+		UNKNOWN_5: 'range-unknown-5',
+		UNKNOWN_4: 'range-unknown-4',
+		UNKNOWN_3: 'range-unknown-3',
+		UNKNOWN_2: 'range-unknown-2',
+		UNKNOWN_1: 'range-unknown-1'
 	};
 
 	var DEFAULTS = {
@@ -77,52 +73,52 @@ module.exports = function FhirMappingsProvider() {
 		codeScale2ClassNameMappings: [
 			{
 				codes: ['H', 'N', 'L'],
-				points: {
-					'H': 1,
-					'N': 10,
-					'L': 1
+				classMap: {
+					'H': MULTI_RANGE_CLASSES.DANGER,
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'L': MULTI_RANGE_CLASSES.DANGER
 				}
 			},
 			{
 				codes: ['H', 'N', 'LIM'],
-				points: {
-					'H': 1,
-					'N': 10,
-					'LIM': 6
+				classMap: {
+					'H': MULTI_RANGE_CLASSES.DANGER,
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'LIM': MULTI_RANGE_CLASSES.SO_SO
 				}
 			},
 			{
 				codes: ['N', 'LIM', 'H', 'HH'],
-				points: {
-					'N': 10,
-					'LIM': 6,
-					'H': 3,
-					'HH': 1
+				classMap: {
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'LIM': MULTI_RANGE_CLASSES.SO_SO,
+					'H': MULTI_RANGE_CLASSES.BAD,
+					'HH': MULTI_RANGE_CLASSES.DANGER
 				}
 			},
 			{
 				codes: ['N', 'NN', 'LIM', 'H', 'HH'],
-				points: {
-					'N': 10,
-					'NN': 8,
-					'LIM': 6,
-					'H': 3,
-					'HH': 1
+				classMap: {
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'NN': MULTI_RANGE_CLASSES.GOOD,
+					'LIM': MULTI_RANGE_CLASSES.SO_SO,
+					'H': MULTI_RANGE_CLASSES.BAD,
+					'HH': MULTI_RANGE_CLASSES.DANGER
 				}
 			},
 			{
 				codes: ['H', 'N', 'L'],
-				points: {
-					'H': 1,
-					'N': 10,
-					'L': 1
+				classMap: {
+					'H': MULTI_RANGE_CLASSES.DANGER,
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'L': MULTI_RANGE_CLASSES.DANGER
 				}
 			},
 			{
 				codes: ['NR', 'RR'],
-				points: {
-					'NR': 0,
-					'RR': 0
+				classMap: {
+					'NR': UNKNOWN_RANGE_CLASSES.UNKNOWN_7,
+					'RR': UNKNOWN_RANGE_CLASSES.UNKNOWN_3
 				}
 			}
 		],
@@ -191,10 +187,7 @@ module.exports = function FhirMappingsProvider() {
 	};
 
 	this.getScaleRangeClasses = function getScaleRangeClasses() {
-		return {
-			pointMap: this.codeScale2ClassNameMappings,
-			scaleClasses: this.codeScaleClasses
-		};
+		return this.codeScale2ClassNameMappings;
 	};
 
 

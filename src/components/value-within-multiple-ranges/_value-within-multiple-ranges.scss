@@ -11,6 +11,13 @@ $range-color-bad: map-get($interpretation-colors, bad);
 $range-color-danger: map-get($interpretation-colors, danger);
 $range-color-unknown: map-get($interpretation-colors, unknown);
 
+$range-color-unknown-7: map-get($unknown-interpretation-colors, darkest);
+$range-color-unknown-6: map-get($unknown-interpretation-colors, darker);
+$range-color-unknown-5: map-get($unknown-interpretation-colors, dark);
+$range-color-unknown-4: map-get($unknown-interpretation-colors, regular);
+$range-color-unknown-3: map-get($unknown-interpretation-colors, light);
+$range-color-unknown-2: map-get($unknown-interpretation-colors, lighter);
+$range-color-unknown-1: map-get($unknown-interpretation-colors, lightest);
 
 $meter-main-color: black;
 $meter-contrasting-color: white;
@@ -52,6 +59,48 @@ $range-label-separation: 5px;
 		stroke: $range-color-unknown;
 		fill: $range-color-unknown;
 		color: $range-color-unknown;
+	}
+
+	.range-unknown-7 {
+		stroke: $range-color-unknown-7;
+		fill: $range-color-unknown-7;
+		color: $range-color-unknown-7;
+	}
+
+	.range-unknown-6 {
+		stroke: $range-color-unknown-6;
+		fill: $range-color-unknown-6;
+		color: $range-color-unknown-6;
+	}
+
+	.range-unknown-5 {
+		stroke: $range-color-unknown-5;
+		fill: $range-color-unknown-5;
+		color: $range-color-unknown-5;
+	}
+
+	.range-unknown-4 {
+		stroke: $range-color-unknown-4;
+		fill: $range-color-unknown-4;
+		color: $range-color-unknown-4;
+	}
+
+	.range-unknown-3 {
+		stroke: $range-color-unknown-3;
+		fill: $range-color-unknown-3;
+		color: $range-color-unknown-3;
+	}
+
+	.range-unknown-2 {
+		stroke: $range-color-unknown-2;
+		fill: $range-color-unknown-2;
+		color: $range-color-unknown-2;
+	}
+
+	.range-unknown-1 {
+		stroke: $range-color-unknown-1;
+		fill: $range-color-unknown-1;
+		color: $range-color-unknown-1;
 	}
 
 	.range-text {

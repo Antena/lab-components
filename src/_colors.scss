@@ -9,6 +9,27 @@ $interpretation-colors: (
 	undisclosed: black
 );
 
+// #519DFF
+
+$unknown-interpretation-colors: (
+	darkest: #0052ac,
+	darker: #0069e0,
+	dark: #0074ff,
+	regular: #5ba0ff,
+	light: #73adff,
+	lighter: #8dbdff,
+	lightest: #9ec6ff
+);
+
+//$unknown-interpretation-colors: (
+//	darkest: #000000,
+//	darker: #484848,
+//	dark: #707070,
+//	regular: #8A8A8A,
+//	light: #959595,
+//	lighter: #B4B4B4,
+//	lightest: #CACACA
+//);
 
 $actions: (
 	contextual: #1D4547,

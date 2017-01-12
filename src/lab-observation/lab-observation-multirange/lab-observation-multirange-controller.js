@@ -14,7 +14,7 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
+module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService) {
 
 	$scope.vm.calculatedRanges = [];
 
@@ -47,49 +47,76 @@ module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
 
 		var result = { };
 
-		if(_.contains(codeScale, 'L')) {
-			result['L'] = RANGE_CLASSES.DANGER;
-		}
-		if(_.contains(codeScale, 'N')) {
-			result['N'] = RANGE_CLASSES.GREAT;
-		}
 
-		var hasHH = _.contains(codeScale, 'HH');
-		var hasHU = _.contains(codeScale, 'HU');
-		var hasLIM = _.contains(codeScale, 'LIM');
-		var hasNN = _.contains(codeScale, 'NN');
+		var rangeClassMappings = fhirMappings.getScaleRangeClasses();
+		var found = _.find(rangeClassMappings, function(map) {
+			var intersection = _.intersection(map.codes, codeScale);
+			var result = intersection.length === map.codes.length && intersection.length === codeScale.length;
 
-		if(!hasHH && !hasHU) {
-			result['H'] = RANGE_CLASSES.DANGER;
-		} else if(hasHH && hasHU) {
-			result['H'] = RANGE_CLASSES.SO_SO;
-			result['HU'] = RANGE_CLASSES.BAD;
-			result['HH'] = RANGE_CLASSES.DANGER;
-		} else if(hasHH && !hasHU) {
-			result['H'] = RANGE_CLASSES.BAD;
-			result['HH'] = RANGE_CLASSES.DANGER;
-		} else if(!hasHH && hasHU) {
-			result['H'] = RANGE_CLASSES.BAD;
-			result['HU'] = RANGE_CLASSES.DANGER;
-		}
+			if (_.contains(codeScale, 'RR')) {
+				console.log("---------------------------");	//TODO (denise) remove log
+				console.log("map.codes = ", JSON.stringify(map.codes, null, 2));	//TODO (denise) remove log
+				console.log("codeScale = ", JSON.stringify(codeScale, null, 2));	//TODO (denise) remove log
+				console.log("intersection = ", intersection);	//TODO (denise) remove log
+				console.log("result = ", result);	//TODO (denise) remove log
+			}
 
-		if(hasLIM && hasNN) {
-			result['LIM'] = RANGE_CLASSES.SO_SO;
-			result['NN'] = RANGE_CLASSES.GOOD;
-		} else if(hasLIM && !hasNN) {
-			result['LIM'] = RANGE_CLASSES.SO_SO;
-		} else if(!hasLIM && hasNN) {
-			result['NN'] = RANGE_CLASSES.GOOD;
-		}
 
-		if(_.contains(codeScale, 'NR')) {
-			result['NR'] = RANGE_CLASSES.GREAT;
-		}
-		if(_.contains(codeScale, 'RR')) {
-			result['RR'] = RANGE_CLASSES.DANGER;
-		}
-		if(_.contains(codeScale, 'IND')) {
-			result['IND'] = RANGE_CLASSES.SO_SO;
+
+			return result;
+		});
+
+		console.log(".............................");	//TODO (denise) remove log
+		console.log("found = ", found);	//TODO (denise) remove log
+		console.log("---------------------------");	//TODO (denise) remove log
+
+		if(found && found.classMap &&_.keys(found.classMap).length > 0) {
+			result = found.classMap;
+		} else {
+			if(_.contains(codeScale, 'L')) {
+				result['L'] = RANGE_CLASSES.DANGER;
+			}
+			if(_.contains(codeScale, 'N')) {
+				result['N'] = RANGE_CLASSES.GREAT;
+			}
+
+			var hasHH = _.contains(codeScale, 'HH');
+			var hasHU = _.contains(codeScale, 'HU');
+			var hasLIM = _.contains(codeScale, 'LIM');
+			var hasNN = _.contains(codeScale, 'NN');
+
+			if(!hasHH && !hasHU) {
+				result['H'] = RANGE_CLASSES.DANGER;
+			} else if(hasHH && hasHU) {
+				result['H'] = RANGE_CLASSES.SO_SO;
+				result['HU'] = RANGE_CLASSES.BAD;
+				result['HH'] = RANGE_CLASSES.DANGER;
+			} else if(hasHH && !hasHU) {
+				result['H'] = RANGE_CLASSES.BAD;
+				result['HH'] = RANGE_CLASSES.DANGER;
+			} else if(!hasHH && hasHU) {
+				result['H'] = RANGE_CLASSES.BAD;
+				result['HU'] = RANGE_CLASSES.DANGER;
+			}
+
+			if(hasLIM && hasNN) {
+				result['LIM'] = RANGE_CLASSES.SO_SO;
+				result['NN'] = RANGE_CLASSES.GOOD;
+			} else if(hasLIM && !hasNN) {
+				result['LIM'] = RANGE_CLASSES.SO_SO;
+			} else if(!hasLIM && hasNN) {
+				result['NN'] = RANGE_CLASSES.GOOD;
+			}
+
+			if(_.contains(codeScale, 'NR')) {
+				result['NR'] = RANGE_CLASSES.GREAT;
+			}
+			if(_.contains(codeScale, 'RR')) {
+				result['RR'] = RANGE_CLASSES.DANGER;
+			}
+			if(_.contains(codeScale, 'IND')) {
+				result['IND'] = RANGE_CLASSES.SO_SO;
+			}
 		}
 
 		return result;
