@@ -19,12 +19,12 @@ module.exports = function($scope) {
 		values.push(extractValue(observation));
 
 		var obsList = _.pluck(_.union([], observation.related), 'target');
-		
+
 		var sorted = _.sortBy(obsList,
 			function (item) {
 				return -new Date(item.issued).getTime();
 			});
-		
+
 		_.each(sorted, function(obs) {
 			if (obs.valueQuantity && obs.issued) {
 				values.push(extractValue(obs))
@@ -32,6 +32,8 @@ module.exports = function($scope) {
 		});
 
 		$scope.vm.values = values;
+
+		$scope.vm.options = { width: 90 };	//TODO make sparkline adjust to available width (100%)
 	}
 
 };
