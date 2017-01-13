@@ -15,6 +15,11 @@
 		font-weight: 600;
 		line-height: 1.2em;
 
+		.main-value-sign {
+			font-size: 20px;
+			vertical-align: top;
+		}
+
 		@media (max-width: $screen-tablet) {
 			&.string-value {
 				font-size: $font-size-huge;

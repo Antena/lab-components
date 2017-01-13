@@ -2,6 +2,7 @@
 
 var angular = require('angular');
 var ngModule = angular.module('lab-components.lab-observation.lab-observation-result', [
+	require('../../common/index.js'),
 	require('../../components/index.js')
 ]);
 
