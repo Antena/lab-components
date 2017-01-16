@@ -36,14 +36,10 @@ module.exports = function FhirMappingsProvider() {
 		DANGER: 'range-danger'
 	};
 
-	var UNKNOWN_RANGE_CLASSES = {
-		UNKNOWN_7: 'range-unknown-7',
-		UNKNOWN_6: 'range-unknown-6',
-		UNKNOWN_5: 'range-unknown-5',
-		UNKNOWN_4: 'range-unknown-4',
-		UNKNOWN_3: 'range-unknown-3',
-		UNKNOWN_2: 'range-unknown-2',
-		UNKNOWN_1: 'range-unknown-1'
+	var AMBIGUOUS_RANGE_CLASSES = {
+		INDETERMINATE: 'range-ambiguous-indeterminate',
+		POSITIVE: 'range-ambiguous-positive',
+		NEGATIVE: 'range-ambiguous-negative'
 	};
 
 	var DEFAULTS = {
@@ -80,6 +76,20 @@ module.exports = function FhirMappingsProvider() {
 				}
 			},
 			{
+				codes: ['H', 'N'],
+				classMap: {
+					'H': MULTI_RANGE_CLASSES.DANGER,
+					'N': MULTI_RANGE_CLASSES.GREAT
+				}
+			},
+			{
+				codes: ['L', 'N'],
+				classMap: {
+					'L': MULTI_RANGE_CLASSES.DANGER,
+					'N': MULTI_RANGE_CLASSES.GREAT
+				}
+			},
+			{
 				codes: ['H', 'N', 'LIM'],
 				classMap: {
 					'H': MULTI_RANGE_CLASSES.DANGER,
@@ -97,6 +107,15 @@ module.exports = function FhirMappingsProvider() {
 				}
 			},
 			{
+				codes: ['N', 'LIM', 'H', 'HU'],
+				classMap: {
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'LIM': MULTI_RANGE_CLASSES.SO_SO,
+					'H': MULTI_RANGE_CLASSES.BAD,
+					'HU': MULTI_RANGE_CLASSES.DANGER
+				}
+			},
+			{
 				codes: ['N', 'NN', 'LIM', 'H', 'HH'],
 				classMap: {
 					'N': MULTI_RANGE_CLASSES.GREAT,
@@ -104,6 +123,16 @@ module.exports = function FhirMappingsProvider() {
 					'LIM': MULTI_RANGE_CLASSES.SO_SO,
 					'H': MULTI_RANGE_CLASSES.BAD,
 					'HH': MULTI_RANGE_CLASSES.DANGER
+				}
+			},
+			{
+				codes: ['N', 'NN', 'LIM', 'H', 'HU'],
+				classMap: {
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'NN': MULTI_RANGE_CLASSES.GOOD,
+					'LIM': MULTI_RANGE_CLASSES.SO_SO,
+					'H': MULTI_RANGE_CLASSES.BAD,
+					'HU': MULTI_RANGE_CLASSES.DANGER
 				}
 			},
 			{
@@ -115,10 +144,42 @@ module.exports = function FhirMappingsProvider() {
 				}
 			},
 			{
+				codes: ['N', 'H', 'HH'],
+				classMap: {
+					'N': MULTI_RANGE_CLASSES.GREAT,
+					'H': MULTI_RANGE_CLASSES.BAD,
+					'HH': MULTI_RANGE_CLASSES.DANGER
+				}
+			},
+			{
 				codes: ['NR', 'RR'],
 				classMap: {
-					'NR': UNKNOWN_RANGE_CLASSES.UNKNOWN_7,
-					'RR': UNKNOWN_RANGE_CLASSES.UNKNOWN_3
+					'NR': AMBIGUOUS_RANGE_CLASSES.NEGATIVE,
+					'RR': AMBIGUOUS_RANGE_CLASSES.POSITIVE
+				}
+			},
+			{
+				codes: ['NR', 'IND', 'RR'],
+				classMap: {
+					'NR': AMBIGUOUS_RANGE_CLASSES.NEGATIVE,
+					'IND': AMBIGUOUS_RANGE_CLASSES.INDETERMINATE,
+					'RR': AMBIGUOUS_RANGE_CLASSES.POSITIVE
+				}
+			},
+			// {
+			// 	observationCode: 'P.3023',
+			// 	codes: ['NR', 'IND', 'RR'],
+			// 	classMap: {
+			// 		'NR': MULTI_RANGE_CLASSES.DANGER,
+			// 		'IND': AMBIGUOUS_RANGE_CLASSES.INDETERMINATE,
+			// 		'RR': MULTI_RANGE_CLASSES.GREAT
+			// 	}
+			// },
+			{
+				codes: ['NR', 'RR'],
+				classMap: {
+					'NR': AMBIGUOUS_RANGE_CLASSES.NEGATIVE,
+					'RR': AMBIGUOUS_RANGE_CLASSES.POSITIVE
 				}
 			}
 		],
@@ -150,7 +211,6 @@ module.exports = function FhirMappingsProvider() {
 	this.coding2ClassNameMappings = DEFAULTS.coding2ClassNameMappings;
 	this.coding2TranslationKeyMappings = DEFAULTS.coding2TranslationKeyMappings;
 	this.codeScale2ClassNameMappings = DEFAULTS.codeScale2ClassNameMappings;
-	this.codeScaleClasses = DEFAULTS.SCALE_10_POINT_CLASSES;
 
 	function filterAndMergeMappings(defaults, mappings, mergeWithDefaults) {
 		var result = {};
@@ -186,13 +246,16 @@ module.exports = function FhirMappingsProvider() {
 		return this.coding2TranslationKeyMappings;
 	};
 
-	this.getScaleRangeClasses = function getScaleRangeClasses() {
+	this.setCodeScale2ClassNameMappings = function setCodeScale2ClassNameMappings(mappings, mergeWithDefaults) {
+		this.codeScale2ClassNameMappings = filterAndMergeMappings(this.codeScale2ClassNameMappings, mappings, mergeWithDefaults);
+	};
+
+	this.getCodeScale2ClassNameMappings = function getCodeScale2ClassNameMappings() {
 		return this.codeScale2ClassNameMappings;
 	};
 
 
 	this.$get = function fhirMappingsFactory() {
-
 		return {
 
 			/**
@@ -277,8 +340,62 @@ module.exports = function FhirMappingsProvider() {
 				return this.getCoding2TranslationKeyMappings();
 			}, this),
 
-			getScaleRangeClasses: _.bind(function () {
-				return this.getScaleRangeClasses();
+			/**
+			 * @ngdoc function
+			 * @name lab-components.mappings.$fhirMappingsProvider#setCodeScale2ClassNameMappings
+			 * @methodOf lab-components.mappings.$fhirMappingsProvider
+			 *
+			 * @description
+			 *
+			 *
+			 * @param {Array} mappings The code scale mappings. Each object in this array must have the following format:
+			 *
+			 * ```js
+			 * {
+			 *
+			 *      observationCode: '',	//optional, used for applying a mapping only for the given observation's ranges
+			 * 		codes: ['C1', 'C2', 'C3'],
+			 * 		classMap: [
+			 *			'C1': 'range-great',
+			 *			'C2': 'range-so-so',
+			 *			'C3': 'range-danger'
+			 * 		]
+			 * }
+			 * ```
+			 * This reads as: "when there's an observation that has exactly 3 ranges which meaning codes are ['C1', 'C2', 'C3'], then map these codes to these classNames."
+			 * ```js
+			 * {
+			 *
+			 *      observationCode: 'abc',
+			 * 		codes: ['C1', 'C2', 'C3'],
+			 * 		classMap: [
+			 *			'C1': 'range-good',
+			 *			'C2': 'range-unknown',
+			 *			'C3': 'range-bad'
+			 * 		]
+			 * }
+			 * ```
+			 * This reads as: "when there's an observation that has code 'abc', and exactly 3 ranges which meaning codes are ['C1', 'C2', 'C3'], then map these codes to these classNames."
+			 *
+			 * @param {Boolean=} [mergeWithDefaults=false] When true, extends the default mappings with the provided ones. Otherwise, it will override the default mappings.
+			 *
+			 */
+			setCodeScale2ClassNameMappings: _.bind(function (mappings, mergeWithDefaults) {
+				this.setCodeScale2ClassNameMappings(mappings, mergeWithDefaults);
+			}, this),
+
+			/**
+			 * @ngdoc function
+			 * @name lab-components.mappings.$fhirMappingsProvider#getCodeScale2ClassNameMappings
+			 * @methodOf lab-components.mappings.$fhirMappingsProvider
+			 *
+			 * @description
+			 *
+			 *
+			 * @returns {Array} The code scale mappings
+			 */
+			getCodeScale2ClassNameMappings: _.bind(function () {
+				return this.getCodeScale2ClassNameMappings();
 			}, this)
 		};
 	};

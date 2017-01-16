@@ -9,6 +9,36 @@
  *
  * Each instance of {@link lab-components.lab-observation.lab-observation-multirange.directive:labObservationMultirangeGraph labObservationMultirangeGraph} directive creates an instance of this controller.
  *
+ * Colors:
+ * This library provides some default mappings from range meaning code scales to colour palettes. These can be extended or overwritten in two ways:
+ *
+ * <ol>
+ * <li>Via {@link lab-components.mappings.$fhirMappingsProvider#methods_setcoding2classnamemappings $fhirMappingsProvider's setCodeScale2ClassNameMappings} on the configuration phase.</li>
+ *
+ * <li>Via css, by providing styles for the observation/ranges:
+ *    <ul style="list-style-type: lower-latin">
+ *    <li>The parent element for the observation component gets a className based on the observation code (taken from it's code/coding element).</li>
+ *
+ *    <li>Each range receives a className for it's meaning code (taken from it's meaning code/coding).</li>
+ *
+ *    <li>Additionally, if the meaning code is part of the defaults included in {@link lab-components.mappings.$fhirMappingsProvider $fhirMappingsProvider},
+ *       then another class will be added, with className indicating a more semantic interpretation of how desirable it is for a value falling in this range.
+ *       These classes are described in {@link lab-components.mappings.$fhirMappingsProvider $fhirMappingsProvider's documentation}.</li>
+ *
+ * 	  </ul>
+ *
+ *     <br>
+ *    For all cases where a className is generated from a code `(a)`, `(b)` the {@link https://antena.github.io/angular-utilities/docs/index.html#/api/angular-utilities.text.filter:toClassName toClassName}
+ *    filter (part of the `angular-utilities` package) will be run, to guarantee the generated className is valid.
+ *    This filter will strip invalid characters, and replace these with `_`. There are also some special rules for the very first character.
+ *    <br>
+ *    Also, a prefix is added, to avoid className collision. For the observation code `(a)`, it's `lc-obs--`, and for the range mening codes `(b)`
+ *    it's `lc-range--`.
+ *
+ *    </li>
+ * </ol>
+ *
+ *
  */
 
 var _ = require('underscore');
@@ -34,90 +64,36 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		precision: $scope.vm.options.precision
 	};
 
-	var RANGE_CLASSES = {
-		GREAT: 'range-great',
-		GOOD: 'range-good',
-		SO_SO: 'range-so-so',
-		BAD: 'range-bad',
-		DANGER: 'range-danger'
-	};
-
 	/*jshint sub:true*/
 	function mapScaleToClasses(codeScale) {
-
 		var result = { };
 
-
-		var rangeClassMappings = fhirMappings.getScaleRangeClasses();
-		var found = _.find(rangeClassMappings, function(map) {
+		var rangeClassMappings = fhirMappings.getCodeScale2ClassNameMappings();
+		var found = _.filter(rangeClassMappings, function(map) {
 			var intersection = _.intersection(map.codes, codeScale);
-			var result = intersection.length === map.codes.length && intersection.length === codeScale.length;
-
-			if (_.contains(codeScale, 'RR')) {
-				console.log("---------------------------");	//TODO (denise) remove log
-				console.log("map.codes = ", JSON.stringify(map.codes, null, 2));	//TODO (denise) remove log
-				console.log("codeScale = ", JSON.stringify(codeScale, null, 2));	//TODO (denise) remove log
-				console.log("intersection = ", intersection);	//TODO (denise) remove log
-				console.log("result = ", result);	//TODO (denise) remove log
-			}
-
-
-
-			return result;
+			return intersection.length === map.codes.length && intersection.length === codeScale.length;
 		});
 
-		console.log(".............................");	//TODO (denise) remove log
-		console.log("found = ", found);	//TODO (denise) remove log
-		console.log("---------------------------");	//TODO (denise) remove log
+		if(found) {
+			if(found.length > 1) {
+				var withObsCode = _.filter(found, function(map) {
+					return !!map.observationCode;
+				});
+
+				found = withObsCode && withObsCode.length > 0 ? _.first(withObsCode) : _.first(found);
+
+			} else {
+				found = _.first(found);
+			}
+		}
 
 		if(found && found.classMap &&_.keys(found.classMap).length > 0) {
 			result = found.classMap;
-		} else {
-			if(_.contains(codeScale, 'L')) {
-				result['L'] = RANGE_CLASSES.DANGER;
-			}
-			if(_.contains(codeScale, 'N')) {
-				result['N'] = RANGE_CLASSES.GREAT;
-			}
-
-			var hasHH = _.contains(codeScale, 'HH');
-			var hasHU = _.contains(codeScale, 'HU');
-			var hasLIM = _.contains(codeScale, 'LIM');
-			var hasNN = _.contains(codeScale, 'NN');
-
-			if(!hasHH && !hasHU) {
-				result['H'] = RANGE_CLASSES.DANGER;
-			} else if(hasHH && hasHU) {
-				result['H'] = RANGE_CLASSES.SO_SO;
-				result['HU'] = RANGE_CLASSES.BAD;
-				result['HH'] = RANGE_CLASSES.DANGER;
-			} else if(hasHH && !hasHU) {
-				result['H'] = RANGE_CLASSES.BAD;
-				result['HH'] = RANGE_CLASSES.DANGER;
-			} else if(!hasHH && hasHU) {
-				result['H'] = RANGE_CLASSES.BAD;
-				result['HU'] = RANGE_CLASSES.DANGER;
-			}
-
-			if(hasLIM && hasNN) {
-				result['LIM'] = RANGE_CLASSES.SO_SO;
-				result['NN'] = RANGE_CLASSES.GOOD;
-			} else if(hasLIM && !hasNN) {
-				result['LIM'] = RANGE_CLASSES.SO_SO;
-			} else if(!hasLIM && hasNN) {
-				result['NN'] = RANGE_CLASSES.GOOD;
-			}
-
-			if(_.contains(codeScale, 'NR')) {
-				result['NR'] = RANGE_CLASSES.GREAT;
-			}
-			if(_.contains(codeScale, 'RR')) {
-				result['RR'] = RANGE_CLASSES.DANGER;
-			}
-			if(_.contains(codeScale, 'IND')) {
-				result['IND'] = RANGE_CLASSES.SO_SO;
-			}
 		}
+
+		result = _.mapObject(result, function(val, key) {
+			return val + " " + $filter('toClassName')(key, "lc-range--");
+		});
 
 		return result;
 	}
@@ -128,7 +104,6 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		var codeToClassMap = mapScaleToClasses(codeScale);
 
 		return _.map(ranges, function(r) {
-			console.log("r.meaning = ", r.meaning);	//TODO (denise) remove log
 			var coding = r.meaning.coding && r.meaning.coding.length ? r.meaning.coding[0] : null;
 			var translationKey = coding ? $filter('coding2TranslationKey')(coding) : null;
 			console.log("translationKey = ", translationKey);	//TODO (denise) remove log

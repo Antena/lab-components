@@ -1,4 +1,4 @@
-<div class="observation-gallery-item" ng-init="observation.hasHistory = !!observation.valueQuantity"
+<div class="observation-gallery-item {{ observation.code.coding[0].code | toClassName:'lc-obs--' }}" ng-init="observation.hasHistory = !!observation.valueQuantity"
 	 ng-class="{'observation-reduced-content': !observation.hasHistory || !observation.referenceRange[0].text, 'observation-stripped-content': !observation.hasHistory && !observation.referenceRange[0].text, 'observation-basic-content': !!observation.valueString }">
 
 	<div class="observation-gallery-header" ng-if="!hideTitle">

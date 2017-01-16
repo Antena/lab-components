@@ -6,7 +6,9 @@ $interpretation-colors: (
 	bad: #ef986c,
 	danger: #ed6f62,
 	unknown: #747474,
-	undisclosed: black
+	undisclosed: black,
+	ambiguous-on: #F4BD2F,
+	ambiguous-off: #2d2101
 );
 
 // #519DFF
@@ -20,16 +22,6 @@ $unknown-interpretation-colors: (
 	lighter: #8dbdff,
 	lightest: #9ec6ff
 );
-
-//$unknown-interpretation-colors: (
-//	darkest: #000000,
-//	darker: #484848,
-//	dark: #707070,
-//	regular: #8A8A8A,
-//	light: #959595,
-//	lighter: #B4B4B4,
-//	lightest: #CACACA
-//);
 
 $actions: (
 	contextual: #1D4547,
