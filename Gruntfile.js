@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 					'demo/api.css'
 				],
 				html5Mode: false,
+				startPage: '/api/lab-components',
 				editExample: false
 			},
 			api: {

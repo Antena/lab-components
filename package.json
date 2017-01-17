@@ -15,7 +15,7 @@
   },
   "scripts": {
     "lint": "jshint . --reporter=node_modules/jshint-stylish; jscs . --reporter=node_modules/jscs-stylish",
-    "docs": "grunt docs",
+    "docs": "npm run build && grunt docs",
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && webpack",
     "watch": "npm run clean && webpack --watch",

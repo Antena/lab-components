@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc directive
- * @name lab-components.common.directive:featurePreview
+ * @name lab-components.common.directive:actionPreview
  * @restrict A
  * @scope
  *
  * @description
  *
  * Injects a popover on the host element, with the given configuration and trigger.
- * 
+ *
  * @element ANY
- * @param {Object} featurePreview The configuration object for the feature preview.
+ * @param {Object} actionPreview The configuration object for the action preview.
  * The object must have either a 'templateUrl' or a 'content' property which defines the content of the popover.
  *
  * For example:
@@ -31,7 +31,7 @@
  * }
  * ```
  *
- * @param {Boolean} featurePreviewOpen An angular expression (which will be casted to boolean) 
+ * @param {Boolean} actionPreviewOpen An angular expression (which will be casted to boolean)
  * 									   to determine if the popover should be open or closed.
  *
  *
@@ -53,14 +53,14 @@ module.exports = function($compile) {
 		restrict: 'A',
 		link: function ($scope, $element, attrs) {
 
-			var config = $scope.$eval(attrs.featurePreview);
+			var config = $scope.$eval(attrs.actionPreview);
 
 			if (config && (!!config.templateUrl || !!config.content)) {
 
 				var options = _.defaults({}, config, CONFIG_DEFAULTS);
 
 				if (!!config.templateUrl) {
-					$element.attr('uib-popover-template', '' + attrs.featurePreview + '.templateUrl');
+					$element.attr('uib-popover-template', '' + attrs.actionPreview + '.templateUrl');
 				} else {
 					$element.attr('uib-popover', config.content);
 				}
@@ -68,13 +68,13 @@ module.exports = function($compile) {
 				$element.attr('popover-title', options.title);
 				$element.attr('popover-placement', options.placement);
 				$element.attr('popover-popup-delay', options.delay);
-				$element.attr('popover-is-open', '!!' + attrs.featurePreviewOpen);
-				$element.attr('popover-enable', '!!' + attrs.featurePreview + ' && !!' + attrs.featurePreviewOpen);
+				$element.attr('popover-is-open', '!!' + attrs.actionPreviewOpen);
+				$element.attr('popover-enable', '!!' + attrs.actionPreview + ' && !!' + attrs.actionPreviewOpen);
 				$element.attr('popover-append-to-body', 'true');
 				$element.attr('popover-trigger', 'none');
 
-				$element.removeAttr('feature-preview');
-				$element.removeAttr('feature-preview-open');
+				$element.removeAttr('action-preview');
+				$element.removeAttr('action-preview-open');
 
 				var $e = $compile($element[0].outerHTML)($scope);
 				$element.replaceWith($e);

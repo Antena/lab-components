@@ -2,6 +2,7 @@
 
 var angular = require('angular');
 var ngModule = angular.module('lab-components.lab-observation.lab-observation-multirange', [
+	require('../../common/index'),
 	require('../../components/index.js'),
 	require('../../mappings/index.js')
 ]);

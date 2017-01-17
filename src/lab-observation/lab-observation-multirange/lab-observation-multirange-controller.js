@@ -106,7 +106,6 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		return _.map(ranges, function(r) {
 			var coding = r.meaning.coding && r.meaning.coding.length ? r.meaning.coding[0] : null;
 			var translationKey = coding ? $filter('coding2TranslationKey')(coding) : null;
-			console.log("translationKey = ", translationKey);	//TODO (denise) remove log
 			return {
 				low: r.low ? r.low.value : undefined,
 				high: r.high ? r.high.value : undefined,

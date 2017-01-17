@@ -7,8 +7,18 @@
  * @scope
  *
  * @description
+ * Visual representation of a FHIR Observation. The information is layed out as:
+ * - Header: displays the title (observation's display) + method + actions (configurable)
+ * - Footer: currently only holds notes (observation's comments)
+ * - Body: where the main content is displayed. Contents will greatly vary depending on value type and
+ * configuration provided, but roughly, these are the sections that will be rendered:
+ * - Numeric value (valueQuantity):
+ *   * Result card (comparator + value + units) stylized to highlight the numeric value.
+ *   * History sparkline
+ *   * Multirange graph: shows the color-coded ranges, and points in which of these the value falls.
+ *   * Optional/configurable actions: empty by default, these actions can be configured, and can optionally transclude
+ *   content inside this section (below the aforementioned four columns).
  *
- * //TODO (denise) add description
  *
  * @element ANY
  * @param {Object} observation A fhir observation object to display. See https://www.hl7.org/fhir/2015MAY/observation.html

@@ -265,7 +265,6 @@ module.exports = function FhirMappingsProvider() {
 			 *
 			 * @description
 			 *
-			 *
 			 * @param {Object} mappings The code mappings, which must have the following format:
 			 *
 			 * ```js
