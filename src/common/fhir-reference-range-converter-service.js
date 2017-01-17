@@ -2,12 +2,11 @@
 
 /**
  * @ngdoc service
- * @name lab-components.service:FhirReferenceRangeConverterService
+ * @name lab-components.common.service:FhirReferenceRangeConverterService
  * @kind function
  *
  * @description
- *
- *
+ * Provides conversion utilities related to fhir ranges.
  *
  */
 
@@ -127,6 +126,25 @@ module.exports = function() {
 
 	return {
 
+		/**
+		 * @ngdoc function
+		 * @name convertToMultipleRanges
+		 * @methodOf lab-components.common.service:FhirReferenceRangeConverterService
+		 * @description
+		 *
+		 * Converts a single FHIR range into a set of ranges. The given range must contain both low and high properties.
+		 * This assumes the given range is the recommended/desired range ('N', normal range), and generates two open ended ranges:
+		 * - Low: < givenRange.low
+		 * - Normal: givenRange.low to givenRange.high
+		 * - High: > givenRange.high
+		 *
+		 * This is useful for representing single-range observations in the same manner as multirange ones.
+		 *
+		 * @param {Object} observation A valid FHIR observation.
+		 *
+		 * @returns {Array} The generated list of ranges.
+		 *
+		 */
 		convertToMultipleRanges: function(observation) {
 			var ranges = [];
 
@@ -140,6 +158,27 @@ module.exports = function() {
 
 			return ranges;
 		},
+
+		/**
+		 * @ngdoc function
+		 * @name convertToMultipleRangesWithDomain
+		 * @methodOf lab-components.common.service:FhirReferenceRangeConverterService
+		 * @description
+		 *
+		 * Converts a single FHIR range into a set of ranges.
+		 * This assumes the given range is the recommended/desired range ('N', normal range), and generates two open ended ranges:
+		 * - Low: `domain.low` to `givenRange.low`
+		 * - Normal: `givenRange.low` to `givenRange.high`
+		 * - High: `givenRange.high` to `domain.high`
+		 *
+		 * This is useful for representing single-range observations in the same manner as multirange ones.
+		 *
+		 * @param {Object} observation A valid FHIR observation.
+		 * @param {Object} domain A valid FHIR range.
+		 *
+		 * @returns {Array} The generated list of ranges.
+		 *
+		 */
 		convertToMultipleRangesWithDomain: function(observation, domain) {
 			var ranges;
 
