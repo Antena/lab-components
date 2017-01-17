@@ -316,7 +316,7 @@ module.exports = function() {
 			var METER_SHAPES = {
 				BOX: {
 					marker: function(options, placement) {
-						// if placement === bottom // TODO (denise) add support for bottom placement
+						// if placement === bottom // TODO (denise) [issue #29] add support for bottom placement
 						return isoscelesTriangle(options.meterShape.meterTriangle.base, options.meterShape.meterTriangle.height);
 					},
 					label: function(meter) {
@@ -344,9 +344,9 @@ module.exports = function() {
 					cy: 23.8,
 					r: 20.3,
 					marker: function(options, placement) {
-						//TODO (denise) dismantle path so that width is configurable
+						//TODO (denise) [issue #30] dismantle path so that width is configurable
 
-						// if placement === top	// TODO (denise) does it make sense to support this shape placed at bottom?
+						// if placement === top	// TODO (denise) [issue #29] does it make sense to support this shape placed at bottom?
 						return "M0 .15" +
 							"c-12.5 0-22.7 10.2-22.7 22.7 0 15.4 15.2 28.8 21.7 30.2v5.7h2v-5.7" +
 							"c6.3-1.4 21.7-14.4 21.7-30.2C22.7 10.35 12.6.15 0 .15m0 42.4" +
@@ -368,10 +368,10 @@ module.exports = function() {
 						meterLabel.text(textValue(text));
 					},
 					getIndicatorOverflow: function() {
-						return (45 / 2);	//TODO (denise) extract width from path (45)
+						return (45 / 2);	//TODO (denise) [issue #30] extract width from path (45)
 					},
 					getIndicatorHeight: function() {
-						return 58;	//TODO (denise) extract from path
+						return 58;	//TODO (denise) [issue #30] extract from path
 					}
 				}
 			};
@@ -387,7 +387,7 @@ module.exports = function() {
 			function init() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
-					.attr('height', options.height) 	//TODO (denise) fix height
+					.attr('height', options.height)
 					.classed('value-within-multiple-ranges-graph', true);
 
 

@@ -8,7 +8,9 @@
  *
  * @description
  *
- * //TODO (denise) add description
+ * Given a set of ranges, visually represents to which of these a value belongs. Ranges should contain a meaning property,
+ * from which a semantic value will be derived, allowing for ranges to be color coded as a visual aid to interpret the
+ * it's meaning, and the desirability of a value falling in each range.
  *
  * @element ANY
  * @param {Object} observation A fhir observation object to display. If the value of the Observation is numeric, it takes the info from the observation and renders a {@link lab-components.components.value-within-multiple-ranges.directive:valueWithinMultipleRangesGraph valueWithinMultipleRangesGraph}. Otherwise, it displays the Observation's valueString. See https://www.hl7.org/fhir/2015MAY/observation.html

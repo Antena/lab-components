@@ -48,7 +48,8 @@ module.exports = function($scope, $filter) {
 	 * @methodOf lab-components.lab-diagnostic-report.controller:LabDiagnosticReportController
 	 * @description
 	 *
-	 * //TODO (denise) add description
+	 * Checks whether an observation belongs to a group or not. An observation is considered top level if it's the only
+	 * observation in a group.
 	 *
 	 * @param {Object} orderItemCode The code (identifier) of a diagnostic order item (`diagnosticOrder.item[x].code.extension[0].valueIdentifier.value`). See https://www.hl7.org/fhir/2015MAY/diagnosticorder.html.
 	 *
@@ -78,11 +79,6 @@ module.exports = function($scope, $filter) {
 			result = "-";
 		}
 		return result;
-	};
-
-	//TODO (denise) de-dupe (lab-observation-range-controller.js)
-	$scope.valueStringMatchesReference = function(observation) {
-		return observation.valueString === observation.referenceRange[0].text || observation.referenceRange[0].text === '.' || _.isUndefined(observation.referenceRange[0].text);
 	};
 
 	$scope.showNext = function(list, current, index) {

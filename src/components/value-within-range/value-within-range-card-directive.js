@@ -8,7 +8,7 @@
  *
  * @description
  *
- * //TODO (denise) add description
+ * Visually represents if an observation's value falls within a range or not.
  *
  * @element ANY
  * @param {Number} value A numeric value to be displayed.

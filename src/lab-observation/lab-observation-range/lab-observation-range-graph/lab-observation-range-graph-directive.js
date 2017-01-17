@@ -8,7 +8,12 @@
  *
  * @description
  *
- * //TODO (denise) add description
+ * Graphic representation of the value, units and range of an observation.
+ * Visual representation varies according to the type of value.
+ * For numeric values (valueQuantity), a {@link lab-components.components.value-within-range.directive:valueWithinRangeGraph valueWithinRangeGraph} is used,
+ * whereas for string values (valueString) the text is displayed in a similar manner (similar style and color code).
+ * Additionally, if a string value is deteceted to be an html string, an iframe will be used for rendering this value.
+ *
  *
  * @element ANY
  * @param {Object} observation A fhir observation object to display. If the value of the Observation is numeric, it takes the info from the observation and renders a {@link lab-components.components.value-within-range.directive:valueWithinRangeGraph valueWithinRangeGraph}. Otherwise, it displays the Observation's valueString. See https://www.hl7.org/fhir/2015MAY/observation.html
