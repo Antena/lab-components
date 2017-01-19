@@ -8,7 +8,7 @@
 	<script src="dist/main.js"></script>
 </head>
 <body>
-<div ng-controller="DemoController">
+<div ng-controller="DemoController" ng-class="{ 'content-only': !!contentOnly, 'full-width': !!fullWidth }">
 	<div class="demo-header"><p class="title">Lab Components Demo <a class="nav-link" target="_blank" href="/docs">API
 		docs</a></p></div>
 

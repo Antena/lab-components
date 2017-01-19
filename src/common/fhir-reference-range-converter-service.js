@@ -139,6 +139,7 @@ module.exports = function() {
 		 * - High: > givenRange.high
 		 *
 		 * This is useful for representing single-range observations in the same manner as multirange ones.
+		 * See {@link http://localhost:4000/docs/#/api/lab-components.lab-observation.directive:labObservation#usage_directive-info_parameters multiRangeMode}.
 		 *
 		 * @param {Object} observation A valid FHIR observation.
 		 *

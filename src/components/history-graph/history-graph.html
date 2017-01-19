@@ -6,7 +6,7 @@
 		<div class="time-controls">
 			<ul>
 				<li class="options-label">{{ 'HISTORY_GRAPH.LAST' | translate }}:</li>
-				<li ng-repeat="control in timeControls" class="option"
+				<li ng-repeat="control in timeControls" class="option option-{{control.id}}"
 					ng-class="{ selected: control.id === selectedControl.id }" ng-click="selectTimeControl(control.id)">
 					{{ 'HISTORY_GRAPH.TIME_CONTROLS.' + control.label | translate }}
 				</li>

@@ -2,12 +2,12 @@
 	<h3>Lab Observation History Graph demos</h3>
 	<div ng-repeat="history in histories.observation" class="demo-instance-container demo-history-graph">
 		<h4 class="demo-description">{{ history.title}}</h4>
-		<lab-observation-history-graph config="history.config" observation-list="history.data"></lab-observation-history-graph>
+		<lab-observation-history-graph config="history.config" observation-list="history.data" class="{{ history.clazz || '' }}"></lab-observation-history-graph>
 	</div>
 
 	<h3>Metric History Graph demos</h3>
 	<div ng-repeat="history in histories.metric" class="demo-instance-container demo-history-graph">
-		<h4 class="demo-description">{{ history.title}}</h4>
-		<div history-graph config="history.config" data="history.data"></div>
+		<h4 class="demo-description">{{ history.title }}</h4>
+		<div history-graph config="history.config" data="history.data" class="{{ history.clazz || '' }}"></div>
 	</div>
 </div>

@@ -17,11 +17,11 @@
  * @example
  <example module="patient-age-at-report-example">
  <file name="index.html">
- <div>
+ <div class="patient-age-at-report-examples">
 	 <p>Born: <strong>1987-01-01</strong></p>
-	 <p>Age at Y2K: <strong>{{ '1987-01-01' | patientAgeAtReportDate:'1999-12-31T11:59:59' }}</strong></p>
-	 <p>Age at Y2K: <strong>{{ '1987-01-01' | patientAgeAtReportDate:'1999-12-31T11:59:59':true }}</strong></p>
-	 <p>Age when Finland elected Mauno Koivisto: <strong>{{ '1987-01-01' | patientAgeAtReportDate:'1988-02-15T11:59:59':true }}</strong></p>
+	 <p>Age at Y2K: <strong class="result-big-diff">{{ '1987-01-01' | patientAgeAtReportDate:'1999-12-31T11:59:59' }}</strong></p>
+	 <p>Age at Y2K: <strong class="result-big-diff-pluralize">{{ '1987-01-01' | patientAgeAtReportDate:'1999-12-31T11:59:59':true }}</strong></p>
+	 <p>Age when Finland elected Mauno Koivisto: <strong class="result-small-diff-pluralize">{{ '1987-01-01' | patientAgeAtReportDate:'1988-02-15T11:59:59':true }}</strong></p>
  </div>
  </file>
  <file name="demo.js">
@@ -60,9 +60,11 @@ module.exports = function($translate) {
 
 	filterStub.$stateful = true;
 	function filterStub(birthDate, referenceDate, pluralize) {
+		console.log("translations = ", translations);	//TODO (denise) remove log
 		if (!translations) {
 			$translate(['UNITS.YEARS', 'UNITS.YEAR']).then(function(result) {
 				translations = result;
+				console.log("translations = ", translations);	//TODO (denise) remove log
 			});
 			return "";
 		} else {

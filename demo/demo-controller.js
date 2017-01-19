@@ -11,7 +11,12 @@ var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
 
 // @ngInject
-module.exports = function($scope, LabObservationService, FhirBundleResolverService) {
+module.exports = function($scope, $location, $rootScope, LabObservationService, FhirBundleResolverService) {
+
+	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+		$scope.contentOnly = !!$location.search().contentOnly;
+		$scope.fullWidth = !!$location.search().fullWidth;
+	});
 
 	var resolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(fhirBundle);
 	var anotherResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(anotherFhirBundle);
@@ -77,6 +82,7 @@ module.exports = function($scope, LabObservationService, FhirBundleResolverServi
 		config.title = anObservation.code.coding[0].display + ' (' + anObservation.valueQuantity.units + ')';
 		observation.push({
 			title: o.title,
+			clazz: o.class,
 			config: config,
 			data: o.data
 		})

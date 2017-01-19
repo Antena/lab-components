@@ -71,6 +71,7 @@
 
 	.example textarea {
 		width: 98%;
+		margin-bottom: 40px;
 	}
 
  </file>

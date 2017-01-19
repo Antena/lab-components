@@ -27,9 +27,12 @@
  * @param {Boolean=} [viewOnly=false] Indicates wether actions should be disabled.
  * @param {Boolean=} [hideTitle=false] Indicates wether hide the observation display (title of this card).
  * @param {Boolean=} [compactMode=false] Indicates wether to condense the observation content.
+ * @param {Boolean=} [multiRangeMode=false] Indicates wether to display range graphs as multirange or single range.
  * @param {Number=} [patientAgeInYears] The patient age in years (decimal). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
  * @param {String=} [patientGender] A string representaiton of the patient gender ({@link http://hl7.org/fhir/ValueSet/administrative-gender valid values}). If available, it will be used to pick only the referenceRanges that are appropriate for the given gender.
  * @param {Function(method)=} [shouldShowMethod] A function which calculates wheather or not the method for this observation should be shown.
+ *
+ *
  *
  *
  * @example

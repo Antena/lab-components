@@ -93,3 +93,16 @@
 .indent {
 	padding-left: 20px;
 }
+
+.content-only .split-content .secondary-content {
+	display: none;
+}
+
+.content-only .demo-header {
+	display: none;
+}
+
+.full-width .demo-instance-container.demo-history-graph {
+	width: 100%;
+}
+
