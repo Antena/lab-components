@@ -39,7 +39,7 @@
 var _ = require('underscore');
 var $ = require('jquery');
 var angular = require('angular');
-var Slideout = require('slideout-custom');
+var Slideout = require('antena-slideout');
 
 require("./_lab-diagnostic-report.scss");
 
