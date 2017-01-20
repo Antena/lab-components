@@ -1,4 +1,5 @@
 'use strict';
+// jscs:disable requireBlocksOnNewline
 
 /**
  * @ngdoc directive
@@ -67,10 +68,8 @@
  </example>
  */
 
-
 var d3 = require('d3');
 var _ = require('underscore');
-var angular = require('angular');
 
 require('./_sparkline.scss');
 
@@ -82,7 +81,7 @@ module.exports = function() {
 			data: '=values',
 			options: '=?'
 		},
-		link: function (scope, elem) {
+		link: function(scope, elem) {
 			// Options
 			var options = _.defaults({}, scope.options, {
 				width: 100,
@@ -93,8 +92,8 @@ module.exports = function() {
 				dateFormat: '%Y-%m-%d'
 			});
 
-			var width = options.width - options.padding.left - options.padding.right,
-				height = options.height - options.padding.top - options.padding.bottom;
+			// var width = options.width - options.padding.left - options.padding.right,
+			// 	height = options.height - options.padding.top - options.padding.bottom;
 
 			var svg = d3.select(elem[0]).append('svg')
 				.attr('class', 'sparkline-graph')
@@ -120,11 +119,11 @@ module.exports = function() {
 				y.domain(d3.extent(data, function(d) { return d.value; }));
 
 				// Fix scale domains (if necessary)
-				if (x.domain()[0] == x.domain()[1]) {
-					x.domain([x.domain()[0] - options.defaultDateHistory, x.domain()[1]])
+				if (x.domain()[0] === x.domain()[1]) {
+					x.domain([x.domain()[0] - options.defaultDateHistory, x.domain()[1]]);
 				}
-				if (y.domain()[0] == y.domain()[1]) {
-					y.domain([0, 2*y.domain()[0]]);
+				if (y.domain()[0] === y.domain()[1]) {
+					y.domain([0, 2 * y.domain()[0]]);
 				}
 
 				// Sparkline
@@ -138,12 +137,12 @@ module.exports = function() {
 					.datum(data[0])
 					.attr('class', 'current')
 					.attr('r', options.circleRadius)
-					.attr('cx', function(d) { return x(d.date) })
-					.attr('cy', function(d) { return y(d.value) })
+					.attr('cx', function(d) { return x(d.date); })
+					.attr('cy', function(d) { return y(d.value); });
 
 			}
 
 			sparkline(scope.data);
 		}
-	}
+	};
 };

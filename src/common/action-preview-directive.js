@@ -37,7 +37,6 @@
  *
  */
 
-
 var _ = require('underscore');
 
 // @ngInject
@@ -51,7 +50,7 @@ module.exports = function($compile) {
 
 	return {
 		restrict: 'A',
-		link: function ($scope, $element, attrs) {
+		link: function($scope, $element, attrs) {
 
 			var config = $scope.$eval(attrs.actionPreview);
 
@@ -60,7 +59,7 @@ module.exports = function($compile) {
 				var options = _.defaults({}, config, CONFIG_DEFAULTS);
 
 				if (!!config.templateUrl) {
-					$element.attr('uib-popover-template', '' + attrs.actionPreview + '.templateUrl');
+					$element.attr('uib-popover-template', String(attrs.actionPreview) + '.templateUrl');
 				} else {
 					$element.attr('uib-popover', config.content);
 				}

@@ -215,9 +215,9 @@ module.exports = function FhirMappingsProvider() {
 	function filterAndMergeMappings(defaults, mappings, mergeWithDefaults) {
 		var result = {};
 		if (mappings && _.isObject(mappings)) {
-			var filteredMappingKeys = _.filter(_.keys(mappings), function (system) {
+			var filteredMappingKeys = _.filter(_.keys(mappings), function(system) {
 				var systemMap = mappings[system];
-				var valid = _.isObject(systemMap) && _.every(_.values(systemMap), function (className) {
+				var valid = _.isObject(systemMap) && _.every(_.values(systemMap), function(className) {
 						return _.isString(className);
 					});
 				return valid ? system : null;
@@ -254,7 +254,6 @@ module.exports = function FhirMappingsProvider() {
 		return this.codeScale2ClassNameMappings;
 	};
 
-
 	this.$get = function fhirMappingsFactory() {
 		return {
 
@@ -282,7 +281,7 @@ module.exports = function FhirMappingsProvider() {
 			 * @param {Boolean=} [mergeWithDefaults=false] When true, extends the default mappings with the provided ones. Otherwise, it will override the default mappings.
 			 *
 			 */
-			setCoding2ClassNameMappings: _.bind(function (mappings, mergeWithDefaults) {
+			setCoding2ClassNameMappings: _.bind(function(mappings, mergeWithDefaults) {
 					this.setCoding2ClassNameMappings(mappings, mergeWithDefaults);
 				}, this),
 
@@ -296,7 +295,7 @@ module.exports = function FhirMappingsProvider() {
 			 *
 			 * @returns {Object} The code mappings
 			 */
-			getCoding2ClassNameMappings: _.bind(function () {
+			getCoding2ClassNameMappings: _.bind(function() {
 				return this.getCoding2ClassNameMappings();
 			}, this),
 
@@ -321,7 +320,7 @@ module.exports = function FhirMappingsProvider() {
 			 * @param {Boolean=} [mergeWithDefaults=false] When true, extends the default mappings with the provided ones. Otherwise, it will override the default mappings.
 			 *
 			 */
-			setCoding2TranslationKeyMappings: _.bind(function (mappings, mergeWithDefaults) {
+			setCoding2TranslationKeyMappings: _.bind(function(mappings, mergeWithDefaults) {
 				this.setCoding2TranslationKeyMappings(mappings, mergeWithDefaults);
 			}, this),
 
@@ -335,7 +334,7 @@ module.exports = function FhirMappingsProvider() {
 			 *
 			 * @returns {Object} The code mappings
 			 */
-			getCoding2TranslationKeyMappings: _.bind(function () {
+			getCoding2TranslationKeyMappings: _.bind(function() {
 				return this.getCoding2TranslationKeyMappings();
 			}, this),
 
@@ -379,7 +378,7 @@ module.exports = function FhirMappingsProvider() {
 			 * @param {Boolean=} [mergeWithDefaults=false] When true, extends the default mappings with the provided ones. Otherwise, it will override the default mappings.
 			 *
 			 */
-			setCodeScale2ClassNameMappings: _.bind(function (mappings, mergeWithDefaults) {
+			setCodeScale2ClassNameMappings: _.bind(function(mappings, mergeWithDefaults) {
 				this.setCodeScale2ClassNameMappings(mappings, mergeWithDefaults);
 			}, this),
 
@@ -393,7 +392,7 @@ module.exports = function FhirMappingsProvider() {
 			 *
 			 * @returns {Array} The code scale mappings
 			 */
-			getCodeScale2ClassNameMappings: _.bind(function () {
+			getCodeScale2ClassNameMappings: _.bind(function() {
 				return this.getCodeScale2ClassNameMappings();
 			}, this)
 		};

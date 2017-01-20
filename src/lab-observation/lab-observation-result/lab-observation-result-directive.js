@@ -134,7 +134,7 @@ module.exports = function($sce) {
 		},
 		templateUrl: require('./lab-observation-result.html'),
 		link: function($scope) {
-			if(!!$scope.observation.valueQuantity && !!$scope.observation.valueQuantity.comparator) {
+			if (!!$scope.observation.valueQuantity && !!$scope.observation.valueQuantity.comparator) {
 				$scope.comparator = $sce.trustAsHtml($scope.observation.valueQuantity.comparator + '&nbsp;');
 			}
 

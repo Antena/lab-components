@@ -60,8 +60,13 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		meterLabelWithUnits: false,
 		meterPosition: 'top',
 		meterOffset: { x: 0, y: 0 },
-		meterLabelOffset: { x: 0, y: -2 },
-		precision: $scope.vm.options.precision
+		meterLabelOffset: { x: 0, y: -2 }
+	};
+
+	$scope.init = function() {
+		if ($scope.vm.options) {
+			$scope.vm.graphOptions.precision = $scope.vm.options.precision;
+		}
 	};
 
 	/*jshint sub:true*/
@@ -74,8 +79,8 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 			return intersection.length === map.codes.length && intersection.length === codeScale.length;
 		});
 
-		if(found) {
-			if(found.length > 1) {
+		if (found) {
+			if (found.length > 1) {
 				var withObsCode = _.filter(found, function(map) {
 					return !!map.observationCode;
 				});
@@ -87,7 +92,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 			}
 		}
 
-		if(found && found.classMap &&_.keys(found.classMap).length > 0) {
+		if (found && found.classMap &&_.keys(found.classMap).length > 0) {
 			result = found.classMap;
 		}
 
@@ -99,7 +104,9 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 	}
 
 	function transformRangesForGraphDisplay(ranges) {
-		var codeScale = _.map(ranges, function(range) { return range.meaning.coding[0].code; });
+		var codeScale = _.map(ranges, function(range) {
+			return range.meaning.coding[0].code;
+		});
 
 		var codeToClassMap = mapScaleToClasses(codeScale);
 
@@ -117,7 +124,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 	$scope.$watch('vm.observation', function(observation) {
 
-		if(observation && observation.referenceRange && observation.referenceRange.length) {
+		if (observation && observation.referenceRange && observation.referenceRange.length) {
 
 			var domainExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/domain"});
 

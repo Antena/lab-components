@@ -129,7 +129,6 @@
  </example>
 */
 
-
 var d3 = require('d3');
 var _ = require('underscore');
 var angular = require('angular');
@@ -223,7 +222,6 @@ module.exports = function() {
 				init();
 			}, 0);
 
-
 			/**
 			 * Draw the basic elements with its constant properties
 			 */
@@ -271,7 +269,6 @@ module.exports = function() {
 
 				refresh();
 			}
-
 
 			/**
 			 * Re-draw the graph when something changes

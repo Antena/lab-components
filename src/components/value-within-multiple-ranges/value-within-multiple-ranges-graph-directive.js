@@ -1,4 +1,5 @@
 'use strict';
+// jscs:disable requireBlocksOnNewline
 
 /**
  * @ngdoc directive
@@ -184,6 +185,7 @@
 
 var d3 = require('d3');
 var _ = require('underscore');
+var $ = require('jquery');
 var angular = require('angular');
 
 require('./_value-within-multiple-ranges.scss');
@@ -272,12 +274,12 @@ module.exports = function() {
 				TRIANGLE: function(options, direction, d) {
 					var result;
 
-					if(direction === 'left') {
+					if (direction === 'left') {
 						result = '' +
 							'M' + '0' + ' ' + '0' + ' ' +
 							'L' + (-options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
 							'L' + '0' + ' ' + d.rectHeight;
-					} else if(direction === 'right') {
+					} else if (direction === 'right') {
 						result = '' +
 							'M' + d.width + ' ' + '0' + ' ' +
 							'L' + (d.width + options.arrowWidth) + ' ' + (d.rectHeight / 2) + ' ' +
@@ -296,9 +298,9 @@ module.exports = function() {
 
 					var cx;
 
-					if(direction === 'left') {
+					if (direction === 'left') {
 						cx = 0;
-					} else if(direction === 'right') {
+					} else if (direction === 'right') {
 						cx = d.width;
 					}
 
@@ -359,7 +361,7 @@ module.exports = function() {
 							.attr("cy", this.cy)
 							.attr("r", this.r);
 						meter.append('text')
-							.attr('y', (meter.node().getBBox().height/2) + options.meterLabelOffset.y)
+							.attr('y', (meter.node().getBBox().height / 2) + options.meterLabelOffset.y)
 							.attr('x', '0')
 							.attr('text-anchor', 'middle')
 							.attr('class', 'meter-label meter-label-container');
@@ -389,7 +391,6 @@ module.exports = function() {
 					.attr('width', width)
 					.attr('height', options.height)
 					.classed('value-within-multiple-ranges-graph', true);
-
 
 				// Pre-process ranges
 				var paddingAndBuffer = options.padding.left + options.padding.right + (2 * options.arrowWidth) + METER_SHAPES[options.meterShape.type].getIndicatorOverflow();
@@ -434,7 +435,7 @@ module.exports = function() {
 				// Labels for modern browsers
 				// If the 'requiredFeatures' test passes, this element is displayed
 				switchElem.append('foreignObject')
-					.attr("requiredFeatures","http://www.w3.org/TR/SVG11/feature#Extensibility")
+					.attr("requiredFeatures", "http://www.w3.org/TR/SVG11/feature#Extensibility")
 					.attr('x', '0')
 					.attr('y', options.meterPosition === 'top' ? '5' : '0')
 					.attr('width', function(d) { return d.width; })
@@ -460,7 +461,6 @@ module.exports = function() {
 					.attr('d', _.partial(RANGE_END_SHAPES[options.rangeEndShape], options, 'left'))
 					.style('visibility', function(d, i) { return i === 0 ? 'visible': 'hidden'; } )
 					.attr('class', function(d) { return d.class + ' sector-rect'; });
-
 
 				rect.append('path')
 					.attr('d', _.partial(RANGE_END_SHAPES[options.rangeEndShape], options, 'right'))
@@ -534,21 +534,21 @@ module.exports = function() {
 						.style('visibility', 'visible');
 				}
 
-				if(options.meterPosition === 'top') {
+				if (options.meterPosition === 'top') {
 					//shift all sector components down so that meter fits at top
 					var meterHeight = meter.node().getBBox().height;
-					svg.selectAll('.sector-rect').attr('transform', function (d) { return translate(0, meterHeight); });
+					svg.selectAll('.sector-rect').attr('transform', function(d) { return translate(0, meterHeight); });
 
 					var fallbackLabels = svg.selectAll('.range-text-fallback');
 					fallbackLabels.each(function() {
 						var bbox = this.getBBox();
-						$(this).attr('transform', function () {
-							return translate(-bbox.width/2, meterHeight + bbox.height/4);
+						$(this).attr('transform', function() {
+							return translate(-bbox.width / 2, meterHeight + bbox.height / 4);
 						});
 					});
 
-					svg.selectAll('.sector-meaning-rect').attr('transform', function (d) { return translate(0, meterHeight + rangeRectHeight); });
-					svg.selectAll('.range-label-fallback').attr('transform', function (d) { return translate(0, meterHeight + rangeRectHeight + 5); });
+					svg.selectAll('.sector-meaning-rect').attr('transform', function(d) { return translate(0, meterHeight + rangeRectHeight); });
+					svg.selectAll('.range-label-fallback').attr('transform', function(d) { return translate(0, meterHeight + rangeRectHeight + 5); });
 				}
 			}
 
@@ -582,8 +582,8 @@ module.exports = function() {
 			function isoscelesTriangle(base, height) {
 				return '' +
 					'M' + '0' + ' ' + '0' + ' ' +
-					'L' + (base/2) + ' ' + height + ' ' +
-					'L' + (-base/2) + ' ' + height;
+					'L' + (base / 2) + ' ' + height + ' ' +
+					'L' + (-base / 2) + ' ' + height;
 			}
 
 			/**
@@ -691,7 +691,7 @@ module.exports = function() {
 					if (previousConcreteRange) {
 						domain[1] = sector.range.low + (previousConcreteRange.range.high - previousConcreteRange.range.low);
 					} else {
-						domain[1] = _.isNumber(options.domain.high) ? options.domain.high : sector.range.low + 2*(Math.abs(value-(sector.range.low)));
+						domain[1] = _.isNumber(options.domain.high) ? options.domain.high : sector.range.low + 2 * (Math.abs(value - (sector.range.low)));
 					}
 				}
 

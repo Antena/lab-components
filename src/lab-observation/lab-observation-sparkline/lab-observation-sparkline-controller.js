@@ -10,7 +10,7 @@ module.exports = function($scope) {
 		return {
 			date: obs.issued.split('T')[0],
 			value: obs.valueQuantity.value
-		}
+		};
 	}
 
 	if (observation.valueQuantity && observation.issued) {
@@ -21,13 +21,13 @@ module.exports = function($scope) {
 		var obsList = _.pluck(_.union([], observation.related), 'target');
 
 		var sorted = _.sortBy(obsList,
-			function (item) {
+			function(item) {
 				return -new Date(item.issued).getTime();
 			});
 
 		_.each(sorted, function(obs) {
 			if (obs.valueQuantity && obs.issued) {
-				values.push(extractValue(obs))
+				values.push(extractValue(obs));
 			}
 		});
 

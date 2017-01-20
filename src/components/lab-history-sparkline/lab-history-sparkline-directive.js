@@ -1,6 +1,6 @@
+'use strict';
 
-
-module.exports = function () {
+module.exports = function() {
 	return {
 		restrict: 'EA',
 		scope: {
@@ -10,5 +10,5 @@ module.exports = function () {
 		bindToController: true,
 		controllerAs: 'vm',
 		controller: 'LabHistorySparklineController'
-	}
+	};
 };

@@ -76,7 +76,7 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 
 	// Process observation histories
 	var observation = [];
-	_.each(histories.observation, function (o) {
+	_.each(histories.observation, function(o) {
 		var anObservation = _.first(o.data);
 		var config = o.config;
 		config.title = anObservation.code.coding[0].display + ' (' + anObservation.valueQuantity.units + ')';
@@ -85,24 +85,24 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 			clazz: o.class,
 			config: config,
 			data: o.data
-		})
+		});
 	});
 
 	// Process metric histories
 	var metric = [];
-	_.each(histories.metric, function (m) {
+	_.each(histories.metric, function(m) {
 		var data = [];
-		_.each(m.data, function (datum) {
+		_.each(m.data, function(datum) {
 			data.push({
 				date: datum.createdDate,
 				value: datum.value
-			})
+			});
 		});
 		metric.push({
 			title: m.title,
 			config: m.config,
 			data: data
-		})
+		});
 	});
 
 	$scope.histories = {
@@ -282,7 +282,25 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 		}
 	];
 
-	$scope.multiRangeObservations = _.map(_.union(multirangeObs, resolvedBundle.observations), function(obs) {
+	var related = _.flatten(_.map(resolvedBundle.observations, function(obs) {
+		var result = [];
+		if (obs.related) {
+			result = _.pluck(_.filter(obs.related, function(related) {
+				return related.type === "has-member" &&
+					!!related.target.valueQuantity &&
+					!!related.target.referenceRange &&
+					related.target.referenceRange.length > 0 &&
+					(!!related.target.referenceRange[0].low || !!related.target.referenceRange[0].high);
+			}), 'target');
+		} else {
+			result = [obs];
+		}
+		return result;
+	}));
+
+	var numericObs = _.flatten(related);
+
+	$scope.multiRangeObservations = _.map(_.union(multirangeObs, numericObs), function(obs) {
 		return {
 			description: obs.code.coding[0].display,
 			observation: obs

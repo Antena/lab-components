@@ -1,7 +1,7 @@
 'use strict';
 
 // @ngInject
-module.exports = function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
 
 	$locationProvider.html5Mode({
 		enabled: true,
@@ -14,26 +14,6 @@ module.exports = function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 		.state('demo', {
 			url: '/',
 			templateUrl: 'demo.html',
-			controller: 'DemoController'
-		})
-		.state('lab-diagnostic-report', {
-			url: '/lab-diagnostic-report',
-			templateUrl: 'components/lab-diagnostic-report.html',
-			controller: 'DemoController'
-		})
-		.state('lab-diagnostic-report-compact-male', {
-			url: '/lab-diagnostic-report-compact-male',
-			templateUrl: 'components/lab-diagnostic-report-compact-male.html',
-			controller: 'DemoController'
-		})
-		.state('lab-diagnostic-report-compact-female', {
-			url: '/lab-diagnostic-report-compact-female',
-			templateUrl: 'components/lab-diagnostic-report-compact-female.html',
-			controller: 'DemoController'
-		})
-		.state('lab-diagnostic-report-compact-history', {
-			url: '/lab-diagnostic-report-compact-history',
-			templateUrl: 'components/lab-diagnostic-report-compact-history.html',
 			controller: 'DemoController'
 		})
 		.state('value-within-range-graph', {
@@ -65,5 +45,5 @@ module.exports = function ($stateProvider, $urlRouterProvider, $httpProvider, $l
 			url: '/lab-history-sparkline-graph',
 			templateUrl: 'components/lab-history-sparkline-graph.html',
 			controller: 'DemoController'
-		})
+		});
 };

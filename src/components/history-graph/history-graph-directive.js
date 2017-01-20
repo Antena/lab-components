@@ -1,4 +1,5 @@
 'use strict';
+// jscs:disable requireBlocksOnNewline
 
 require("./_history-graph.scss");
 
@@ -6,7 +7,7 @@ var d3 = require('d3');
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function () {
+module.exports = function() {
 
 	/**
 	 * Detemrines whether a value is a number.
@@ -33,12 +34,13 @@ module.exports = function () {
 		"months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
 		"shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
 	});
+
 	var customTimeFormat = SPANISH.timeFormat.multi([
 		[".%L", function(d) { return d.getMilliseconds(); }],
 		[":%S", function(d) { return d.getSeconds(); }],
 		["%I:%M", function(d) { return d.getMinutes(); }],
 		["%I %p", function(d) { return d.getHours(); }],
-		["%d", function(d) { return d.getDate() != 1 }],
+		["%d", function(d) { return d.getDate() !== 1; }],
 		["%b", function(d) { return d.getMonth(); }],
 		["%Y", function() { return true; }]
 	]);
@@ -52,7 +54,7 @@ module.exports = function () {
 		controller: 'HistoryGraphController',
 		controllerAs: '$ctrl',
 		restrict: 'A',
-		link: function ($scope, element) {
+		link: function($scope, element) {
 
 			// Default config
 			var defaults = {
@@ -111,7 +113,7 @@ module.exports = function () {
 				data.push({
 					date: d3.time.day(formatDate.parse($scope.data[i].date)),
 					value: $scope.data[i].value
-				})
+				});
 			}
 
 			// Dimensions
@@ -123,10 +125,10 @@ module.exports = function () {
 				.range([0, width]);
 
 			// Y scale
-			var yDomain = d3.extent(data, function (d) { return d.value; });
+			var yDomain = d3.extent(data, function(d) { return d.value; });
 			if ($scope.ranges.length > 0) {
-				var lowerLimit = d3.min($scope.ranges[0].values, function (d) { return d.high }),
-					higherLimit = d3.max($scope.ranges[$scope.ranges.length-1].values, function (d) { return d.low });
+				var lowerLimit = d3.min($scope.ranges[0].values, function(d) { return d.high; }),
+					higherLimit = d3.max($scope.ranges[$scope.ranges.length - 1].values, function(d) { return d.low; });
 				yDomain = [Math.min(yDomain[0], lowerLimit), Math.max(yDomain[1], higherLimit)];
 			}
 			var amplitude = Math.max(yDomain[1] - yDomain[0], config.minAmplitude);
@@ -165,8 +167,8 @@ module.exports = function () {
 
 			// Line function
 			var line = d3.svg.line()
-				.x(function (d) { return x(d.date); })
-				.y(function (d) { return y(d.value); })
+				.x(function(d) { return x(d.date); })
+				.y(function(d) { return y(d.value); })
 				.interpolate(config.interpolate);
 
 			var zoom = d3.behavior.zoom()
@@ -188,8 +190,8 @@ module.exports = function () {
 			rangesGroup.selectAll(".range")
 				.data(stack($scope.ranges))
 				.enter().append("path")
-				.attr("class", function (d) {return 'range range-' + d.code; })
-				.style("fill", function (d) { if (config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
+				.attr("class", function(d) {return 'range range-' + d.code; })
+				.style("fill", function(d) { if (config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
 
 			// Line chart
 			if (config.chartType === "line") {
@@ -211,7 +213,7 @@ module.exports = function () {
 				svg.selectAll(".bar")
 					.data(data)
 					.enter().append('rect')
-					.attr("class", "bar")
+					.attr("class", "bar");
 			}
 
 			if (data.length > 0) {
@@ -221,7 +223,7 @@ module.exports = function () {
 					.attr('class', 'current-value')
 					.append("xhtml:div")
 					.attr('class', 'current-value-label')
-					.html(function (d) { return '' +
+					.html(function(d) { return '' +
 						'<div class="current-value-date">' + d3.time.format('%d/%m/%y')(d.date) + '</div>' +
 						'<div class="current-value-value">' + d.value + '</div>';
 					});
@@ -237,8 +239,8 @@ module.exports = function () {
 			svg.append("text")
 				.attr("width", width)
 				.attr("height", height)
-				.attr("x", width/2)
-				.attr("y", height/2)
+				.attr("x", width / 2)
+				.attr("y", height / 2)
 				.attr("class", "no-data")
 				.text(config.noDataMessage)
 				.style("text-anchor", "middle")
@@ -256,10 +258,9 @@ module.exports = function () {
 				.attr("transform", "translate(0," + height + ")");
 
 			// y-Axis
-			var gy = svg.append("g")
+			svg.append("g")
 				.attr("class", "y axis")
 				.call(yAxis);
-
 
 			/**
 			 * Draws all dynamic elements of the chart.
@@ -306,7 +307,7 @@ module.exports = function () {
 
 				// Redraw bars
 				var dayWidth = x(new Date(2000, 1, 2)) - x(new Date(2000, 1, 1)),
-					barWidth = Math.max(Math.floor(dayWidth) - 2*config.barMargin, 1),
+					barWidth = Math.max(Math.floor(dayWidth) - 2 * config.barMargin, 1),
 					dx = (dayWidth - barWidth) / 2;
 
 				svg.selectAll(".bar")
@@ -319,14 +320,14 @@ module.exports = function () {
 				// Redraw current value label
 				svg.select(".current-value").transition()
 					.attr('x', function(d) {
-						var base = x(d.date) - this.clientWidth/2,
+						var base = x(d.date) - this.clientWidth / 2,
 							overflow = base + this.clientWidth - width;
 						return base - (overflow > 0 ? overflow : 0);
 					})
 					.attr('y', function(d) {
 						var base = y(d.value) - this.clientHeight - config.labelOffset,
 							overflow = 0 - base;
-						return overflow > 0 ? base + this.clientHeight + 2*config.labelOffset : base;
+						return overflow > 0 ? base + this.clientHeight + 2 * config.labelOffset : base;
 					});
 			}
 
@@ -335,11 +336,11 @@ module.exports = function () {
 			 */
 			function pan() {
 				// Limit pan
-				if (zoom.translate()[0] < 0) { zoom.translate([0, zoom.translate()[1]]) }
+				if (zoom.translate()[0] < 0) { zoom.translate([0, zoom.translate()[1]]); }
 				svg.select(".x.axis").call(xAxis);
 				svg.select('.line').attr("d", line(data));
 				svg.selectAll(".dot").attr("cx", function(d) { return x(d.date); });
-				svg.selectAll(".bar").attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; })
+				svg.selectAll(".bar").attr("transform", function(d) { return "translate(" + x(d.date) + ",0)"; });
 				svg.selectAll('.range').attr("d", function(d) { return area(d.values); });
 				svg.select(".current-value").attr("transform", "translate(" + zoom.translate()[0] + ",0)");
 				svg.select(".no-data").attr("visibility", dataAvailable() ? "hidden" : "visible");
@@ -358,7 +359,7 @@ module.exports = function () {
 					fromTime = x.domain()[0].getTime(),
 					toTime = x.domain()[1].getTime();
 
-				for (var i=0; i<data.length; i++) {
+				for (var i = 0; i < data.length; i++) {
 					if (data[i].value > 0 && data[i].date.getTime() >= fromTime && data[i].date.getTime() <= toTime) {
 						result = true;
 						break;
@@ -375,7 +376,7 @@ module.exports = function () {
 			d3.select(window).on('resize.' + $scope.$id, draw);
 
 			// Watch for a change in the time controls
-			$scope.$watch('selectedControl', function (control) {
+			$scope.$watch('selectedControl', function(control) {
 				timeInterval = control;
 				draw();
 			});

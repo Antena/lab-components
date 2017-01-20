@@ -98,7 +98,6 @@
  </example>
  */
 
-
 require("./_lab-observation-multirange.scss");
 
 // @ngInject
@@ -113,6 +112,9 @@ module.exports = function() {
 		templateUrl: require('./lab-observation-multirange-graph.html'),
 		bindToController: true,
 		controllerAs: 'vm',
-		controller: 'LabObservationMultirangeController'
+		controller: 'LabObservationMultirangeController',
+		link: function($scope) {
+			$scope.init();
+		}
 	};
 };

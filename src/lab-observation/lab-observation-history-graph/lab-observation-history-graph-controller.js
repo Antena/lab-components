@@ -3,7 +3,7 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function ($scope, $filter, FhirReferenceRangeConverterService) {
+module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
 	function obtainNumericValue(obs) {
 		var numericValue = obs.valueQuantity.value;
 		var precisionExtension = _.findWhere(obs.extension, {url: "http://www.cdrossi.com/precision"});
@@ -24,7 +24,7 @@ module.exports = function ($scope, $filter, FhirReferenceRangeConverterService) 
 				code: range.meaning.coding[0].code,
 				low: range.low ? range.low.value : null,
 				high: range.high ? range.high.value : null
-			})
+			});
 		});
 
 		return ranges;
@@ -33,16 +33,14 @@ module.exports = function ($scope, $filter, FhirReferenceRangeConverterService) 
 	// Data points
 	var data = [];
 	var filtered = _.filter($scope.observationList, function(obs) {
-		return obs.resourceType == 'Observation' && !_.isEmpty(obs.valueQuantity) && !_.isEmpty(obs.issued);
+		return obs.resourceType === 'Observation' && !_.isEmpty(obs.valueQuantity) && !_.isEmpty(obs.issued);
 	});
 
 	_.each(filtered, function(obs) {
 		var datum = {};
 		datum.date = obs.issued;
 
-		var numericValue = obtainNumericValue(obs);
-
-		datum.value = numericValue;
+		datum.value = obtainNumericValue(obs);
 		datum.ranges = processReferenceRange(obs);
 
 		data.push(datum);

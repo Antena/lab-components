@@ -119,7 +119,7 @@
 			$scope.example.json = angular.toJson($scope.example.observation);
 
 			$scope.$watch('example.json', function(newValue) {
-				if(newValue) {
+				if (newValue) {
 					$scope.example.observation = angular.fromJson(newValue);
 				}
 			});
@@ -211,12 +211,12 @@ module.exports = function(FhirRangeService) {
 
 				}
 
-				if($scope.patientAgeInYears || $scope.patientGender) {
+				if ($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
 						$scope.observation.referenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
 					}
 
-					if($scope.observation.history) {
+					if ($scope.observation.history) {
 						_.each($scope.observation.history, function(historicObs) {
 							if (historicObs.referenceRange && historicObs.referenceRange.length) {
 								historicObs.referenceRange = FhirRangeService.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
@@ -229,13 +229,12 @@ module.exports = function(FhirRangeService) {
 			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
 			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
 
-
-			if(_.isUndefined(attrs.shouldShowMethod)) {
+			if (_.isUndefined(attrs.shouldShowMethod)) {
 				$scope.doShowMethod = _.constant(true);
 			} else {
 				$scope.doShowMethod = function(method) {
 					return $scope.shouldShowMethod({method: method});
-				}
+				};
 			}
 		}
 	};

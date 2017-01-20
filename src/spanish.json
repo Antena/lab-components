@@ -1,31 +1,12 @@
 {
   "LAB": {
     "METHOD": "Método",
-    "STATUS": "Estado",
     "NOTES": "Notas",
     "REFERENCE": "Referencia",
     "HISTORIC": "Historia",
     "RESULT": "Resultado",
     "MEANING": "Interpretación",
-    "PATIENT": "Paciente",
-    "ORGANIZATION": "Organización",
     "DATE": "Fecha",
-    "REPORT_STATUS": {
-      "REGISTERED": "Registrado",
-      "REGISTERED_DESCRIPTION": "El reporte fue registrado, pero no posee contenido aún",
-      "PARTIAL": "Parcial",
-      "PARTIAL_DESCRIPTION": "Los datos en este reporte pueden estar incompletos o pendientes de verificación",
-      "FINAL": "Final",
-      "FINAL_DESCRIPTION": "Completo y verificado por una autoridad pertinente",
-      "CORRECTED": "Corregido",
-      "CORRECTED_DESCRIPTION": "Nuevos datos fueron agregados luego de finalizado, pero ningún contenido pre-existente fue modificado. Nuevamente verificado",
-      "APPENDED": "Corregido",
-      "APPENDED_DESCRIPTION": "Nuevos datos fueron agregados luego de finalizado, pero ningún contenido pre-existente fue modificado. Nuevamente verificado",
-      "CANCELLED": "Cancelado",
-      "CANCELLED_DESCRIPTION": "El reporte no está disponible",
-      "ENTERED_IN_ERROR": "Con errores",
-      "ENTERED_IN_ERROR_DESCRIPTION": "El reporte fue retirado posterior a haber estado finalizado"
-    },
     "REFERENCE_RANGE_MEANING": {
       "HIGH": "Elevado",
       "REGULAR": "Normal",

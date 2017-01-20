@@ -85,7 +85,7 @@ var ngModule = angular.module('lab-components', [
 	require('./common/index'),
 	require('./mappings/index'),
 	require('./components/index'),
-	require('./lab-diagnostic-report/index'),
+	require('./lab-observation/index'),
 	require('angular-fhir-utils')
 ]);
 

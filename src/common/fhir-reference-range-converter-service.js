@@ -10,9 +10,6 @@
  *
  */
 
-var _ = require('underscore');
-var lodash = require('lodash');
-
 // @ngInject
 module.exports = function() {
 
@@ -75,7 +72,7 @@ module.exports = function() {
 			}
 		};
 
-		if(domain) {
+		if (domain) {
 			firstRange.low = {
 				value: domain.low,
 				units: originalRange.low.units,
@@ -183,7 +180,7 @@ module.exports = function() {
 		convertToMultipleRangesWithDomain: function(observation, domain) {
 			var ranges;
 
-			if(shouldFillMissingRanges(observation)) {
+			if (shouldFillMissingRanges(observation)) {
 				ranges = fillMissingRanges(observation, domain);
 			} else {
 				ranges = observation.referenceRange;
