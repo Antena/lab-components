@@ -22,7 +22,7 @@ var config = {
 			{ test: /\.json$/, loader: "json-loader" },
 			{
 				test: /\.html$/,
-				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './src/')) + '/!html'
+				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './')) + '/!html'
 			},
 			{
 				test: /\.scss$/,

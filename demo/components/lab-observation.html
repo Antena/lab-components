@@ -1,0 +1,31 @@
+<div>
+	<h2>Lab Observation</h2>
+
+	<div ng-repeat="observation in allObservations" class="demo-observation-wrapper">
+		<div class="observation-gallery">
+			<div lab-observation
+				 id="{{ observation.id }}"
+				 class="lab-observation"
+				 observation="observation"
+				 actions="observation.actions"
+				 header-actions="observation.headerActions"
+				 view-only="false"
+				 compact-mode="true"
+				 multi-range-mode="true"
+				 hide-title="false"
+				 patient-age-in-years="35"
+				 patient-gender="female"
+				 should-show-method="true">
+
+				<div lab-observation-history-graph
+					 ng-if="observation.showHistory && !!observation.history"
+					 class="observation-transcluded-content"
+					 observation-list="observation.history">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

@@ -6,15 +6,15 @@
 		<div class="observation-method"><span ng-if="doShowMethod(observation.method)">{{ observation.method | fhirCodeableConcept | optional | capitalize:true }}</span></div>
 		<div ng-if="!vm.viewOnly && headerActions.length" class="observation-gallery-header-actions">
 			<a ng-repeat="headerAction in headerActions"
-			   ng-if="headerAction.click && (!headerAction.check || headerAction.check(observation))"
+			   ng-if="(headerAction.click || headerAction.popoverConfig) && (!headerAction.check || headerAction.check(observation))"
 			   class="observation-gallery-header-action"
 			   ng-class="{ 'active' : headerAction.isActive(observation), 'hovered': hovered === observation.id || headerAction.showAsHovered(observation) }"
 			   ng-mouseover="onActionHover(observation)"
 			   ng-mouseleave="onActionLeave()"
 			   ng-click="onActionClick(headerAction, observation, $event)">
 
-				<span action-preview="headerAction.featurePreview"
-					  action-preview-open="headerAction.featurePreviewOpen">
+				<span popover-on-demand="headerAction.popoverConfig"
+					  popover-on-demand-open="headerAction.popoverOpen">
 					{{ (headerAction.isActive(observation) ? (hovered === observation.id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }}
 				</span>
 				<span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}"

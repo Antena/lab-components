@@ -12,3 +12,5 @@ server.listen(port, function(err) {
 	}
 	console.log('Server listening on port', port);
 });
+
+module.exports = server;

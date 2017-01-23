@@ -2,6 +2,7 @@
 
 var path = require('path');
 var VisualRegressionCompare = require('wdio-visual-regression-service/compare');
+var app;
 
 function getScreenshotName(basePath) {
 	return function(context) {
@@ -70,7 +71,7 @@ exports.config = {
 			referenceName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/reference')),
 			screenshotName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/current')),
 			diffName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/diff')),
-			misMatchTolerance: 0.09
+			misMatchTolerance: 1
 		}),
 		viewportChangePause: 300,
 		widths: [320, 640, 1024],
@@ -85,5 +86,19 @@ exports.config = {
 
 	reporters: ['dot', 'spec'],
 
-	services: ['selenium-standalone', 'visual-regression']
+	services: ['selenium-standalone', 'visual-regression'],
+
+	// =====
+	// Hooks
+	// =====
+
+	// Gets executed once before all workers get launched.
+	onPrepare: function (config, capabilities) {
+		app = require('./server');
+	},
+
+	onComplete: function (exitCode) {
+		console.log("exitCode = ", exitCode);	//TODO (denise) remove log
+		app.close();
+	}
 };

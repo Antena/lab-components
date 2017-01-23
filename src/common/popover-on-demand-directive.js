@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc directive
- * @name lab-components.common.directive:actionPreview
+ * @name lab-components.common.directive:popoverOnDemand
  * @restrict A
  * @scope
  *
@@ -11,7 +11,7 @@
  * Injects a popover on the host element, with the given configuration and trigger.
  *
  * @element ANY
- * @param {Object} actionPreview The configuration object for the action preview.
+ * @param {Object} popoverOnDemand The configuration object for the action preview.
  * The object must have either a 'templateUrl' or a 'content' property which defines the content of the popover.
  *
  * For example:
@@ -31,7 +31,7 @@
  * }
  * ```
  *
- * @param {Boolean} actionPreviewOpen An angular expression (which will be casted to boolean)
+ * @param {Boolean} popoverOnDemandOpen An angular expression (which will be cast to boolean)
  * 									   to determine if the popover should be open or closed.
  *
  *
@@ -39,27 +39,30 @@
 
 var _ = require('underscore');
 
+require('./popover-on-demand.scss');
+
 // @ngInject
 module.exports = function($compile) {
 
 	var CONFIG_DEFAULTS = {
 		title: '',
 		placement: 'left',
-		delay: 50
+		delay: 50,
+		trigger: 'click'
 	};
 
 	return {
 		restrict: 'A',
 		link: function($scope, $element, attrs) {
 
-			var config = $scope.$eval(attrs.actionPreview);
+			var config = $scope.$eval(attrs.popoverOnDemand);
 
 			if (config && (!!config.templateUrl || !!config.content)) {
 
 				var options = _.defaults({}, config, CONFIG_DEFAULTS);
 
 				if (!!config.templateUrl) {
-					$element.attr('uib-popover-template', String(attrs.actionPreview) + '.templateUrl');
+					$element.attr('uib-popover-template', String(attrs.popoverOnDemand) + '.templateUrl');
 				} else {
 					$element.attr('uib-popover', config.content);
 				}
@@ -67,13 +70,15 @@ module.exports = function($compile) {
 				$element.attr('popover-title', options.title);
 				$element.attr('popover-placement', options.placement);
 				$element.attr('popover-popup-delay', options.delay);
-				$element.attr('popover-is-open', '!!' + attrs.actionPreviewOpen);
-				$element.attr('popover-enable', '!!' + attrs.actionPreview + ' && !!' + attrs.actionPreviewOpen);
+				$element.attr('popover-is-open', '!!' + attrs.popoverOnDemandOpen);
+				if (options.trigger === 'none') {
+					$element.attr('popover-enable', '!!' + attrs.popoverOnDemand + ' && !!' + attrs.popoverOnDemandOpen);
+				}
 				$element.attr('popover-append-to-body', 'true');
-				$element.attr('popover-trigger', 'none');
+				$element.attr('popover-trigger', "'" + options.trigger + "'");
 
-				$element.removeAttr('action-preview');
-				$element.removeAttr('action-preview-open');
+				$element.removeAttr('popover-on-demand');
+				$element.removeAttr('popover-on-demand-open');
 
 				var $e = $compile($element[0].outerHTML)($scope);
 				$element.replaceWith($e);

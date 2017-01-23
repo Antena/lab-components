@@ -18,6 +18,23 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 		$scope.fullWidth = !!$location.search().fullWidth;
 	});
 
+	$scope.popover1 = {
+		config: {
+			templateUrl: require('./components/demo-popover-template-1.html'),
+			placement: 'bottom',
+			title: 'Cheese Ipsum'
+		}
+	};
+
+	$scope.popover2 = {
+		config: {
+			templateUrl: require('./components/demo-popover-template-2.html'),
+			placement: 'bottom',
+			title: 'Cat Ipsum',
+			trigger: 'none'
+		}
+	};
+
 	var resolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(fhirBundle);
 	var anotherResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(anotherFhirBundle);
 	var historyResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(historyBundle);
@@ -71,6 +88,7 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 		return result;
 	});
 
+
 	// Observation history
 	var histories = require('./observation-history.json');
 
@@ -108,41 +126,6 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	$scope.histories = {
 		observation: observation,
 		metric: metric
-	};
-
-	$scope.demo = {
-		observations: observations,
-		rawObservations: resolvedBundle.observations,
-		order: resolvedBundle.diagnosticOrder,
-		status: resolvedBundle.diagnosticReport.status,
-		reportDate: resolvedBundle.diagnosticReport.issued,
-		patient: resolvedBundle.diagnosticReport.subject,
-		organization: resolvedBundle.diagnosticReport.performer,
-		dateFormat: "DD-MM-YYYY",
-		observationHistoryService: LabObservationService.getHistory
-	};
-
-	$scope.demo2 = {
-		observations: observations,
-		rawObservations: anotherResolvedBundle.observations,
-		order: anotherResolvedBundle.diagnosticOrder,
-		status: anotherResolvedBundle.diagnosticReport.status,
-		reportDate: anotherResolvedBundle.diagnosticReport.issued,
-		patient: anotherResolvedBundle.diagnosticReport.subject,
-		organization: anotherResolvedBundle.diagnosticReport.performer,
-		dateFormat: "DD-MM-YYYY",
-		observationHistoryService: LabObservationService.getHistory
-	};
-
-	$scope.demo3 = {
-		rawObservations: historyResolvedBundle.observations,
-		order: historyResolvedBundle.diagnosticOrder,
-		status: historyResolvedBundle.diagnosticReport.status,
-		reportDate: historyResolvedBundle.diagnosticReport.issued,
-		patient: historyResolvedBundle.diagnosticReport.subject,
-		organization: historyResolvedBundle.diagnosticReport.performer,
-		dateFormat: "DD-MM-YYYY",
-		observationHistoryService: LabObservationService.getHistory
 	};
 
 	$scope.cards = [
@@ -306,6 +289,78 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 			observation: obs
 		};
 	});
+
+	var ungrouped = _.flatten(_.map(historyResolvedBundle.observations, function(obs) {
+		var result = [];
+		if (obs.related) {
+			result = _.pluck(_.filter(obs.related, function(related) {
+				return related.type === "has-member";
+			}), 'target');
+		} else {
+			result = [obs];
+		}
+		return result;
+	}));
+
+	var wHistoryObservations = _.map(ungrouped, function(observation) {
+		var result = lodash.cloneDeep(observation);
+
+		var headerAction;
+
+		if(!!observation.valueQuantity) {
+			headerAction = {
+				activeLabel: "Doing it",
+				inactiveLabel: "Do it",
+				activeAndHoveredLabel: "Stop doing it",
+
+				icon: "icon",
+				activeIcon: "icon-check",
+				inactiveIcon: "icon-more",
+
+				click: function(observation) {
+					observation.doingIt = !observation.doingIt;
+				},
+				check: function (observation) {
+					return !!observation.valueQuantity;
+				},
+				isActive: function (observation) {
+					return !!observation.doingIt;
+				},
+				showAsHovered: function (observation) {
+					return false;
+				}
+			};
+		} else {
+			headerAction = {
+				activeLabel: "Show me",
+				inactiveLabel: "Show me",
+				activeAndHoveredLabel: "Show me",
+
+				icon: "icon",
+				activeIcon: "icon-check",
+				inactiveIcon: "icon-more",
+
+				popoverConfig: {
+					templateUrl: require('./components/demo-popover-template-2.html'),
+					title: 'Cat Ipsum'
+				},
+				check: function (observation) {
+					return true;
+				}
+			};
+		}
+
+		result.headerActions = [
+			headerAction
+		];
+
+		return result;
+	});
+
+
+	$scope.allObservations = wHistoryObservations; //_.pluck($scope.multiRangeObservations, 'observation');
+
+	console.log("$scope.allObservations = ", $scope.allObservations);	//TODO (denise) remove log
 
 	$scope.ranges = [
 		{

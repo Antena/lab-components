@@ -16,6 +16,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 			templateUrl: 'demo.html',
 			controller: 'DemoController'
 		})
+		.state('popover-on-demand', {
+			url: '/popover-on-demand',
+			templateUrl: 'components/popover-on-demand.html',
+			controller: 'DemoController'
+		})
 		.state('value-within-range-graph', {
 			url: '/value-within-range-graph',
 			templateUrl: 'components/value-within-range-graph.html',
@@ -44,6 +49,11 @@ module.exports = function($stateProvider, $urlRouterProvider, $httpProvider, $lo
 		.state('lab-history-sparkline-graph', {
 			url: '/lab-history-sparkline-graph',
 			templateUrl: 'components/lab-history-sparkline-graph.html',
+			controller: 'DemoController'
+		})
+		.state('lab-observation', {
+			url: '/lab-observation',
+			templateUrl: 'components/lab-observation.html',
 			controller: 'DemoController'
 		});
 };

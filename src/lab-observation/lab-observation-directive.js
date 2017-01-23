@@ -198,7 +198,9 @@ module.exports = function(FhirRangeService) {
 			};
 
 			$scope.onActionClick = function(action, observation, $event) {
-				action.click(observation, action);
+				if (_.isFunction(action.click)) {
+					action.click(observation, action);
+				}
 				$scope.onActionLeave();
 			};
 

@@ -13,7 +13,7 @@ ngModule.filter('optionalNumber', require('./optional-number-filter'));
 ngModule.filter('patientAgeAtReportDate', require('./patient-age-at-report-filter'));
 ngModule.filter('toStatusKey', require('./to-status-key-filter'));
 
-ngModule.directive('actionPreview', require('./action-preview-directive'));
+ngModule.directive('popoverOnDemand', require('./popover-on-demand-directive'));
 
 ngModule.service('FhirReferenceRangeConverterService', require('./fhir-reference-range-converter-service'));
 

@@ -1,0 +1,11 @@
+<div style="padding: 50px;">
+	<h3>Popover On Demand</h3>
+	<div style="display: inline-block; margin-right: 20px;">
+		<span class="demo-popover-trigger" popover-on-demand="popover1.config" popover-on-demand-open="popover1.open">Click me for Cheese Ipsum</span>
+	</div>
+	<div style="display: inline-block;">
+		<span popover-on-demand="popover2.config" popover-on-demand-open="popover2.open">External trigger</span>
+		<button type="button" class="demo-popover-external-trigger" ng-click="popover2.open = !popover2.open">Click here for Cat Ipsum</button>
+		<span>{{ !!popover2.config && !!popover2.open }}</span>
+	</div>
+</div>
