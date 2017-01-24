@@ -98,7 +98,6 @@ exports.config = {
 	},
 
 	onComplete: function (exitCode) {
-		console.log("exitCode = ", exitCode);	//TODO (denise) remove log
 		app.close();
 	}
 };

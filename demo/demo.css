@@ -114,4 +114,15 @@
 
 .demo-observation-wrapper {
 	margin-bottom: 20px;
+	border: 2px dashed rgba(255, 153, 0, 0.4);
+}
+
+.demo-observation-wrapper .demo-code {
+	text-align: center;
+	padding: 5px;
+	color: #ff9601;
+}
+
+.demo-observation-wrapper .observation-gallery {
+	margin: 10px;
 }

@@ -1,26 +1,9 @@
 @import "../../colors";
 @import "../../variables";
+@import "../../colors";
 @import "~susy/sass/susy";
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins/vendor-prefixes";
 
-
-$range-color-great: map-get($interpretation-colors, great);
-$range-color-good: map-get($interpretation-colors, good);
-$range-color-so-so: map-get($interpretation-colors, so-so);
-$range-color-bad: map-get($interpretation-colors, bad);
-$range-color-danger: map-get($interpretation-colors, danger);
-$range-color-unknown: map-get($interpretation-colors, unknown);
-
-$range-color-unknown-on: map-get($interpretation-colors, ambiguous-on);
-$range-color-unknown-off: map-get($interpretation-colors, ambiguous-off);
-
-$range-color-unknown-7: map-get($unknown-interpretation-colors, darkest);
-$range-color-unknown-6: map-get($unknown-interpretation-colors, darker);
-$range-color-unknown-5: map-get($unknown-interpretation-colors, dark);
-$range-color-unknown-4: map-get($unknown-interpretation-colors, regular);
-$range-color-unknown-3: map-get($unknown-interpretation-colors, light);
-$range-color-unknown-2: map-get($unknown-interpretation-colors, lighter);
-$range-color-unknown-1: map-get($unknown-interpretation-colors, lightest);
 
 $meter-main-color: black;
 $meter-contrasting-color: white;

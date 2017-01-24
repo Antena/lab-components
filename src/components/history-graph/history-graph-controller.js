@@ -18,7 +18,8 @@ module.exports = function($scope) {
 		_.each($scope.data[0].ranges, function(r) {
 			ranges.push({
 				code: r.code,
-				values: []
+				values: [],
+				clazz: r.clazz
 			});
 		});
 		_.each($scope.data, function(datum) {

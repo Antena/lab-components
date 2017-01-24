@@ -1,0 +1,70 @@
+@import "../../colors";
+
+.lab-observation-history-graph {
+
+	.chart .range {
+		&.range-great {
+			fill: $range-color-great;
+		}
+
+		&.range-good {
+			fill: $range-color-good;
+		}
+
+		&.range-so-so {
+			fill: $range-color-so-so;
+		}
+
+		&.range-bad {
+			fill: $range-color-bad;
+		}
+
+		&.range-danger {
+			fill: $range-color-danger;
+		}
+
+		&.range-catch-all {
+			fill: $range-color-unknown;
+		}
+
+		&.range-ambiguous-indeterminate {
+			fill: $range-color-unknown;
+		}
+
+		&.range-ambiguous-positive {
+			fill: $range-color-unknown-on;
+		}
+
+		&.range-ambiguous-negative {
+			fill: $range-color-unknown-off;
+		}
+
+		&.range-unknown-7 {
+			fill: $range-color-unknown-7;
+		}
+
+		&.range-unknown-6 {
+			fill: $range-color-unknown-6;
+		}
+
+		&.range-unknown-5 {
+			fill: $range-color-unknown-5;
+		}
+
+		&.range-unknown-4 {
+			fill: $range-color-unknown-4;
+		}
+
+		&.range-unknown-3 {
+			fill: $range-color-unknown-3;
+		}
+
+		&.range-unknown-2 {
+			fill: $range-color-unknown-2;
+		}
+
+		&.range-unknown-1 {
+			fill: $range-color-unknown-1;
+		}
+	}
+}

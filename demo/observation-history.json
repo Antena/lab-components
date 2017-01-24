@@ -1,6 +1,332 @@
 {
   "observation": [
     {
+      "title": "anti-HCV",
+      "class": "demo-history-antihcv",
+      "config": {
+        "yDomain": { "from": 0, "to": 2 },
+        "yAxisTicks": { "count": 8 },
+        "timeInterval": "1y"
+      },
+      "data": [
+        {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/tests",
+                "code": "P.3023",
+                "display": "anti-HCV"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 1.2,
+            "units": "COI",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/dL"
+          },
+          "issued": "2016-03-15T10:00:00.000-03:00",
+          "referenceRange": [
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "high": {
+                "value": 0.91,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "NR"
+                  }
+                ]
+              }
+            },
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "low": {
+                "value": 0.91,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "high": {
+                "value": 0.99,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "IND"
+                  }
+                ]
+              }
+            },
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "low": {
+                "value": 0.99,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "RR"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/tests",
+                "code": "P.3023",
+                "display": "anti-HCV"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 0.5,
+            "units": "COI",
+            "system": "http://unitsofmeasure.org",
+            "code": "mg/dL"
+          },
+          "issued": "2016-05-03T09:30:00.000-03:00",
+          "referenceRange": [
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "high": {
+                "value": 0.91,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "NR"
+                  }
+                ]
+              }
+            },
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "low": {
+                "value": 0.91,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "high": {
+                "value": 0.99,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "IND"
+                  }
+                ]
+              }
+            },
+            {
+              "modifierExtension": [
+                {
+                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
+                  "valuePeriod": {
+                    "start": "2013-01-01T00:00:00"
+                  }
+                }
+              ],
+              "low": {
+                "value": 0.99,
+                "units": "COI",
+                "system": "http://unitsofmeasure.org",
+                "code": "COI"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "RR"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "fake",
+      "class": "demo-history-fake",
+      "config": {
+        "yDomain": { "from": 0, "to": 100 },
+        "yAxisTicks": { "count": 8 },
+        "timeInterval": "1y"
+      },
+      "data": [
+        {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/fake",
+                "code": "fake",
+                "display": "FAKE"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 13,
+            "units": "lies",
+            "system": "http://www.cdrossi.com/units",
+            "code": "lies"
+          },
+          "issued": "2016-03-15T10:00:00.000-03:00",
+          "referenceRange": [
+            {
+              "high": {
+                "value": 50,
+                "units": "lies",
+                "system": "http://www.cdrossi.com/units",
+                "code": "lies"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://www.fake.com/0078",
+                    "code": "LIKE"
+                  }
+                ]
+              }
+            },
+            {
+              "low": {
+                "value": 50,
+                "units": "lies",
+                "system": "http://www.cdrossi.com/units",
+                "code": "lies"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://www.fake.com/0078",
+                    "code": "DISLIKE"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "resourceType": "Observation",
+          "code": {
+            "coding": [
+              {
+                "system": "http://www.cdrossi.com/fake",
+                "code": "fake",
+                "display": "FAKE"
+              }
+            ]
+          },
+          "valueQuantity": {
+            "value": 67,
+            "units": "lies",
+            "system": "http://www.cdrossi.com/units",
+            "code": "lies"
+          },
+          "issued": "2016-03-15T10:00:00.000-03:00",
+          "referenceRange": [
+            {
+              "high": {
+                "value": 50,
+                "units": "lies",
+                "system": "http://www.cdrossi.com/units",
+                "code": "lies"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://www.fake.com/0078",
+                    "code": "LIKE"
+                  }
+                ]
+              }
+            },
+            {
+              "low": {
+                "value": 50,
+                "units": "lies",
+                "system": "http://www.cdrossi.com/units",
+                "code": "lies"
+              },
+              "meaning": {
+                "coding": [
+                  {
+                    "system": "http://www.fake.com/0078",
+                    "code": "DISLIKE"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "Hemoglobin: hardwired y domain",
       "class": "demo-history-hemoglobina",
       "config": {
@@ -272,7 +598,7 @@
       "title": "Weight: real life example from Fitbit integration",
       "config": {
         "title": "Peso (kg)",
-        "dateFormat": "%Y-%m-%dT%H:%M:%S.%LZ",
+        "dateFormat": "%Y-%m-%dT%H:%M:%S.%L%Z",
         "timeInterval": "3m",
         "timeControls": "1w 1m 3m 6m 1y",
         "interpolate": "cardinal"

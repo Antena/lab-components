@@ -1,5 +1,7 @@
 'use strict';
 
+require('./lab-observation-history-graph.scss');
+
 // @ngInject
 module.exports = function() {
 

@@ -214,19 +214,24 @@ module.exports = function FhirMappingsProvider() {
 
 	function filterAndMergeMappings(defaults, mappings, mergeWithDefaults) {
 		var result = {};
-		if (mappings && _.isObject(mappings)) {
-			var filteredMappingKeys = _.filter(_.keys(mappings), function(system) {
-				var systemMap = mappings[system];
-				var valid = _.isObject(systemMap) && _.every(_.values(systemMap), function(className) {
-						return _.isString(className);
-					});
-				return valid ? system : null;
-			});
+		if (mappings) {
+			if(_.isArray(mappings)) {
+				result = mergeWithDefaults ? _.union(defaults, mappings) : mappings;
+			} else if (_.isObject(mappings)) {
+				var filteredMappingKeys = _.filter(_.keys(mappings), function (system) {
+					var systemMap = mappings[system];
+					var valid = _.isObject(systemMap) && _.every(_.values(systemMap), function (className) {
+							return _.isString(className);
+						});
+					return valid ? system : null;
+				});
 
-			var filteredMappings = _.pick(mappings, _.compact(filteredMappingKeys));
+				var filteredMappings = _.pick(mappings, _.compact(filteredMappingKeys));
 
-			result = mergeWithDefaults ? _.extend({}, defaults, filteredMappings) : filteredMappings;
+				result = mergeWithDefaults ? _.extend({}, defaults, filteredMappings) : filteredMappings;
+			}
 		}
+
 		return result;
 	}
 

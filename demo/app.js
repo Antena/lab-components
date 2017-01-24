@@ -31,6 +31,20 @@ app.service('LabObservationService', function() {
 	};
 });
 
+
+// @ngInject
+app.config(function(fhirMappingsProvider) {
+	fhirMappingsProvider.setCodeScale2ClassNameMappings([
+		{
+			codes: ['LIKE', 'DISLIKE'],
+			classMap: {
+				'LIKE': 'range-unknown-6',
+				'DISLIKE': 'range-unknown-2'
+			}
+		}
+	], true);
+});
+
 app.controller('DemoController', require('./demo-controller'));
 
 // angular.element(document).ready(function() {

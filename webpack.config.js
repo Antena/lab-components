@@ -39,7 +39,7 @@ var config = {
 		alias: {
 			'angular-translate': 'angular-translate/dist/angular-translate.min.js',
 			duScroll: 'angular-scroll/angular-scroll.min.js',
-			d3: 'd3/d3.min.js',
+			// d3: 'd3/d3.min.js',
 			jquery: 'jquery/dist/jquery.min.js',
 			moment: 'moment/moment.js',
 			underscore: 'underscore/underscore-min.js',

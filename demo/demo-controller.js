@@ -305,6 +305,17 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	var wHistoryObservations = _.map(ungrouped, function(observation) {
 		var result = lodash.cloneDeep(observation);
 
+		// history //
+
+		if(observation.related) {
+			result.history = _.uniq(_.pluck(_.filter(result.related, function(related) {
+				return related.type === "replaces";
+			}), 'target'), false, function(obs) {
+				return obs.issued;
+			});
+		}
+
+		// actions //
 		var headerAction;
 
 		if(!!observation.valueQuantity) {
@@ -330,6 +341,25 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 					return false;
 				}
 			};
+
+			// some random (but constant) criteria to sample with and without actions
+			if (!!result.history && !!result.valueQuantity && result.valueQuantity.value > 50) {
+				result.actions = [
+					{
+						labelOn: 'Hide History',
+						labelOff: 'Show History',
+						isToggle: true,
+						click: function (observation) {
+							if (observation.history) {
+								observation.showHistory = !observation.showHistory;
+							}
+						},
+						check: function (observation) {
+							return !!observation.valueQuantity;
+						}
+					}
+				];
+			}
 		} else {
 			headerAction = {
 				activeLabel: "Show me",
@@ -357,10 +387,16 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 		return result;
 	});
 
+	$scope.demoPatient = {
+		age: 35,
+		gender: 'female'
+	};
 
-	$scope.allObservations = wHistoryObservations; //_.pluck($scope.multiRangeObservations, 'observation');
+	$scope.historyConfig = {
+		dateFormat: "%Y-%m-%dT%H:%M:%S.%LZ"
+	};
 
-	console.log("$scope.allObservations = ", $scope.allObservations);	//TODO (denise) remove log
+	$scope.allObservations = wHistoryObservations;
 
 	$scope.ranges = [
 		{

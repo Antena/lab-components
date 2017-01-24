@@ -60,11 +60,9 @@ module.exports = function($translate) {
 
 	filterStub.$stateful = true;
 	function filterStub(birthDate, referenceDate, pluralize) {
-		console.log("translations = ", translations);	//TODO (denise) remove log
 		if (!translations) {
 			$translate(['UNITS.YEARS', 'UNITS.YEAR']).then(function(result) {
 				translations = result;
-				console.log("translations = ", translations);	//TODO (denise) remove log
 			});
 			return "";
 		} else {

@@ -56,10 +56,12 @@ module.exports = function() {
 		restrict: 'A',
 		link: function($scope, element) {
 
+			console.log("$scope = ", $scope);	//TODO (denise) remove log
+
 			// Default config
 			var defaults = {
 				margin: {top: 10, right: 5, bottom: 20, left: 30},
-				dateFormat: '%Y-%m-%dT%H:%M:%S.%LZ',
+				dateFormat: '%Y-%m-%dT%H:%M:%S.%L%Z',
 				timeControls: '1m 3m 6m 1y',
 				timeInterval: '1m',
 				interpolate: 'linear',
@@ -102,6 +104,29 @@ module.exports = function() {
 			// Date parser
 			var formatDate = d3.time.format(config.dateFormat);
 
+			// Hack to workaround d3 issue: https://github.com/d3/d3/issues/2055
+			// Remove once we upgrade to d3 v4.0
+			if (config.dateFormat.charAt(config.dateFormat.length - 1) === 'Z') {
+				formatDate.parse = _.wrap(formatDate.parse, function (func, date) {
+
+					// +-00:00 to +-0000
+					var problematic = /([+-](?:2[0-3]|[01][0-9]):[0-5][0-9])$/g.test(date);
+
+					if (problematic) {
+						var re = /(.+|.?)([+-](?:2[0-3]|[01][0-9]))(:)([0-5][0-9])$/g;
+						var matches = re.exec(date);
+						date = matches[1] + matches[2] + matches[4];
+					}
+
+					// Z to -0000
+					if (date.charAt(date.length - 1) === 'Z') {
+						date = date.substring(0, date.length - 1) + '-0000';
+					}
+
+					return func(date);
+				});
+			}
+
 			// Time interval
 			var timeInterval = null;
 			$scope.parseTimeControls(config.timeControls);
@@ -126,6 +151,7 @@ module.exports = function() {
 
 			// Y scale
 			var yDomain = d3.extent(data, function(d) { return d.value; });
+			// console.log("$scope.ranges [1] = ", $scope.ranges);	//TODO (denise) remove log
 			if ($scope.ranges.length > 0) {
 				var lowerLimit = d3.min($scope.ranges[0].values, function(d) { return d.high; }),
 					higherLimit = d3.max($scope.ranges[$scope.ranges.length - 1].values, function(d) { return d.low; });
@@ -185,13 +211,14 @@ module.exports = function() {
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
 			// Ranges
+			// console.log("$scope.ranges = ", $scope.ranges);	//TODO (denise) remove log
 			var rangesGroup = svg.append('g')
 				.attr('class', 'ranges');
 			rangesGroup.selectAll(".range")
 				.data(stack($scope.ranges))
 				.enter().append("path")
-				.attr("class", function(d) {return 'range range-' + d.code; })
-				.style("fill", function(d) { if (config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
+				.attr("class", function(d) {return 'range range-' + d.code + ' ' + (d.clazz || ''); })
+				.style("fill", function(d) { if (!d.clazz && config.ranges && config.ranges[d.code]) { return config.ranges[d.code]; } });
 
 			// Line chart
 			if (config.chartType === "line") {
