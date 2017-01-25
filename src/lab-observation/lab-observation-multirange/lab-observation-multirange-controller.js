@@ -30,9 +30,12 @@ module.exports = function($scope, $filter, FhirReferenceRangeConverterService) {
 		meterLabelWithUnits: false,
 		meterPosition: 'top',
 		meterOffset: { x: 0, y: 0 },
-		meterLabelOffset: { x: 0, y: -2 },
-		precision: $scope.vm.options.precision
+		meterLabelOffset: { x: 0, y: -2 }
 	};
+
+	if(!!$scope.vm.options && !_.isUndefined($scope.vm.options.precision)) {
+		$scope.vm.graphOptions.precision = $scope.vm.options.precision;
+	}
 
 	var RANGE_CLASSES = {
 		GREAT: 'range-great',

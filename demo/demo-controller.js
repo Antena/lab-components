@@ -277,10 +277,21 @@ module.exports = function($scope, LabObservationService, FhirBundleService) {
 	];
 
 	$scope.multiRangeObservations = _.map(_.union(multirangeObs, resolvedBundle.observations), function(obs) {
-		return {
+
+		var precisionExtension = _.findWhere(obs.extension, {url: "http://www.cdrossi.com/precision"});
+
+		var result = {
 			description: obs.code.coding[0].display,
 			observation: obs
 		};
+
+		if (precisionExtension) {
+			result.options = {
+				precision: precisionExtension.valueInteger
+			}
+		}
+
+		return result;
 	});
 
 	$scope.ranges = [
