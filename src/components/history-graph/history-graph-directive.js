@@ -56,8 +56,6 @@ module.exports = function() {
 		restrict: 'A',
 		link: function($scope, element) {
 
-			console.log("$scope = ", $scope);	//TODO (denise) remove log
-
 			// Default config
 			var defaults = {
 				margin: {top: 10, right: 5, bottom: 20, left: 30},
@@ -151,7 +149,6 @@ module.exports = function() {
 
 			// Y scale
 			var yDomain = d3.extent(data, function(d) { return d.value; });
-			// console.log("$scope.ranges [1] = ", $scope.ranges);	//TODO (denise) remove log
 			if ($scope.ranges.length > 0) {
 				var lowerLimit = d3.min($scope.ranges[0].values, function(d) { return d.high; }),
 					higherLimit = d3.max($scope.ranges[$scope.ranges.length - 1].values, function(d) { return d.low; });
@@ -211,7 +208,6 @@ module.exports = function() {
 				.attr("transform", "translate(" + config.margin.left + "," + config.margin.top + ")");
 
 			// Ranges
-			// console.log("$scope.ranges = ", $scope.ranges);	//TODO (denise) remove log
 			var rangesGroup = svg.append('g')
 				.attr('class', 'ranges');
 			rangesGroup.selectAll(".range")

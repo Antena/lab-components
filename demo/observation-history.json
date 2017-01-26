@@ -230,7 +230,7 @@
             ]
           },
           "valueQuantity": {
-            "value": 13,
+            "value": 10,
             "units": "lies",
             "system": "http://www.cdrossi.com/units",
             "code": "lies"
@@ -288,7 +288,7 @@
             "system": "http://www.cdrossi.com/units",
             "code": "lies"
           },
-          "issued": "2016-03-15T10:00:00.000-03:00",
+          "issued": "2016-08-15T10:00:00.000-03:00",
           "referenceRange": [
             {
               "high": {

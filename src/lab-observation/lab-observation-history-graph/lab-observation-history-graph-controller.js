@@ -53,20 +53,14 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 		var convertedRanges = FhirReferenceRangeConverterService.convertToMultipleRanges(observation);
 
-		// console.log("convertedRanges = ", convertedRanges);	//TODO (denise) remove log
 		var codeScale = _.map(convertedRanges, function(range) {
 			return range.meaning.coding[0].code;
 		});
-		console.log("codeScale = ", codeScale);	//TODO (denise) remove log
 
 		var codeToClassMap = mapScaleToClasses(codeScale);
 
-
 		_.each(convertedRanges, function(range) {
 			var code = range.meaning.coding[0].code;
-			console.log("code = ", code);	//TODO (denise) remove log
-			console.log("codeToClassMap[code] = ", codeToClassMap[code]);	//TODO (denise) remove log
-
 
 			ranges.push({
 				code: code,

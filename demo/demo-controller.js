@@ -343,7 +343,7 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 			};
 
 			// some random (but constant) criteria to sample with and without actions
-			if (!!result.history && !!result.valueQuantity && result.valueQuantity.value > 50) {
+			if (!!result.history && !!result.valueQuantity && !!result.referenceRange && result.valueQuantity.value > 50) {
 				result.actions = [
 					{
 						labelOn: 'Hide History',

@@ -10,7 +10,7 @@ function getScreenshotName(basePath) {
 		var testName = context.test.title.replace(/[^_A-Za-z0-9-]/g, '_');
 		var browserVersion = parseInt(context.browser.version, 10);
 		var browserName = context.browser.name;
-		return path.join(basePath, testName + "--" + elem + "_" + browserName + "_v" + browserVersion + "_" + context.meta.width + ".png");
+		return path.join(basePath, context.test.parent + '/' + testName + "--" + elem + "_" + browserName + "_v" + browserVersion + "_" + context.meta.width + ".png");
 	};
 }
 

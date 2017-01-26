@@ -12,11 +12,12 @@ describe('lab-observation', function() {
 	});
 
 	it('should maintain visual properties', function() {
-		var result1 = browser.checkDocument();
+		this.timeout(30000);
+		var result1 = browser.checkDocument({ widths: 1024 });
 		var passed1 = _.every(result1, function(comparison) {
 			return !!comparison.isExactSameImage || !!comparison.isWithinMisMatchTolerance;
 		});
-		expect(passed1, 'demo-history-hemoglobina (1y) screenshots changed').to.be.true;
+		expect(passed1, 'lab-observation full page screenshots changed').to.be.true;
 	});
 });
 
