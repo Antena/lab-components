@@ -192,7 +192,7 @@ module.exports = function() {
 				});
 			}
 
-			//TODO (denise) this sucks
+			//TODO (denise) improve this
 			watchModel('value');
 			watchModel('unit');
 			watchModel('range.low');

@@ -90,7 +90,7 @@ module.exports = function() {
 					coding: [
 						{
 							system: "http://hl7.org/fhir/v2/0078",
-							code: "N" 	//TODO (denise) remove onces this is fixed from KERN!!!!!
+							code: "N" 	//TODO (denise) instead of overwriting as normal, fail if it's not
 						}
 					]
 				}
