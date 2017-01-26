@@ -76,12 +76,6 @@
 				"comments": "-",
 				"status": "final",
 				"method": { "text": "Electroquimioluminiscencia" },
-				"identifier": [
-					{
-						"system": "http://www.cdrossi.com.ar/resultados",
-						"value": "810-2547-P.866-1"
-					}
-				],
 				"subject": { "reference": "Patient/1" },
 				"performer": [ { "reference": "Organization/3" } ],
 				"interpretation": { "coding": [ { "system": "http://hl7.org/fhir/v2/0078", "code": "N" } ] },
