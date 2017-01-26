@@ -3,6 +3,7 @@
 var angular = require('angular');
 var ngModule = angular.module('lab-components.lab-observation-history-graph', [
 	require('../../common/index'),
+	require('../extensions/index'),
 	require('../../components/history-graph')
 ]);
 

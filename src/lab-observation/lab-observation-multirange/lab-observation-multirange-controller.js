@@ -44,7 +44,7 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService) {
+module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService, EXTENSION_SYSTEM) {
 
 	$scope.vm.calculatedRanges = [];
 
@@ -126,7 +126,9 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 		if (observation && observation.referenceRange && observation.referenceRange.length) {
 
-			var domainExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/domain"});
+			console.log("EXTENSION_SYSTEM.DOMAIN = ", EXTENSION_SYSTEM.DOMAIN);	//TODO (denise) remove log
+
+			var domainExtension = EXTENSION_SYSTEM.DOMAIN ? _.findWhere(observation.extension, {url: EXTENSION_SYSTEM.DOMAIN}) : null;
 
 			if (domainExtension) {
 

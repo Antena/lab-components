@@ -3,10 +3,10 @@
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService) {
+module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService, EXTENSION_SYSTEM) {
 	function obtainNumericValue(obs) {
 		var numericValue = obs.valueQuantity.value;
-		var precisionExtension = _.findWhere(obs.extension, {url: "http://www.cdrossi.com/precision"});
+		var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(obs.extension, { url: EXTENSION_SYSTEM.PRECISION}) : null;
 		if (precisionExtension) {
 			var precision = precisionExtension.valueInteger;
 			numericValue = $filter('number')(obs.valueQuantity.value, precision);

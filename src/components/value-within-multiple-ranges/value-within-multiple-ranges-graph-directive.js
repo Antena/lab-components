@@ -204,30 +204,6 @@ module.exports = function() {
 		link: function(scope, elem) {
 
 			/**
-			 * Helper functions to re-draw graph based on scope's updates.
-			 * @type {Function}
-			 */
-			var modelChanged = _.debounce(function(newValue, oldValue) {
-					scope.$apply(function() {
-						refresh();
-					});
-				}, 100),
-				validModel = function() {
-					return _.isNumber(scope.value);
-				};
-
-			function watchModel(modelName) {
-				scope.$watch(modelName, function(newValue, oldValue) {
-					if (newValue !== oldValue && validModel()) {
-						modelChanged(newValue, oldValue);
-					}
-				});
-			}
-
-			watchModel('value');
-			watchModel('unit');
-
-			/**
 			 * Parse and extend options object.
 			 */
 			var options = _.defaults({}, scope.options, {
@@ -260,6 +236,42 @@ module.exports = function() {
 			function textValue(value) {
 				return !_.isUndefined(options.precision) ? value.toFixed(options.precision) : value;
 			}
+
+			function preciseValue(value) {
+				return !_.isUndefined(options.precision) ? Number(value.toFixed(options.precision)) : value;
+			}
+
+			// Apply precision to value (if precision is set), before registering watchers
+			scope.value = preciseValue(scope.value);
+
+			/**
+			 * Helper functions to re-draw graph based on scope's updates.
+			 * @type {Function}
+			 */
+			var modelChanged = _.debounce(function(newValue, oldValue) {
+					scope.$apply(function() {
+						refresh();
+					});
+				}, 100),
+				validModel = function() {
+					return _.isNumber(scope.value);
+				};
+
+			function watchModel(modelName) {
+				scope.$watch(modelName, function(newValue, oldValue) {
+
+					if (newValue !== oldValue && validModel()) {
+						if(modelName === 'value') {
+							newValue = preciseValue(newValue);
+						}
+						modelChanged(newValue, oldValue);
+					}
+				});
+			}
+
+			watchModel('value');
+			watchModel('unit');
+
 
 			/**
 			 * Declare local variables and initialize the graph

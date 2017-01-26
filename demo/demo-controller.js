@@ -11,12 +11,14 @@ var anotherFhirBundle = require('./another-bundle.json');
 var multirangeObs = require('./multirange-obsevation.json');
 
 // @ngInject
-module.exports = function($scope, $location, $rootScope, LabObservationService, FhirBundleResolverService) {
+module.exports = function($scope, $location, $rootScope, LabObservationService, FhirBundleResolverService, EXTENSION_SYSTEM) {
 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
 		$scope.contentOnly = !!$location.search().contentOnly;
 		$scope.fullWidth = !!$location.search().fullWidth;
 	});
+
+	EXTENSION_SYSTEM.DOMAIN = "http://www.demo.com/domain";
 
 	$scope.popover1 = {
 		config: {
@@ -284,10 +286,21 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	var numericObs = _.flatten(related);
 
 	$scope.multiRangeObservations = _.map(_.union(multirangeObs, numericObs), function(obs) {
-		return {
+
+		var precisionExtension = _.findWhere(obs.extension, {url: EXTENSION_SYSTEM.PRECISION});
+
+		var result = {
 			description: obs.code.coding[0].display,
 			observation: obs
 		};
+
+		if (precisionExtension) {
+			result.options = {
+				precision: precisionExtension.valueInteger
+			}
+		}
+
+		return result;
 	});
 
 	var ungrouped = _.flatten(_.map(historyResolvedBundle.observations, function(obs) {

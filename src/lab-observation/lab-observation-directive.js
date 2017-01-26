@@ -167,7 +167,7 @@ require("./_lab-observation.scss");
 var _ = require('underscore');
 
 // @ngInject
-module.exports = function(FhirRangeService) {
+module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 
 	return {
 		scope: {
@@ -205,7 +205,7 @@ module.exports = function(FhirRangeService) {
 			};
 
 			$scope.$watch('observation', function(observation) {
-				var precisionExtension = _.findWhere(observation.extension, {url: "http://www.cdrossi.com/precision"});
+				var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(observation.extension, { url: EXTENSION_SYSTEM.PRECISION}) : null;
 
 				if (precisionExtension) {
 					var precision = precisionExtension.valueInteger;
