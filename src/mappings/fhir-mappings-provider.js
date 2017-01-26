@@ -55,7 +55,7 @@ module.exports = function FhirMappingsProvider() {
 				'NR': 'unknown',
 				'IND': 'unknown'
 			},
-			"http://www.cdrossi.com/0078": { 	//TODO (denise) change system URL for: http://www.wellbin.co/fhir/v2/0078
+			"http://www.wellbin.co/0078": { 	//TODO (denise) change system URL for: http://www.wellbin.co/fhir/v2/0078
 				'LIM': 'almost-healthy',
 				'NN': 'almost-healthy'
 			},
@@ -195,7 +195,7 @@ module.exports = function FhirMappingsProvider() {
 				'NR': 'LAB.REFERENCE_RANGE_MEANING.NON_REACTIVE',
 				'IND': 'LAB.REFERENCE_RANGE_MEANING.INDETERMINATE'
 			},
-			"http://www.cdrossi.com/0078": { 	//TODO (denise) move to system http://www.wellbin.co/fhir/v2/0078
+			"http://www.wellbin.co/0078": { 	//TODO (denise) move to system http://www.wellbin.co/fhir/v2/0078
 				'LIM': 'LAB.REFERENCE_RANGE_MEANING.LIMIT',
 				'NN': 'LAB.REFERENCE_RANGE_MEANING.NEAR_NORMAL'
 			},

@@ -3,12 +3,10 @@
 var _ = require('underscore');
 var lodash = require('lodash');
 
-// var fhirBundle = require('./grouped-bundle.json');
 var fhirBundle = require('./with-notes.json');
 var historyBundle = require('./with-history.json');
-
-var anotherFhirBundle = require('./another-bundle.json');
-var multirangeObs = require('./multirange-obsevation.json');
+var multirangeObs = require('./multirange-observation.json');
+var histories = require('./observation-history.json');
 
 // @ngInject
 module.exports = function($scope, $location, $rootScope, LabObservationService, FhirBundleResolverService, EXTENSION_SYSTEM) {
@@ -38,61 +36,7 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	};
 
 	var resolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(fhirBundle);
-	var anotherResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(anotherFhirBundle);
 	var historyResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(historyBundle);
-
-	var observations = _.map(resolvedBundle.observations, function(observation) {
-		var result = lodash.cloneDeep(observation);
-
-		result.actions = [
-			{
-				labelOn: "Ocultar Historia",
-				labelOff: "Mostrar Historia",
-				isToggle: true,
-				click: function(observation) {
-					if (observation.history) {
-						observation.showHistory = !observation.showHistory;
-					} else {
-						LabObservationService.getHistory(observation.id, function(data) {
-							observation.showHistory = !observation.showHistory;
-							observation.history = data;
-						});
-					}
-				},
-				check: function(observation) {
-					return !!observation.valueQuantity;
-				}
-			}
-		];
-
-		result.headerActions = [
-			{
-				icon: "icon",
-				activeAndHoveredLabel: "Dejar de monitorear",
-				activeLabel: "Valor monitoreado",
-				activeIcon: "icon-check",
-				inactiveLabel: "Monitorear este valor",
-				inactiveIcon: "icon-more",
-				click: function(observation) {
-					observation.monitored = !observation.monitored;
-				},
-				check: function(observation) {
-					return !!observation.valueQuantity;
-				},
-				isActive: function(observation) {
-					return !!observation.monitored;
-				},
-				showAsHovered: function(observation) {
-					return false;
-				}
-			}
-		];
-		return result;
-	});
-
-
-	// Observation history
-	var histories = require('./observation-history.json');
 
 	// Process observation histories
 	var observation = [];

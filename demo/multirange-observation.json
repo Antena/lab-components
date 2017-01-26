@@ -1,0 +1,578 @@
+[
+  {
+    "resourceType": "Observation",
+    "id": "16",
+    "extension": [],
+    "code": {
+      "coding": [
+        {
+          "display": "Recuento de Plaquetas"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 250,
+      "units": "10e9/L",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "AUTOMATIZADO SYSMEX"
+    },
+    "subject": {
+      "reference": "Patient/1"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
+    "referenceRange": [
+      {
+        "high": {
+          "value": 200,
+          "units": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 200,
+          "units": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "high": {
+          "value": 240,
+          "units": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.wellbin.co/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 240,
+          "units": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dL"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "H"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "16",
+    "extension": [],
+    "code": {
+      "coding": [
+        {
+          "display": "Recuento de Plaquetas"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 250,
+      "units": "10e9/L",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "AUTOMATIZADO SYSMEX"
+    },
+    "subject": {
+      "reference": "Patient/1"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
+    "referenceRange": [
+      {
+        "high": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 199,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.wellbin.co/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 200,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "H"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "HU"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "1665",
+    "extension": [],
+    "code": {
+      "coding": [
+        {
+          "system": "http://www.wellbin.co/tests",
+          "code": "P.876",
+          "display": "Trigliceridemia"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 613,
+      "units": "mg/dl",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "Enzimático-Colorimétrico GPO-PAP"
+    },
+    "subject": {
+      "reference": "Patient/1662"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
+    "referenceRange": [
+      {
+        "high": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 199,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.wellbin.co/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 200,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "H"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 500,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "HU"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "1492",
+    "extension": [],
+    "code": {
+      "coding": [
+        {
+          "system": "http://www.wellbin.co/tests",
+          "code": "P.3023",
+          "display": "anti-HCV"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 1,
+      "units": "COI",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "Electroquimioluminiscencia (ECLIA)"
+    },
+    "subject": {
+      "reference": "Patient/1477"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
+    "referenceRange": [
+      {
+        "high": {
+          "value": 0.91,
+          "units": "COI",
+          "system": "http://unitsofmeasure.org",
+          "code": "COI"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "NR"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 0.91,
+          "units": "COI",
+          "system": "http://unitsofmeasure.org",
+          "code": "COI"
+        },
+        "high": {
+          "value": 0.99,
+          "units": "COI",
+          "system": "http://unitsofmeasure.org",
+          "code": "COI"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "IND"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 0.99,
+          "units": "COI",
+          "system": "http://unitsofmeasure.org",
+          "code": "COI"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "RR"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "5929662",
+    "extension": [
+      {
+        "url": "http://www.wellbin.co/precision",
+        "valueInteger": 0
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "http://www.wellbin.co/tests",
+          "code": "P.20151",
+          "display": "LDL Colesterol- calculado"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 129.16,
+      "units": "mg/dl",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dl"
+    },
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "N"
+        }
+      ]
+    },
+    "comments": "-",
+    "issued": "2017-01-10T14:37:00.000+00:00",
+    "status": "final",
+    "method": {
+      "text": "Calculado por fórmula de Friedwald."
+    },
+    "subject": {
+      "reference": "Patient/5929653"
+    },
+    "performer": [
+      {
+        "reference": "Organization/4"
+      }
+    ],
+    "referenceRange": [
+      {
+        "meaning": {
+          "coding": [
+            {
+              "code": "N",
+              "system": "http://hl7.org/fhir/v2/0078"
+            }
+          ]
+        },
+        "high": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "comparator": "<",
+          "value": 99
+        }
+      },
+      {
+        "meaning": {
+          "coding": [
+            {
+              "code": "NN",
+              "system": "http://www.wellbin.co/0078"
+            }
+          ]
+        },
+        "high": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 129
+        },
+        "low": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 100
+        }
+      },
+      {
+        "meaning": {
+          "coding": [
+            {
+              "code": "LIM",
+              "system": "http://www.wellbin.co/0078"
+            }
+          ]
+        },
+        "high": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 159
+        },
+        "low": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 130
+        }
+      },
+      {
+        "meaning": {
+          "coding": [
+            {
+              "code": "H",
+              "system": "http://hl7.org/fhir/v2/0078"
+            }
+          ]
+        },
+        "high": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 189
+        },
+        "low": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 160
+        }
+      },
+      {
+        "meaning": {
+          "coding": [
+            {
+              "code": "HU",
+              "system": "http://hl7.org/fhir/v2/0078"
+            }
+          ]
+        },
+        "low": {
+          "code": "mg/dL",
+          "system": "http://unitsofmeasure.org",
+          "units": "mg/dL",
+          "value": 190
+        }
+      }
+    ]
+  }
+]

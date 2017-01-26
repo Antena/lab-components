@@ -14,7 +14,7 @@
           "code": {
             "coding": [
               {
-                "system": "http://www.cdrossi.com/tests",
+                "system": "http://www.wellbin.co/tests",
                 "code": "P.3023",
                 "display": "anti-HCV"
               }
@@ -29,14 +29,6 @@
           "issued": "2016-03-15T10:00:00.000-03:00",
           "referenceRange": [
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "high": {
                 "value": 0.91,
                 "units": "COI",
@@ -53,14 +45,6 @@
               }
             },
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "low": {
                 "value": 0.91,
                 "units": "COI",
@@ -83,14 +67,6 @@
               }
             },
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "low": {
                 "value": 0.99,
                 "units": "COI",
@@ -113,7 +89,7 @@
           "code": {
             "coding": [
               {
-                "system": "http://www.cdrossi.com/tests",
+                "system": "http://www.wellbin.co/tests",
                 "code": "P.3023",
                 "display": "anti-HCV"
               }
@@ -128,14 +104,6 @@
           "issued": "2016-05-03T09:30:00.000-03:00",
           "referenceRange": [
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "high": {
                 "value": 0.91,
                 "units": "COI",
@@ -152,14 +120,6 @@
               }
             },
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "low": {
                 "value": 0.91,
                 "units": "COI",
@@ -182,14 +142,6 @@
               }
             },
             {
-              "modifierExtension": [
-                {
-                  "url": "http://www.cdrossi.com.ar/validezrangoreferencia",
-                  "valuePeriod": {
-                    "start": "2013-01-01T00:00:00"
-                  }
-                }
-              ],
               "low": {
                 "value": 0.99,
                 "units": "COI",
@@ -223,7 +175,7 @@
           "code": {
             "coding": [
               {
-                "system": "http://www.cdrossi.com/fake",
+                "system": "http://www.demo.com/fake",
                 "code": "fake",
                 "display": "FAKE"
               }
@@ -232,7 +184,7 @@
           "valueQuantity": {
             "value": 10,
             "units": "lies",
-            "system": "http://www.cdrossi.com/units",
+            "system": "http://www.demo.com/units",
             "code": "lies"
           },
           "issued": "2016-03-15T10:00:00.000-03:00",
@@ -241,7 +193,7 @@
               "high": {
                 "value": 50,
                 "units": "lies",
-                "system": "http://www.cdrossi.com/units",
+                "system": "http://www.demo.com/units",
                 "code": "lies"
               },
               "meaning": {
@@ -257,7 +209,7 @@
               "low": {
                 "value": 50,
                 "units": "lies",
-                "system": "http://www.cdrossi.com/units",
+                "system": "http://www.demo.com/units",
                 "code": "lies"
               },
               "meaning": {
@@ -276,7 +228,7 @@
           "code": {
             "coding": [
               {
-                "system": "http://www.cdrossi.com/fake",
+                "system": "http://www.demo.com/fake",
                 "code": "fake",
                 "display": "FAKE"
               }
@@ -285,7 +237,7 @@
           "valueQuantity": {
             "value": 67,
             "units": "lies",
-            "system": "http://www.cdrossi.com/units",
+            "system": "http://www.demo.com/units",
             "code": "lies"
           },
           "issued": "2016-08-15T10:00:00.000-03:00",
@@ -294,7 +246,7 @@
               "high": {
                 "value": 50,
                 "units": "lies",
-                "system": "http://www.cdrossi.com/units",
+                "system": "http://www.demo.com/units",
                 "code": "lies"
               },
               "meaning": {
@@ -310,7 +262,7 @@
               "low": {
                 "value": 50,
                 "units": "lies",
-                "system": "http://www.cdrossi.com/units",
+                "system": "http://www.demo.com/units",
                 "code": "lies"
               },
               "meaning": {
