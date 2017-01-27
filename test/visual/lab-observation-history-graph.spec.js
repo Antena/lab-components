@@ -25,7 +25,8 @@ describe('lab-observation-history-graph', function() {
 		expect(passed2, 'demo-history-trigliceridemia (1y) screenshots changed').to.be.true;
 	});
 
-	it('should maintain visual properties for 30 days data', function() {
+	//TODO(gb): this will be fixed in CV-1772
+	it.skip('should maintain visual properties for 30 days data', function() {
 		var result1 = browser.checkElement('.demo-history-trigliceridemia-no-data');
 		var passed1 = _.every(result1, function(comparison) {
 			return !!comparison.isExactSameImage || !!comparison.isWithinMisMatchTolerance;
