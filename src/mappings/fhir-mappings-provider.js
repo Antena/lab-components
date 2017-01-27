@@ -216,7 +216,7 @@ module.exports = function FhirMappingsProvider() {
 		var result = {};
 		if (mappings) {
 			if(_.isArray(mappings)) {
-				result = mergeWithDefaults ? _.union(defaults, mappings) : mappings;
+				result = mergeWithDefaults ? _.union(mappings, defaults) : mappings;
 			} else if (_.isObject(mappings)) {
 				var filteredMappingKeys = _.filter(_.keys(mappings), function (system) {
 					var systemMap = mappings[system];
