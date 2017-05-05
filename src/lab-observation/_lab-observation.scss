@@ -80,6 +80,10 @@ $observation-box-padding: 10px;
 		.observation-generic-content {
 			width: 50%;
 		}
+
+		.observation-generic-content {
+			display: table-cell;
+		}
 	}
 
 	// no tertiary and no generic
@@ -195,6 +199,10 @@ $observation-box-padding: 10px;
 		}
 
 		.observation-gallery-header-text {
+			text-align: left;
+		}
+
+		.observation-gallery-header-text {
 			font-size: 16px;
 			line-height: 1;
 		}
@@ -296,6 +304,18 @@ $observation-box-padding: 10px;
 
 				@include susy-breakpoint($screen-tablet) {
 					border-bottom: none;
+				}
+			}
+
+			&.observation-generic-content:not(.observation-column-non-wrap) {
+				display: table-caption;
+				caption-side: bottom;
+				width: 100%;
+				border-left-width: 0 !important;
+				border-top: 1px solid #e2e2e2;
+
+				@include susy-breakpoint($screen-tablet) {
+					display: table-cell;
 				}
 			}
 		}
