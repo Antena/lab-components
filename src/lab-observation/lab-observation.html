@@ -59,7 +59,7 @@
 			<div ng-repeat="action in actions">
 				<a ng-if="!!action.href" href="{{ action.href }}" class="action" ng-class="{'ghost': !action.primary, 'global-action right': action.global }"><span ng-if="action.icon" class="{{action.icon}}"></span> {{ action.label }}</a>
 
-				<button ng-if="!!action.click && (!action.check || action.check(observation))" class="black right" ng-click="action.click(observation); action.on = !action.on">
+				<button ng-if="!!action.click && (!action.check || action.check(observation))" class="action {{ action.classes }}" ng-click="action.click(observation); action.on = !action.on">
 					<span ng-if="action.icon" class="{{action.icon}}"></span> <span ng-if="action.isToggle">{{ action.on ? action.labelOn : action.labelOff }}</span><span ng-if="!action.isToggle">{{ action.label }}</span>
 				</button>
 			</div>
