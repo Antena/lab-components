@@ -14,10 +14,10 @@
 			   ng-click="onActionClick(headerAction, observation, $event)">
 
 				<span popover-on-demand="headerAction.popoverConfig"
-					  popover-on-demand-open="headerAction.popoverOpen">
+					  popover-on-demand-open="headerAction.popoverOpen" class="header-action-label">
 					{{ (headerAction.isActive(observation) ? (hovered === observation.id ? headerAction.activeAndHoveredLabel : headerAction.activeLabel) : headerAction.inactiveLabel) }}
 				</span>
-				<span ng-if="headerAction.icon || headerAction.activeIcon" class="{{ headerAction.icon }}"
+				<span ng-if="headerAction.icon || headerAction.activeIcon" class="header-action-icon {{ headerAction.icon }}"
 					  ng-class="{ '{{ headerAction.inactiveIcon }}': !headerAction.isActive(observation), '{{ headerAction.activeIcon }}': headerAction.isActive(observation)}">
 				</span>
 			</a>
