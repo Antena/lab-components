@@ -70,10 +70,17 @@
 		<!-- optional transcluded content goes here -->
 	</div>
 
-	<div class="observation-gallery-footer" ng-if="observation.comments && observation.comments !== '-'">
-		<div class="observation-gallery-footer-title">{{ 'LAB.NOTES' | translate }}</div>
+	<div ng-if="observation.comments && observation.comments !== '-'" ng-class="{ 'observation-gallery-footer': !isValueHtml(observation.comments) }">
 		<div class="observation-gallery-footer-column-content">
-			<span>{{ observation.comments }}</span>
+			<div ng-if="isValueHtml(observation.comments)" class="footer-html">
+				<iframe frameBorder="0" marginheight="0" marginwidth="0" disable-hash-navigation="true"
+						srcdoc="{{ observation.comments | trusted }}">
+				</iframe>
+			</div>
+			<div ng-if="!isValueHtml(observation.comments)">
+				<div class="observation-gallery-footer-title">{{ 'LAB.NOTES' | translate }}</div>
+				<span>{{ observation.comments }}</span>
+			</div>
 		</div>
 	</div>
 </div>

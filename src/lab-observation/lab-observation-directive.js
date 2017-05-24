@@ -203,6 +203,10 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 				}
 				$scope.onActionLeave();
 			};
+			
+			$scope.isValueHtml = function(value) {
+				return value && value.toLowerCase().indexOf("<html>") !== -1;
+			};			
 
 			$scope.$watch('observation', function(observation) {
 				var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(observation.extension, { url: EXTENSION_SYSTEM.PRECISION}) : null;

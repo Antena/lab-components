@@ -24,6 +24,10 @@
 			&.string-value {
 				font-size: $font-size-huge;
 			}
+		}		
+
+		&.string-value {
+			white-space: pre-line;
 		}
 	}
 
