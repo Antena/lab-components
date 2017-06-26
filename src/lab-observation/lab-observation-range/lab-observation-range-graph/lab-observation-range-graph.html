@@ -1,7 +1,7 @@
 <div ng-if="observation">
 	<value-within-range-graph ng-if="observation.valueQuantity"
 							  value="observation.valueQuantity.value"
-							  unit="observation.valueQuantity.units"
+							  unit="observation.valueQuantity.units || observation.valueQuantity.unit"
 							  range="observation.referenceRange[0] | referenceRangeToSimpleRange"
 							  range-class="healthy"
 							  domain-class="unhealthy">
