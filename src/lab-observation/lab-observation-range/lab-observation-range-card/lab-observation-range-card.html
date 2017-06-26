@@ -6,7 +6,7 @@
 	<value-within-range-card ng-if="observation.valueQuantity"
                              class="observation-values"
                              value="observation.valueQuantity.value"
-                             unit="observation.valueQuantity.units"
+                             unit="observation.valueQuantity.units || observation.valueQuantity.unit"
                              range="observation.referenceRange[0].text || !observation.referenceRange ? null : (observation.referenceRange[0] | referenceRangeToSimpleRange)"
                              inside-class="healthy"
                              outside-class="unhealthy">

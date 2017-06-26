@@ -1,7 +1,7 @@
 <div ng-if="observation" class="lab-observation-result">
 	<p ng-if="observation.valueQuantity" class="lab-observation-value">
 		<span class="main-value"><span ng-if="comparator" ng-bind-html="comparator" class="main-value-sign"></span>{{ observation.valueQuantity.value | number: options.precision }}</span>
-		<span ng-if="observation.valueQuantity.units" class="unit">{{ observation.valueQuantity.units }}</span>
+		<span ng-if="observation.valueQuantity.units || observation.valueQuantity.unit" class="unit">{{ observation.valueQuantity.units || observation.valueQuantity.unit }}</span>
 	</p>
 	<p ng-if="observation.valueString && !isValueStringHtml(observation)" class="lab-observation-value">
 		<span class="main-value string-value">{{ observation.valueString }}</span>

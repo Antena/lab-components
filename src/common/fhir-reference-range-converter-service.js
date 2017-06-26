@@ -58,7 +58,7 @@ module.exports = function() {
 		var firstRange = {
 			high: {
 				value: lowBorder,
-				units: originalRange.low.units,
+				units: originalRange.low.units || originalRange.low.unit,
 				system: originalRange.low.system,
 				code: originalRange.low.code
 			},
@@ -75,7 +75,7 @@ module.exports = function() {
 		if (domain) {
 			firstRange.low = {
 				value: domain.low,
-				units: originalRange.low.units,
+				units: originalRange.low.units || originalRange.low.unit,
 				system: originalRange.low.system,
 				code: originalRange.low.code
 			};
