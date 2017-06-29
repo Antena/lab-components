@@ -1,6 +1,6 @@
 {
   "name": "lab-components",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Components for visualizing FHIR labs.",
   "main": "src/index.js",
   "author": "Antena",
@@ -29,7 +29,7 @@
   "dependencies": {
     "angular": "~1.4.x",
     "angular-animate": "~1.4.x",
-    "angular-fhir-utils": "^0.0.3",
+    "angular-fhir-utils": "0.x",
     "angular-sanitize": "~1.4.x",
     "angular-scroll": "~1.0.0",
     "angular-translate": "~2.7.2",
