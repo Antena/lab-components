@@ -115,7 +115,9 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 			var translationKey = coding ? $filter('coding2TranslationKey')(coding) : null;
 			return {
 				low: r.low ? r.low.value : undefined,
+				lowComparator: r.low && r.low.comparator ? r.low.comparator : undefined,
 				high: r.high ? r.high.value : undefined,
+				highComparator: r.high && r.high.comparator ? r.high.comparator : undefined,
 				label: translationKey ? $filter('translate')(translationKey) : (coding ? coding.display : ''),
 				class: codeToClassMap[coding.code] || 'range-catch-all'
 			};

@@ -591,6 +591,27 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 			options: {
 				domain: { low: 0, high: 200 }
 			}
+		},
+		{
+			description: "2 ranges w/ value at the border",
+			value: 40,
+			unit: "mg/dl",
+			ranges: [
+				{
+					high: 40,
+					label: "Bajo",
+					class: "range-danger"
+				},
+				{
+					low: 40,
+					lowComparator: '>=',
+					label: "Normal",
+					class: "range-great"
+				}
+			],
+			options: {
+				domain: { low: 0, high: 200 }
+			}
 		}
 	];
 
