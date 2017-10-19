@@ -126,3 +126,9 @@
 .demo-observation-wrapper .observation-gallery {
 	margin: 10px;
 }
+
+.demo-lim-range {
+	stroke: #B498FF;
+	fill: #B498FF;
+	color: #B498FF;
+}

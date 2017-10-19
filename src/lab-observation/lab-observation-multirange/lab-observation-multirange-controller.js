@@ -75,8 +75,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 		var rangeClassMappings = fhirMappings.getCodeScale2ClassNameMappings();
 		var found = _.filter(rangeClassMappings, function(map) {
-			var intersection = _.intersection(map.codes, codeScale);
-			return intersection.length === map.codes.length && intersection.length === codeScale.length;
+			return _.isEqual(_.sortBy(map.codes), _.sortBy(codeScale));
 		});
 
 		if (found) {

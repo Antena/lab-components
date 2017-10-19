@@ -42,6 +42,14 @@ app.config(function(fhirMappingsProvider) {
 				'DISLIKE': 'range-unknown-2'
 			}
 		}
+		,
+		{
+			codes: ['LIM', 'N', 'LIM'],
+			classMap: {
+				'LIM': 'demo-lim-range',
+				'N': 'range-great'
+			}
+		}
 	], true);
 });
 

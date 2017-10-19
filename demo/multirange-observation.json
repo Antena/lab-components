@@ -574,5 +574,102 @@
         }
       }
     ]
+  },
+  {
+    "resourceType": "Observation",
+    "id": "5665",
+    "extension": [],
+    "code": {
+      "coding": [
+        {
+          "system": "http://www.wellbin.co/tests",
+          "code": "P.876",
+          "display": "Trigliceridemia (color overrides)"
+        }
+      ]
+    },
+    "valueQuantity": {
+      "value": 613,
+      "units": "mg/dl",
+      "system": "http://unitsofmeasure.org",
+      "code": "mg/dL"
+    },
+    "comments": "-",
+    "status": "final",
+    "method": {
+      "text": "Enzimático-Colorimétrico GPO-PAP"
+    },
+    "subject": {
+      "reference": "Patient/1662"
+    },
+    "performer": [
+      {
+        "reference": "Organization/3"
+      }
+    ],
+    "interpretation": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/v2/0078",
+          "code": "H"
+        }
+      ]
+    },
+    "referenceRange": [
+      {
+        "high": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.wellbin.co/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 150,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "high": {
+          "value": 199,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v2/0078",
+              "code": "N"
+            }
+          ]
+        }
+      },
+      {
+        "low": {
+          "value": 200,
+          "units": "mg/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "mg/dl"
+        },
+        "meaning": {
+          "coding": [
+            {
+              "system": "http://www.wellbin.co/0078",
+              "code": "LIM"
+            }
+          ]
+        }
+      }
+    ]
   }
 ]
