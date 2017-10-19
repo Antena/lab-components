@@ -191,7 +191,7 @@ var angular = require('angular');
 require('./_value-within-multiple-ranges.scss');
 
 // @ngInject
-module.exports = function() {
+module.exports = function(FhirRangeService) {
 
 	return {
 		restrict: 'EA',
@@ -650,14 +650,28 @@ module.exports = function() {
 			 * @returns {boolean}
 			 */
 			var valueInRange = function(value, range) {
-				if (_.isNumber(range.low) && _.isNumber(range.high)) {
-					return value >= range.low && value <= range.high;
-				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
-					return value > range.low;
-				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
-					return value < range.high;
+
+				var result = false;
+
+				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
+				var lowOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparator];
+				var lowQuantityComparatorStrict = !!range.low && !!range.lowComparator ? range.lowComparator : '>';
+				var lowOperatorStrict = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparatorStrict];
+
+				var highQuantityComparator = !!range.high && !!range.highComparator ? range.highComparator : '<=';
+				var highOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[highQuantityComparator];
+				var highQuantityComparatorStrict = !!range.high && !!range.highComparator ? range.highComparator : '<';
+				var highOperatorStrict = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[highQuantityComparatorStrict];
+
+				if (!!range.low && !!range.high) {
+					result = lowOperator(value, range.low) && highOperator(value, range.high);
+				} else if (!!range.low && !range.high) {
+					result = lowOperatorStrict(value, range.low);
+				} else if (!!range.high && !range.low) {
+					result = highOperatorStrict(value, range.high);
 				}
-				return false;
+
+				return result;
 			};
 
 			/**
