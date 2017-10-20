@@ -60,7 +60,8 @@ module.exports = function() {
 				value: lowBorder,
 				units: originalRange.low.units || originalRange.low.unit,
 				system: originalRange.low.system,
-				code: originalRange.low.code
+				code: originalRange.low.code,
+				comparator: '<'
 			},
 			meaning: {
 				coding: [
@@ -96,7 +97,7 @@ module.exports = function() {
 				}
 			},
 			{
-				low: originalRange.high,
+				low: _.extend({}, originalRange.high, { comparator: '>' }),
 				meaning: {
 					coding: [
 						{
