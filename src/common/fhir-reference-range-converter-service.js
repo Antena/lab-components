@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('underscore');
+
 /**
  * @ngdoc service
  * @name lab-components.common.service:FhirReferenceRangeConverterService
@@ -53,16 +55,8 @@ module.exports = function() {
 	function fillMissingRanges(observation, domain) {
 		var originalRange = observation.referenceRange[0];
 
-		var lowBorder = calculateLowBorder(originalRange, observation);
-
 		var firstRange = {
-			high: {
-				value: lowBorder,
-				units: originalRange.low.units || originalRange.low.unit,
-				system: originalRange.low.system,
-				code: originalRange.low.code,
-				comparator: '<'
-			},
+			high: _.extend({}, originalRange.low, { comparator: '<' }),
 			meaning: {
 				coding: [
 					{
@@ -73,13 +67,25 @@ module.exports = function() {
 			}
 		};
 
-		if (domain) {
+		if (domain && _.isNumber(domain.low) ) {
 			firstRange.low = {
 				value: domain.low,
 				units: originalRange.low.units || originalRange.low.unit,
 				system: originalRange.low.system,
 				code: originalRange.low.code
 			};
+
+			var lowBorder = calculateLowBorder(originalRange, observation);
+
+			firstRange.high = {
+				value: lowBorder,
+				units: originalRange.low.units || originalRange.low.unit,
+				system: originalRange.low.system,
+				code: originalRange.low.code,
+				comparator: '<='
+			};
+
+			//TODO (denise) add same border calculation logic if domain.high is available...
 		}
 
 		var result = [
