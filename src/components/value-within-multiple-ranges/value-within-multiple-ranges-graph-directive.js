@@ -354,8 +354,8 @@ module.exports = function(FhirRangeService) {
 					}
 				},
 				BALLOON: {
-					cx: 0.15,
-					cy: 23.8,
+					cx: 0.15 + options.meterOffset.x,
+					cy: 23.8 + options.meterOffset.y,
 					r: 20.3,
 					marker: function(options, placement) {
 						//TODO (denise) [issue #30] dismantle path so that width is configurable
@@ -374,7 +374,7 @@ module.exports = function(FhirRangeService) {
 							.attr("r", this.r);
 						meter.append('text')
 							.attr('y', (meter.node().getBBox().height / 2) + options.meterLabelOffset.y)
-							.attr('x', '0')
+							.attr('x',  options.meterLabelOffset.x)
 							.attr('text-anchor', 'middle')
 							.attr('class', 'meter-label meter-label-container');
 					},
@@ -624,17 +624,17 @@ module.exports = function(FhirRangeService) {
 					// Last Sector
 					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
 						// Checks if we defined a high in Domain
-						return [textValue(range.low), options.rangeSeparator, textValue(domain.high)].join(' ');
+						return [textValue(range.low), options.rangeSeparator, (range.lowComparator || ''), textValue(domain.high)].join(' ');
 					} else {
-						return [options.graterThanSymbol, textValue(range.low)].join(' ');
+						return [(range.lowComparator || options.graterThanSymbol), textValue(range.low)].join(' ');
 					}
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
 					// First Sector
 					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
 						// Checks if we defined a low in Domain
-						return [textValue(domain.low), options.rangeSeparator, textValue(range.high)].join(' ');
+						return [textValue(domain.low), options.rangeSeparator, (range.highComparator || ''), textValue(range.high)].join(' ');
 					} else {
-						return [options.lowerThanSymbol, textValue(range.high)].join(' ');
+						return [(range.highComparator || options.lowerThanSymbol), textValue(range.high)].join(' ');
 					}
 				} else {
 					return '';
@@ -655,20 +655,16 @@ module.exports = function(FhirRangeService) {
 
 				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
 				var lowOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparator];
-				var lowQuantityComparatorStrict = !!range.low && !!range.lowComparator ? range.lowComparator : '>';
-				var lowOperatorStrict = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparatorStrict];
 
 				var highQuantityComparator = !!range.high && !!range.highComparator ? range.highComparator : '<=';
 				var highOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[highQuantityComparator];
-				var highQuantityComparatorStrict = !!range.high && !!range.highComparator ? range.highComparator : '<';
-				var highOperatorStrict = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[highQuantityComparatorStrict];
 
 				if (!!range.low && !!range.high) {
 					result = lowOperator(value, range.low) && highOperator(value, range.high);
 				} else if (!!range.low && !range.high) {
-					result = lowOperatorStrict(value, range.low);
+					result = lowOperator(value, range.low);
 				} else if (!!range.high && !range.low) {
-					result = highOperatorStrict(value, range.high);
+					result = highOperator(value, range.high);
 				}
 
 				return result;

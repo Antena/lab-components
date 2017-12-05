@@ -3,7 +3,7 @@
 
 	<div class="observation-gallery-header" ng-if="!hideTitle">
 		<div><h3 class="observation-gallery-header-text">{{ observation.code | fhirCodeableConcept }}</h3></div>
-		<div class="observation-method"><span ng-if="doShowMethod(observation.method)">{{ observation.method | fhirCodeableConcept | optional | capitalize:true }}</span></div>
+		<div class="observation-method"><span ng-if="doShowMethod(observation.method)">{{ observation.method | fhirCodeableConcept | optional }}</span></div>
 		<div ng-if="!vm.viewOnly && headerActions.length" class="observation-gallery-header-actions">
 			<a ng-repeat="headerAction in headerActions"
 			   ng-if="(headerAction.click || headerAction.popoverConfig) && (!headerAction.check || headerAction.check(observation))"
