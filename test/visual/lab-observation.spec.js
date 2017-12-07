@@ -12,7 +12,7 @@ describe('lab-observation', function() {
 	});
 
 	it('should maintain visual properties', function() {
-		this.timeout(30000);
+		this.timeout(40000);
 		var result1 = browser.checkDocument({ widths: [1024], viewportChangePause: 1000 });
 		var passed1 = _.every(result1, function(comparison) {
 			return !!comparison.isExactSameImage || !!comparison.isWithinMisMatchTolerance;

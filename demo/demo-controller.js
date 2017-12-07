@@ -2,6 +2,7 @@
 
 var _ = require('underscore');
 var lodash = require('lodash');
+var moment = require('moment');
 
 var fhirBundle = require('./with-notes.json');
 var historyBundle = require('./with-history.json');
@@ -38,17 +39,62 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	var resolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(fhirBundle);
 	var historyResolvedBundle = FhirBundleResolverService.resolveOrderAndReportReferences(historyBundle);
 
+	var dateDiffs = [
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'days'},
+		{ count: 5, unit: 'days'},
+		{ count: 5, unit: 'days'},
+		{ count: 5, unit: 'days'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'},
+		{ count: 1, unit: 'months'}
+	];
+
 	// Process observation histories
 	var observation = [];
 	_.each(histories.observation, function(o) {
 		var anObservation = _.first(o.data);
 		var config = o.config;
 		config.title = anObservation.code.coding[0].display + ' (' + anObservation.valueQuantity.units + ')';
+
+		var observationData = o.data;
+
+		if(o.class !== 'demo-history-trigliceridemia-no-data') {
+
+			var dateDiffsIdx = 0;
+			var currentDate = moment().utc().subtract(3, 'months');
+
+			observationData = _.map(observationData, function(obs) {
+				var diff = dateDiffs[dateDiffsIdx];
+				dateDiffsIdx++;
+
+				var next = currentDate.subtract(diff.count, diff.unit);
+				obs.issued = next.format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+
+				currentDate = next;
+
+				return obs;
+			});
+		}
+
 		observation.push({
 			title: o.title,
 			clazz: o.class,
 			config: config,
-			data: o.data
+			data: observationData
 		});
 	});
 

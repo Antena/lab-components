@@ -8,7 +8,7 @@ function getScreenshotName(basePath) {
 	return function(context) {
 		var elem = context.type === 'element' ? context.meta.element.replace(/[^_A-Za-z0-9-]/g, '') : context.type;
 		var testName = context.test.title.replace(/[^_A-Za-z0-9-]/g, '_');
-		var browserVersion = parseInt(context.browser.version, 10);
+		var browserVersion = 60; //parseInt(context.browser.version, 10);
 		var browserName = context.browser.name;
 		return path.join(basePath, context.test.parent + '/' + testName + "--" + elem + "_" + browserName + "_v" + browserVersion + "_" + context.meta.width + ".png");
 	};
@@ -71,7 +71,7 @@ exports.config = {
 			referenceName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/reference')),
 			screenshotName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/current')),
 			diffName: getScreenshotName(path.join(process.cwd(), './test/visual/screenshots/diff')),
-			misMatchTolerance: 2
+			misMatchTolerance: 5
 		}),
 		viewportChangePause: 300,
 		widths: [320, 640, 1024],

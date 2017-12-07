@@ -1,7 +1,7 @@
 <div>
 	<h2>Lab Observation Multiange Graph Demos</h2>
 
-	<div ng-repeat="multiRangeObservation in multiRangeObservations" class="demo-instance-container multiple-ranges">
+	<div ng-repeat="multiRangeObservation in multiRangeObservations" class="demo-instance-container multiple-ranges observation-{{multiRangeObservation.observation.id}}">
 		<h4 class="demo-description">{{ multiRangeObservation.description }}</h4>
 		<lab-observation-multirange-graph observation="multiRangeObservation.observation" options="multiRangeObservation.options">
 		</lab-observation-multirange-graph>
