@@ -11,6 +11,8 @@ describe('lab-observation-multirange-graph', function() {
 
 	before(function() {
 		browser.url('http://localhost:4000/lab-observation-multirange-graphe?contentOnly=true');
+
+		browser.waitForExist(DEMO_SELECTOR);
 	});
 
 	it('should use color overrides if configured via setCodeScale2ClassNameMappings', function() {
