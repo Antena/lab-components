@@ -52,17 +52,38 @@ module.exports = function() {
 		return lowBorder;
 	}
 
-	function fillMissingRanges(observation, domain) {
+	function fillMissingRanges(observation, domain, options) {
+
+		options = options || {};
+
+		var defaultMeanings = {
+			low: {
+				system: "http://hl7.org/fhir/v2/0078",
+				code: "L"
+			},
+			original: {
+				system: "http://hl7.org/fhir/v2/0078",
+				code: "N"
+			},
+			high: {
+				system: "http://hl7.org/fhir/v2/0078",
+				code: "H"
+			}
+		};
+
+		var meanings = {
+			original: _.defaults(options.original || {}, defaultMeanings.original),
+			low: _.defaults(options.low || {}, defaultMeanings.low),
+			high: _.defaults(options.high || {}, defaultMeanings.high)
+		};
+
 		var originalRange = observation.referenceRange[0];
 
 		var firstRange = {
 			high: _.extend({}, originalRange.low, { comparator: '<' }),
 			meaning: {
 				coding: [
-					{
-						system: "http://hl7.org/fhir/v2/0078",
-						code: "L"
-					}
+					meanings.low
 				]
 			}
 		};
@@ -95,10 +116,7 @@ module.exports = function() {
 				high: originalRange.high,
 				meaning: {
 					coding: [
-						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "N" 	//TODO (denise) instead of overwriting as normal, fail if it's not
-						}
+						meanings.original
 					]
 				}
 			},
@@ -106,10 +124,7 @@ module.exports = function() {
 				low: _.extend({}, originalRange.high, { comparator: '>' }),
 				meaning: {
 					coding: [
-						{
-							system: "http://hl7.org/fhir/v2/0078",
-							code: "H"
-						}
+						meanings.high
 					]
 				}
 			}
@@ -150,12 +165,12 @@ module.exports = function() {
 		 * @returns {Array} The generated list of ranges.
 		 *
 		 */
-		convertToMultipleRanges: function(observation) {
+		convertToMultipleRanges: function(observation, options) {
 			var ranges = [];
 
 			if (observation.referenceRange && observation.referenceRange.length > 0) {
 				if (shouldFillMissingRanges(observation)) {
-					ranges = fillMissingRanges(observation);
+					ranges = fillMissingRanges(observation, null, options);
 				} else {
 					ranges = observation.referenceRange;
 				}
@@ -184,11 +199,11 @@ module.exports = function() {
 		 * @returns {Array} The generated list of ranges.
 		 *
 		 */
-		convertToMultipleRangesWithDomain: function(observation, domain) {
+		convertToMultipleRangesWithDomain: function(observation, domain, options) {
 			var ranges;
 
 			if (shouldFillMissingRanges(observation)) {
-				ranges = fillMissingRanges(observation, domain);
+				ranges = fillMissingRanges(observation, domain, options);
 			} else {
 				ranges = observation.referenceRange;
 			}
