@@ -141,6 +141,8 @@ module.exports = function($sce) {
 			$scope.isValueStringHtml = function(observation) {
 				return observation && observation.valueString && observation.valueString.toLowerCase().indexOf("<html>") !== -1;
 			};
+
+			$scope.precision = $scope.options ? $scope.options.precision : 0;
 		}
 	};
 };
