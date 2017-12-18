@@ -29,7 +29,7 @@
 		<div class="observation-column observation-secondary-content observation-column-non-wrap">
 			<div class="observation-column-title">{{ 'LAB.RESULT' | translate }}</div>
 			<div class="observation-column-content">
-				<div lab-observation-result observation="observation" options="options"></div>
+				<div lab-observation-result observation="observation" options="config"></div>
 			</div>
 		</div>
 
@@ -41,8 +41,8 @@
 		</div>
 
 		<div class="observation-column observation-primary-content observation-result" ng-if="!!observation.valueQuantity && !observation.referenceRange[0].text && canShowRangeGraph">
-			<div lab-observation-range-graph observation="observation" ng-if="!multiRangeMode" options="options"></div>
-			<div lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode" options="options"></div>
+			<div lab-observation-range-graph observation="observation" ng-if="!multiRangeMode" options="config"></div>
+			<div lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode" options="config"></div>
 		</div>
 
 		<div class="observation-column observation-generic-content observation-column-non-wrap" ng-if="observation.referenceRange[0].text">

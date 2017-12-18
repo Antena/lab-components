@@ -188,7 +188,9 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 		transclude: true,
 		templateUrl: require('./lab-observation.html'),
 		link: function($scope, $element, attrs) {
-			$scope.options = $scope.options || {};
+			$scope.$watch('options', function() {
+				$scope.config = _.extend({}, $scope.options, $scope.config);
+			});
 
 			$scope.onActionHover = function(obs) {
 				$scope.hovered = obs.id;
@@ -214,7 +216,7 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 
 				if (precisionExtension) {
 					var precision = precisionExtension.valueInteger;
-					$scope.options.precision = precision;
+					$scope.config.precision = precision;
 
 				}
 

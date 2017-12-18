@@ -123,10 +123,8 @@
 
 require("./_lab-observation-result.scss");
 
-var _ = require('underscore');
-
 // @ngInject
-module.exports = function($sce, EXTENSION_SYSTEM) {
+module.exports = function($sce) {
 
 	return {
 		restrict: 'EA',
@@ -136,8 +134,6 @@ module.exports = function($sce, EXTENSION_SYSTEM) {
 		},
 		templateUrl: require('./lab-observation-result.html'),
 		link: function($scope) {
-			$scope.precision = 0;
-
 			if (!!$scope.observation.valueQuantity && !!$scope.observation.valueQuantity.comparator) {
 				$scope.comparator = $sce.trustAsHtml($scope.observation.valueQuantity.comparator + '&nbsp;');
 			}
@@ -145,14 +141,6 @@ module.exports = function($sce, EXTENSION_SYSTEM) {
 			$scope.isValueStringHtml = function(observation) {
 				return observation && observation.valueString && observation.valueString.toLowerCase().indexOf("<html>") !== -1;
 			};
-
-			$scope.$watch('observation', function(observation) {
-				var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(observation.extension, {url: EXTENSION_SYSTEM.PRECISION}) : null;
-
-				if (precisionExtension) {
-					$scope.precision = precisionExtension.valueInteger;
-				}
-			});
 		}
 	};
 };
