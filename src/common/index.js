@@ -4,7 +4,7 @@ var angular = require('angular');
 var ngModule = angular.module('lab-components.common', [
 	require('angular-translate'),
 	require('angular-animate'),
-	require('angular-ui-bootstrap'),
+	require('angular-ui-bootstrap/src/popover/index-nocss'),
 	require('angular-utilities')
 ]);
 
