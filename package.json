@@ -1,6 +1,6 @@
 {
   "name": "lab-components",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Components for visualizing FHIR labs.",
   "main": "src/index.js",
   "author": "Antena",
