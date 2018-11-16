@@ -277,11 +277,10 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 
 	$scope.multiRangeObservations = _.map(_.union(multirangeObs, numericObs), function(obs) {
 
-		var precisionExtension = null;
-		var extUrl = EXTENSION_SYSTEM.CUSTOM_PRECISION || EXTENSION_SYSTEM.PRECISION;
+		var precisionExtension = _.findWhere(obs.extension, { url: EXTENSION_SYSTEM.CUSTOM_PRECISION });
 
-		if (!!extUrl) {
-			precisionExtension = _.findWhere(obs.extension, { url: extUrl });
+		if (!precisionExtension) {
+			precisionExtension = _.findWhere(obs.extension, { url: EXTENSION_SYSTEM.PRECISION });
 		}
 
 		var result = {
