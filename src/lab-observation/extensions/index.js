@@ -27,7 +27,7 @@ var ngModule = angular.module('lab-components.lab-observation.extensions', []);
  *
  */
 ngModule.value('EXTENSION_SYSTEM', {
-	'PRECISION': 'http://www.wellbin.co/precision',
+	'PRECISION': 'http://hl7.org/fhir/StructureDefinition/quantity-precision',
 	'DOMAIN': 'http://www.wellbin.co/domain'
 });
 

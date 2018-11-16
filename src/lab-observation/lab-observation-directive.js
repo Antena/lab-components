@@ -212,7 +212,12 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 			};
 
 			$scope.$watch('observation', function(observation) {
-				var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(observation.extension, { url: EXTENSION_SYSTEM.PRECISION}) : null;
+				var precisionExtension = null;
+				var extUrl = EXTENSION_SYSTEM.CUSTOM_PRECISION || EXTENSION_SYSTEM.PRECISION;
+
+				if (!!extUrl) {
+					precisionExtension = _.findWhere(observation.extension, { url: extUrl });
+				}
 
 				if (precisionExtension) {
 					var precision = precisionExtension.valueInteger;

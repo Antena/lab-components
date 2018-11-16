@@ -432,7 +432,7 @@
     "id": "5929662",
     "extension": [
       {
-        "url": "http://www.wellbin.co/precision",
+        "url": "http://hl7.org/fhir/StructureDefinition/quantity-precision",
         "valueInteger": 0
       }
     ],

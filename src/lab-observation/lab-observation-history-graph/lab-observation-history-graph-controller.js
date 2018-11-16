@@ -6,7 +6,13 @@ var _ = require('underscore');
 module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConverterService, EXTENSION_SYSTEM) {
 	function obtainNumericValue(obs) {
 		var numericValue = obs.valueQuantity.value;
-		var precisionExtension = EXTENSION_SYSTEM.PRECISION ? _.findWhere(obs.extension, { url: EXTENSION_SYSTEM.PRECISION}) : null;
+		var precisionExtension = null;
+		var extUrl = EXTENSION_SYSTEM.CUSTOM_PRECISION || EXTENSION_SYSTEM.PRECISION;
+
+		if (!!extUrl) {
+			precisionExtension = _.findWhere(obs.extension, { url: extUrl });
+		}
+
 		if (precisionExtension) {
 			var precision = precisionExtension.valueInteger;
 			numericValue = $filter('number')(obs.valueQuantity.value, precision);
