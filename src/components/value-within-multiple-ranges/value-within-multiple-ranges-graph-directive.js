@@ -197,6 +197,7 @@ module.exports = function(FhirRangeService) {
 		restrict: 'EA',
 		scope: {
 			value: '=',
+			valueComparator: '=?',
 			unit: '=?',
 			ranges: '=',
 			options: '=?'
@@ -379,7 +380,9 @@ module.exports = function(FhirRangeService) {
 							.attr('class', 'meter-label meter-label-container');
 					},
 					updateLabel: function(meterLabel, text) {
-						meterLabel.text(textValue(text));
+						var val = textValue(text);
+						var comparator = sanitizeComparator(scope.valueComparator);
+						meterLabel.text(comparator ? (comparator + ' ' + val) : val);
 					},
 					getIndicatorOverflow: function() {
 						return (45 / 2);	//TODO (denise) [issue #30] extract width from path (45)
@@ -435,7 +438,7 @@ module.exports = function(FhirRangeService) {
 				// Append rectangles to sectors
 				rect = targetSector.append('g')
 					.attr('transform', translate(0, options.meterPosition === 'top' ? 0 : options.labelHeight))
-					.classed('target', function(d) { return valueInRange(scope.value, d.range); });
+					.classed('target', function(d) { return valueInRange(scope.value, d.range, scope.valueComparator); });
 				rect.append('rect')
 					.attr('width', function(d) { return d.width; })
 					.attr('height', function(d) { return d.rectHeight; })
@@ -520,7 +523,7 @@ module.exports = function(FhirRangeService) {
 			function refresh() {
 				// Find the new target (if changed)
 				var oldTarget = targetRect;
-				rect.classed('target', function(d) { return valueInRange(scope.value, d.range); });
+				rect.classed('target', function(d) { return valueInRange(scope.value, d.range, scope.valueComparator); });
 
 				// Update the meter's position (build new scale if target changed)
 				targetRect = svg.selectAll('g.target');
@@ -529,15 +532,18 @@ module.exports = function(FhirRangeService) {
 					targetScale = scale(scope.value, targetRect.data()[0], sectors);
 					appendMeter(targetRect);
 				}
+				var range = targetRect.data()[0].range;
+				var x = notSureWhereInRange(scope.value, range, scope.valueComparator) ? (targetRect[0][0].getBBox().width / 2) + targetRect[0][0].getBBox().x : targetScale(scope.value);
+
 				meter = targetRect.selectAll('g.meter');
-				meter.attr('transform', function(d) { return translate(targetScale(scope.value), (options.meterPosition === 'bottom' ? d.rectHeight : 0 )); });
+				meter.attr('transform', function(d) { return translate(x, (options.meterPosition === 'bottom' ? d.rectHeight : 0 )); });
 
 				// Update the meter's label
 				var labelValue = options.meterLabelWithUnits ? ([scope.value, scope.unit].join(' ')) : scope.value;
 				var meterLabelComponent = meter.select('.meter-label');
 				METER_SHAPES[options.meterShape.type].updateLabel(meterLabelComponent, labelValue);
 				var meterLabelContainer = meter.select('.meter-label-container');
-				var offsetX = targetRect.data()[0].x + targetScale(scope.value) + options.meterLabelOffset.x;
+				var offsetX = targetRect.data()[0].x + x + options.meterLabelOffset.x;
 				var labelWidth = meterLabelContainer[0][0].clientWidth;
 				var foOffsetX = (offsetX + labelWidth) > width ? -labelWidth - options.meterLabelOffset.x : options.meterLabelOffset.x;
 				if (meterWrapper) {
@@ -632,7 +638,10 @@ module.exports = function(FhirRangeService) {
 					// First Sector
 					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
 						// Checks if we defined a low in Domain
-						return [textValue(domain.low), options.rangeSeparator, (range.highComparator || ''), textValue(range.high)].join(' ');
+						return (range.highComparator === '<' ?
+									[(range.highComparator || ''), textValue(range.high)] :
+									[textValue(domain.low), options.rangeSeparator, (range.highComparator || ''), textValue(range.high)])
+								.join(' ');
 					} else {
 						return [(range.highComparator || options.lowerThanSymbol), textValue(range.high)].join(' ');
 					}
@@ -649,9 +658,11 @@ module.exports = function(FhirRangeService) {
 			 * @param range: the range to test.
 			 * @returns {boolean}
 			 */
-			var valueInRange = function(value, range) {
+			var valueInRange = function(value, range, valueComparator) {
 
 				var result = false;
+
+				var comparator = sanitizeComparator(valueComparator);
 
 				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
 				var lowOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparator];
@@ -661,13 +672,44 @@ module.exports = function(FhirRangeService) {
 
 				if (!!range.low && !!range.high) {
 					result = lowOperator(value, range.low) && highOperator(value, range.high);
+					if ((comparator === '>' && value === range.high) || (comparator === '<' && value === range.low)) {
+						result = false;
+					}
 				} else if (!!range.low && !range.high) {
 					result = lowOperator(value, range.low);
+					if (comparator === '>' && value === range.low && lowQuantityComparator === '>') {
+						result = true;
+					}
 				} else if (!!range.high && !range.low) {
 					result = highOperator(value, range.high);
+					if (comparator === '<' && value === range.high && highQuantityComparator === '<') {
+						result = true;
+					}
 				}
 
 				return result;
+			};
+
+			// TODO (denise) remove after CV-2810
+			function sanitizeComparator(valueComparator) {
+				var comparator = valueComparator;
+				if (valueComparator && valueComparator === '&lt;') {
+					comparator = '<';
+				}
+				if (valueComparator && valueComparator === '&gt;') {
+					comparator = '>';
+				}
+				return comparator;
+			}
+
+			var notSureWhereInRange = function(value, range, valueComparator) {
+				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
+				var highQuantityComparator = !!range.high && !!range.highComparator ? range.highComparator : '<=';
+				var comparator = sanitizeComparator(valueComparator);
+				return valueComparator && (
+					((!!range.high && !range.low) && (comparator === '<' && value === range.high && highQuantityComparator === '<')) ||
+					((!!range.low && !range.high) && (comparator === '>' && value === range.low && lowQuantityComparator === '>'))
+				);
 			};
 
 			/**

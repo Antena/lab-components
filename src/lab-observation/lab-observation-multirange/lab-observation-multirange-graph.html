@@ -2,6 +2,7 @@
 	<div value-within-multiple-ranges-graph
 		ng-if="vm.observation.valueQuantity && vm.observation.referenceRange && vm.calculatedRanges"
 		value="vm.observation.valueQuantity.value"
+		value-comparator="vm.observation.valueQuantity.comparator"
 		unit="vm.observation.valueQuantity.units || vm.observation.valueQuantity.unit"
 		ranges="vm.calculatedRanges"
 		options="vm.graphOptions">
