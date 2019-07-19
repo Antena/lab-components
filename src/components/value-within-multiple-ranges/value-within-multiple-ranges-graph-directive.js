@@ -770,8 +770,6 @@ module.exports = function(FhirRangeService) {
 					}
 				}
 
-				console.log("!! domain = ", domain);	//TODO (denise) remove log
-
 				return d3.scale.linear()
 					.clamp(true)
 					.range([0, sector.width])
