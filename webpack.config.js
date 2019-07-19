@@ -1,41 +1,67 @@
-var path = require('path'),
-	webpack = require("webpack"),
-	ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+const { ContextReplacementPlugin, ProvidePlugin, optimize } = require('webpack');
+const { OccurrenceOrderPlugin, DedupePlugin, CommonsChunkPlugin } = optimize;
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const LabComponentsTextExtractor = new ExtractTextPlugin({
+	filename: 'main.css',
+	allChunks: true,
+	ignoreOrder: true
+});
 
 var config = {
-	context: __dirname,
+	context: path.join(__dirname, ''),
 	entry: {
 		'bundle': './demo/app.js'
 	},
 	output: {
-		path: "dist",
+		path: path.resolve(__dirname, 'dist/'),
 		filename: "main.js"
 	},
 	module: {
-		preLoaders: [
+		rules: [
 			{
 				test: /\.js$/,
-				loader: 'absolut'
-			}
-		],
-		loaders: [
-			{ test: /\.json$/, loader: "json-loader" },
+				use: [{ loader: 'absolut-loader' }],
+				enforce: 'pre'
+			},
+			{
+				test: /\.json$/,
+				use: [{ loader: 'json-loader' }]
+			},
 			{
 				test: /\.html$/,
-				loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './')) + '/!html'
+				use: [
+					{ loader: `ngtemplate-loader?relativeTo=${(path.resolve(__dirname, './'))}/` },
+					{ loader: 'html-loader' }
+				]
 			},
 			{
 				test: /\.scss$/,
-				loader: ExtractTextPlugin.extract(
-					'style', // backup loader when not building .css file
-					'css!sass' // loaders to preprocess CSS
-				)
+				use: LabComponentsTextExtractor.extract({
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								importLoaders: 1,
+								minimize: true,
+								sourceMap: true
+							}
+						},
+						{
+							loader: 'sass-loader'
+						}
+					]
+				})
 			},
-			{ test: /\.(png|svg)$/, loader: 'url-loader' }
+			{
+				test: /\.(png|svg|gif)$/,
+				use: [{loader: 'url-loader'}]
+			}
 		]
 	},
 	resolve: {
-		modulesDirectories: ['.', 'node_modules'],
 		alias: {
 			'angular-translate': 'angular-translate/dist/angular-translate.min.js',
 			duScroll: 'angular-scroll/angular-scroll.min.js',
@@ -47,15 +73,15 @@ var config = {
 		}
 	},
 	plugins: [
-		new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /es/),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.ProvidePlugin({
+		new ContextReplacementPlugin(/moment[\/\\]locale$/, /es/),
+		new OccurrenceOrderPlugin(),
+		new ProvidePlugin({
 			$: "jquery",
 			jQuery: "jquery",
 			"window.jQuery": "jquery",
 			_: "underscore"
 		}),
-		new ExtractTextPlugin('main.css')
+		LabComponentsTextExtractor
 	]
 };
 

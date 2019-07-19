@@ -625,7 +625,9 @@ module.exports = function(FhirRangeService) {
 			var rangeText = function(range, domain) {
 				if (_.isNumber(range.low) && _.isNumber(range.high)) {
 					// Middle Sector
-					return [textValue(range.low), options.rangeSeparator, textValue(range.high)].join(' ');
+					var lowTextValue = textValue(range.low);
+					var highTextValue = textValue(range.high);
+					return lowTextValue !== highTextValue ? [lowTextValue, options.rangeSeparator, highTextValue].join(' ') : lowTextValue;
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
 					// Last Sector
 					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
@@ -663,24 +665,26 @@ module.exports = function(FhirRangeService) {
 				var result = false;
 
 				var comparator = sanitizeComparator(valueComparator);
+				var hasLow = _.isNumber(range.low);
+				var hasHigh = _.isNumber(range.high);
 
-				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
+				var lowQuantityComparator = hasLow && !!range.lowComparator ? range.lowComparator : '>=';
 				var lowOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[lowQuantityComparator];
 
-				var highQuantityComparator = !!range.high && !!range.highComparator ? range.highComparator : '<=';
+				var highQuantityComparator = hasHigh && !!range.highComparator ? range.highComparator : '<=';
 				var highOperator = FhirRangeService.QUANTITY_COMPARATOR_OPERATORS[highQuantityComparator];
 
-				if (!!range.low && !!range.high) {
+				if (hasLow && hasHigh) {
 					result = lowOperator(value, range.low) && highOperator(value, range.high);
 					if ((comparator === '>' && value === range.high) || (comparator === '<' && value === range.low)) {
 						result = false;
 					}
-				} else if (!!range.low && !range.high) {
+				} else if (hasLow && !hasHigh) {
 					result = lowOperator(value, range.low);
 					if (comparator === '>' && value === range.low && lowQuantityComparator === '>') {
 						result = true;
 					}
-				} else if (!!range.high && !range.low) {
+				} else if (hasHigh && !hasLow) {
 					result = highOperator(value, range.high);
 					if (comparator === '<' && value === range.high && highQuantityComparator === '<') {
 						result = true;
@@ -703,12 +707,19 @@ module.exports = function(FhirRangeService) {
 			}
 
 			var notSureWhereInRange = function(value, range, valueComparator) {
-				var lowQuantityComparator = !!range.low && !!range.lowComparator ? range.lowComparator : '>=';
-				var highQuantityComparator = !!range.high && !!range.highComparator ? range.highComparator : '<=';
+				var hasLow = _.isNumber(range.low);
+				var hasHigh = _.isNumber(range.high);
+				var lowQuantityComparator = hasLow && !!range.lowComparator ? range.lowComparator : '>=';
+				var highQuantityComparator = hasHigh && !!range.highComparator ? range.highComparator : '<=';
 				var comparator = sanitizeComparator(valueComparator);
-				return valueComparator && (
-					((!!range.high && !range.low) && (comparator === '<' && value === range.high && highQuantityComparator === '<')) ||
-					((!!range.low && !range.high) && (comparator === '>' && value === range.low && lowQuantityComparator === '>'))
+
+				var isSingleValueRange = hasHigh && hasLow && range.low === range.high && range.lowComparator === '>=' && range.highComparator === '<=';
+
+				return isSingleValueRange ||
+					(valueComparator && (
+						((hasHigh && !hasLow) && (comparator === '<' && value === range.high && highQuantityComparator === '<')) ||
+						((hasLow && !hasHigh) && (comparator === '>' && value === range.low && lowQuantityComparator === '>'))
+					)
 				);
 			};
 
