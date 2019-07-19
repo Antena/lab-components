@@ -141,6 +141,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 			}
 
+			console.log("observation.referenceRange = ", observation.referenceRange);	//TODO (denise) remove log
 			var ranges = FhirReferenceRangeConverterService.convertToMultipleRangesWithDomain(observation, $scope.vm.graphOptions.domain, $scope.vm.options.rangeFillings);
 
 			$scope.vm.calculatedRanges = transformRangesForGraphDisplay(ranges);

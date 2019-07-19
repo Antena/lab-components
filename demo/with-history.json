@@ -30751,6 +30751,120 @@
             "target": {
               "reference": "Observation/7165"
             }
+          },
+          {
+            "type": "has-member",
+            "target": {
+              "resourceType": "Observation",
+              "id": "58301201",
+              "meta": {
+                "versionId": "1",
+                "lastUpdated": "2019-07-11T09:38:59.000-03:00"
+              },
+              "text": {
+                "status": "empty",
+                "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"/>"
+              },
+              "extension": [
+                {
+                  "url": "http://www.cdrossi.com/relacion_prestacion_resultado_prestacion",
+                  "valueIdentifier": {
+                    "system": "http://www.cdrossi.com/pedido_prestacion",
+                    "value": "830-262785-1"
+                  }
+                },
+                {
+                  "url": "http://www.cdrossi.com/valor_texto",
+                  "valueString": "-"
+                },
+                {
+                  "url": "http://www.cdrossi.com/tipo_resultado",
+                  "valueCode": "N"
+                },
+                {
+                  "url": "http://www.cdrossi.com/precision",
+                  "valueInteger": 0
+                }
+              ],
+              "identifier": [
+                {
+                  "system": "http://www.cdrossi.com/resultados",
+                  "value": "830-262785-P.47565-1"
+                }
+              ],
+              "status": "final",
+              "code": {
+                "coding": [
+                  {
+                    "system": "http://www.cdrossi.com/tests",
+                    "code": "P.47565",
+                    "display": "Neutrofilos en cayado"
+                  }
+                ]
+              },
+              "subject": {
+                "reference": "Patient/58301124"
+              },
+              "issued": "2019-07-11T09:22:41.000-03:00",
+              "performer": [
+                {
+                  "reference": "Organization/M4"
+                }
+              ],
+              "valueQuantity": {
+                "fhir_comments": [
+                  " Valor del Resultado "
+                ],
+                "value": 0,
+                "unit": "%",
+                "system": "http://unitsofmeasure.org",
+                "code": "%"
+              },
+              "interpretation": {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/v2/0078",
+                    "code": "N"
+                  }
+                ]
+              },
+              "comments": "",
+              "method": {
+                "text": "AUTOMATIZADO SYSMEX"
+              },
+              "referenceRange": [
+                {
+                  "modifierExtension": [
+                    {
+                      "url": "http://www.cdrossi.com/validezrangoreferencia",
+                      "valuePeriod": {
+                        "start": "2013-01-02T00:00:00"
+                      }
+                    }
+                  ],
+                  "low": {
+                    "value": 0,
+                    "unit": "%",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "%"
+                  },
+                  "high": {
+                    "value": 0,
+                    "unit": "%",
+                    "system": "http://unitsofmeasure.org",
+                    "code": "%"
+                  },
+                  "meaning": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/v2/0078",
+                        "code": "N"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           }
         ]
       }

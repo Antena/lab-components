@@ -79,6 +79,11 @@ module.exports = function() {
 
 		var originalRange = observation.referenceRange[0];
 
+		if (originalRange.low.value === originalRange.high.value && !originalRange.low.comparator && !originalRange.high.comparator) {
+			originalRange.low.comparator = '>=';
+			originalRange.high.comparator = '<=';
+		}
+
 		var firstRange = {
 			high: _.extend({}, originalRange.low, { comparator: '<' }),
 			meaning: {
