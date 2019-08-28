@@ -13,7 +13,7 @@ var _ = require('underscore');
  */
 
 // @ngInject
-module.exports = function() {
+module.exports = function(MathUtilService) {
 
 	function shouldFillMissingRanges(observation) {
 		return observation.referenceRange.length === 1 && observation.referenceRange[0].low && observation.referenceRange[0].high;
@@ -47,7 +47,7 @@ module.exports = function() {
 
 		var lowBorder = originalRange.low.value - diffToApply;
 		if (decimalCount > 0) {
-			lowBorder = parseFloat(lowBorder.toFixed(decimalCount));
+			lowBorder = parseFloat(MathUtilService.toFixedDecimals(lowBorder, decimalCount));
 		}
 		return lowBorder;
 	}

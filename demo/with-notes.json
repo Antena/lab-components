@@ -3892,7 +3892,12 @@
       "resource": {
         "resourceType": "Observation",
         "id": "8137",
-        "extension": [],
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/quantity-precision",
+            "valueInteger": 1
+          }
+        ],
         "code": {
           "coding": [
             {
@@ -3903,7 +3908,7 @@
           ]
         },
         "valueQuantity": {
-          "value": 0.14,
+          "value": 0.15,
           "units": "g/dl",
           "system": "http://unitsofmeasure.org",
           "code": "g/dl"

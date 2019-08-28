@@ -285,13 +285,12 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 
 		var result = {
 			description: obs.code.coding[0].display,
-			observation: obs
+			observation: obs,
+			options: {}
 		};
 
 		if (precisionExtension) {
-			result.options = {
-				precision: precisionExtension.valueInteger
-			}
+			result.options.precision = precisionExtension.valueInteger;
 		}
 
 		return result;

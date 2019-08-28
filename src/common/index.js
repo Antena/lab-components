@@ -16,5 +16,6 @@ ngModule.filter('toStatusKey', require('./to-status-key-filter'));
 ngModule.directive('popoverOnDemand', require('./popover-on-demand-directive'));
 
 ngModule.service('FhirReferenceRangeConverterService', require('./fhir-reference-range-converter-service'));
+ngModule.service('MathUtilService', require('./math-util-service'));
 
 module.exports = ngModule.name;

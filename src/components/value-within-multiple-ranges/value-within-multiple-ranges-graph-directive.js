@@ -191,7 +191,7 @@ var angular = require('angular');
 require('./_value-within-multiple-ranges.scss');
 
 // @ngInject
-module.exports = function(FhirRangeService) {
+module.exports = function(FhirRangeService, MathUtilService) {
 
 	return {
 		restrict: 'EA',
@@ -235,11 +235,11 @@ module.exports = function(FhirRangeService) {
 			 */
 
 			function textValue(value) {
-				return !_.isUndefined(options.precision) ? value.toFixed(options.precision) : value;
+				return !_.isUndefined(options.precision) ? MathUtilService.toFixedDecimals(value, options.precision) : value;
 			}
 
 			function preciseValue(value) {
-				return !_.isUndefined(options.precision) ? Number(value.toFixed(options.precision)) : value;
+				return !_.isUndefined(options.precision) ? Number(MathUtilService.toFixedDecimals(value, options.precision)) : value;
 			}
 
 			// Apply precision to value (if precision is set), before registering watchers
