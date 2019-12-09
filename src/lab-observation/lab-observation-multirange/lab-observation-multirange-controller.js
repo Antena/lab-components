@@ -127,7 +127,10 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 		if (observation && observation.referenceRange && observation.referenceRange.length) {
 
-			var domainExtension = EXTENSION_SYSTEM.DOMAIN ? _.findWhere(observation.extension, {url: EXTENSION_SYSTEM.DOMAIN}) : null;
+			var domainExtension = EXTENSION_SYSTEM.CUSTOM_DOMAIN ? _.findWhere(observation.extension, {url: EXTENSION_SYSTEM.CUSTOM_DOMAIN}) : null;
+			if (!domainExtension) {
+				domainExtension = EXTENSION_SYSTEM.DOMAIN ? _.findWhere(observation.extension, {url: EXTENSION_SYSTEM.DOMAIN}) : null;
+			}
 
 			if (domainExtension) {
 
