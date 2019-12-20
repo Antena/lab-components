@@ -25,7 +25,10 @@
       "DEFICIT": "Deficiencia",
       "INSUFFICIENT": "Insuficiencia",
       "SUFFICIENT": "Suficiencia",
-      "TOXIC": "Toxicidad"
+      "TOXIC": "Toxicidad",
+
+      "NEG": "Negativo",
+      "POS": "Positivo"
     }
   },
   "UNITS": {
