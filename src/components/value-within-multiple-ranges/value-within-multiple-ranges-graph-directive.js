@@ -204,6 +204,22 @@ module.exports = function(FhirRangeService, MathUtilService) {
 		},
 		link: function(scope, elem) {
 
+			scope.$watch('value', function() {
+				init();
+			});
+			scope.$watch('valueComparator', function() {
+				init();
+			});
+			scope.$watch('unit', function() {
+				init();
+			});
+			scope.$watch('ranges', function() {
+				init();
+			});
+			scope.$watch('options', function() {
+				init();
+			});
+
 			/**
 			 * Parse and extend options object.
 			 */
@@ -394,14 +410,22 @@ module.exports = function(FhirRangeService, MathUtilService) {
 			};
 
 			setTimeout(function() {
-				width = angular.element(elem.parent()[0]).width();
 				init();
 			}, 0);
+
+			function init() {
+				width = angular.element(elem.parent()[0]).width();
+				elem[0].innerHTML = '';
+
+				if (width > 0 && !_.isUndefined(scope.value) && scope.ranges && scope.ranges.length > 0) {
+					redraw();
+				}
+			}
 
 			/**
 			 * Draws basic elements and initializes constant properties.
 			 */
-			function init() {
+			function redraw() {
 				svg = d3.select(elem[0]).append('svg')
 					.attr('width', width)
 					.attr('height', options.height)

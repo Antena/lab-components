@@ -171,7 +171,7 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 
 	return {
 		scope: {
-			observation: '=',
+			masterObservation: '=observation',
 			actions: '=?',
 			headerActions: '=?',
 			viewOnly: '=?',
@@ -211,7 +211,16 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 				return value && value.toLowerCase().indexOf("<html>") !== -1;
 			};
 
-			$scope.$watch('observation', function(observation) {
+			function filterHistoricRefRanges(observation, gender) {
+				_.each(observation.history, function (historicObs) {
+					if (historicObs.referenceRange && historicObs.referenceRange.length) {
+						historicObs.referenceRange = FhirRangeService.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, gender);
+					}
+				});
+			}
+
+			$scope.initObservation = function(observation) {
+				$scope.observation = _.extend({}, observation);
 				var precisionExtension = _.findWhere(observation.extension, { url: EXTENSION_SYSTEM.CUSTOM_PRECISION });
 
 				if (!precisionExtension) {
@@ -224,31 +233,69 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 
 				}
 
+				$scope.showAllGenderedReferenceRanges = false;
+
 				if ($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
-						$scope.observation.referenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+
+						if ($scope.patientGender !== 'female' && $scope.patientGender !== 'male') {
+
+							var genderedRanges = _.filter($scope.observation.referenceRange, function(rr) {
+								return _.findWhere(rr.modifierExtension, { url: "http://hl7.org/fhir/ValueSet/administrative-gender" });
+							});
+
+							if (genderedRanges && genderedRanges.length > 0) {
+								var genderReferenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+
+								if (!genderReferenceRange || genderReferenceRange.length === 0) {
+									$scope.showAllGenderedReferenceRanges = true;
+								}
+							}
+						}
+
+						if (!$scope.showAllGenderedReferenceRanges) {
+							$scope.observation.referenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+						} else {
+							$scope.femaleObservation = _.extend({}, $scope.observation, {
+								referenceRange: FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, 'female')
+							});
+							$scope.maleObservation = _.extend({}, $scope.observation, {
+								referenceRange: FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, 'male')
+							});
+						}
 					}
 
 					if ($scope.observation.history) {
-						_.each($scope.observation.history, function(historicObs) {
-							if (historicObs.referenceRange && historicObs.referenceRange.length) {
-								historicObs.referenceRange = FhirRangeService.filterRanges(historicObs.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
-							}
-						});
+						if (!$scope.showAllGenderedReferenceRanges) {
+							filterHistoricRefRanges($scope.observation, $scope.patientGender);
+						} else {
+							filterHistoricRefRanges($scope.femaleObservation, 'female');
+							filterHistoricRefRanges($scope.maleObservation, 'male');
+						}
 					}
 				}
+
+				var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
+				$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
+
+				if (_.isUndefined(attrs.shouldShowMethod)) {
+					$scope.doShowMethod = _.constant(true);
+				} else {
+					$scope.doShowMethod = function(method) {
+						return $scope.shouldShowMethod({method: method});
+					};
+				}
+			};
+
+			$scope.$watch('masterObservation', function(observation) {
+				$scope.initObservation(observation);
 			});
 
-			var hasRange = $scope.observation.referenceRange && $scope.observation.referenceRange.length > 0;
-			$scope.canShowRangeGraph = hasRange && !!$scope.observation.valueQuantity && ( $scope.multiRangeMode || (!!$scope.observation.referenceRange[0].low && !!$scope.observation.referenceRange[0].high) );
+			$scope.$watch('patientGender', function(newGender) {
+				$scope.initObservation($scope.masterObservation);
+			});
 
-			if (_.isUndefined(attrs.shouldShowMethod)) {
-				$scope.doShowMethod = _.constant(true);
-			} else {
-				$scope.doShowMethod = function(method) {
-					return $scope.shouldShowMethod({method: method});
-				};
-			}
+			$scope.initObservation($scope.masterObservation);
 		}
 	};
 };

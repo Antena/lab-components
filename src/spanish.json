@@ -7,6 +7,10 @@
     "RESULT": "Resultado",
     "MEANING": "Interpretación",
     "DATE": "Fecha",
+    "REFERENCE_RANGE_FOR": {
+      "FEMALE": "Mujeres",
+      "MALE": "Hombres"
+    },
     "REFERENCE_RANGE_MEANING": {
       "HIGH": "Elevado",
       "REGULAR": "Normal",
