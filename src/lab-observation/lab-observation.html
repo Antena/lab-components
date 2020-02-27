@@ -42,17 +42,17 @@
 
 		<div class="observation-column observation-primary-content observation-result" ng-if="!!observation.valueQuantity && !observation.referenceRange[0].text && canShowRangeGraph">
 			<div ng-if="!showAllGenderedReferenceRanges">
-				<div lab-observation-range-graph observation="observation" ng-if="!multiRangeMode" options="config"></div>
-				<div lab-observation-multirange-graph observation="observation" ng-if="multiRangeMode" options="config"></div>
+				<div lab-observation-range-graph observation="observationWithFilteredRanges" ng-if="!multiRangeMode" options="config"></div>
+				<div lab-observation-multirange-graph observation="observationWithFilteredRanges" ng-if="multiRangeMode" options="config"></div>
 			</div>
 			<div ng-if="showAllGenderedReferenceRanges">
 				<div class="observation-column-title">{{ 'LAB.REFERENCE_RANGE_FOR.FEMALE' | translate }}</div>
-				<div lab-observation-multirange-graph observation="femaleObservation" ng-if="multiRangeMode" options="config"></div>
-				<div lab-observation-range-graph observation="femaleObservation" ng-if="!multiRangeMode" options="config"></div>
+				<div lab-observation-multirange-graph observation="femaleObservationWithFilteredRanges" ng-if="multiRangeMode" options="config"></div>
+				<div lab-observation-range-graph observation="femaleObservationWithFilteredRanges" ng-if="!multiRangeMode" options="config"></div>
 
 				<div class="observation-column-title">{{ 'LAB.REFERENCE_RANGE_FOR.MALE' | translate }}</div>
-				<div lab-observation-multirange-graph observation="maleObservation" ng-if="multiRangeMode" options="config"></div>
-				<div lab-observation-range-graph observation="maleObservation" ng-if="!multiRangeMode" options="config"></div>
+				<div lab-observation-multirange-graph observation="maleObservationWithFilteredRanges" ng-if="multiRangeMode" options="config"></div>
+				<div lab-observation-range-graph observation="maleObservationWithFilteredRanges" ng-if="!multiRangeMode" options="config"></div>
 			</div>
 		</div>
 

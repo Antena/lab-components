@@ -171,7 +171,7 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 
 	return {
 		scope: {
-			masterObservation: '=observation',
+			observation: '=',
 			actions: '=?',
 			headerActions: '=?',
 			viewOnly: '=?',
@@ -188,6 +188,8 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 		transclude: true,
 		templateUrl: require('./lab-observation.html'),
 		link: function($scope, $element, attrs) {
+			$scope.config = _.extend({}, $scope.options, $scope.config);
+
 			$scope.$watch('options', function() {
 				$scope.config = _.extend({}, $scope.options, $scope.config);
 			});
@@ -220,7 +222,6 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 			}
 
 			$scope.initObservation = function(observation) {
-				$scope.observation = _.extend({}, observation);
 				var precisionExtension = _.findWhere(observation.extension, { url: EXTENSION_SYSTEM.CUSTOM_PRECISION });
 
 				if (!precisionExtension) {
@@ -234,6 +235,8 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 				}
 
 				$scope.showAllGenderedReferenceRanges = false;
+
+				$scope.observationWithFilteredRanges = _.extend({}, $scope.observation);
 
 				if ($scope.patientAgeInYears || $scope.patientGender) {
 					if ($scope.observation.referenceRange && $scope.observation.referenceRange.length) {
@@ -254,12 +257,14 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 						}
 
 						if (!$scope.showAllGenderedReferenceRanges) {
-							$scope.observation.referenceRange = FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender);
+							$scope.observationWithFilteredRanges = _.extend({}, $scope.observation, {
+								referenceRange: FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, $scope.patientGender)
+							});
 						} else {
-							$scope.femaleObservation = _.extend({}, $scope.observation, {
+							$scope.femaleObservationWithFilteredRanges = _.extend({}, $scope.observation, {
 								referenceRange: FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, 'female')
 							});
-							$scope.maleObservation = _.extend({}, $scope.observation, {
+							$scope.maleObservationWithFilteredRanges = _.extend({}, $scope.observation, {
 								referenceRange: FhirRangeService.filterRanges($scope.observation.referenceRange, $scope.patientAgeInYears, 'male')
 							});
 						}
@@ -269,8 +274,8 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 						if (!$scope.showAllGenderedReferenceRanges) {
 							filterHistoricRefRanges($scope.observation, $scope.patientGender);
 						} else {
-							filterHistoricRefRanges($scope.femaleObservation, 'female');
-							filterHistoricRefRanges($scope.maleObservation, 'male');
+							filterHistoricRefRanges($scope.femaleObservationWithFilteredRanges, 'female');
+							filterHistoricRefRanges($scope.maleObservationWithFilteredRanges, 'male');
 						}
 					}
 				}
@@ -287,15 +292,15 @@ module.exports = function(FhirRangeService, EXTENSION_SYSTEM) {
 				}
 			};
 
-			$scope.$watch('masterObservation', function(observation) {
+			$scope.$watch('observation', function(observation) {
 				$scope.initObservation(observation);
 			});
 
 			$scope.$watch('patientGender', function(newGender) {
-				$scope.initObservation($scope.masterObservation);
+				$scope.initObservation($scope.observation);
 			});
 
-			$scope.initObservation($scope.masterObservation);
+			$scope.initObservation($scope.observation);
 		}
 	};
 };
