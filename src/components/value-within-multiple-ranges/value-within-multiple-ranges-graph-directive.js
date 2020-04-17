@@ -721,10 +721,10 @@ module.exports = function(FhirRangeService, MathUtilService) {
 			// TODO (denise) remove after CV-2810
 			function sanitizeComparator(valueComparator) {
 				var comparator = valueComparator;
-				if (valueComparator && valueComparator === '&lt;') {
+				if (valueComparator && valueComparator.trim() === '&lt;') {
 					comparator = '<';
 				}
-				if (valueComparator && valueComparator === '&gt;') {
+				if (valueComparator && valueComparator.trim() === '&gt;') {
 					comparator = '>';
 				}
 				return comparator;
