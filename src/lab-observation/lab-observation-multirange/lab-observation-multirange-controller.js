@@ -70,7 +70,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 	};
 
 	/*jshint sub:true*/
-	function mapScaleToClasses(codeScale) {
+	function mapScaleToClasses(codeScale, obsCode) {
 		var result = { };
 
 		var rangeClassMappings = fhirMappings.getCodeScale2ClassNameMappings();
@@ -81,7 +81,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		if (found) {
 			if (found.length > 1) {
 				var withObsCode = _.filter(found, function(map) {
-					return !!map.observationCode;
+					return !!map.observationCode && (!obsCode || obsCode === map.observationCode);
 				});
 
 				found = withObsCode && withObsCode.length > 0 ? _.first(withObsCode) : _.first(found);
@@ -102,12 +102,12 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 		return result;
 	}
 
-	function transformRangesForGraphDisplay(ranges) {
+	function transformRangesForGraphDisplay(ranges, obsCode) {
 		var codeScale = _.map(ranges, function(range) {
 			return range.meaning.coding[0].code;
 		});
 
-		var codeToClassMap = mapScaleToClasses(codeScale);
+		var codeToClassMap = mapScaleToClasses(codeScale, obsCode);
 
 		return _.map(ranges, function(r) {
 			var coding = r.meaning.coding && r.meaning.coding.length ? r.meaning.coding[0] : null;
@@ -146,7 +146,7 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 			var ranges = FhirReferenceRangeConverterService.convertToMultipleRangesWithDomain(observation, $scope.vm.graphOptions.domain, $scope.vm.options.rangeFillings);
 
-			$scope.vm.calculatedRanges = transformRangesForGraphDisplay(ranges);
+			$scope.vm.calculatedRanges = transformRangesForGraphDisplay(ranges, observation.code.coding[0].code);
 		}
 	});
 };
