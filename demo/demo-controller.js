@@ -18,6 +18,7 @@ module.exports = function($scope, $location, $rootScope, LabObservationService, 
 	});
 
 	EXTENSION_SYSTEM.DOMAIN = "http://www.demo.com/domain";
+	EXTENSION_SYSTEM.DOMAIN_INTERNAL = "http://www.demo.com/domain/internal";
 
 	$scope.popover1 = {
 		config: {

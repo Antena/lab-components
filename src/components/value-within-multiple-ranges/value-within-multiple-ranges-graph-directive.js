@@ -654,7 +654,7 @@ module.exports = function(FhirRangeService, MathUtilService) {
 					return lowTextValue !== highTextValue ? [lowTextValue, options.rangeSeparator, highTextValue].join(' ') : lowTextValue;
 				} else if (_.isNumber(range.low) && !_.isNumber(range.high)) {
 					// Last Sector
-					if ((_.isNumber(domain.high)) && (range.low <= domain.high)) {
+					if ((_.isNumber(domain.high) && !domain.highHidden) && (range.low <= domain.high)) {
 						// Checks if we defined a high in Domain
 						return [textValue(range.low), options.rangeSeparator, (range.lowComparator || ''), textValue(domain.high)].join(' ');
 					} else {
@@ -662,7 +662,7 @@ module.exports = function(FhirRangeService, MathUtilService) {
 					}
 				} else if (_.isNumber(range.high) && !_.isNumber(range.low)) {
 					// First Sector
-					if ((_.isNumber(domain.low)) && (domain.low <= range.high)) {
+					if ((_.isNumber(domain.low) && !domain.lowHidden) && (domain.low <= range.high)) {
 						// Checks if we defined a low in Domain
 						return (range.highComparator === '<' ?
 									[(range.highComparator || ''), textValue(range.high)] :
@@ -741,8 +741,10 @@ module.exports = function(FhirRangeService, MathUtilService) {
 
 				return isSingleValueRange ||
 					(valueComparator && (
-						((hasHigh && !hasLow) && (comparator === '<' && value === range.high && highQuantityComparator === '<')) ||
-						((hasLow && !hasHigh) && (comparator === '>' && value === range.low && lowQuantityComparator === '>'))
+						(hasHigh && comparator === '<' && value === range.high) ||
+						(hasLow && comparator === '>' && value === range.low)
+						// ((hasHigh && !hasLow) && (comparator === '<' && value === range.high && highQuantityComparator === '<')) ||
+						// ((hasLow && !hasHigh) && (comparator === '>' && value === range.low && lowQuantityComparator === '>'))
 					)
 				);
 			};

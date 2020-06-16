@@ -2295,7 +2295,25 @@
       "resource": {
         "resourceType": "Observation",
         "id": "8208",
-        "extension": [],
+        "extension": [
+          {
+            "url": "http://www.demo.com/domain",
+            "valueRange": {
+              "high": {
+                "units": "%",
+                "code": "%",
+                "system": "http://unitsofmeasure.org",
+                "value": 50,
+                "extension": [
+                  {
+                    "url": "http://www.demo.com/domain/internal",
+                    "valueBoolean": true
+                  }
+                ]
+              }
+            }
+          }
+        ],
         "code": {
           "coding": [
             {
@@ -3244,7 +3262,8 @@
           ]
         },
         "valueQuantity": {
-          "value": 52,
+          "value": 41,
+          "comparator": "<",
           "units": "%",
           "system": "http://unitsofmeasure.org",
           "code": "%"

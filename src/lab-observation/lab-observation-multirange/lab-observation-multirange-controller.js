@@ -136,10 +136,24 @@ module.exports = function($scope, $filter, fhirMappings, FhirReferenceRangeConve
 
 				if (_.has(domainExtension.valueRange, 'low')) {
 					$scope.vm.graphOptions.domain.low = domainExtension.valueRange.low.value;
+					var internalLowExtension = EXTENSION_SYSTEM.DOMAIN_INTERNAL ? _.findWhere(domainExtension.valueRange.low.extension, {url: EXTENSION_SYSTEM.DOMAIN_INTERNAL}) : null;
+					if (!internalLowExtension) {
+						internalLowExtension = EXTENSION_SYSTEM.CUSTOM_DOMAIN_INTERNAL ? _.findWhere(domainExtension.valueRange.low.extension, {url: EXTENSION_SYSTEM.CUSTOM_DOMAIN_INTERNAL}) : null;
+					}
+					if (internalLowExtension && _.has(internalLowExtension, 'valueBoolean') && internalLowExtension.valueBoolean === true) {
+						$scope.vm.graphOptions.domain.lowHidden = true;
+					}
 				}
 
 				if (_.has(domainExtension.valueRange, 'high')) {
 					$scope.vm.graphOptions.domain.high = domainExtension.valueRange.high.value;
+					var internalHighExtension = EXTENSION_SYSTEM.DOMAIN_INTERNAL ? _.findWhere(domainExtension.valueRange.high.extension, {url: EXTENSION_SYSTEM.DOMAIN_INTERNAL}) : null;
+					if (!internalHighExtension) {
+						internalHighExtension = EXTENSION_SYSTEM.CUSTOM_DOMAIN_INTERNAL ? _.findWhere(domainExtension.valueRange.high.extension, {url: EXTENSION_SYSTEM.CUSTOM_DOMAIN_INTERNAL}) : null;
+					}
+					if (internalHighExtension && _.has(internalHighExtension, 'valueBoolean') && internalHighExtension.valueBoolean === true) {
+						$scope.vm.graphOptions.domain.highHidden = true;
+					}
 				}
 
 			}
