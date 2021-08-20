@@ -21,7 +21,7 @@ If you need to run this tasks individually, all steps are available as individua
 Run `npm run build`, then `npm run docs`, then `npm run start`. Go to [http://localhost:4000/docs](http://localhost:4000/docs).  
 
 ### Publishing to NPM
-:warning: *Make sure your NPM registry is set to Antena's (you can run `npm config get registry` to check).*
+:warning: *Make sure your NPM registry is set to wellbin's (you can run `npm config get registry` to check).*
 
 #### Production version
 We follow [Semantic Versioning](http://semver.org/) for this package. 

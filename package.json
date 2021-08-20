@@ -1,5 +1,5 @@
 {
-  "name": "lab-components",
+  "name": "@wellbin/lab-components",
   "version": "1.2.8",
   "description": "Components for visualizing FHIR labs.",
   "main": "src/index.js",
@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Antena/lab-components.git"
+    "url": "https://github.com/wellbin/lab-components.git"
   },
   "scripts": {
     "lint": "jshint . --reporter=node_modules/jshint-stylish; jscs . --reporter=node_modules/jscs-stylish",
